@@ -1,0 +1,18 @@
+{
+  "historical_api": {
+    "calls_by_date": {},
+    "device_counts": {
+      "meteo_station": 42,
+      "inverter": 51,
+      "meter": 24
+    },
+    "last_updated": "2025-05-28T13:01:38.321136+00:00"
+  },
+  "fetch_progress": {
+    "2025-05-01_2025-05-27_device_types=inverter,meter,meteo_station_plant_codes=NE=53771627": {
+      "current_date": "2025-05-07",
+      "processed_device_types": {},
+      "last_updated": "2025-05-28T13:01:38.318586+00:00"
+    }
+  }
+}

@@ -1,0 +1,625 @@
+import logging
+import time
+import json
+from datetime import datetime, timedelta, timezone
+from sqlalchemy import text
+from sqlalchemy.exc import SQLAlchemyError
+
+from .isolar_config import (MAX_PS_KEYS_PER_REQUEST, MAX_POINTS_PER_REQUEST, REQUEST_DELAY_SECONDS, 
+                         DEVICE_TYPE_MEASURING_POINTS, get_measuring_points_for_device_type, DAYS_PER_HISTORICAL_BATCH)
+from .isolar_api_client import _make_api_request
+from .isolar_db_operations import engine, Session
+
+
+def _map_device_type_name_for_points(device):
+    """Helper to determine the standardized device type name for point lookup."""
+    device_type_name_for_points = 'unknown'
+    if 'type_name' in device:
+        type_name_lower = device['type_name'].lower()
+        # Prioritize specific keywords for mapping
+        if "inverter" in type_name_lower or "逆变器" in type_name_lower: # Chinese for inverter
+            device_type_name_for_points = "inverter"
+        elif "meteo_station" in type_name_lower or "meteo" in type_name_lower or "气象站" in type_name_lower: # Chinese for weather station
+            device_type_name_for_points = "meteo_station"
+        elif "meter" in type_name_lower or "电表" in type_name_lower: # Chinese for meter
+            device_type_name_for_points = "meter"
+        else: # Fallback if no keywords match, try to use type_name directly if it's in DEVICE_TYPE_MEASURING_POINTS
+            if type_name_lower in DEVICE_TYPE_MEASURING_POINTS:
+                 device_type_name_for_points = type_name_lower
+            else:
+                logging.debug(f"type_name '{device['type_name']}' not directly in DEVICE_TYPE_MEASURING_POINTS, trying API type code.")
+
+    if device_type_name_for_points == 'unknown' and 'device_type' in device:
+        api_type_code = device.get('device_type')
+        for name, config_data in DEVICE_TYPE_MEASURING_POINTS.items():
+            if config_data.get('device_type') == api_type_code:
+                device_type_name_for_points = name
+                break
+    return device_type_name_for_points
+
+def fetch_and_store_minute_data(devices_to_fetch, start_time_dt, end_time_dt, minute_interval=5):
+    """Fetches minute-level data and stores it in PostgreSQL."""
+    if not engine:
+        logging.error("Database engine not initialized in data_processing. Cannot store minute data.")
+        return 0
+    
+    if not devices_to_fetch:
+        logging.info("No devices provided to fetch_and_store_minute_data.")
+        return 0
+
+    grouped_by_ps_and_type = {}
+    for device in devices_to_fetch:
+        ps_id = device.get('ps_id') 
+        device_type_name = _map_device_type_name_for_points(device)
+        
+        if ps_id not in grouped_by_ps_and_type:
+            grouped_by_ps_and_type[ps_id] = {}
+        if device_type_name not in grouped_by_ps_and_type[ps_id]:
+            grouped_by_ps_and_type[ps_id][device_type_name] = []
+        # Store the full device object temporarily if needed, or just ps_key
+        grouped_by_ps_and_type[ps_id][device_type_name].append(device.get('device_ps_key'))
+
+    total_data_points_ingested = 0
+
+    start_time_api_format = start_time_dt.strftime('%Y%m%d%H%M%S')
+    end_time_api_format = end_time_dt.strftime('%Y%m%d%H%M%S')
+
+    for ps_id, types_in_ps in grouped_by_ps_and_type.items():
+        for device_type_name, ps_key_list_for_type in types_in_ps.items():
+            if device_type_name == 'unknown':
+                logging.warning(f"Skipping devices with unknown type for ps_id {ps_id}: {ps_key_list_for_type}")
+                continue
+
+            measuring_points_for_type = get_measuring_points_for_device_type(device_type_name)
+            if not measuring_points_for_type:
+                logging.warning(f"Skipping {device_type_name} for ps_id {ps_id} as no measuring points defined.")
+                continue
+            
+            # The /openapi/getDevicePointMinuteDataList endpoint uses ps_key_list and points, 
+            # not device_type for filtering, so api_device_type_code is not used here.
+
+            # Batch ps_keys and measuring_points according to API limits
+            for i in range(0, len(ps_key_list_for_type), MAX_PS_KEYS_PER_REQUEST):
+                batched_ps_keys = ps_key_list_for_type[i:i + MAX_PS_KEYS_PER_REQUEST]
+                
+                for j in range(0, len(measuring_points_for_type), MAX_POINTS_PER_REQUEST):
+                    batched_points_str_list = measuring_points_for_type[j:j + MAX_POINTS_PER_REQUEST]
+                    
+                    payload = {
+                        "ps_key_list": batched_ps_keys,
+                        "points": ",".join(batched_points_str_list), # API expects a comma-separated string
+                        "start_time_stamp": start_time_api_format,
+                        "end_time_stamp": end_time_api_format,
+                        "minute_interval": minute_interval,
+                    }
+                    
+                    logging.info(f"Fetching minute data with payload: {payload}")
+                    api_response_parsed = _make_api_request("/openapi/getDevicePointMinuteDataList", payload)
+                    time.sleep(REQUEST_DELAY_SECONDS)
+
+                    if api_response_parsed and api_response_parsed.get("result_code") == "1":
+                        result_data = api_response_parsed.get("result_data", {})
+                        data_to_insert = []
+                        for device_api_ps_key, point_data_records in result_data.items():
+                            if not isinstance(point_data_records, list):
+                                logging.warning(f"Expected a list of records for ps_key {device_api_ps_key}, got {type(point_data_records)}. Skipping.")
+                                continue
+                            
+                            for point_data_item in point_data_records:
+                                timestamp_api_str = point_data_item.get("time_stamp")
+                                if not timestamp_api_str or not device_api_ps_key: # device_api_ps_key is from the outer loop
+                                    logging.warning(f"Missing time_stamp or ps_key in record for {device_api_ps_key}: {point_data_item}")
+                                    continue
+
+                                try:
+                                    # API timestamp is YYYYMMDDHHMMSS
+                                    naive_dt = datetime.strptime(timestamp_api_str, '%Y%m%d%H%M%S')
+                                    # TODO: Confirm timezone of API's time_stamp. Assuming it's local to powerhouse.
+                                    # For now, store as naive datetime converted to ISO string.
+                                    # Proper UTC conversion would require knowing the powerhouse's timezone.
+                                    # Example: local_tz.localize(naive_dt).astimezone(timezone.utc).isoformat()
+                                    converted_utc_timestamp = naive_dt.isoformat() 
+
+                                except ValueError as ve:
+                                    logging.error(f"Error parsing time_stamp '{timestamp_api_str}' for ps_key {device_api_ps_key}: {ve}. Skipping record.")
+                                    continue
+                                
+                                # Extract measurement data (all keys except time_stamp) into a separate dict for JSONB column
+                                measurement_data = {}
+                                for key, value in point_data_item.items():
+                                    if key.lower() != "time_stamp": # Exclude the original time_stamp
+                                        measurement_data[key] = value
+                                
+                                # Only use the required columns in row_data, with measurement_data as JSONB
+                                # Convert measurement_data dictionary to JSON string for proper PostgreSQL JSONB storage
+                                row_data = {
+                                    "device_ps_key": device_api_ps_key, # Use the key from the API response
+                                    "timestamp": converted_utc_timestamp,
+                                    "measurement_data": json.dumps(measurement_data)  # Serialize to JSON string
+                                }
+                                
+                                data_to_insert.append(row_data)
+                        
+                        if data_to_insert:
+                            try:
+                                session = Session()
+                                for row in data_to_insert:
+                                    # Build the column list and values for the INSERT
+                                    columns = list(row.keys())
+                                    values = [row[col] for col in columns]
+                                    
+                                    # Build the ON CONFLICT DO UPDATE clause
+                                    update_clause = ", ".join([f"{col} = EXCLUDED.{col}" for col in columns if col not in ['device_ps_key', 'timestamp']])
+                                    
+                                    # Construct and execute the UPSERT query
+                                    query = text(f"""
+                                        INSERT INTO isolarcloud_historical_data ({', '.join(columns)})
+                                        VALUES ({', '.join([':' + col for col in columns])})
+                                        ON CONFLICT (device_ps_key, timestamp) DO UPDATE SET
+                                        {update_clause}
+                                    """)
+                                    
+                                    session.execute(query, row)
+                                
+                                session.commit()
+                                total_data_points_ingested += len(data_to_insert)
+                                logging.info(f"Successfully upserted {len(data_to_insert)} data points.")
+                            except SQLAlchemyError as e:
+                                session.rollback()
+                                logging.error(f"Database error during data upsert: {e}")
+                            finally:
+                                session.close()
+                        else:
+                            logging.info("No data to insert into database for this API data batch.")
+                            
+                    elif api_response_parsed is None: # Error already logged by _make_api_request
+                        pass 
+                    else: # This covers api_response_parsed.get("result_code") != "1"
+                        logging.warning(f"API request failed or returned unexpected data: {api_response_parsed}")
+
+    return total_data_points_ingested
+
+def fetch_historical_data_for_batch(devices_batch, day_dt_start, day_dt_end, minute_interval):
+    """Processes a batch of devices for a given day, fetching data in 3-hour intervals."""
+    logging.info(f"Processing day-batch: {day_dt_start.strftime('%Y-%m-%d')} for {len(devices_batch)} devices.")
+    
+    current_interval_start = day_dt_start
+    total_points_ingested_for_day_batch = 0
+
+    # day_dt_end is the end of the day (e.g., 23:59:59)
+    while current_interval_start < day_dt_end:
+        # Calculate end of the current 3-hour interval (e.g., start 00:00:00 -> end 02:59:59)
+        current_interval_end = min(current_interval_start + timedelta(hours=3), day_dt_end)
+        
+        # Ensure the interval is valid, especially for the last partial hour
+        if current_interval_end < current_interval_start:
+            # This might happen if day_dt_end was exactly on an hour boundary before subtraction, adjust to process the last second.
+             current_interval_end = current_interval_start 
+
+        logging.info(f"Fetching data for 3-hour interval: {current_interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {current_interval_end.strftime('%Y-%m-%d %H:%M:%S')}")
+
+        points_ingested_for_interval = fetch_and_store_minute_data(
+            devices_batch,        # First arg
+            current_interval_start, # Second arg
+            current_interval_end,   # Third arg
+            minute_interval         # Fourth arg
+        )
+        if points_ingested_for_interval: # fetch_and_store_minute_data returns an int or 0
+             total_points_ingested_for_day_batch += points_ingested_for_interval
+
+        # Move to the start of the next 3-hour interval
+        current_interval_start += timedelta(hours=3)
+        
+    logging.info(f"Total data points ingested for day-batch ({day_dt_start.strftime('%Y-%m-%d')}): {total_points_ingested_for_day_batch}")
+    return total_points_ingested_for_day_batch
+
+def fetch_historical_data(start_date_str, end_date_str, ps_ids_str=None, device_types_str=None):
+    """Fetches historical data for a given date range, optionally filtered by power station IDs and device types."""
+    # Import engine inside the function to avoid module-level errors
+    from .isolar_db_operations import engine, Session
+    
+    if not engine:
+        logging.error("Database engine not initialized. Cannot fetch historical data.")
+        return
+    
+    print(f"Starting historical data fetch for {start_date_str} to {end_date_str}")
+    print(f"Database engine: {engine}")
+    # Continue with existing function...
+
+    try:
+        start_time_dt = datetime.strptime(start_date_str, '%Y-%m-%d').replace(hour=0, minute=0, second=0, tzinfo=timezone.utc)
+        end_time_dt = datetime.strptime(end_date_str, '%Y-%m-%d').replace(hour=23, minute=59, second=59, tzinfo=timezone.utc)
+    except ValueError:
+        logging.error("Invalid date format. Please use YYYY-MM-DD.")
+        return
+
+    if end_time_dt <= start_time_dt:
+        logging.error("End date must be after start date.")
+        return
+    
+    logging.info(f"Preparing to fetch historical data from {start_time_dt.strftime('%Y-%m-%d')} to {end_time_dt.strftime('%Y-%m-%d')}")
+
+    try:
+        session = Session()
+        # Build the base query to include install_date from power stations table
+        base_query_str = """
+            SELECT d.ps_id, d.device_ps_key, d.device_type, d.type_name, ps.install_date 
+            FROM isolarcloud_devices d
+            JOIN isolarcloud_power_stations ps ON d.ps_id = ps.ps_id
+        """
+        params = {}
+        where_clauses = []
+
+        if ps_ids_str:
+            ps_id_list = [pid.strip() for pid in ps_ids_str.split(',') if pid.strip()]
+            if ps_id_list:
+                where_clauses.append("d.ps_id = ANY(:ps_ids)")
+                params['ps_ids'] = ps_id_list
+        
+        if where_clauses:
+            query_str = base_query_str + " WHERE " + " AND ".join(where_clauses)
+        else:
+            query_str = base_query_str
+        
+        query = text(query_str)
+        
+        result = session.execute(query, params)
+        # Print column names to debug the query result structure
+        columns = result.keys()
+        print(f"Query returned columns: {columns}")
+        
+        # Convert each row to a dictionary with proper column names
+        devices_to_process = []
+        for row in result:
+            device_dict = {}
+            for idx, column in enumerate(columns):
+                device_dict[column] = row[idx]
+            devices_to_process.append(device_dict)
+            
+        # Print the first device for debugging with safe encoding handling
+        if devices_to_process:
+            # Print only safe fields to avoid encoding issues
+            first_device = devices_to_process[0]
+            print(f"First device - ID: {first_device.get('device_ps_key')}, Type ID: {first_device.get('device_type')}")
+            print(f"Found {len(devices_to_process)} devices to process")
+        else:
+            print("No devices found")
+
+        # Parse install_date for each device
+        logging.info(f"Parsing install_date for {len(devices_to_process)} devices...")
+        parsed_install_date_count = 0
+        failed_install_date_parse_count = 0
+        none_install_date_count = 0
+
+        for device in devices_to_process:
+            install_date_raw = device.get('install_date')
+            device['parsed_install_date'] = None # Initialize
+            if install_date_raw:
+                try:
+                    # Assuming install_date is a date string like 'YYYY-MM-DD'
+                    # If it's a datetime string, adjust format e.g., '%Y-%m-%d %H:%M:%S'
+                    if isinstance(install_date_raw, datetime):
+                        parsed_date = install_date_raw # Already a datetime object
+                    else:
+                        parsed_date = datetime.strptime(str(install_date_raw).split(' ')[0], '%Y-%m-%d')
+                    
+                    device['parsed_install_date'] = parsed_date.replace(tzinfo=timezone.utc) # Make timezone-aware UTC
+                    parsed_install_date_count += 1
+                    logging.debug(f"Device PS Key: {device.get('device_ps_key')}, Raw install_date: {install_date_raw}, Parsed: {device['parsed_install_date']}")
+                except ValueError as e:
+                    logging.warning(f"Device PS Key: {device.get('device_ps_key')}, Failed to parse install_date '{install_date_raw}': {e}. Device will be included in all batches.")
+                    failed_install_date_parse_count += 1
+            else:
+                logging.debug(f"Device PS Key: {device.get('device_ps_key')} has no install_date. Device will be included in all batches.")
+                none_install_date_count += 1
+        logging.info(f"Finished parsing install_dates. Parsed: {parsed_install_date_count}, Failed: {failed_install_date_parse_count}, None from DB: {none_install_date_count}")
+
+        if not devices_to_process:
+            logging.warning("No devices found in database matching ps_id criteria (or no ps_ids specified and no devices exist).")
+            return
+
+        if device_types_str:
+            logging.info(f"Filtering for device types: {device_types_str}")
+            filter_types_input = [dt.strip().lower() for dt in device_types_str.split(',')]
+            
+            filtered_devices_for_type = []
+            for device in devices_to_process:
+                device_type_name = _map_device_type_name_for_points(device)
+                if device_type_name in filter_types_input:
+                    filtered_devices_for_type.append(device)
+            
+            devices_to_process = filtered_devices_for_type
+            logging.info(f"Filtered to {len(devices_to_process)} devices matching specified types.")
+        
+        # Check if we need to process inverter summary data (if processing inverters)
+        process_inverter_summary = 'inverter' in filter_types_input if device_types_str else True
+
+        # Process in batches of days
+        current_date = start_time_dt # Already UTC from start_time_dt
+        total_points_ingested = 0
+
+        # Create a modified version of _map_device_type_name_for_points that returns 'inverter_summary' for inverters
+        def _map_device_type_name_for_summary_points(device):
+            # Directly implement device type name mapping without recursive calls
+            device_type_name = 'unknown'
+            if 'type_name' in device:
+                type_name_lower = device['type_name'].lower()
+                # Prioritize specific keywords for mapping
+                if "inverter" in type_name_lower or "逆变器" in type_name_lower:
+                    return "inverter_summary"  # Return inverter_summary directly
+                elif "meteo_station" in type_name_lower or "meteo" in type_name_lower or "气象站" in type_name_lower:
+                    device_type_name = "meteo_station"
+                elif "meter" in type_name_lower or "电表" in type_name_lower:
+                    device_type_name = "meter"
+                else: # Fallback if no keywords match, try to use type_name directly if it's in DEVICE_TYPE_MEASURING_POINTS
+                    if type_name_lower in DEVICE_TYPE_MEASURING_POINTS:
+                         device_type_name = type_name_lower
+            
+            if device_type_name == 'unknown' and 'device_type' in device:
+                api_type_code = device.get('device_type')
+                for name, config_data in DEVICE_TYPE_MEASURING_POINTS.items():
+                    if config_data.get('device_type') == api_type_code:
+                        device_type_name = name
+                        break
+                        
+            # Convert inverter to inverter_summary if needed
+            if device_type_name == 'inverter':
+                return 'inverter_summary'
+            return device_type_name
+            
+        while current_date <= end_time_dt:
+            batch_end_date = min(current_date + timedelta(days=DAYS_PER_HISTORICAL_BATCH), end_time_dt)
+            # Ensure batch_end_date is also UTC and correctly set to end of day
+            batch_end_date = batch_end_date.replace(hour=23, minute=59, second=59, microsecond=0, tzinfo=timezone.utc)
+            
+            logging.info(f"Processing batch from {current_date.strftime('%Y-%m-%d')} to {batch_end_date.strftime('%Y-%m-%d')}")
+            
+            # Filter devices for the current batch based on their install_date
+            devices_for_current_batch = [
+                dev for dev in devices_to_process
+                if dev.get('parsed_install_date') is None or dev['parsed_install_date'] <= batch_end_date
+            ]
+            logging.info(f"Batch {current_date.strftime('%Y-%m-%d')} to {batch_end_date.strftime('%Y-%m-%d')}: Total devices considered: {len(devices_to_process)}, Eligible by install_date: {len(devices_for_current_batch)}")
+
+            points_ingested = 0
+            if devices_for_current_batch:
+                # Process the regular device points
+                points_ingested = fetch_historical_data_for_batch(
+                    devices_for_current_batch, # Use filtered list
+                    current_date,
+                    batch_end_date,
+                    5  # minute_interval
+                )
+            else:
+                logging.info("No devices eligible for this batch based on install_date.")
+            
+            total_points_ingested += points_ingested
+            
+            # Process inverter summary points if needed
+            if process_inverter_summary:
+                # Find inverter devices
+                inverter_devices = []
+                for device in devices_to_process:
+                    if _map_device_type_name_for_points(device) == 'inverter':
+                        inverter_devices.append(device)
+                
+                if inverter_devices:
+                    # Filter inverter_devices for the current batch based on their install_date
+                    inverter_devices_for_batch = [
+                        dev for dev in inverter_devices
+                        if dev.get('parsed_install_date') is None or dev['parsed_install_date'] <= batch_end_date
+                    ]
+                    logging.info(f"Processing inverter summary data for {len(inverter_devices_for_batch)} eligible inverters (out of {len(inverter_devices)} total inverters for this type filter)")
+                    
+                    summary_points_ingested = 0
+                    if inverter_devices_for_batch:
+                        # Process the summary points without modifying global functions
+                        # Use a custom processing function that uses the summary mapping function
+                        summary_points_ingested = _fetch_historical_data_for_batch_with_custom_mapping(
+                            inverter_devices_for_batch, # Use filtered list
+                            current_date,
+                            batch_end_date,
+                            5,  # minute_interval
+                            _map_device_type_name_for_summary_points
+                        )
+                    else:
+                        logging.info("No inverter devices eligible for summary data in this batch based on install_date.")
+                    
+                    total_points_ingested += summary_points_ingested
+                    logging.info(f"Ingested {summary_points_ingested} inverter summary data points")
+            
+            current_date = batch_end_date + timedelta(days=1)
+            current_date = current_date.replace(hour=0, minute=0, second=0, microsecond=0, tzinfo=timezone.utc) # Ensure next current_date is also UTC
+
+        logging.info(f"Historical data fetch complete. Total points ingested: {total_points_ingested}")
+    except SQLAlchemyError as e:
+        logging.error(f"Database error during historical data fetch: {e}")
+    finally:
+        session.close()
+
+def _fetch_historical_data_for_batch_with_custom_mapping(devices_batch, day_dt_start, day_dt_end, minute_interval, custom_mapping_function):
+    """Processes a batch of devices using a custom mapping function instead of the global one.
+    
+    This avoids the need to temporarily modify global functions and prevents recursion errors.
+    """
+    logging.info(f"Processing day-batch with custom mapping: {day_dt_start.strftime('%Y-%m-%d')} for {len(devices_batch)} devices.")
+    
+    current_interval_start = day_dt_start
+    total_points_ingested_for_day_batch = 0
+
+    # day_dt_end is the end of the day (e.g., 23:59:59)
+    while current_interval_start < day_dt_end:
+        # Calculate end of the current 3-hour interval
+        current_interval_end = min(current_interval_start + timedelta(hours=3) - timedelta(seconds=1), day_dt_end)
+        
+        # Ensure the interval is valid
+        if current_interval_end < current_interval_start:
+            current_interval_end = current_interval_start 
+
+        logging.info(f"Fetching data with custom mapping for interval: {current_interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {current_interval_end.strftime('%Y-%m-%d %H:%M:%S')}")
+
+        # Create a specialized function for this request that uses the custom mapping
+        def specialized_fetch_and_store_minute_data(devices_to_fetch, start_time_dt, end_time_dt, minute_interval=5):
+            """Modified version of fetch_and_store_minute_data that uses the custom mapping function"""
+            if not engine:
+                logging.error("Database engine not initialized. Cannot store minute data.")
+                return 0
+            
+            if not devices_to_fetch:
+                logging.info("No devices provided to specialized_fetch.")
+                return 0
+
+            grouped_by_ps_and_type = {}
+            for device in devices_to_fetch:
+                ps_id = device.get('ps_id') 
+                # Use the custom mapping function here
+                device_type_name = custom_mapping_function(device)
+                
+                if ps_id not in grouped_by_ps_and_type:
+                    grouped_by_ps_and_type[ps_id] = {}
+                if device_type_name not in grouped_by_ps_and_type[ps_id]:
+                    grouped_by_ps_and_type[ps_id][device_type_name] = []
+                grouped_by_ps_and_type[ps_id][device_type_name].append(device.get('device_ps_key'))
+            
+            # The rest is identical to the original function
+            total_data_points_ingested = 0
+
+            start_time_api_format = start_time_dt.strftime('%Y%m%d%H%M%S')
+            end_time_api_format = end_time_dt.strftime('%Y%m%d%H%M%S')
+
+            for ps_id, types_in_ps in grouped_by_ps_and_type.items():
+                for device_type_name, ps_key_list_for_type in types_in_ps.items():
+                    if device_type_name == 'unknown':
+                        logging.warning(f"Skipping devices with unknown type for ps_id {ps_id}: {ps_key_list_for_type}")
+                        continue
+
+                    measuring_points_for_type = get_measuring_points_for_device_type(device_type_name)
+                    if not measuring_points_for_type:
+                        logging.warning(f"Skipping {device_type_name} for ps_id {ps_id} as no measuring points defined.")
+                        continue
+                    
+                    # Process in batches according to API limits
+                    for i in range(0, len(ps_key_list_for_type), MAX_PS_KEYS_PER_REQUEST):
+                        batched_ps_keys = ps_key_list_for_type[i:i + MAX_PS_KEYS_PER_REQUEST]
+                        
+                        for j in range(0, len(measuring_points_for_type), MAX_POINTS_PER_REQUEST):
+                            batched_points = measuring_points_for_type[j:j + MAX_POINTS_PER_REQUEST]
+                            
+                            payload = {
+                                "ps_key_list": batched_ps_keys,
+                                "points": ",".join(batched_points),
+                                "start_time_stamp": start_time_api_format,
+                                "end_time_stamp": end_time_api_format,
+                                "minute_interval": minute_interval,
+                            }
+                            
+                            logging.info(f"Fetching minute data with payload: {payload}")
+                            api_response_parsed = _make_api_request("/openapi/getDevicePointMinuteDataList", payload)
+                            time.sleep(REQUEST_DELAY_SECONDS)
+
+                            if api_response_parsed and api_response_parsed.get("result_code") == "1":
+                                result_data = api_response_parsed.get("result_data", {})
+                                data_to_insert = []
+                                for device_api_ps_key, point_data_records in result_data.items():
+                                    if not isinstance(point_data_records, list):
+                                        logging.warning(f"Expected a list of records for ps_key {device_api_ps_key}, got {type(point_data_records)}. Skipping.")
+                                        continue
+                                    
+                                    for point_data_item in point_data_records:
+                                        timestamp_api_str = point_data_item.get("time_stamp")
+                                        if not timestamp_api_str or not device_api_ps_key:
+                                            logging.warning(f"Missing time_stamp or ps_key in record for {device_api_ps_key}: {point_data_item}")
+                                            continue
+
+                                        try:
+                                            naive_dt = datetime.strptime(timestamp_api_str, '%Y%m%d%H%M%S')
+                                            converted_utc_timestamp = naive_dt.isoformat()
+                                        except ValueError as ve:
+                                            logging.error(f"Error parsing time_stamp '{timestamp_api_str}' for ps_key {device_api_ps_key}: {ve}. Skipping record.")
+                                            continue
+                                        
+                                        # Process measurement data
+                                        measurement_data = {}
+                                        for key, value in point_data_item.items():
+                                            if key.lower() != "time_stamp":
+                                                measurement_data[key] = value
+                                        
+                                        row_data = {
+                                            "device_ps_key": device_api_ps_key,
+                                            "timestamp": converted_utc_timestamp,
+                                            "measurement_data": json.dumps(measurement_data)
+                                        }
+                                        
+                                        data_to_insert.append(row_data)
+                                
+                                # Store the data in the database
+                                if data_to_insert:
+                                    try:
+                                        session = Session()
+                                        for row in data_to_insert:
+                                            columns = list(row.keys())
+    
+                                            query = text("""
+                                                INSERT INTO isolarcloud_historical_data (
+                                                    device_ps_key,
+                                                    timestamp,
+                                                    measurement_data
+                                                )
+                                                VALUES (
+                                                    :device_ps_key,
+                                                    :timestamp,
+                                                    CAST(:measurement_data AS jsonb)
+                                                )
+                                                ON CONFLICT (device_ps_key, timestamp) DO UPDATE
+                                                SET
+                                                    measurement_data = COALESCE(isolarcloud_historical_data.measurement_data, '{}'::jsonb)
+                                                                    || EXCLUDED.measurement_data;
+                                            """)
+                                            session.execute(query, row)
+                                        
+                                        session.commit()
+                                        total_data_points_ingested += len(data_to_insert)
+                                        logging.info(f"Successfully upserted {len(data_to_insert)} data points.")
+                                    except SQLAlchemyError as e:
+                                        session.rollback()
+                                        logging.error(f"Database error during data upsert: {e}")
+                                    finally:
+                                        session.close()
+                                else:
+                                    logging.info("No data to insert into database for this API data batch.")
+                                    
+                            elif api_response_parsed is None:
+                                pass
+                            else:
+                                logging.warning(f"API request failed or returned unexpected data: {api_response_parsed}")
+
+            return total_data_points_ingested
+        
+        # Use our specialized function for this request
+        points_ingested_for_interval = specialized_fetch_and_store_minute_data(
+            devices_batch,
+            current_interval_start,
+            current_interval_end,
+            minute_interval
+        )
+
+        total_points_ingested_for_day_batch += points_ingested_for_interval
+        current_interval_start = current_interval_end + timedelta(seconds=1)
+
+    return total_points_ingested_for_day_batch
+
+def fetch_yesterday_data_for_all_devices():
+    """Fetches yesterday's data for all devices."""
+    if not engine:
+        logging.error("Database engine not initialized. Cannot fetch yesterday's data.")
+        return
+
+    yesterday = datetime.now() - timedelta(days=1)
+    start_date = yesterday.replace(hour=0, minute=0, second=0)
+    end_date = yesterday.replace(hour=23, minute=59, second=59)
+    
+    fetch_historical_data(
+        start_date.strftime('%Y-%m-%d'),
+        end_date.strftime('%Y-%m-%d')
+    )
+

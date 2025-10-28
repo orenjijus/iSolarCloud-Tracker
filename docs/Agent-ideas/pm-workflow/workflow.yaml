@@ -1,0 +1,181 @@
+# Project Management Workflow
+name: "pm-workflow"
+description: "Workflow for managing PV system analytics projects with a focus on delivery and value"
+author: "BMAD Team"
+version: "1.0.0"
+
+# Configuration
+config_source: "{project-root}/bmad/bmb/config.yaml"
+output_folder: "{project-root}/output/pm-workflow"
+user_name: "{config_source}:user_name"
+communication_language: "en"
+
+# Module path and component files
+installed_path: "{project-root}/bmad/bmb/workflows/pm-workflow"
+template: "{installed_path}/template.md"
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Output configuration
+default_output_file: "{output_folder}/project-plan.md"
+validation_output_file: "{output_folder}/project-review.md"
+
+# Required tools
+required_tools:
+  - "Git":
+      description: "Version control for project artifacts"
+  - "Markdown":
+      description: "Documentation format for project artifacts"
+  - "Project Management Tool":
+      description: "Tool for tracking tasks and milestones"
+
+# Dependencies
+dependencies:
+  - "Access to development team"
+  - "Clear business objectives"
+  - "Stakeholder availability"
+
+# Agent Integration and Orchestration
+agent_orchestration:
+  enabled: true
+  agents:
+    - name: "data-engineer"
+      description: "Handles ETL pipeline implementation and maintenance"
+      communication: "API, Message Queue"
+      dependencies: ["data-architect"]
+      
+    - name: "data-architect"
+      description: "Manages data models and database schemas"
+      communication: "API, Direct DB"
+      dependencies: []
+      
+    - name: "bi-developer"
+      description: "Implements and maintains BI dashboards"
+      communication: "API, Message Queue"
+      dependencies: ["data-engineer", "data-architect"]
+
+  communication:
+    protocol: "REST API"
+    message_format: "JSON"
+    status_endpoint: "/api/v1/status"
+    task_endpoint: "/api/v1/tasks"
+
+  monitoring:
+    health_check_interval: 300  # seconds
+    retry_attempts: 3
+    alert_channels: ["slack", "email"]
+
+# Integration with other workflows
+integration:
+  - workflow: "data-architecture-workflow"
+    description: "Coordinates with data architecture planning"
+  - workflow: "bi-development-workflow"
+    description: "Aligns with BI development timelines"
+  - workflow: "agent-orchestration"
+    description: "Manages inter-agent communication and task coordination"
+
+# Workflow steps
+steps:
+  - step: 1
+    name: "Agent Initialization"
+    description: "Initialize and verify all agent connections"
+    tasks:
+      - "Verify agent availability"
+      - "Establish secure communication channels"
+      - "Test handshake protocols"
+      - "Verify role-based access controls"
+
+  - step: 2
+    name: "Agent Orchestration Setup"
+    description: "Configure agent communication and workflows"
+    tasks:
+      - "Define message formats and protocols"
+      - "Set up monitoring and alerting"
+      - "Configure retry and error handling"
+      - "Establish escalation paths"
+
+  - step: 3
+    name: "Project Initiation"
+    description: "Define project scope and success criteria"
+    tasks:
+      - "Identify key stakeholders"
+      - "Define project objectives"
+      - "Establish success metrics"
+      - "Create initial project plan"
+
+  - step: 2
+    name: "Planning"
+    description: "Develop detailed project plan"
+    tasks:
+      - "Break down work into tasks"
+      - "Estimate effort and resources"
+      - "Create project timeline"
+      - "Identify risks and mitigation strategies"
+
+  - step: 3
+    name: "Execution"
+    description: "Manage project delivery"
+    tasks:
+      - "Coordinate team activities"
+      - "Track progress"
+      - "Manage scope"
+      - "Communicate status"
+
+  - step: 4
+    name: "Monitoring & Control"
+    description: "Track and report on project performance"
+    tasks:
+      - "Monitor KPIs"
+      - "Manage issues and risks"
+      - "Report progress"
+      - "Adjust plans as needed"
+
+  - step: 5
+    name: "Closure"
+    description: "Formally close the project"
+    tasks:
+      - "Obtain stakeholder acceptance"
+      - "Document lessons learned"
+      - "Archive project artifacts"
+      - "Celebrate success"
+
+# Output templates
+output_templates:
+  - name: "Project Charter"
+    description: "Initial project definition document"
+    template: "{installed_path}/templates/charter.md"
+  - name: "Project Plan"
+    description: "Detailed project execution plan"
+    template: "{installed_path}/templates/project_plan.md"
+  - name: "Status Report"
+    description: "Regular project status updates"
+    template: "{installed_path}/templates/status_report.md"
+
+# Validation rules
+validation_rules:
+  - "All tasks must have clear acceptance criteria"
+  - "Dependencies between tasks must be clearly defined"
+  - "Risks must be identified and mitigated"
+  - "Stakeholder expectations must be managed"
+
+# Success metrics
+success_metrics:
+  - "Project delivered on time"
+  - "Project delivered within budget"
+  - "Stakeholder satisfaction"
+  - "Team satisfaction"
+  - "Business objectives met"
+
+# Error handling
+error_handling:
+  - "Regular status checks to identify issues early"
+  - "Clear escalation paths for blockers"
+  - "Documented risk management process"
+  - "Contingency plans for critical risks"
+
+# Version control
+version_control:
+  - "All project artifacts under version control"
+  - "Clear commit messages"
+  - "Branching strategy for parallel work"
+  - "Regular backups of critical data"

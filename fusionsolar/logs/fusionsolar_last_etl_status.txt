@@ -1,0 +1,12 @@
+timestamp: 2025-10-22T14:17:13.916773
+status: SUCCESS
+execution_time: 90.03
+start_date: 2025-09-17
+end_date: 2025-09-17
+device_type: inverter,meter,meteo_station
+power_station: ALL
+sync_plants: False
+fetch_historical: ['2025-09-17', '2025-09-17']
+device_types: inverter,meter,meteo_station
+fetch_yesterday: False
+create_views: False

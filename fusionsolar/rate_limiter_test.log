@@ -1,0 +1,74 @@
+2025-05-27 22:24:00,569 - INFO - Daily limit for inverter: 29 API calls
+2025-05-27 22:24:00,570 - INFO - Making API call #1 for inverter
+2025-05-27 22:24:00,571 - INFO - API calls for inverter: 1 made, 28 remaining
+2025-05-27 22:24:00,571 - INFO - Making API call #2 for inverter
+2025-05-27 22:24:00,572 - INFO - API calls for inverter: 2 made, 27 remaining
+2025-05-27 22:24:00,573 - INFO - Making API call #3 for inverter
+2025-05-27 22:24:00,574 - INFO - API calls for inverter: 3 made, 26 remaining
+2025-05-27 22:24:00,574 - INFO - Making API call #4 for inverter
+2025-05-27 22:24:00,576 - INFO - API calls for inverter: 4 made, 25 remaining
+2025-05-27 22:24:00,577 - INFO - Making API call #5 for inverter
+2025-05-27 22:24:00,579 - INFO - API calls for inverter: 5 made, 24 remaining
+2025-05-27 22:24:00,580 - INFO - Making API call #6 for inverter
+2025-05-27 22:24:00,582 - INFO - API calls for inverter: 6 made, 23 remaining
+2025-05-27 22:24:00,583 - INFO - Making API call #7 for inverter
+2025-05-27 22:24:00,585 - INFO - API calls for inverter: 7 made, 22 remaining
+2025-05-27 22:24:00,585 - INFO - Making API call #8 for inverter
+2025-05-27 22:24:00,587 - INFO - API calls for inverter: 8 made, 21 remaining
+2025-05-27 22:24:00,587 - INFO - Making API call #9 for inverter
+2025-05-27 22:24:00,590 - INFO - API calls for inverter: 9 made, 20 remaining
+2025-05-27 22:24:00,590 - INFO - Making API call #10 for inverter
+2025-05-27 22:24:00,592 - INFO - API calls for inverter: 10 made, 19 remaining
+2025-05-27 22:24:00,592 - INFO - Making API call #11 for inverter
+2025-05-27 22:24:00,593 - INFO - API calls for inverter: 11 made, 18 remaining
+2025-05-27 22:24:00,593 - INFO - Making API call #12 for inverter
+2025-05-27 22:24:00,595 - INFO - API calls for inverter: 12 made, 17 remaining
+2025-05-27 22:24:00,595 - INFO - Making API call #13 for inverter
+2025-05-27 22:24:00,597 - INFO - API calls for inverter: 13 made, 16 remaining
+2025-05-27 22:24:00,597 - INFO - Making API call #14 for inverter
+2025-05-27 22:24:00,598 - INFO - API calls for inverter: 14 made, 15 remaining
+2025-05-27 22:24:00,598 - INFO - Making API call #15 for inverter
+2025-05-27 22:24:00,599 - INFO - API calls for inverter: 15 made, 14 remaining
+2025-05-27 22:24:00,599 - INFO - Making API call #16 for inverter
+2025-05-27 22:24:00,600 - INFO - API calls for inverter: 16 made, 13 remaining
+2025-05-27 22:24:00,601 - INFO - Making API call #17 for inverter
+2025-05-27 22:24:00,602 - INFO - API calls for inverter: 17 made, 12 remaining
+2025-05-27 22:24:00,602 - INFO - Making API call #18 for inverter
+2025-05-27 22:24:00,603 - INFO - API calls for inverter: 18 made, 11 remaining
+2025-05-27 22:24:00,603 - INFO - Making API call #19 for inverter
+2025-05-27 22:24:00,604 - INFO - API calls for inverter: 19 made, 10 remaining
+2025-05-27 22:24:00,604 - INFO - Making API call #20 for inverter
+2025-05-27 22:24:00,605 - INFO - API calls for inverter: 20 made, 9 remaining
+2025-05-27 22:24:00,605 - INFO - Making API call #21 for inverter
+2025-05-27 22:24:00,606 - INFO - API calls for inverter: 21 made, 8 remaining
+2025-05-27 22:24:00,606 - INFO - Making API call #22 for inverter
+2025-05-27 22:24:00,607 - INFO - API calls for inverter: 22 made, 7 remaining
+2025-05-27 22:24:00,608 - INFO - Making API call #23 for inverter
+2025-05-27 22:24:00,609 - INFO - API calls for inverter: 23 made, 6 remaining
+2025-05-27 22:24:00,609 - INFO - Making API call #24 for inverter
+2025-05-27 22:24:00,610 - INFO - API calls for inverter: 24 made, 5 remaining
+2025-05-27 22:24:00,610 - INFO - Making API call #25 for inverter
+2025-05-27 22:24:00,611 - INFO - API calls for inverter: 25 made, 4 remaining
+2025-05-27 22:24:00,611 - INFO - Making API call #26 for inverter
+2025-05-27 22:24:00,612 - INFO - API calls for inverter: 26 made, 3 remaining
+2025-05-27 22:24:00,612 - INFO - Making API call #27 for inverter
+2025-05-27 22:24:00,613 - INFO - API calls for inverter: 27 made, 2 remaining
+2025-05-27 22:24:00,614 - INFO - Making API call #28 for inverter
+2025-05-27 22:24:00,614 - INFO - API calls for inverter: 28 made, 1 remaining
+2025-05-27 22:24:00,615 - INFO - Making API call #29 for inverter
+2025-05-27 22:24:00,615 - INFO - API calls for inverter: 29 made, 0 remaining
+2025-05-27 22:24:00,615 - WARNING - Rate limit reached for inverter after 29 calls
+2025-05-27 22:24:00,616 - INFO - Attempting to wait for rate limit reset...
+2025-05-27 22:24:00,616 - INFO - Rate limit reached for inverter. Waiting 300 seconds...
+2025-05-27 22:29:00,617 - WARNING - Max wait time reached for device type inverter
+2025-05-27 22:29:00,617 - ERROR - Wait unsuccessful, would need to wait until tomorrow
+2025-05-27 22:29:49,902 - INFO - Updating progress to date: 2025-05-01
+2025-05-27 22:29:49,903 - INFO - Current progress: {'current_date': '2025-05-01', 'processed_device_types': {'2025-05-01': ['inverter', 'meter']}, 'last_updated': '2025-05-27T15:29:49.903134+00:00'}
+2025-05-27 22:29:49,904 - INFO - Updating progress to date: 2025-05-04
+2025-05-27 22:29:49,905 - INFO - Current progress: {'current_date': '2025-05-04', 'processed_device_types': {'2025-05-01': ['inverter', 'meter'], '2025-05-04': ['inverter', 'meter']}, 'last_updated': '2025-05-27T15:29:49.904374+00:00'}
+2025-05-27 22:29:49,905 - INFO - Updating progress to date: 2025-05-07
+2025-05-27 22:29:49,907 - INFO - Current progress: {'current_date': '2025-05-07', 'processed_device_types': {'2025-05-01': ['inverter', 'meter'], '2025-05-04': ['inverter', 'meter'], '2025-05-07': ['inverter', 'meter']}, 'last_updated': '2025-05-27T15:29:49.905973+00:00'}
+2025-05-27 22:29:49,908 - INFO - Updating progress to date: 2025-05-10
+2025-05-27 22:29:49,910 - INFO - Current progress: {'current_date': '2025-05-10', 'processed_device_types': {'2025-05-01': ['inverter', 'meter'], '2025-05-04': ['inverter', 'meter'], '2025-05-07': ['inverter', 'meter'], '2025-05-10': ['inverter', 'meter']}, 'last_updated': '2025-05-27T15:29:49.908667+00:00'}
+2025-05-27 22:29:49,910 - INFO - Clearing progress
+2025-05-27 22:29:49,912 - INFO - Progress after clearing: None

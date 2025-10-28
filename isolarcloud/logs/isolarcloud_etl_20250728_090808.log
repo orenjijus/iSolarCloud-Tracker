@@ -1,0 +1,10 @@
+2025-07-28 09:08:08,969 - etl_logger - INFO - === Starting ETL process for iSolarCloud historical data fetch ===
+2025-07-28 09:08:08,970 - etl_logger - INFO - Initializing database...
+2025-07-28 09:08:09,753 - etl_logger - INFO - Database initialized successfully
+2025-07-28 09:08:09,753 - etl_logger - INFO - Logging in to iSolarCloud...
+2025-07-28 09:08:13,245 - etl_logger - INFO - Login successful
+2025-07-28 09:08:13,245 - etl_logger - INFO - Fetching historical data from 2025-07-27 to 2025-07-27 for power station ALL and device type inverter,meter,meteo_station
+2025-07-28 09:08:13,248 - etl_logger - INFO - Starting fetch_historical_data...
+2025-07-28 09:24:00,538 - etl_logger - INFO - fetch_historical_data completed successfully in 947.29 seconds
+2025-07-28 09:24:00,543 - etl_logger - INFO - === ETL process completed with status: SUCCESS ===
+2025-07-28 09:24:00,545 - etl_logger - INFO - Total execution time: 951.57 seconds

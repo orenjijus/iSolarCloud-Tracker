@@ -1,0 +1,60 @@
+# PV System Data Integration Workflow
+name: "pv-data-integration"
+description: "End-to-end workflow for integrating FusionSolar and iSolarCloud data into PowerBI"
+author: "BMAD Team"
+version: "2.0.0"
+
+# Configuration
+config_source: "{project-root}/bmad/bmb/config.yaml"
+data_source: "{project-root}/data"
+output_folder: "{project-root}/output/pv-integration"
+user_name: "{config_source}:user_name"
+communication_language: "{config_source}:communication_language"
+date: system-generated
+
+# Module path and component files
+installed_path: "{project-root}/bmad/bmb/workflows/senior-dev-workflow"
+template: "{installed_path}/template.md"
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Output configuration
+default_output_file: "{output_folder}/integration-plan.md"
+validation_output_file: "{output_folder}/validation-report.md"
+
+# Required tools
+required_tools:
+  - "Python 3.8+":
+      description: "With pandas, sqlalchemy, and requests"
+  - "dbt":
+      description: "For data transformation"
+  - "PostgreSQL 13+ with TimescaleDB":
+      description: "Time-series database"
+  - "PowerBI":
+      description: "For visualization and analytics"
+  - "Git":
+      description: "For version control"
+  - "Airflow":
+      description: "For workflow orchestration"
+
+# Integration points
+related_workflows:
+  - "data-architecture-workflow"
+  - "data-engineering-workflow"
+  - "bi-development-workflow"
+  - "legacy-migration-workflow"
+
+# Data sources
+data_sources:
+  - "FusionSolar API"
+  - "iSolarCloud API"
+  - "Google Sheets (for configuration)"
+  - "Existing SQL views and tables"
+
+# Metadata
+metadata:
+  created: "2025-10-26"
+  last_updated: "2025-10-26"
+  version: "2.0.0"
+  maintainers: ["BMAD Team"]
+  license: "Proprietary"

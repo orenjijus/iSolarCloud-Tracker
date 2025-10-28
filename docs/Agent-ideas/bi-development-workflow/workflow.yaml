@@ -1,0 +1,130 @@
+name: bi-development
+description: "End-to-end workflow for BI development tasks including Power BI dashboard creation, DAX development, and report optimization"
+author: "BMAD Team"
+version: "1.0.0"
+
+# Configuration
+config_source: "{project-root}/bmad/bmb/config.yaml"
+output_folder: "{project-root}/output/bi-development"
+user_name: "{config_source}:user_name"
+communication_language: "en"
+
+# Module path and component files
+installed_path: "{project-root}/bmad/bmb/workflows/bi-development-workflow"
+template: "{installed_path}/template.md"
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Output configuration
+default_output_file: "{output_folder}/bi-design-document.md"
+validation_output_file: "{output_folder}/bi-validation-report.md"
+
+# Required tools
+required_tools:
+  - "Power BI Desktop":
+      description: "Latest version of Power BI Desktop for report development"
+  - "Power BI Service":
+      description: "Power BI Service for publishing and sharing reports"
+  - "DAX Studio":
+      description: "For DAX query development and performance tuning"
+  - "Tabular Editor":
+      description: "For advanced data model management and DAX development"
+  - "Version Control":
+      description: "Git for source code management of Power BI files and DAX scripts"
+
+# Dependencies
+dependencies:
+  - "Power BI Desktop (latest version)"
+  - "DAX Studio"
+  - "Tabular Editor"
+  - "Power BI Premium/Pro license"
+  - "Access to data sources"
+
+# Integration with other workflows
+integration:
+  - workflow: "data-engineering"
+    description: "Depends on data engineering workflow for clean, transformed data"
+    handoff: "Data Engineering workflow should complete before BI development begins"
+
+# Output templates
+output_templates:
+  - name: "bi_design_document"
+    description: "BI Design Document"
+    template: "{template}"
+    output: "{default_output_file}"
+
+# Workflow steps (Three-Level Analysis)
+steps:
+  - step: 1
+    name: "1. Overview Dashboard"
+    description: "High-level view of all assets with performance indicators"
+    tasks:
+      - "Connect to mart_site_performance_daily"
+      - "Create asset performance scorecard"
+      - "Implement MTD and YTD index calculations"
+      - "Set up alerts for underperforming assets"
+      - "Add root cause analysis indicators"
+
+  - step: 2
+    name: "2. Site Performance Analysis"
+    description: "Daily performance analysis by site"
+    tasks:
+      - "Create daily performance heatmap by site"
+      - "Implement daily and weekly index calculations"
+      - "Add trend analysis for key metrics"
+      - "Set up comparison views (actual vs target)"
+
+  - step: 3
+    name: "3. Detailed 5-Minute Analysis"
+    description: "Granular analysis of performance anomalies"
+    tasks:
+      - "Connect to 5-minute interval data marts"
+      - "Implement time series analysis for detailed views"
+      - "Add event detection and annotation"
+      - "Create comparison with normal operation baselines"
+
+  - step: 4
+    name: "Cross-Level Navigation"
+    description: "Seamless transition between analysis levels"
+    tasks:
+      - "Implement drill-through from overview to detailed views"
+      - "Add context preservation during navigation"
+      - "Set up breadcrumb navigation"
+      - "Optimize performance for quick level switching"
+
+  - step: 5
+    name: "Quick Validation"
+    description: "Verify core functionality"
+    tasks:
+      - "Check data accuracy"
+      - "Test basic interactions"
+      - "Gather initial feedback"
+
+  - step: 6
+    name: "Initial Deployment"
+    description: "Deploy MVP to Power BI Service"
+    tasks:
+      - "Publish to development workspace"
+      - "Set up basic refresh"
+      - "Share with core team"
+
+# Dependencies
+dependencies:
+  - "Power BI Desktop (latest version)"
+  - "DAX Studio"
+  - "Tabular Editor"
+  - "Power BI Premium/Pro license"
+  - "Access to data sources"
+
+# Integration with other workflows
+integration:
+  - workflow: "data-engineering"
+    description: "Depends on data engineering workflow for clean, transformed data"
+    handoff: "Data Engineering workflow should complete before BI development begins"
+
+# Output templates
+output_templates:
+  - name: "bi_design_document"
+    description: "BI Design Document"
+    template: "{template}"
+    output: "{default_output_file}"

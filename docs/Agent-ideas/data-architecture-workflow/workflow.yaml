@@ -1,0 +1,90 @@
+# PV System Data Architecture Setup Workflow
+name: "data-architecture-setup"
+description: "Workflow for setting up PV system data architecture with PostgreSQL, TimescaleDB, and dbt"
+author: "BMAD Team"
+version: "1.0.0"
+
+# Configuration
+config_source: "{project-root}/bmad/bmb/config.yaml"
+output_folder: "{project-root}/output/data-architecture"
+user_name: "{config_source}:user_name"
+communication_language: "en"
+
+# Module path and component files
+installed_path: "{project-root}/bmad/bmb/workflows/data-architecture-setup"
+template: "{installed_path}/template.md"
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Output configuration
+default_output_file: "{output_folder}/data-architecture-specification.md"
+validation_output_file: "{output_folder}/data-architecture-validation-report.md"
+
+# Required tools
+required_tools:
+  - "PostgreSQL":
+      description: "Database system for storing PV system data"
+      link: "https://www.postgresql.org/"
+  - "TimescaleDB":
+      description: "Time-series database extension for PostgreSQL"
+      link: "https://www.timescale.com/"
+  - "dbt":
+      description: "Data build tool for transformation workflows"
+      link: "https://www.getdbt.com/"
+  - "Airflow":
+      description: "Workflow orchestration"
+      link: "https://airflow.apache.org/"
+
+# Workflow steps
+steps:
+  - step: 1
+    name: "Database Design"
+    description: "Design and implement database schema for PV system data"
+    tasks:
+      - "Create tables for PV system components (inverters, meters, etc.)"
+      - "Set up time-series optimization with TimescaleDB"
+      - "Define data retention policies"
+      - "Create indexes for common query patterns"
+
+  - step: 2
+    name: "ETL Pipeline Setup"
+    description: "Design and implement data ingestion and transformation processes"
+    tasks:
+      - "Design data ingestion processes"
+      - "Set up dbt models for transformations"
+      - "Implement data quality checks"
+      - "Set up error handling and retry mechanisms"
+
+  - step: 3
+    name: "API Integration"
+    description: "Set up data access layer and APIs"
+    tasks:
+      - "Design data access patterns"
+      - "Set up performance monitoring"
+      - "Implement security measures"
+
+  - step: 4
+    name: "Documentation"
+    description: "Create comprehensive documentation"
+    tasks:
+      - "Generate schema documentation"
+      - "Document ETL processes"
+      - "Create data dictionary"
+      - "Document API endpoints"
+
+# Dependencies
+dependencies:
+  - "PostgreSQL 13+"
+  - "TimescaleDB 2.0+"
+  - "dbt-core >= 1.0.0"
+  - "Apache Airflow >= 2.0.0"
+  - "Python 3.8+"
+
+# Tags for categorization
+tags:
+  - "data-architecture"
+  - "postgresql"
+  - "timescaledb"
+  - "dbt"
+  - "airflow"
+  - "pv-systems"

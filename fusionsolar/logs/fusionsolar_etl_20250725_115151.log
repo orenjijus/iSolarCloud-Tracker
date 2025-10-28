@@ -1,0 +1,13 @@
+2025-07-25 11:51:51,786 - fusionsolar_etl_logger - INFO - === Starting ETL process for FusionSolar data harvester (no limit) ===
+2025-07-25 11:51:51,787 - fusionsolar_etl_logger - INFO - Starting FusionSolar Data Harvester (NO RATE LIMIT VERSION)
+2025-07-25 11:51:51,787 - fusionsolar_etl_logger - WARNING - WARNING: This version bypasses rate limits. Use for testing only!
+2025-07-25 11:51:51,787 - fusionsolar_etl_logger - INFO - Initializing database connection
+2025-07-25 11:51:51,787 - fusionsolar_etl_logger - INFO - Database initialization successful
+2025-07-25 11:51:52,322 - fusionsolar_etl_logger - INFO - Action: Fetching historical data from 2024-10-05 to 2024-10-07
+2025-07-25 11:51:52,323 - fusionsolar_etl_logger - INFO - Starting flexible_fetch_historical_data...
+2025-07-25 11:52:36,125 - fusionsolar_etl_logger - INFO - flexible_fetch_historical_data completed successfully in 43.80 seconds
+2025-07-25 11:52:36,125 - fusionsolar_etl_logger - INFO - Total data points ingested: 29764
+2025-07-25 11:52:36,130 - fusionsolar_etl_logger - INFO - Found 27475 records in database for the specified date range
+2025-07-25 11:52:36,133 - fusionsolar_etl_logger - INFO - === ETL process completed with status: SUCCESS ===
+2025-07-25 11:52:36,134 - fusionsolar_etl_logger - INFO - Total execution time: 44.35 seconds
+2025-07-25 11:52:36,134 - fusionsolar_etl_logger - INFO - FusionSolar Data Harvester (No Rate Limit) completed

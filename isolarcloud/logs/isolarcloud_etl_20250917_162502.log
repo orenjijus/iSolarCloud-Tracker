@@ -1,0 +1,3 @@
+2025-09-17 16:25:02,666 - etl_logger - INFO - === Starting ETL process for iSolarCloud historical data fetch ===
+2025-09-17 16:25:02,667 - etl_logger - INFO - Initializing database...
+2025-09-17 16:25:02,753 - etl_logger - ERROR - Failed to initialize database

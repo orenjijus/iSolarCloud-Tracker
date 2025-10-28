@@ -1,0 +1,181 @@
+# Solar Data Engineering Workflow
+name: "solar-data-engineering"
+description: "End-to-end workflow for solar data engineering tasks including ETL/ELT, data pipeline development, and data quality assurance for FusionSolar and iSolarCloud"
+author: "BMAD Team"
+version: "2.0.0"
+
+# Configuration
+config_source: "{project-root}/bmad/bmb/config.yaml"
+output_folder: "{project-root}/output/data-engineering"
+user_name: "{config_source}:user_name"
+communication_language: "en"
+
+# Module path and component files
+installed_path: "{project-root}/bmad/bmb/workflows/data-engineering"
+template: "{installed_path}/template.md"
+instructions: "{installed_path}/instructions.md"
+validation: "{installed_path}/checklist.md"
+
+# Output configuration
+default_output_file: "{output_folder}/pipeline-design.md"
+validation_output_file: "{output_folder}/pipeline-report.md"
+
+# Required tools
+required_tools:
+  - "Python Environment":
+      description: "Python 3.8+ with pandas, sqlalchemy, requests, psycopg2"
+  - "Database Access":
+      description: "Access to TimescaleDB with PostGIS extension"
+  - "Version Control":
+      description: "Git for source code management"
+  - "Orchestration":
+      description: "Airflow for workflow orchestration"
+  - "Data Transformation":
+      description: "dbt for data transformation"
+  - "API Access":
+      description: "Access to FusionSolar and iSolarCloud APIs"
+
+# Workflow steps
+steps:
+  - step: 1
+    name: "Data Source Analysis"
+    description: "Analyze and document data sources"
+    tasks:
+      - "Document FusionSolar API endpoints and data structure"
+      - "Document iSolarCloud API endpoints and data structure"
+      - "Identify required external data (weather, metadata)"
+      - "Assess data quality and completeness"
+      - "Document API rate limits and authentication"
+      - "Identify incremental loading strategies"
+
+  - step: 2
+    name: "Data Pipeline Design"
+    description: "Design the data pipeline architecture"
+    tasks:
+      - "Design TimescaleDB schema for time-series data"
+      - "Plan ETL/ELT strategy for each data source"
+      - "Design error handling and retry mechanisms"
+      - "Plan data validation and quality checks"
+      - "Design monitoring and alerting"
+      - "Document data lineage and transformations"
+    tasks:
+      - "Design data model and schema"
+      - "Plan ETL/ELT strategy"
+      - "Design error handling and retry mechanisms"
+      - "Plan for data validation and quality checks"
+      - "Design monitoring and alerting"
+
+  - step: 3
+    name: "Pipeline Implementation"
+    description: "Develop and test the data pipeline"
+    tasks:
+      - "Set up development environment"
+      - "Implement data extraction from FusionSolar API"
+      - "Implement data extraction from iSolarCloud API"
+      - "Develop data transformation logic"
+      - "Implement loading to TimescaleDB"
+      - "Write unit and integration tests"
+
+  - step: 4
+    name: "dbt Models Development"
+    description: "Create dbt models for data transformation"
+    tasks:
+      - "Set up dbt project structure"
+      - "Create staging models for raw data"
+      - "Develop intermediate transformation models"
+      - "Create fact and dimension tables"
+      - "Implement data quality tests"
+      - "Document data models"
+
+  - step: 5
+    name: "Orchestration"
+    description: "Set up workflow orchestration"
+    tasks:
+      - "Design Airflow DAGs"
+      - "Implement task dependencies"
+      - "Set up scheduling"
+      - "Configure retries and alerts"
+      - "Monitor pipeline performance"
+
+  - step: 6
+    name: "Testing & Validation"
+    description: "Validate the data pipeline"
+    tasks:
+      - "Run data quality tests"
+      - "Validate data transformations"
+      - "Test error scenarios"
+      - "Verify performance metrics"
+      - "Document test results"
+
+  - step: 7
+    name: "Deployment"
+    description: "Deploy the data pipeline to production"
+    tasks:
+      - "Prepare deployment package"
+      - "Deploy to staging environment"
+      - "Conduct UAT"
+      - "Deploy to production"
+      - "Monitor initial runs"
+      - "Document deployment process"
+
+  - step: 8
+    name: "Monitoring & Maintenance"
+    description: "Monitor and maintain the data pipeline"
+    tasks:
+      - "Monitor pipeline performance"
+      - "Address any issues or failures"
+      - "Optimize as needed"
+      - "Update documentation"
+      - "Plan for future enhancements"
+
+# Dependencies
+dependencies:
+  - "Python 3.8+"
+  - "pandas >= 1.3.0"
+  - "sqlalchemy >= 1.4.0"
+  - "apache-airflow >= 2.0.0"
+  - "dbt-core >= 1.0.0"
+  - "dbt-postgres >= 1.0.0"
+  - "timescaledb >= 2.0.0"
+  - "great-expectations >= 0.13.0"
+  - "psycopg2-binary >= 2.9.0"
+  - "requests >= 2.25.0"
+
+# Configuration for Solar Data Processing
+solar_data_config:
+  data_sources:
+    fusion_solar:
+      - "Performance data"
+      - "Device metadata"
+      - "Site information"
+    isolar_cloud:
+      - "Inverter data"
+      - "String monitoring"
+      - "Sensor data"
+    external:
+      - "Weather data"
+      - "Google Sheets metadata"
+      - "Meter configurations"
+  
+  processing_requirements:
+    - "Handle API rate limiting"
+    - "Incremental data loading"
+    - "Data validation"
+    - "Time zone handling"
+    - "Error handling and retries"
+
+# Dependencies
+dependencies:
+  - "Python 3.8+"
+  - "pandas >= 1.3.0"
+  - "sqlalchemy >= 1.4.0"
+  - "apache-airflow >= 2.0.0"
+  - "prefect >= 0.15.0"
+  - "great-expectations >= 0.13.0"
+
+# Output templates
+output_templates:
+  - name: "pipeline_design"
+    description: "Data Pipeline Design Document"
+    template: "{template}"
+    output: "{default_output_file}"

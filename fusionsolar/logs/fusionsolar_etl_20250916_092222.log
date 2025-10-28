@@ -1,0 +1,12 @@
+2025-09-16 09:22:22,650 - fusionsolar_etl_logger - INFO - === Starting ETL process for FusionSolar data harvester (no limit) ===
+2025-09-16 09:22:22,650 - fusionsolar_etl_logger - INFO - Starting FusionSolar Data Harvester (NO RATE LIMIT VERSION)
+2025-09-16 09:22:22,650 - fusionsolar_etl_logger - WARNING - WARNING: This version bypasses rate limits. Use for testing only!
+2025-09-16 09:22:22,650 - fusionsolar_etl_logger - INFO - Initializing database connection
+2025-09-16 09:22:22,651 - fusionsolar_etl_logger - INFO - Database initialization successful
+2025-09-16 09:22:23,075 - fusionsolar_etl_logger - INFO - Action: Synchronizing devices for plant code: NE=50488260
+2025-09-16 09:22:23,076 - fusionsolar_etl_logger - INFO - Starting sync_devices...
+2025-09-16 09:22:25,825 - fusionsolar_etl_logger - INFO - sync_devices completed successfully in 2.75 seconds
+2025-09-16 09:22:25,825 - fusionsolar_etl_logger - INFO - Devices synchronization for plant NE=50488260 completed successfully
+2025-09-16 09:22:25,825 - fusionsolar_etl_logger - INFO - === ETL process completed with status: SUCCESS ===
+2025-09-16 09:22:25,826 - fusionsolar_etl_logger - INFO - Total execution time: 3.18 seconds
+2025-09-16 09:22:25,826 - fusionsolar_etl_logger - INFO - FusionSolar Data Harvester (No Rate Limit) completed
