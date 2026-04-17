@@ -2,13 +2,47 @@ import logging
 import time
 import json
 from datetime import datetime, timedelta, timezone
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from sqlalchemy import text
 from sqlalchemy.exc import SQLAlchemyError
 
-from .isolar_config import (MAX_PS_KEYS_PER_REQUEST, MAX_POINTS_PER_REQUEST, REQUEST_DELAY_SECONDS, 
-                         DEVICE_TYPE_MEASURING_POINTS, get_measuring_points_for_device_type, DAYS_PER_HISTORICAL_BATCH)
+from .isolar_config import (MAX_PS_KEYS_PER_REQUEST, MAX_POINTS_PER_REQUEST, REQUEST_DELAY_SECONDS,
+                         DEVICE_TYPE_MEASURING_POINTS, get_measuring_points_for_device_type, DAYS_PER_HISTORICAL_BATCH,
+                         PARALLEL_PROCESSING_ENABLED, PARALLEL_MAX_WORKERS)
 from .isolar_api_client import _make_api_request
-from .isolar_db_operations import engine, Session
+from .isolar_db_operations import init_database
+
+# Initialize our own engine and Session to ensure they're available in this module
+engine = None
+Session = None
+
+def ensure_db_initialized():
+    """Ensure the database is initialized for this module."""
+    global engine, Session
+    if engine is None:
+        try:
+            # Initialize the database
+            if not init_database():
+                logging.error("Failed to initialize database")
+                return False
+                
+            # Import the engine and Session directly from the module
+            from .isolar_db_operations import engine as db_engine, Session as db_Session
+            
+            # Use the already initialized engine and Session
+            engine = db_engine
+            Session = db_Session
+            
+            if engine is None:
+                logging.error("Engine not available from db_operations module")
+                return False
+                
+            logging.info("Database engine initialized in data processing module")
+            return True
+        except Exception as e:
+            logging.error(f"Failed to initialize database in data processing module: {e}")
+            return False
+    return True
 
 
 def _map_device_type_name_for_points(device):
@@ -39,8 +73,8 @@ def _map_device_type_name_for_points(device):
 
 def fetch_and_store_minute_data(devices_to_fetch, start_time_dt, end_time_dt, minute_interval=5):
     """Fetches minute-level data and stores it in PostgreSQL."""
-    if not engine:
-        logging.error("Database engine not initialized in data_processing. Cannot store minute data.")
+    if not ensure_db_initialized():
+        logging.error("Database engine not initialized. Cannot store minute data.")
         return 0
     
     if not devices_to_fetch:
@@ -153,7 +187,7 @@ def fetch_and_store_minute_data(devices_to_fetch, start_time_dt, end_time_dt, mi
                                     
                                     # Construct and execute the UPSERT query
                                     query = text(f"""
-                                        INSERT INTO isolarcloud_historical_data ({', '.join(columns)})
+                                        INSERT INTO raw.isolarcloud_historical_data ({', '.join(columns)})
                                         VALUES ({', '.join([':' + col for col in columns])})
                                         ON CONFLICT (device_ps_key, timestamp) DO UPDATE SET
                                         {update_clause}
@@ -179,14 +213,30 @@ def fetch_and_store_minute_data(devices_to_fetch, start_time_dt, end_time_dt, mi
 
     return total_data_points_ingested
 
-def fetch_historical_data_for_batch(devices_batch, day_dt_start, day_dt_end, minute_interval):
-    """Processes a batch of devices for a given day, fetching data in 3-hour intervals."""
+def fetch_historical_data_for_batch(devices_batch, day_dt_start, day_dt_end, minute_interval, parallel=None, max_workers=None):
+    """
+    Processes a batch of devices for a given day, fetching data in 3-hour intervals.
+    
+    Args:
+        devices_batch: List of devices to process
+        day_dt_start: Start datetime for the day
+        day_dt_end: End datetime for the day
+        minute_interval: Interval in minutes between data points
+        parallel: Whether to use parallel processing (default: from config)
+        max_workers: Number of parallel workers (default: from config)
+    """
     logging.info(f"Processing day-batch: {day_dt_start.strftime('%Y-%m-%d')} for {len(devices_batch)} devices.")
     
+    # Use config defaults if not specified
+    if parallel is None:
+        parallel = PARALLEL_PROCESSING_ENABLED
+    if max_workers is None:
+        max_workers = PARALLEL_MAX_WORKERS
+    
+    # Build list of 3-hour intervals
+    intervals = []
     current_interval_start = day_dt_start
-    total_points_ingested_for_day_batch = 0
 
-    # day_dt_end is the end of the day (e.g., 23:59:59)
     while current_interval_start < day_dt_end:
         # Calculate end of the current 3-hour interval (e.g., start 00:00:00 -> end 02:59:59)
         current_interval_end = min(current_interval_start + timedelta(hours=3), day_dt_end)
@@ -196,29 +246,66 @@ def fetch_historical_data_for_batch(devices_batch, day_dt_start, day_dt_end, min
             # This might happen if day_dt_end was exactly on an hour boundary before subtraction, adjust to process the last second.
              current_interval_end = current_interval_start 
 
-        logging.info(f"Fetching data for 3-hour interval: {current_interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {current_interval_end.strftime('%Y-%m-%d %H:%M:%S')}")
-
-        points_ingested_for_interval = fetch_and_store_minute_data(
-            devices_batch,        # First arg
-            current_interval_start, # Second arg
-            current_interval_end,   # Third arg
-            minute_interval         # Fourth arg
-        )
-        if points_ingested_for_interval: # fetch_and_store_minute_data returns an int or 0
-             total_points_ingested_for_day_batch += points_ingested_for_interval
+        intervals.append((current_interval_start, current_interval_end))
 
         # Move to the start of the next 3-hour interval
         current_interval_start += timedelta(hours=3)
+    
+    total_points_ingested_for_day_batch = 0
+    
+    if parallel and len(intervals) > 1:
+        # Parallel processing: process all intervals concurrently
+        logging.info(f"Processing {len(intervals)} intervals in parallel with {max_workers} workers")
+        
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            # Submit all interval tasks
+            future_to_interval = {
+                executor.submit(
+                    fetch_and_store_minute_data,
+                    devices_batch,
+                    interval_start,
+                    interval_end,
+                    minute_interval
+                ): (interval_start, interval_end)
+                for interval_start, interval_end in intervals
+            }
+            
+            # Collect results as they complete
+            for future in as_completed(future_to_interval):
+                interval_start, interval_end = future_to_interval[future]
+                try:
+                    points_ingested_for_interval = future.result()
+                    if points_ingested_for_interval:
+                        total_points_ingested_for_day_batch += points_ingested_for_interval
+                    logging.info(f"Completed 3-hour interval: {interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {interval_end.strftime('%Y-%m-%d %H:%M:%S')} - {points_ingested_for_interval} points")
+                except Exception as e:
+                    logging.error(f"Error processing interval {interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {interval_end.strftime('%Y-%m-%d %H:%M:%S')}: {str(e)}")
+                    # Continue processing other intervals even if one fails
+    else:
+        # Sequential processing: original behavior
+        logging.info(f"Processing {len(intervals)} intervals sequentially")
+        for interval_start, interval_end in intervals:
+            logging.info(f"Fetching data for 3-hour interval: {interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {interval_end.strftime('%Y-%m-%d %H:%M:%S')}")
+            
+            points_ingested_for_interval = fetch_and_store_minute_data(
+                devices_batch,
+                interval_start,
+                interval_end,
+                minute_interval
+            )
+            if points_ingested_for_interval:
+                total_points_ingested_for_day_batch += points_ingested_for_interval
         
     logging.info(f"Total data points ingested for day-batch ({day_dt_start.strftime('%Y-%m-%d')}): {total_points_ingested_for_day_batch}")
     return total_points_ingested_for_day_batch
 
-def fetch_historical_data(start_date_str, end_date_str, ps_ids_str=None, device_types_str=None):
-    """Fetches historical data for a given date range, optionally filtered by power station IDs and device types."""
-    # Import engine inside the function to avoid module-level errors
-    from .isolar_db_operations import engine, Session
-    
-    if not engine:
+def fetch_historical_data(start_date_str, end_date_str, ps_ids_str=None, device_types_str=None, parallel_override=None, max_workers_override=None):
+    """Fetches historical data for a given date range, optionally filtered by power station IDs and device types.
+
+    parallel_override: True = always use parallel; False = always sequential; None = use parallel only if range <= 2 days (default).
+    max_workers_override: If set, use this many workers; otherwise use PARALLEL_MAX_WORKERS from config.
+    """
+    if not ensure_db_initialized():
         logging.error("Database engine not initialized. Cannot fetch historical data.")
         return
     
@@ -239,13 +326,28 @@ def fetch_historical_data(start_date_str, end_date_str, ps_ids_str=None, device_
     
     logging.info(f"Preparing to fetch historical data from {start_time_dt.strftime('%Y-%m-%d')} to {end_time_dt.strftime('%Y-%m-%d')}")
 
+    # Long date range (>2 days): use sequential to stay under API rate limit 2000/h. Daily (1 day) keeps parallel.
+    # Can override via parallel_override=True (e.g. from CLI --force-parallel) and max_workers_override (e.g. --workers 8).
+    range_days = (end_time_dt - start_time_dt).days
+    if parallel_override is True:
+        parallel_arg = True
+        logging.info("Parallel processing forced (e.g. --force-parallel). Workers: %s", max_workers_override or PARALLEL_MAX_WORKERS)
+    elif parallel_override is False:
+        parallel_arg = False
+        logging.info("Parallel processing disabled (forced sequential).")
+    else:
+        parallel_arg = None if range_days <= 2 else False
+        if parallel_arg is False:
+            logging.info("Date range > 2 days: using sequential processing to respect API rate limit (2000/h). Use --force-parallel to override.")
+    max_workers_arg = max_workers_override  # None = use config in fetch_historical_data_for_batch
+
     try:
         session = Session()
         # Build the base query to include install_date from power stations table
         base_query_str = """
             SELECT d.ps_id, d.device_ps_key, d.device_type, d.type_name, ps.install_date 
-            FROM isolarcloud_devices d
-            JOIN isolarcloud_power_stations ps ON d.ps_id = ps.ps_id
+            FROM raw.isolarcloud_devices d
+            JOIN raw.isolarcloud_power_stations ps ON d.ps_id = ps.ps_id
         """
         params = {}
         where_clauses = []
@@ -331,7 +433,7 @@ def fetch_historical_data(start_date_str, end_date_str, ps_ids_str=None, device_
             devices_to_process = filtered_devices_for_type
             logging.info(f"Filtered to {len(devices_to_process)} devices matching specified types.")
         
-        # Check if we need to process inverter summary data (if processing inverters)
+        # Process inverter summary when "inverter" is in filter (normal daily + backfill)
         process_inverter_summary = 'inverter' in filter_types_input if device_types_str else True
 
         # Process in batches of days
@@ -383,12 +485,13 @@ def fetch_historical_data(start_date_str, end_date_str, ps_ids_str=None, device_
 
             points_ingested = 0
             if devices_for_current_batch:
-                # Process the regular device points
                 points_ingested = fetch_historical_data_for_batch(
-                    devices_for_current_batch, # Use filtered list
+                    devices_for_current_batch,
                     current_date,
                     batch_end_date,
-                    5  # minute_interval
+                    5,  # minute_interval
+                    parallel=parallel_arg,
+                    max_workers=max_workers_arg,
                 )
             else:
                 logging.info("No devices eligible for this batch based on install_date.")
@@ -416,11 +519,13 @@ def fetch_historical_data(start_date_str, end_date_str, ps_ids_str=None, device_
                         # Process the summary points without modifying global functions
                         # Use a custom processing function that uses the summary mapping function
                         summary_points_ingested = _fetch_historical_data_for_batch_with_custom_mapping(
-                            inverter_devices_for_batch, # Use filtered list
+                            inverter_devices_for_batch,
                             current_date,
                             batch_end_date,
                             5,  # minute_interval
-                            _map_device_type_name_for_summary_points
+                            _map_device_type_name_for_summary_points,
+                            parallel=parallel_arg,
+                            max_workers=max_workers_arg,
                         )
                     else:
                         logging.info("No inverter devices eligible for summary data in this batch based on install_date.")
@@ -437,17 +542,32 @@ def fetch_historical_data(start_date_str, end_date_str, ps_ids_str=None, device_
     finally:
         session.close()
 
-def _fetch_historical_data_for_batch_with_custom_mapping(devices_batch, day_dt_start, day_dt_end, minute_interval, custom_mapping_function):
+def _fetch_historical_data_for_batch_with_custom_mapping(devices_batch, day_dt_start, day_dt_end, minute_interval, custom_mapping_function, parallel=None, max_workers=None):
     """Processes a batch of devices using a custom mapping function instead of the global one.
     
     This avoids the need to temporarily modify global functions and prevents recursion errors.
+    
+    Args:
+        devices_batch: List of devices to process
+        day_dt_start: Start datetime for the day
+        day_dt_end: End datetime for the day
+        minute_interval: Interval in minutes between data points
+        custom_mapping_function: Custom mapping function to use
+        parallel: Whether to use parallel processing (default: from config)
+        max_workers: Number of parallel workers (default: from config)
     """
     logging.info(f"Processing day-batch with custom mapping: {day_dt_start.strftime('%Y-%m-%d')} for {len(devices_batch)} devices.")
     
+    # Use config defaults if not specified
+    if parallel is None:
+        parallel = PARALLEL_PROCESSING_ENABLED
+    if max_workers is None:
+        max_workers = PARALLEL_MAX_WORKERS
+    
+    # Build list of 3-hour intervals
+    intervals = []
     current_interval_start = day_dt_start
-    total_points_ingested_for_day_batch = 0
 
-    # day_dt_end is the end of the day (e.g., 23:59:59)
     while current_interval_start < day_dt_end:
         # Calculate end of the current 3-hour interval
         current_interval_end = min(current_interval_start + timedelta(hours=3) - timedelta(seconds=1), day_dt_end)
@@ -456,12 +576,15 @@ def _fetch_historical_data_for_batch_with_custom_mapping(devices_batch, day_dt_s
         if current_interval_end < current_interval_start:
             current_interval_end = current_interval_start 
 
-        logging.info(f"Fetching data with custom mapping for interval: {current_interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {current_interval_end.strftime('%Y-%m-%d %H:%M:%S')}")
+        intervals.append((current_interval_start, current_interval_end))
+        current_interval_start = current_interval_end + timedelta(seconds=1)
+    
+    total_points_ingested_for_day_batch = 0
 
-        # Create a specialized function for this request that uses the custom mapping
-        def specialized_fetch_and_store_minute_data(devices_to_fetch, start_time_dt, end_time_dt, minute_interval=5):
+    # Create a specialized function for this request that uses the custom mapping
+    def specialized_fetch_and_store_minute_data(devices_to_fetch, start_time_dt, end_time_dt, minute_interval=5):
             """Modified version of fetch_and_store_minute_data that uses the custom mapping function"""
-            if not engine:
+            if not ensure_db_initialized():
                 logging.error("Database engine not initialized. Cannot store minute data.")
                 return 0
             
@@ -560,7 +683,7 @@ def _fetch_historical_data_for_batch_with_custom_mapping(devices_batch, day_dt_s
                                             columns = list(row.keys())
     
                                             query = text("""
-                                                INSERT INTO isolarcloud_historical_data (
+                                                INSERT INTO raw.isolarcloud_historical_data (
                                                     device_ps_key,
                                                     timestamp,
                                                     measurement_data
@@ -572,7 +695,7 @@ def _fetch_historical_data_for_batch_with_custom_mapping(devices_batch, day_dt_s
                                                 )
                                                 ON CONFLICT (device_ps_key, timestamp) DO UPDATE
                                                 SET
-                                                    measurement_data = COALESCE(isolarcloud_historical_data.measurement_data, '{}'::jsonb)
+                                                    measurement_data = COALESCE(raw.isolarcloud_historical_data.measurement_data, '{}'::jsonb)
                                                                     || EXCLUDED.measurement_data;
                                             """)
                                             session.execute(query, row)
@@ -595,28 +718,61 @@ def _fetch_historical_data_for_batch_with_custom_mapping(devices_batch, day_dt_s
 
             return total_data_points_ingested
         
-        # Use our specialized function for this request
+    if parallel and len(intervals) > 1:
+            # Parallel processing: process all intervals concurrently
+            logging.info(f"Processing {len(intervals)} intervals in parallel with {max_workers} workers (custom mapping)")
+            
+            with ThreadPoolExecutor(max_workers=max_workers) as executor:
+                # Submit all interval tasks
+                future_to_interval = {
+                    executor.submit(
+                        specialized_fetch_and_store_minute_data,
+                        devices_batch,
+                        interval_start,
+                        interval_end,
+                        minute_interval
+                    ): (interval_start, interval_end)
+                    for interval_start, interval_end in intervals
+                }
+                
+                # Collect results as they complete
+                for future in as_completed(future_to_interval):
+                    interval_start, interval_end = future_to_interval[future]
+                    try:
+                        points_ingested_for_interval = future.result()
+                        total_points_ingested_for_day_batch += points_ingested_for_interval
+                        logging.info(f"Completed 3-hour interval (custom mapping): {interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {interval_end.strftime('%Y-%m-%d %H:%M:%S')} - {points_ingested_for_interval} points")
+                    except Exception as e:
+                        logging.error(f"Error processing interval {interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {interval_end.strftime('%Y-%m-%d %H:%M:%S')}: {str(e)}")
+                        # Continue processing other intervals even if one fails
+    else:
+        # Sequential processing: original behavior
+        logging.info(f"Processing {len(intervals)} intervals sequentially (custom mapping)")
+        for interval_start, interval_end in intervals:
+            logging.info(f"Fetching data with custom mapping for interval: {interval_start.strftime('%Y-%m-%d %H:%M:%S')} to {interval_end.strftime('%Y-%m-%d %H:%M:%S')}")
+            
         points_ingested_for_interval = specialized_fetch_and_store_minute_data(
             devices_batch,
-            current_interval_start,
-            current_interval_end,
+                interval_start,
+                interval_end,
             minute_interval
         )
-
         total_points_ingested_for_day_batch += points_ingested_for_interval
-        current_interval_start = current_interval_end + timedelta(seconds=1)
 
     return total_points_ingested_for_day_batch
 
+
 def fetch_yesterday_data_for_all_devices():
     """Fetches yesterday's data for all devices."""
-    if not engine:
+    if not ensure_db_initialized():
         logging.error("Database engine not initialized. Cannot fetch yesterday's data.")
         return
 
-    yesterday = datetime.now() - timedelta(days=1)
-    start_date = yesterday.replace(hour=0, minute=0, second=0)
-    end_date = yesterday.replace(hour=23, minute=59, second=59)
+    yesterday = datetime.now(timezone.utc) - timedelta(days=1)
+    start_date = yesterday.replace(hour=0, minute=0, second=0, microsecond=0)
+    end_date = yesterday.replace(hour=23, minute=59, second=59, microsecond=0)
+    
+    logging.info(f"Fetching yesterday's data: {start_date.strftime('%Y-%m-%d')} to {end_date.strftime('%Y-%m-%d')}")
     
     fetch_historical_data(
         start_date.strftime('%Y-%m-%d'),

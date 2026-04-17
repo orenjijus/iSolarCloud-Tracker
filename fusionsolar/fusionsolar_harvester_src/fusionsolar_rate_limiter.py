@@ -101,24 +101,57 @@ class FusionSolarRateLimiter:
         self.state['historical_api']['last_updated'] = datetime.now(timezone.utc).isoformat()
         self._save_state()
     
-    def calculate_daily_limit(self, device_type):
+    def calculate_rate_limit_per_second(self):
         """
-        Calculate the daily API call limit for a device type.
-        
-        Args:
-            device_type (str): Device type name (e.g., 'inverter', 'meter')
-            
+        Hitung batas rate API per detik untuk Historical Device Data API.
+
+        Formula baru (Huawei Northbound API docs 2026):
+            Max calls/detik = ∑ (device_count_per_type / 60 / 10)
+                            = total_devices / 600
+
+        Berlaku untuk seluruh account (semua tipe device dijumlahkan),
+        bukan per tipe device.
+
         Returns:
-            int: Daily API call limit for the device type
+            float: Maksimal calls per detik yang diizinkan.
+                   Contoh: 236 device → 236/600 = 0.3933/detik
         """
         device_counts = self.state['historical_api']['device_counts']
-        if device_type not in device_counts:
-            # Default to 24 if we don't know the device count
-            return 24
-        
-        # Maximum daily calls = Roundup(Number of devices of each type / 10) + 24
-        device_count = device_counts[device_type]
-        return math.ceil(device_count / 10) + 24
+        if not device_counts:
+            return 1.0 / 60.0  # fallback konservatif: 1 call per 60 detik
+        return sum(count / 600.0 for count in device_counts.values())
+
+    def calculate_min_interval_seconds(self):
+        """
+        Hitung interval minimum yang aman antara dua API call (dalam detik).
+
+        Returns:
+            float: Interval minimum dalam detik.
+                   Contoh: 236 device → 1 / 0.3933 = 2.54 detik
+        """
+        rate = self.calculate_rate_limit_per_second()
+        if rate <= 0:
+            return 60.0
+        return 1.0 / rate
+
+    def calculate_daily_limit(self, device_type):
+        """
+        DEPRECATED — Formula lama (sebelum 2026) menggunakan Roundup(N/10)+24 per hari.
+
+        Formula baru menggunakan calculate_rate_limit_per_second() yang menghitung
+        per detik secara global (bukan per tipe device).
+        Fungsi ini dipertahankan agar tidak breaking existing callers.
+
+        Args:
+            device_type (str): Device type name (e.g., 'inverter', 'meter')
+
+        Returns:
+            int: Estimasi daily limit berdasarkan formula baru (bukan formula lama).
+        """
+        # Konversi formula baru ke ekuivalen harian agar interface lama tetap bekerja
+        rate_per_second = self.calculate_rate_limit_per_second()
+        seconds_per_day = 86400
+        return int(rate_per_second * seconds_per_day)
     
     def _get_today_date(self):
         """Get today's date as a string in YYYY-MM-DD format."""

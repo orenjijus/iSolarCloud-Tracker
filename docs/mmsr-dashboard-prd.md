@@ -140,15 +140,7 @@ This document outlines the requirements for modernizing the MMSR Dashboard data 
 3. Begin implementation of Phase 1
 4. Schedule regular stakeholder reviews
 
-## 9. Approvals
-
-| Role | Name | Approval | Date |
-|------|------|----------|------|
-| Project Sponsor | [Name] | | |
-| Data Engineering Lead | [Name] | | |
-| Business Analyst | [Name] | | |
-
-## 10. Appendix
+## 9. Appendix
 - **A.1**: Data Dictionary
 - **A.2**: Technical Architecture Diagram
 - **A.3**: Implementation Timeline

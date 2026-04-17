@@ -33,11 +33,15 @@ DATABASE_URL = f"postgresql://{POSTGRES_USER}:{encoded_password}@{POSTGRES_HOST}
 logging.info(f"Database URL constructed: postgresql://{POSTGRES_USER}:***@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}")
 
 # Script Constants
-REQUEST_DELAY_SECONDS = 2  # Seconds to wait between API calls
+REQUEST_DELAY_SECONDS = 2  # Seconds to wait between API calls (3600/2 = 1800 calls/h, under rate limit)
 MAX_PS_KEYS_PER_REQUEST = 50  # Max ps_key_list length for getDevicePointMinuteDataList
 MAX_POINTS_PER_REQUEST = 50     # Max points length for getDevicePointMinuteDataList
 DAYS_PER_HISTORICAL_BATCH = 7 # Number of days to fetch in a single batch for long historical requests
-API_CALLS_PER_HOUR_LIMIT = 2000 # For reference, not directly used in delay calculation logic yet
+# iSolarCloud API rate limit: 2000 calls per hour. With REQUEST_DELAY_SECONDS=2 we stay under this.
+API_CALLS_PER_HOUR_LIMIT = 2000
+# Parallel: 8 workers × (3600/2) req/h = 14400/h → exceeds limit. Only use parallel for short range (e.g. 1 day).
+PARALLEL_PROCESSING_ENABLED = True
+PARALLEL_MAX_WORKERS = 8  # Number of parallel workers for processing intervals (1 day = 8 intervals of 3 hours)
 
 # --- Configuration for Measuring Points ---
 # Point descriptions for better column naming in SQL views
@@ -58,6 +62,8 @@ POINT_DESCRIPTIONS = {
     "p2009": "Ambient Temperature_C",
     "p2010": "PV Temperature_C",
     "p2022": "Rainfall_mm",
+    "p2016": "wind_speed_m_per_s",
+    "p2012": "wind_angle_deg",
 
     # String voltage points (p96-p113, p7166-p7171)
     "p96": "string_1_voltage",
@@ -111,11 +117,20 @@ POINT_DESCRIPTIONS = {
     "p317": "string_23_current",
     "p318": "string_24_current",
     
-    # Inverter-level data points
+    # Inverter-level data points (summary)
     "p1": "yield_today_kWh",
     "p14": "total_dc_power_W",
     "p24": "total_active_power_W",
-    "p25": "total_reactive_power_var"
+    "p25": "total_reactive_power_var",
+    "p4": "internal_air_temperature_C",
+    "p26": "total_power_factor",
+    "p18": "phase_a_voltage_V",
+    "p19": "phase_b_voltage_V",
+    "p20": "phase_c_voltage_V",
+    "p21": "phase_a_current_A",
+    "p22": "phase_b_current_A",
+    "p23": "phase_c_current_A",
+    "p27": "grid_frequency_Hz",
 }
 
 # Site-specific measurement points configuration
@@ -326,19 +341,31 @@ DEVICE_TYPE_MEASURING_POINTS = {
                 "p1",   # Yield Today (kWh)
                 "p14",  # Total DC Power (W)
                 "p24",  # Total Active Power (W)
-                "p25"   # Total Reactive Power (var)
+                "p25",  # Total Reactive Power (var)
+                # Additional inverter summary
+                "p4",   # Internal Air Temperature (℃)
+                "p26",  # Total Power Factor
+                "p18",  # Phase A Voltage (V)
+                "p19",  # Phase B Voltage (V)
+                "p20",  # Phase C Voltage (V)
+                "p21",  # Phase A Current (A)
+                "p22",  # Phase B Current (A)
+                "p23",  # Phase C Current (A)
+                "p27",  # Grid Frequency (Hz)
         ],
         "device_type": 1 
     },
     "meteo_station": {
         "points": [
-            "p2003", # p2003 (irradiance_W_per_m2), 
-            "p2001", # p2001 (daily_irradiation_W_per_m2), 
-            "p2005", # p2005 (slope_daily_irradiation_W_per_m2), 
-            "p2007", # p2007 (transient_daily_irradiation_W_per_m2), 
-            "p2009", # p2009 (ambient_temperature_C), 
-            "p2010", # p2010 (pv_temperature_C)
-            "p2022"  # p2022 (rainfall_mm)
+            "p2003", # p2003 (irradiance_W_per_m2),
+            "p2001", # p2001 (daily_irradiation_W_per_m2),
+            "p2005", # p2005 (slope_daily_irradiation_W_per_m2),
+            "p2007", # p2007 (transient_daily_irradiation_W_per_m2),
+            "p2009", # p2009 (ambient_temperature_C),
+            "p2010", # p2010 (pv_temperature_C),
+            "p2022", # p2022 (rainfall_mm)
+            "p2016", # p2016 (wind_speed_m_per_s)
+            "p2012", # p2012 (wind_angle_deg)
         ],
         "device_type": 5
     },

@@ -1,7 +1,7 @@
-timestamp: 2025-10-22T14:29:21.393882
+timestamp: 2026-04-17T01:03:23.716021
 status: SUCCESS
-execution_time: 864.57
-start_date: 2025-09-17
-end_date: 2025-09-17
+execution_time: 199.11
+start_date: 2026-04-16
+end_date: 2026-04-16
 device_type: meter,inverter,meteo_station
 power_station: ALL

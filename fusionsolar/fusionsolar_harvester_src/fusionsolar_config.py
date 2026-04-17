@@ -30,9 +30,13 @@ DATABASE_URL = f"postgresql://{POSTGRES_USER}:{encoded_password}@{POSTGRES_HOST}
 logging.info(f"Database URL constructed: postgresql://{POSTGRES_USER}:***@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}")
 
 # Script Constants
-REQUEST_DELAY_SECONDS = 2  # Seconds to wait between API calls
-MAX_DEVICES_PER_REQUEST = 10  # Max devices per request according to FusionSolar API docs
-MAX_DAYS_PER_REQUEST = 3  # Max 3-day window for historical data
+REQUEST_DELAY_SECONDS = 3  # Seconds to wait between API calls
+# Formula baru (docs 2026): max calls/sec = total_devices / 600 = 236/600 = 0.393/sec → min interval 2.54s
+# Gunakan 3s untuk safety buffer (~18% margin dari batas minimum)
+# Historical Device Data API: "The 5-minute data of a maximum of one device in 24 hours can be queried at a time."
+# devDn must be a single device string (e.g. "NE=37884931"); batching multiple NE= in one request exceeds API limits.
+MAX_DEVICES_PER_REQUEST = 1
+MAX_DAYS_PER_REQUEST = 1  # At most one calendar day / 24h window per request per device
 MAX_PLANTS_PER_REQUEST = 100  # Max plants in getDevList API call
 
 # Device Type IDs from FusionSolar API
@@ -40,6 +44,8 @@ DEVICE_TYPES = {
     "inverter": 1,  # String Inverter
     "meteo_station": 10,  # EMI (Environmental Monitoring Instrument)
     "meter": 17,  # Grid Meter
+    "battery": 39,  # Residential battery
+    "smart_assistant": 23070,  # SmartAssistant (grid / external CT metrics)
 }
 
 # Point descriptions for better column naming in SQL views
@@ -170,7 +176,36 @@ POINT_DESCRIPTIONS = {
     "wind_speed": "wind_speed",                         # Wind speed (m/s)
     "wind_direction": "wind_direction",                 # Optional, if available
     "rainfall": "rainfall",                             # Optional, if available
-    "humidity": "humidity"                              # Optional, if available
+    "humidity": "humidity",                             # Optional, if available
+
+    # Battery points (Residential, dev_type_id 39) — exclude battery_status, ch_discharge_model
+    "max_charge_power": "max_charge_power",             # Maximum charge power (W)
+    "max_discharge_power": "max_discharge_power",      # Maximum discharge power (W)
+    "ch_discharge_power": "charge_discharge_power",    # Charge/Discharge power (W)
+    "busbar_u": "battery_voltage",                     # Battery voltage (V)
+    "battery_soc": "battery_soc",                      # Battery SOC (%)
+    "battery_soh": "battery_soh",                      # Battery SOH
+    "charge_cap": "energy_charged_today",               # Energy charged today (kWh)
+    "discharge_cap": "energy_discharged_today",        # Energy discharged today (kWh)
+
+    # SmartAssistant (dev_type_id 23070) — grid + external CT
+    "active_power_a": "phase_a_active_power",
+    "active_power_b": "phase_b_active_power",
+    "active_power_c": "phase_c_active_power",
+    "ex_a_i": "external_ct_phase_a_current",
+    "ex_b_i": "external_ct_phase_b_current",
+    "ex_c_i": "external_ct_phase_c_current",
+    "ex_a_u": "external_ct_phase_a_voltage",
+    "ex_b_u": "external_ct_phase_b_voltage",
+    "ex_c_u": "external_ct_phase_c_voltage",
+    "ex_active_power_a": "external_ct_phase_a_active_power",
+    "ex_active_power_b": "external_ct_phase_b_active_power",
+    "ex_active_power_c": "external_ct_phase_c_active_power",
+    "ex_active_power": "external_ct_active_power",
+    "ex_reactive_power": "external_ct_reactive_power",
+    "ex_power_factor": "external_ct_power_factor",
+    "ex_active_cap": "external_ct_positive_active_energy",
+    "ex_reverse_active_cap": "external_ct_negative_active_energy",
 }
 
 # Define measurement points to fetch for each device type
@@ -201,5 +236,18 @@ DEVICE_TYPE_MEASURING_POINTS = {
         "temperature", "pv_temperature", "radiant_line", "radiant_total", 
         "horiz_radiant_line", "horiz_radiant_total", "wind_speed", "wind_direction", 
         "rainfall", "humidity"
-    ]
+    ],
+    "battery": [
+        "max_charge_power", "max_discharge_power", "ch_discharge_power",
+        "busbar_u", "battery_soc", "battery_soh", "charge_cap", "discharge_cap"
+    ],
+    "smart_assistant": [
+        "a_i", "b_i", "c_i", "ab_u", "bc_u", "ca_u", "a_u", "b_u", "c_u",
+        "active_power_a", "active_power_b", "active_power_c",
+        "active_power", "reactive_power", "power_factor", "active_cap", "reverse_active_cap",
+        "ex_a_i", "ex_b_i", "ex_c_i", "ex_a_u", "ex_b_u", "ex_c_u",
+        "ex_active_power_a", "ex_active_power_b", "ex_active_power_c",
+        "ex_active_power", "ex_reactive_power", "ex_power_factor",
+        "ex_active_cap", "ex_reverse_active_cap",
+    ],
 }

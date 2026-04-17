@@ -3,6 +3,7 @@
 *Last Updated: October 27, 2025*
 
 ## Version Control
+
 - **Version**: 2.1
 - **Author**: [Your Name]
 - **Reviewers**: [Team Members]
@@ -96,6 +97,8 @@ graph TD
     class BI bi
 ```
 
+
+
 ## 2. Current Database State
 
 ### 2.1 Existing Database Structure
@@ -103,58 +106,55 @@ graph TD
 The current production database contains the following key components:
 
 #### 2.1.1 Schemas
+
 - **public**: Contains all tables and views
 - **Other schemas**: Currently not in use (all objects are in public schema)
 
 #### 2.1.2 Core Tables
 
 ##### iSolarCloud Tables
+
 1. **isolarcloud_power_stations**
-   - Stores power plant metadata
-   - Key fields: `ps_id` (PK), `ps_name`, `latitude`, `longitude`, `total_capacity`
-   - Tracks installation and grid connection details
-
+  - Stores power plant metadata
+  - Key fields: `ps_id` (PK), `ps_name`, `latitude`, `longitude`, `total_capacity`
+  - Tracks installation and grid connection details
 2. **isolarcloud_devices**
-   - Contains device information for each power station
-   - Key fields: `device_ps_key` (PK), `ps_id` (FK), `device_type`, `device_name`
-   - Tracks device specifications and status
-
+  - Contains device information for each power station
+  - Key fields: `device_ps_key` (PK), `ps_id` (FK), `device_type`, `device_name`
+  - Tracks device specifications and status
 3. **isolarcloud_historical_data**
-   - Time-series data for devices
-   - Key fields: `device_ps_key` (PK), `timestamp` (PK), `measurement_data` (JSONB)
-   - Indexed on `timestamp` for efficient time-based queries
+  - Time-series data for devices
+  - Key fields: `device_ps_key` (PK), `timestamp` (PK), `measurement_data` (JSONB)
+  - Indexed on `timestamp` for efficient time-based queries
 
 ##### FusionSolar Tables
+
 1. **fusionsolar_plants**
-   - Plant metadata and specifications
-   - Key fields: `plant_code` (PK), `plant_name`, `capacity`, `grid_connection_date`
-
+  - Plant metadata and specifications
+  - Key fields: `plant_code` (PK), `plant_name`, `capacity`, `grid_connection_date`
 2. **fusionsolar_devices**
-   - Device information including inverters
-   - Key fields: `dev_id` (PK), `plant_code` (FK), `dev_type_id`, `dev_name`
-
+  - Device information including inverters
+  - Key fields: `dev_id` (PK), `plant_code` (FK), `dev_type_id`, `dev_name`
 3. **fusionsolar_historical_data**
-   - Time-series measurements
-   - Key fields: `dev_id` (PK), `collect_time` (PK), `measurement_data` (JSONB)
-   - Indexed on `collect_time`
+  - Time-series measurements
+  - Key fields: `dev_id` (PK), `collect_time` (PK), `measurement_data` (JSONB)
+  - Indexed on `collect_time`
 
 ### 2.2 Views Structure
 
 The database contains a comprehensive set of views for each power plant, following a consistent naming pattern:
 
 1. **Inverter Data Views**
-   - `*_inverter_data`: Raw measurements (voltage, current per string)
-   - `*_inverter_pivoted`: Pivoted view by device
-   - `*_inverter_pivoted_daily_energy`: Daily string-level energy aggregation by inverter device
-   - `*_inverter_summary_data`: inverter summary statistics
-
+  - `*_inverter_data`: Raw measurements (voltage, current per string)
+  - `*_inverter_pivoted`: Pivoted view by device
+  - `*_inverter_pivoted_daily_energy`: Daily string-level energy aggregation by inverter device
+  - `*_inverter_summary_data`: inverter summary statistics
 2. **Meteorological Station Views**
-   - `*_meteo_station_data`: Raw weather data
-   - `*_meteo_station_pivoted`: Formatted weather metrics
-
+  - `*_meteo_station_data`: Raw weather data
+  - `*_meteo_station_pivoted`: Formatted weather metrics
 3. **Meter Data Views**
-   - `*_meter_data`: Raw meter readings
-   - `*_meter_pivoted`: Formatted meter data
+  - `*_meter_data`: Raw meter readings
+  - `*_meter_pivoted`: Formatted meter data
 
 ### 2.3 Data Characteristics
 
@@ -172,176 +172,56 @@ The database contains a comprehensive set of views for each power plant, followi
 ### 3.1 Phase 1: Schema Restructuring
 
 1. **Create New Schemas**
-   ```sql
+  ```sql
    -- Core Data Flow Schemas
    CREATE SCHEMA raw;              -- Raw API data from FusionSolar/iSolarCloud
    CREATE SCHEMA staging;          -- Cleaned and unpivoted data
    CREATE SCHEMA intermediate;     -- Unified models across data sources
    CREATE SCHEMA marts;            -- Final fact tables for reporting
-   
+
    -- Support Schemas
    CREATE SCHEMA seeds;            -- Configuration and mapping data
    CREATE SCHEMA dq;               -- Data quality monitoring
    CREATE SCHEMA monitoring;       -- System performance monitoring
    CREATE SCHEMA utils;            -- Utility functions and helpers
-   ```
-
+  ```
 2. **Data Migration**
-   - Create ETL jobs to migrate existing data to new schema structure
-   - Implement incremental loading for ongoing updates
-   - Set up data validation checks
+  - Create ETL jobs to migrate existing data to new schema structure
+  - Implement incremental loading for ongoing updates
+  - Set up data validation checks
 
 ### 3.2 Phase 2: Data Model Enhancement
 
 1. **Implement Dimension Tables**
-   - `dim_date` - Date dimension for time-based analysis
-   - `dim_plant` - Unified plant information
-   - `dim_device` - Standardized device information
-   - `dim_metric` - Metric definitions and units
-
+  - `dim_date` - Date dimension for time-based analysis
+  - `dim_plant` - Unified plant information
+  - `dim_device` - Standardized device information
+  - `dim_metric` - Metric definitions and units
 2. **Create MVP Fact Tables**
-   
-   ### 2.1 Inverter Performance (5-minute intervals)
-   ```sql
-   CREATE TABLE fact_inverter_performance_5min (
-       timestamp TIMESTAMPTZ NOT NULL,
-       device_ps_key VARCHAR(50) NOT NULL,
-       plant_id VARCHAR(50) NOT NULL,
-       data_source VARCHAR(20) NOT NULL,  -- 'FusionSolar' or 'iSolarCloud'
-       
-       -- String Voltages (V) - Up to 24 strings
-       string_voltage_1 DECIMAL(10,2),
-       string_voltage_2 DECIMAL(10,2),
-       -- ... up to string_voltage_24
-       
-       -- String Currents (A) - Up to 24 strings
-       string_current_1 DECIMAL(10,2),
-       string_current_2 DECIMAL(10,2),
-       -- ... up to string_current_24
-       
-       -- Inverter Power Metrics (kW)
-       active_power DECIMAL(12,4),
-       reactive_power DECIMAL(12,4),
-       apparent_power DECIMAL(12,4),
-       power_factor DECIMAL(5,4),
-       
-       -- Energy Metrics (kWh)
-       daily_energy DECIMAL(12,4),
-       total_energy DECIMAL(15,4),
-       
-       -- System Status
-       inverter_state VARCHAR(50),
-       efficiency DECIMAL(5,2),  -- %
-       temperature DECIMAL(6,2), -- °C
-       grid_frequency DECIMAL(6,3), -- Hz
-       
-       -- Timestamp tracking
-       created_at TIMESTAMPTZ DEFAULT NOW(),
-       updated_at TIMESTAMPTZ DEFAULT NOW(),
-       
-       PRIMARY KEY (timestamp, device_ps_key, data_source)
-   );
-   ```
-   
-   ### 2.2 Meteorological Data (5-minute intervals)
-   ```sql
-   CREATE TABLE fact_meteo_5min (
-       timestamp TIMESTAMPTZ NOT NULL,
-       station_id VARCHAR(50) NOT NULL,
-       plant_id VARCHAR(50) NOT NULL,
-       data_source VARCHAR(20) NOT NULL,  -- 'FusionSolar' or 'iSolarCloud'
-       
-       -- Irradiance (W/m²)
-       horizontal_irradiance DECIMAL(10,2),     -- GHI 5 min
-       poa_irradiance_1 DECIMAL(10,2),         -- Plane of Array 1 5 min
-       poa_irradiance_2 DECIMAL(10,2),         -- Plane of Array 2 5 min
-       daily_horizontal_irradiance DECIMAL(10,2), -- GHI daily
-       daily_poa_irradiance_1 DECIMAL(10,2), -- Plane of Array 1 daily
-       daily_poa_irradiance_2 DECIMAL(10,2), -- Plane of Array 2 daily
-       
-       -- Temperature (°C)
-       ambient_temp DECIMAL(6,2),
-       module_temp DECIMAL(6,2),
-       
-       -- Weather conditions
-       wind_speed DECIMAL(6,2),        -- m/s
-       wind_direction DECIMAL(5,2),    -- degrees
-       relative_humidity DECIMAL(5,2), -- %
-       rainfall DECIMAL(6,2),          -- mm
-       
-       -- Timestamp tracking
-       created_at TIMESTAMPTZ DEFAULT NOW(),
-       
-       PRIMARY KEY (timestamp, station_id, data_source)
-   );
-   ```
-   
-   ### 2.3 Meter Data (5-minute intervals)
-   ```sql
-   CREATE TABLE fact_meter_5min (
-       timestamp TIMESTAMPTZ NOT NULL,
-       meter_id VARCHAR(50) NOT NULL,
-       plant_id VARCHAR(50) NOT NULL,
-       data_source VARCHAR(20) NOT NULL,  -- 'FusionSolar' or 'iSolarCloud'
-       meter_type VARCHAR(20) NOT NULL,   -- 'grid', 'load', 'generation', etc.
-       
-       -- Voltage (V)
-       voltage_phase_a DECIMAL(10,2),
-       voltage_phase_b DECIMAL(10,2),
-       voltage_phase_c DECIMAL(10,2),
-       
-       -- Current (A)
-       current_phase_a DECIMAL(10,2),
-       current_phase_b DECIMAL(10,2),
-       current_phase_c DECIMAL(10,2),
-       
-       -- Power (kW)
-       active_power DECIMAL(12,4),
-       reactive_power DECIMAL(12,4),
-       apparent_power DECIMAL(12,4),
-       power_factor DECIMAL(5,4),
-       
-       -- Energy (kWh)
-       forward_active_energy DECIMAL(15,4),
-       reverse_active_energy DECIMAL(15,4),
-       forward_reactive_energy DECIMAL(15,4),
-       reverse_reactive_energy DECIMAL(15,4),
-       
-       -- Timestamp tracking
-       created_at TIMESTAMPTZ DEFAULT NOW(),
-       
-       PRIMARY KEY (timestamp, meter_id, data_source)
-   );
-   ```
-   
-   ### 2.4 Data Source Mapping Table
-   ```sql
-   CREATE TABLE dim_data_sources (
-       data_source_id VARCHAR(20) PRIMARY KEY,  -- 'FusionSolar' or 'iSolarCloud'
-       description TEXT,
-       api_endpoint VARCHAR(255),
-       is_active BOOLEAN DEFAULT true,
-       created_at TIMESTAMPTZ DEFAULT NOW(),
-       updated_at TIMESTAMPTZ DEFAULT NOW()
-   );
-   ```
+  ### 2.1 Inverter Performance (5-minute intervals)
+  ### 2.2 Meteorological Data (5-minute intervals)
+  ### 2.3 Meter Data (5-minute intervals)
+  ### 2.4 Data Source Mapping Table
 
 ### 3.3 Phase 3: Implementation Timeline
 
-| Phase | Tasks | Duration | Dependencies |
-|-------|-------|----------|--------------|
-| 1.1 | Schema Creation | 1 week | None |
-| 1.2 | Data Migration | 2 weeks | 1.1 |
-| 2.1 | Dimension Tables | 1 week | 1.1 |
-| 2.2 | Fact Tables | 2 weeks | 2.1 |
-| 3.1 | Testing & Validation | 1 week | 2.2 |
-| 3.2 | Deployment | 1 week | 3.1 |
+
+| Phase | Tasks                | Duration | Dependencies |
+| ----- | -------------------- | -------- | ------------ |
+| 1.1   | Schema Creation      | 1 week   | None         |
+| 1.2   | Data Migration       | 2 weeks  | 1.1          |
+| 2.1   | Dimension Tables     | 1 week   | 1.1          |
+| 2.2   | Fact Tables          | 2 weeks  | 2.1          |
+| 3.1   | Testing & Validation | 1 week   | 2.2          |
+| 3.2   | Deployment           | 1 week   | 3.1          |
+
 
 ## 4. Current State Analysis
 
 ### 4.1 Existing Structure
 
 #### FusionSolar
+
 - **Data Types**:
   - Plant metadata (sites, inverters, strings)
   - 5-minute performance metrics
@@ -351,6 +231,7 @@ The database contains a comprehensive set of views for each power plant, followi
 - **Retention**: 30 days raw data, 1 year aggregated
 
 #### iSolarCloud
+
 - **Data Types**:
   - Site and device metadata
   - Real-time sensor data
@@ -362,6 +243,7 @@ The database contains a comprehensive set of views for each power plant, followi
 ### 2.2 Configuration Management
 
 #### Seed Tables
+
 ```sql
 -- Metric mapping between source systems and unified model
 CREATE TABLE seeds.metric_mapper (
@@ -427,6 +309,19 @@ CREATE TABLE seeds.simulation_targets (
     UNIQUE(asset_type, asset_id, target_date, target_type)
 );
 
+-- Cleaning log for sensors and modules (per site)
+CREATE TABLE seeds.cleaning_log (
+    id SERIAL PRIMARY KEY,
+    asset_type VARCHAR(50) NOT NULL,  -- 'Sensor' or 'Module'
+    site_id VARCHAR(100) NOT NULL,     -- site_id (cleaning dilakukan per site)
+    cleaning_date DATE NOT NULL,       -- Tanggal pembersihan
+    notes TEXT,                        -- Catatan tambahan (opsional)
+    is_active BOOLEAN DEFAULT TRUE,    -- Flag untuk data aktif
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    UNIQUE(asset_type, site_id, cleaning_date)
+);
+
 ## 3. Core Data Model
 
 ### 3.1 Dimension Tables
@@ -454,6 +349,7 @@ CREATE TABLE dim_date (
 ```
 
 #### Asset Dimension (SCD Type 2)
+
 ```sql
 CREATE TABLE dim_assets (
     asset_key SERIAL PRIMARY KEY,
@@ -531,6 +427,7 @@ FOR EACH ROW EXECUTE FUNCTION update_asset_modified();
 ### 3.2 Fact Tables
 
 #### Inverter Performance (5-minute)
+
 ```sql
 CREATE TABLE fact_inverter_performance_5min (
     inverter_key INTEGER NOT NULL,
@@ -582,6 +479,7 @@ CREATE INDEX idx_inv_perf_5min_date ON fact_inverter_performance_5min(date_key);
 ```
 
 #### String Performance (5-minute)
+
 ```sql
 CREATE TABLE fact_string_performance_5min (
     string_key INTEGER NOT NULL,
@@ -624,6 +522,7 @@ CREATE INDEX idx_string_perf_5min_date ON fact_string_performance_5min(date_key)
 ```
 
 #### Site Performance (Daily)
+
 ```sql
 CREATE TABLE fact_site_performance_daily (
     site_key INTEGER NOT NULL,
@@ -680,6 +579,7 @@ CREATE INDEX idx_site_perf_daily_site ON fact_site_performance_daily(site_key);
 ### 3.3 Materialized Views for Reporting
 
 #### Daily Aggregations
+
 ```sql
 CREATE MATERIALIZED VIEW mv_daily_plant_performance AS
 SELECT 
@@ -707,6 +607,7 @@ CREATE UNIQUE INDEX idx_mv_daily_plant_perf ON mv_daily_plant_performance(plant_
 ```
 
 #### Inverter Performance Summary
+
 ```sql
 CREATE MATERIALIZED VIEW mv_inverter_performance_daily AS
 SELECT 
@@ -739,6 +640,7 @@ CREATE UNIQUE INDEX idx_mv_inverter_perf_daily ON mv_inverter_performance_daily(
 ```
 
 #### 2.1.4 Data Marts (Business Views)
+
 - **Purpose**: Optimized for reporting and analytics
 - **Features**:
   - Pre-aggregated metrics
@@ -908,6 +810,7 @@ $$ LANGUAGE plpgsql;
 ### 4.1 Data Quality Framework
 
 #### Data Quality Rules
+
 ```sql
 -- Data quality rules definition
 CREATE TABLE dq.rules (
@@ -958,6 +861,7 @@ INSERT INTO dq.rules (
 ### 4.2 Automated Monitoring
 
 #### Performance Monitoring
+
 ```sql
 -- Query performance monitoring
 CREATE TABLE monitoring.query_performance (
@@ -1029,6 +933,7 @@ $$ LANGUAGE plpgsql SECURITY DEFINER;
 ### 4.3 Alerting System
 
 #### Alert Definitions
+
 ```sql
 -- Alert definitions
 CREATE TABLE monitoring.alert_definitions (
@@ -1166,6 +1071,7 @@ $$ LANGUAGE plpgsql;
 ```
 
 #### Example Alerts
+
 ```sql
 -- Example: Alert for high error rates in the last hour
 INSERT INTO monitoring.alert_definitions (
@@ -1309,49 +1215,49 @@ ORDER BY idx_scan DESC;
 ## 4. Implementation Plan
 
 ### 4.1 Phase 1: Foundation (Weeks 1-2)
-1. **Database Setup**
-   - Create schema structure
-   - Implement core tables
-   - Set up partitioning for time-series data
-   - Create initial indexes
 
+1. **Database Setup**
+  - Create schema structure
+  - Implement core tables
+  - Set up partitioning for time-series data
+  - Create initial indexes
 2. **Data Ingestion**
-   - Develop API connectors for FusionSolar and iSolarCloud
-   - Implement data loading procedures
-   - Set up error handling and logging
+  - Develop API connectors for FusionSolar and iSolarCloud
+  - Implement data loading procedures
+  - Set up error handling and logging
 
 ### 4.2 Phase 2: Core Implementation (Weeks 3-4)
-1. **Data Transformation**
-   - Implement staging procedures
-   - Create dimension and fact table loads
-   - Set up incremental processing
 
+1. **Data Transformation**
+  - Implement staging procedures
+  - Create dimension and fact table loads
+  - Set up incremental processing
 2. **View Layer**
-   - Create materialized views
-   - Implement view refresh procedures
-   - Set up performance monitoring
+  - Create materialized views
+  - Implement view refresh procedures
+  - Set up performance monitoring
 
 ### 4.3 Phase 3: Optimization & Monitoring (Weeks 5-6)
-1. **Performance Tuning**
-   - Optimize queries
-   - Add appropriate indexes
-   - Implement partitioning strategy
 
+1. **Performance Tuning**
+  - Optimize queries
+  - Add appropriate indexes
+  - Implement partitioning strategy
 2. **Data Quality**
-   - Implement data quality checks
-   - Set up monitoring and alerting
-   - Create data quality dashboards
+  - Implement data quality checks
+  - Set up monitoring and alerting
+  - Create data quality dashboards
 
 ### 4.4 Phase 4: Documentation & Handoff (Week 7)
-1. **Technical Documentation**
-   - Complete data dictionary
-   - Create ER diagrams
-   - Document API interfaces
 
+1. **Technical Documentation**
+  - Complete data dictionary
+  - Create ER diagrams
+  - Document API interfaces
 2. **Operational Documentation**
-   - Create runbooks
-   - Document monitoring procedures
-   - Prepare training materials
+  - Create runbooks
+  - Document monitoring procedures
+  - Prepare training materials
 
 ## 5. Maintenance & Operations
 
@@ -1401,21 +1307,25 @@ pg_dump -h localhost -U postgres -d solar_monitoring -F c -b -v -f "/backups/sol
 ### A.1 Data Dictionary
 
 #### fact_energy_production
-| Column | Type | Description | Constraints |
-|--------|------|-------------|-------------|
-| production_id | BIGSERIAL | Unique identifier | PRIMARY KEY |
-| date_id | DATE | Reference to date dimension | FOREIGN KEY |
-| plant_id | INTEGER | Reference to plant | FOREIGN KEY |
-| inverter_id | INTEGER | Reference to inverter | FOREIGN KEY |
-| energy_kwh | DECIMAL(12,4) | Energy produced in kWh | >= 0 |
-| peak_power_kw | DECIMAL(10,4) | Maximum power output | >= 0 |
-| performance_ratio | DECIMAL(5,2) | System efficiency ratio | 0-1.5 |
-| created_at | TIMESTAMPTZ | Record creation timestamp | NOT NULL |
-| updated_at | TIMESTAMPTZ | Last update timestamp | NOT NULL |
+
+
+| Column            | Type          | Description                 | Constraints |
+| ----------------- | ------------- | --------------------------- | ----------- |
+| production_id     | BIGSERIAL     | Unique identifier           | PRIMARY KEY |
+| date_id           | DATE          | Reference to date dimension | FOREIGN KEY |
+| plant_id          | INTEGER       | Reference to plant          | FOREIGN KEY |
+| inverter_id       | INTEGER       | Reference to inverter       | FOREIGN KEY |
+| energy_kwh        | DECIMAL(12,4) | Energy produced in kWh      | >= 0        |
+| peak_power_kw     | DECIMAL(10,4) | Maximum power output        | >= 0        |
+| performance_ratio | DECIMAL(5,2)  | System efficiency ratio     | 0-1.5       |
+| created_at        | TIMESTAMPTZ   | Record creation timestamp   | NOT NULL    |
+| updated_at        | TIMESTAMPTZ   | Last update timestamp       | NOT NULL    |
+
 
 ### A.2 Example Queries
 
 #### Daily Production by Plant
+
 ```sql
 SELECT 
     p.plant_name,
@@ -1433,6 +1343,7 @@ ORDER BY d.date_id, p.plant_name;
 ### A.3 Monitoring Queries
 
 #### Slow Queries
+
 ```sql
 SELECT 
     query,
@@ -1446,6 +1357,7 @@ LIMIT 10;
 ```
 
 #### Missing Indexes
+
 ```sql
 SELECT
     relname AS table_name,
@@ -1457,3 +1369,5 @@ SELECT
 FROM pg_stat_user_indexes
 WHERE idx_scan = 0
 ORDER BY pg_relation_size(indexrelid) DESC;
+```
+

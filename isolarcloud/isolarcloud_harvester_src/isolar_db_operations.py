@@ -20,9 +20,10 @@ def init_database():
         
         # Create tables if they don't exist
         with engine.connect() as conn:
+            # Create power_stations table without PRIMARY KEY first (to handle existing tables)
             conn.execute(text("""
-                CREATE TABLE IF NOT EXISTS isolarcloud_power_stations (
-                    ps_id VARCHAR(255) PRIMARY KEY,
+                CREATE TABLE IF NOT EXISTS raw.isolarcloud_power_stations (
+                    ps_id VARCHAR(255),
                     ps_name VARCHAR(255),
                     install_date TIMESTAMP,
                     latitude FLOAT,
@@ -42,9 +43,27 @@ def init_database():
                 )
             """))
             
+            # Ensure PRIMARY KEY constraint exists for power_stations
             conn.execute(text("""
-                CREATE TABLE IF NOT EXISTS isolarcloud_devices (
-                    device_ps_key VARCHAR(255) PRIMARY KEY,
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM pg_constraint 
+                        WHERE conrelid = 'raw.isolarcloud_power_stations'::regclass 
+                        AND contype = 'p'
+                    ) THEN
+                        ALTER TABLE raw.isolarcloud_power_stations 
+                        ADD CONSTRAINT isolarcloud_power_stations_pkey 
+                        PRIMARY KEY (ps_id);
+                    END IF;
+                END $$;
+            """))
+            
+            # Create devices table without PRIMARY KEY first (to handle existing tables)
+            conn.execute(text("""
+                CREATE TABLE IF NOT EXISTS raw.isolarcloud_devices (
+                    device_ps_key VARCHAR(255),
                     ps_id VARCHAR(255),
                     device_type INTEGER,
                     type_name VARCHAR(255),
@@ -61,17 +80,53 @@ def init_database():
                     communication_dev_sn VARCHAR(255),
                     device_model_code VARCHAR(255),
                     chnnl_id VARCHAR(255),
-                    FOREIGN KEY (ps_id) REFERENCES isolarcloud_power_stations(ps_id)
+                    FOREIGN KEY (ps_id) REFERENCES raw.isolarcloud_power_stations(ps_id)
                 )
             """))
-
+            
+            # Ensure PRIMARY KEY constraint exists for devices
             conn.execute(text("""
-                CREATE TABLE IF NOT EXISTS isolarcloud_historical_data (
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM pg_constraint 
+                        WHERE conrelid = 'raw.isolarcloud_devices'::regclass 
+                        AND contype = 'p'
+                    ) THEN
+                        ALTER TABLE raw.isolarcloud_devices 
+                        ADD CONSTRAINT isolarcloud_devices_pkey 
+                        PRIMARY KEY (device_ps_key);
+                    END IF;
+                END $$;
+            """))
+
+            # Create table without PRIMARY KEY first (to handle existing tables)
+            conn.execute(text("""
+                CREATE TABLE IF NOT EXISTS raw.isolarcloud_historical_data (
                     device_ps_key VARCHAR(255),
                     timestamp TIMESTAMP,
-                    PRIMARY KEY (device_ps_key, timestamp),
-                    FOREIGN KEY (device_ps_key) REFERENCES isolarcloud_devices(device_ps_key)
+                    measurement_data JSONB,
+                    FOREIGN KEY (device_ps_key) REFERENCES raw.isolarcloud_devices(device_ps_key)
                 )
+            """))
+            
+            # Ensure PRIMARY KEY constraint exists (needed for ON CONFLICT)
+            # This handles both new tables and existing tables that were migrated from public schema
+            conn.execute(text("""
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM pg_constraint 
+                        WHERE conrelid = 'raw.isolarcloud_historical_data'::regclass 
+                        AND contype = 'p'
+                    ) THEN
+                        ALTER TABLE raw.isolarcloud_historical_data 
+                        ADD CONSTRAINT isolarcloud_historical_data_pkey 
+                        PRIMARY KEY (device_ps_key, timestamp);
+                    END IF;
+                END $$;
             """))
             conn.commit()
         
@@ -159,7 +214,7 @@ def sync_power_stations():
             # Avoid printing the station name to prevent encoding issues
             # Use UPSERT (INSERT ... ON CONFLICT DO UPDATE)
             session.execute(text("""
-                INSERT INTO isolarcloud_power_stations (
+                INSERT INTO raw.isolarcloud_power_stations (
                     ps_id, ps_name, install_date, latitude, longitude, online_status,
                     description, valid_flag, grid_connection_status, ps_fault_status,
                     ps_location, update_time_api, ps_current_time_zone,
@@ -213,6 +268,47 @@ def sync_power_stations():
         logging.error(f"Database error during power station sync: {e}")
     finally:
         session.close()
+
+def sync_all_devices():
+    """Fetches all devices for all power stations and stores/updates them in PostgreSQL."""
+    if not engine or not Session:
+        logging.error("Database not initialized. Cannot sync devices.")
+        return
+    
+    logging.info("Starting device synchronization for all power stations...")
+    print("Starting device synchronization for all power stations...")
+    
+    try:
+        with engine.connect() as conn:
+            result = conn.execute(text("SELECT ps_id FROM raw.isolarcloud_power_stations"))
+            power_station_ids = [row[0] for row in result]
+        
+        if not power_station_ids:
+            print("No power stations found in database. Please sync power stations first.")
+            logging.warning("No power stations found in database. Please sync power stations first.")
+            return
+        
+        print(f"Found {len(power_station_ids)} power stations. Syncing devices for each...")
+        logging.info(f"Found {len(power_station_ids)} power stations. Syncing devices for each...")
+        
+        for idx, ps_id in enumerate(power_station_ids, 1):
+            print(f"\n[{idx}/{len(power_station_ids)}] Syncing devices for power station: {ps_id}")
+            logging.info(f"[{idx}/{len(power_station_ids)}] Syncing devices for power station: {ps_id}")
+            try:
+                sync_devices(ps_id)
+                print(f"Successfully synced devices for power station: {ps_id}")
+            except Exception as e:
+                print(f"Error syncing devices for power station {ps_id}: {e}")
+                logging.error(f"Error syncing devices for power station {ps_id}: {e}")
+                # Continue with next power station even if one fails
+                continue
+        
+        print(f"\nCompleted device synchronization for all {len(power_station_ids)} power stations.")
+        logging.info(f"Completed device synchronization for all {len(power_station_ids)} power stations.")
+        
+    except Exception as e:
+        logging.error(f"Error fetching power station IDs from database: {e}")
+        print(f"Error fetching power station IDs from database: {e}")
 
 def sync_devices(power_station_id):
     """Fetches all devices for a given power station and stores/updates them in PostgreSQL."""
@@ -284,7 +380,7 @@ def sync_devices(power_station_id):
                 continue
             # Use UPSERT (INSERT ... ON CONFLICT DO UPDATE)
             session.execute(text("""
-                INSERT INTO isolarcloud_devices (
+                INSERT INTO raw.isolarcloud_devices (
                     device_ps_key, ps_id, device_type, type_name, device_sn,
                     dev_status, factory_name, uuid, grid_connection_date,
                     device_name, dev_fault_status, rel_state, device_code,

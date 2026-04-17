@@ -51,8 +51,8 @@ Establish the foundation for the solar analytics platform and deliver the first 
 ### 4. Data Transformation (Day 4-7)
 - [ ] Create seed files:
   - `seed_metric_mapper.csv`
-  - `seed_meter_config.csv`
-  - `seed_sensor_config.csv`
+  - `seed_meter_config_override.csv`
+  - `seed_sensor_config_override.csv`
   - `seed_string_config.csv`
 - [ ] Develop staging models:
   - `stg_isolarcloud__perf_unpivoted.sql`

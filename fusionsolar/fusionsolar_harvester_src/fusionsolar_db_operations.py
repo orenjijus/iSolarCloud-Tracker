@@ -35,9 +35,10 @@ def init_database():
         
         # Create tables if they don't exist
         with engine.connect() as conn:
+            # Create plants table without PRIMARY KEY first (to handle existing tables)
             conn.execute(text("""
-                CREATE TABLE IF NOT EXISTS fusionsolar_plants (
-                    plant_code VARCHAR(255) PRIMARY KEY,
+                CREATE TABLE IF NOT EXISTS raw.fusionsolar_plants (
+                    plant_code VARCHAR(255),
                     plant_name VARCHAR(255),
                     grid_connection_date TIMESTAMP WITH TIME ZONE,
                     latitude FLOAT,
@@ -48,31 +49,85 @@ def init_database():
                 )
             """))
             
+            # Ensure PRIMARY KEY constraint exists for plants
             conn.execute(text("""
-                CREATE TABLE IF NOT EXISTS fusionsolar_devices (
-                    dev_id VARCHAR(255) PRIMARY KEY,
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM pg_constraint 
+                        WHERE conrelid = 'raw.fusionsolar_plants'::regclass 
+                        AND contype = 'p'
+                    ) THEN
+                        ALTER TABLE raw.fusionsolar_plants 
+                        ADD CONSTRAINT fusionsolar_plants_pkey 
+                        PRIMARY KEY (plant_code);
+                    END IF;
+                END $$;
+            """))
+            
+            # Create devices table without PRIMARY KEY first (to handle existing tables)
+            conn.execute(text("""
+                CREATE TABLE IF NOT EXISTS raw.fusionsolar_devices (
+                    dev_id VARCHAR(255),
                     plant_code VARCHAR(255),
                     dev_type_id INTEGER,
                     dev_name VARCHAR(255),
+                    dev_dn VARCHAR(255),
                     esn_code VARCHAR(255),
                     software_version VARCHAR(255),
                     inv_type VARCHAR(255),
                     model VARCHAR(255),
-                    manufacturer VARCHAR(255),
-                    status INTEGER,
+                    longitude FLOAT,
+                    latitude FLOAT,
                     last_update TIMESTAMP WITH TIME ZONE,
-                    FOREIGN KEY (plant_code) REFERENCES fusionsolar_plants(plant_code)
+                    FOREIGN KEY (plant_code) REFERENCES raw.fusionsolar_plants(plant_code)
                 )
             """))
-
+            
+            # Ensure PRIMARY KEY constraint exists for devices
             conn.execute(text("""
-                CREATE TABLE IF NOT EXISTS fusionsolar_historical_data (
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM pg_constraint 
+                        WHERE conrelid = 'raw.fusionsolar_devices'::regclass 
+                        AND contype = 'p'
+                    ) THEN
+                        ALTER TABLE raw.fusionsolar_devices 
+                        ADD CONSTRAINT fusionsolar_devices_pkey 
+                        PRIMARY KEY (dev_id);
+                    END IF;
+                END $$;
+            """))
+
+            # Create table without PRIMARY KEY first (to handle existing tables)
+            conn.execute(text("""
+                CREATE TABLE IF NOT EXISTS raw.fusionsolar_historical_data (
                     dev_id VARCHAR(255),
                     collect_time TIMESTAMP WITH TIME ZONE,
                     measurement_data JSONB,
-                    PRIMARY KEY (dev_id, collect_time),
-                    FOREIGN KEY (dev_id) REFERENCES fusionsolar_devices(dev_id)
+                    FOREIGN KEY (dev_id) REFERENCES raw.fusionsolar_devices(dev_id)
                 )
+            """))
+            
+            # Ensure PRIMARY KEY constraint exists (needed for ON CONFLICT)
+            # This handles both new tables and existing tables that were migrated from public schema
+            conn.execute(text("""
+                DO $$
+                BEGIN
+                    IF NOT EXISTS (
+                        SELECT 1 
+                        FROM pg_constraint 
+                        WHERE conrelid = 'raw.fusionsolar_historical_data'::regclass 
+                        AND contype = 'p'
+                    ) THEN
+                        ALTER TABLE raw.fusionsolar_historical_data 
+                        ADD CONSTRAINT fusionsolar_historical_data_pkey 
+                        PRIMARY KEY (dev_id, collect_time);
+                    END IF;
+                END $$;
             """))
             conn.commit()
         
@@ -153,7 +208,7 @@ def sync_plants():
             
             # Use UPSERT (INSERT ... ON CONFLICT DO UPDATE)
             session.execute(text("""
-                INSERT INTO fusionsolar_plants (
+                INSERT INTO raw.fusionsolar_plants (
                     plant_code, plant_name, grid_connection_date, latitude, longitude, capacity, status, last_update
                 ) VALUES (
                     :plant_code, :plant_name, :grid_connection_date, :latitude, :longitude, :capacity, :status, NOW()
@@ -200,7 +255,7 @@ def sync_devices(plant_code=None):
         if not plant_code:
             logging.info("No plant code specified. Fetching all plant codes from database.")
             plant_codes = []
-            result = session.execute(text("SELECT plant_code FROM fusionsolar_plants"))
+            result = session.execute(text("SELECT plant_code FROM raw.fusionsolar_plants"))
             for row in result:
                 plant_codes.append(row[0])
             
@@ -288,28 +343,36 @@ def sync_devices(plant_code=None):
         # Process all devices and insert/update them in the database
         for device in all_devices:
             session.execute(text("""
-                INSERT INTO fusionsolar_devices (
-                    dev_id, plant_code, dev_type_id, dev_name, esn_code, 
-                    software_version, inv_type, last_update
+                INSERT INTO raw.fusionsolar_devices (
+                    dev_id, plant_code, dev_type_id, dev_name, dev_dn, esn_code, 
+                    software_version, inv_type, model, longitude, latitude, last_update
                 ) VALUES (
-                    :dev_id, :plant_code, :dev_type_id, :dev_name, :esn_code, 
-                    :software_version, :inv_type, NOW()
+                    :dev_id, :plant_code, :dev_type_id, :dev_name, :dev_dn, :esn_code, 
+                    :software_version, :inv_type, :model, :longitude, :latitude, NOW()
                 ) ON CONFLICT (dev_id) DO UPDATE SET
                     plant_code = EXCLUDED.plant_code,
                     dev_type_id = EXCLUDED.dev_type_id,
                     dev_name = EXCLUDED.dev_name,
+                    dev_dn = EXCLUDED.dev_dn,
                     esn_code = EXCLUDED.esn_code,
                     software_version = EXCLUDED.software_version,
                     inv_type = EXCLUDED.inv_type,
+                    model = EXCLUDED.model,
+                    longitude = EXCLUDED.longitude,
+                    latitude = EXCLUDED.latitude,
                     last_update = NOW()
             """), {
-                "dev_id": device.get("devId", device.get("esnCode")),  # Use devId if available, fall back to esnCode
+                "dev_id": str(device.get("devId", device.get("esnCode"))),  # Keep using esnCode to maintain compatibility with 500M+ historical records
                 "plant_code": device.get("stationCode"),
                 "dev_type_id": device.get("devTypeId"),
                 "dev_name": device.get("devName"),
+                "dev_dn": device.get("devDn"),
                 "esn_code": device.get("esnCode"),
                 "software_version": device.get("softwareVersion"),
-                "inv_type": device.get("invType")
+                "inv_type": device.get("invType"),
+                "model": device.get("model"),
+                "longitude": device.get("longitude"),
+                "latitude": device.get("latitude")
             })
         
         session.commit()
@@ -321,7 +384,7 @@ def sync_devices(plant_code=None):
             counts_by_plant = {}
             for plant_code in plant_codes:
                 count_result = session.execute(text(
-                    "SELECT COUNT(*) FROM fusionsolar_devices WHERE plant_code = :plant_code"
+                    "SELECT COUNT(*) FROM raw.fusionsolar_devices WHERE plant_code = :plant_code"
                 ), {"plant_code": plant_code})
                 count = count_result.scalar()
                 counts_by_plant[plant_code] = count

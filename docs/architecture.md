@@ -148,12 +148,12 @@ Seeds are used for configuration and mapping tables that are manually maintained
    - Defines string parameters
    - Tracks configuration changes over time
 
-3. **seed_sensor_config.csv**
+3. **seed_sensor_config_override.csv**
    - Maps physical sensors to logical sensors
    - Defines sensor types and specifications
    - Tracks calibration data
 
-4. **seed_meter_config.csv**
+4. **seed_meter_config_override.csv**
    - Defines meter types and configurations
    - Maps meters to electrical circuits
    - Tracks installation parameters

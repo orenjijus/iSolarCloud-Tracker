@@ -10,7 +10,9 @@ _xsrf_token = None
 _token_expiry = None
 
 def login_fusionsolar():
-    """Authenticates with the FusionSolar API and stores the XSRF token."""
+    """Authenticates with the FusionSolar API and stores the XSRF token.
+    Returns: (True, None) on success, (False, error_message_str) on failure.
+    """
     global _xsrf_token, _token_expiry
     
     login_url = f"{FUSIONSOLAR_BASE_URL}/thirdData/login"
@@ -47,16 +49,18 @@ def login_fusionsolar():
                 # Token is valid for 30 minutes according to API docs
                 _token_expiry = datetime.now() + timedelta(minutes=29)  # Set slightly less for safety
                 logging.info("Successfully logged into FusionSolar.")
-                return True
+                return (True, None)
             else:
-                logging.error("Login successful but XSRF token not found in response headers.")
-                return False
+                msg = "Login successful but XSRF token not found in response headers."
+                logging.error(msg)
+                return (False, msg)
         else:
-            logging.error(f"FusionSolar login failed: {data.get('message', 'Unknown error')}")
-            return False
+            msg = data.get('message', 'Unknown error')
+            logging.error(f"FusionSolar login failed: {msg}")
+            return (False, msg)
     except requests.exceptions.RequestException as e:
         logging.error(f"Error during FusionSolar login: {e}")
-        return False
+        return (False, str(e))
 
 def _check_token_validity():
     """Checks if the current token is valid and not expired."""
@@ -71,7 +75,8 @@ def _make_api_request(endpoint, payload, retry=True):
     # Check if we need to login first
     if not _check_token_validity():
         logging.info("Token is missing or expired. Attempting to login...")
-        if not login_fusionsolar():
+        ok, _ = login_fusionsolar()
+        if not ok:
             logging.error("Failed to login to FusionSolar API.")
             return None
     
@@ -117,16 +122,20 @@ def _make_api_request(endpoint, payload, retry=True):
             return data
         elif fail_code == 305 and retry:  # Not logged in
             logging.warning("Session expired. Attempting to re-login...")
-            if login_fusionsolar():
+            ok, _ = login_fusionsolar()
+            if ok:
                 logging.info("Re-login successful. Retrying original request...")
                 return _make_api_request(endpoint, payload, retry=False)  # Retry once
             else:
                 logging.error("Re-login failed. Cannot proceed with API request.")
                 return None
         elif fail_code == 407:  # API access frequency too high
-            logging.warning("API access frequency too high. Waiting before retry...")
-            time.sleep(10)  # Wait longer for rate limit
             if retry:
+                # Use exponential backoff: wait longer for rate limit (sama seperti no_limit version approach)
+                wait_time = 30  # Wait 30 seconds for rate limit (lebih lama dari sebelumnya)
+                logging.warning(f"API access frequency too high. Waiting {wait_time} seconds before retry...")
+                time.sleep(wait_time)
+                logging.info("Retrying API request after rate limit wait...")
                 return _make_api_request(endpoint, payload, retry=False)  # Retry once
             else:
                 logging.error("API rate limit hit even after waiting. Cannot proceed.")

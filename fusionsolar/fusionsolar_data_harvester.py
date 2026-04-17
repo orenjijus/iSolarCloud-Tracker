@@ -1,21 +1,28 @@
 import logging
 import argparse
+import sys
 from datetime import datetime, timezone
+from pathlib import Path
 
 # Import modules from the harvester package
-from fusionsolar_harvester_src.fusionsolar_config import FUSIONSOLAR_USERNAME, FUSIONSOLAR_PASSWORD
+from fusionsolar_harvester_src.fusionsolar_config import FUSIONSOLAR_USERNAME, FUSIONSOLAR_PASSWORD, POSTGRES_HOST, POSTGRES_PORT, POSTGRES_DB
 from fusionsolar_harvester_src.fusionsolar_api_client import login_fusionsolar
 from fusionsolar_harvester_src.fusionsolar_db_operations import init_database, sync_plants, sync_devices
 from fusionsolar_harvester_src.fusionsolar_data_processing import fetch_historical_data, fetch_yesterday_data
 
-# Configure logging
+# Log file next to this script (absolute path so it works from cron)
+LOG_DIR = Path(__file__).resolve().parent
+LOG_FILE = LOG_DIR / "fusionsolar_harvester.log"
+
+# Configure logging: file + console; file so we have a persistent harvester log
 logging.basicConfig(
     level=logging.INFO,
     format='%(asctime)s - %(levelname)s - %(message)s',
     handlers=[
-        logging.FileHandler("fusionsolar_harvester.log"),  # Log to file
-        logging.StreamHandler()  # Log to console
-    ]
+        logging.FileHandler(LOG_FILE, encoding="utf-8"),
+        logging.StreamHandler(sys.stdout),
+    ],
+    force=True,
 )
 logging.info("Script started. Attempting to harvest data from FusionSolar API.")
 
@@ -29,19 +36,19 @@ def main():
         logging.error("Exiting script due to database initialization failure.")
         return
     print("Database initialization successful")
+    print(f"Database target: host={POSTGRES_HOST} port={POSTGRES_PORT} database={POSTGRES_DB} (pastikan SQL client connect ke sini)")
 
     # Set up command line argument parser
     parser = argparse.ArgumentParser(description="FusionSolar Data Harvester")
     parser.add_argument("--sync-plants", action="store_true", help="Synchronize all plants.")
-    parser.add_argument("--sync-devices", type=str, metavar="PLANT_CODE", help="Synchronize devices for a specific plant code. Use 'all' to sync devices for all known plants.")
+    parser.add_argument("--sync-devices", type=str, nargs='?', const='all', metavar="PLANT_CODE", help="Synchronize devices. If no plant code is provided, syncs devices for all known plants. Use 'all' or a specific plant code.")
     
     parser.add_argument("--fetch-historical", nargs=2, metavar=("YYYY-MM-DD_START", "YYYY-MM-DD_END"), 
                         help="Fetch historical minute data for a date range.")
     parser.add_argument("--plant-codes", type=str, help="Comma-separated list of plant codes to filter for --fetch-historical.")
-    parser.add_argument("--device-types", type=str, help="Comma-separated list of device type names (e.g., inverter, meter) to filter for --fetch-historical.")
+    parser.add_argument("--device-types", type=str, help="Comma-separated device type names for --fetch-historical: inverter, meter, meteo_station, battery, smart_assistant.")
 
     parser.add_argument("--fetch-yesterday", action="store_true", help="Fetch all of yesterday's data for all devices.")
-    parser.add_argument("--create-views", action="store_true", help="Create SQL views for site-device data.")
     
     args = parser.parse_args()
     print(f"Arguments parsed: {vars(args)}")
@@ -57,10 +64,12 @@ def main():
     if args.sync_plants or args.sync_devices or args.fetch_historical or args.fetch_yesterday:
         # Login to FusionSolar API
         print("Attempting to login to FusionSolar API")
-        if not login_fusionsolar():
-            print("FusionSolar API login failed")
-            logging.error("Exiting script due to FusionSolar API login failure.")
-            return
+        ok, error_message = login_fusionsolar()
+        if not ok:
+            msg = error_message or "Unknown error"
+            print(f"FusionSolar API login failed: {msg}")
+            logging.error("Exiting script due to FusionSolar API login failure: %s", msg)
+            sys.exit(1)  # So cron/pipeline fails visibly and does not continue
         print("FusionSolar API login successful")
     
     try:
@@ -71,7 +80,7 @@ def main():
             sync_plants()
             print("Plants synchronization completed")
 
-        if args.sync_devices:
+        if args.sync_devices is not None:
             if args.sync_devices.lower() == 'all':
                 logging.info("Action: Synchronizing devices for all plants.")
                 sync_devices()
@@ -89,14 +98,6 @@ def main():
         if args.fetch_yesterday:
             logging.info("Action: Fetching yesterday's data for all devices.")
             fetch_yesterday_data()
-
-        if args.create_views:
-            logging.info("Action: Creating SQL views for site-device data.")
-            print("Creating SQL views for site-device data")
-            # Import here to avoid circular imports
-            from site_device_views import create_device_views
-            create_device_views()
-            print("SQL views created successfully")
     except Exception as e:
         logging.error(f"Error during execution: {e}")
     finally:
