@@ -1,0 +1,29 @@
+mapping_type;device_id;logical_site_id;effective_date_start;effective_date_end;notes
+POA_OVERRIDE;EM06102287046729;PT. MMKI 5.7 MWp - Phase 2;2025-09-15;;IRR-MOD-NW-ASSEMBLY - MMKI II sensor physically at MMKI I
+POA_OVERRIDE;EM07102287046729;PT. MMKI 5.7 MWp - Phase 2;2025-09-15;;IRR-AMB-NE-ASSY1 - MMKI II sensor physically at MMKI I
+POA_OVERRIDE;EM04102287046729;PT. MMKI 5.7 MWp - Phase 2;2025-09-15;;IRR-MOD-NW-ASSY2 - MMKI II sensor physically at MMKI I
+POA_OVERRIDE;EM03102287046729;PT. MMKI 5.7 MWp - Phase 2;2025-09-15;;IRR-MOD-NW-Bod-Stamp - MMKI II sensor physically at MMKI I
+POA_OVERRIDE;EM05102287046729;PT. MMKI 5.7 MWp - Phase 2;2025-09-15;;IRR-AMB-SE-ASSY - MMKI II sensor physically at MMKI I
+POA_OVERRIDE;EM08102287046729;PT. MMKI 4.292 MWP - Phase 3;2025-09-15;;IRR-Amb - MMKI III sensor physically at MMKI I
+POA_OVERRIDE;EM09102287046729;PT. MMKI 4.292 MWP - Phase 3;2025-09-15;;IRR-PVTemp - MMKI III sensor physically at MMKI I
+GHI_FALLBACK;PT. MMKI 5.7 MWp - Phase 2;PT. MMKI 1.75 MWp - Painting Building;;;MMKI II pakai GHI dari MMKI I
+GHI_FALLBACK;PT. MMKI 4.292 MWP - Phase 3;PT. MMKI 1.75 MWp - Painting Building;2025-06-01;;MMKI III pakai GHI dari MMKI I (no GHI sensor at MMKI III) - mulai Juni 2025
+GHI_ADJUSTED;PT. MMKI 1.75 MWp - Painting Building;ISO_1628909_5_9_2;2025-11-01;2025-11-30;MMKI I November 2025: Use FLN sensor GHI
+GHI_ADJUSTED;PT. MMKI 5.7 MWp - Phase 2;ISO_1628909_5_9_2;2025-11-01;2025-11-30;MMKI II November 2025: Use FLN sensor GHI
+GHI_ADJUSTED;PT. MMKI 4.292 MWP - Phase 3;ISO_1628909_5_9_2;2025-11-01;2025-11-30;MMKI III November 2025: Use FLN sensor GHI
+GHI_ADJUSTED;PT. MMKI 1.75 MWp - Painting Building;FS_EM021023C7355634;2025-12-01;2025-12-31;MMKI I December 2025: Use WTST Body Stamping sensor GHI
+GHI_ADJUSTED;PT. MMKI 5.7 MWp - Phase 2;FS_EM021023C7355634;2025-12-01;2025-12-31;MMKI II December 2025: Use WTST Body Stamping sensor GHI
+GHI_ADJUSTED;PT. MMKI 4.292 MWP - Phase 3;FS_EM021023C7355634;2025-12-01;2025-12-31;MMKI III December 2025: Use WTST Body Stamping sensor GHI
+GHI_ADJUSTED;PT. MMKI 1.75 MWp - Painting Building;ISO_1628909_5_10_1;2026-01-01;;MMKI I ghi_adjusted pakai WST FLN ISO_1628909_5_10_1 mulai 1 Jan 2026 berkelanjutan
+GHI_ADJUSTED;PT. MMKI 5.7 MWp - Phase 2;ISO_1628909_5_10_1;2026-01-01;;MMKI II ghi_adjusted pakai WST FLN mulai 1 Jan 2026 berkelanjutan
+GHI_ADJUSTED;PT. MMKI 4.292 MWP - Phase 3;ISO_1628909_5_10_1;2026-01-01;;MMKI III ghi_adjusted pakai WST FLN mulai 1 Jan 2026 berkelanjutan
+GHI_COPY_FROM_SITE;PT. MMKI 1.75 MWp - Painting Building;PLTS Frina Lestari Nusantara;2026-01-01;;MMKI I ikut daily GHI Frina walaupun ada PYR lokal MMKI II III tetap GHI_FALLBACK ke MMKI I
+GHI_ACTUAL_OVERRIDE;PLTS Frina Lestari Nusantara;ISO_1628909_5_10_1;2025-12-30;;FLN ghi_actual pakai WST ISO_1628909_5_10_1 mulai 30 Des 2025 berkelanjutan
+GHI_ACTUAL_OVERRIDE;PLTS Rooftop Sumatera Prima Fibreboard;ISO_1680199_5_16_1;;2025-12-10;SPF ghi_actual dari PYR old ISO_1680199_5_16_1 sampai 10 Des 2025
+GHI_ACTUAL_OVERRIDE;PLTS Rooftop Sumatera Prima Fibreboard;ISO_1680199_5_13_1;2025-12-11;;SPF ghi_actual dari PYR new ISO_1680199_5_13_1 sejak 11 Des 2025
+GHI_ADJUSTED;Shoetown Ligung Indonesia;ISO_1479456_5_10_2;2026-05-01;;Shoetown: use SLI-WST-01-A (iSolar device 1479456_5_10_2) daily_irradiance / horizontal_irradiation as GHI for ghi_adjusted and PR from May 2026
+GHI_FALLBACK;Charoen Pokphand Majalengka;Shoetown Ligung Indonesia;2026-04-01;2026-04-30;CP Majalengka GHI dari Shoetown (GHI pyr) Apr 2026 hanya - tutup 30 Apr agar Mei tidak mati saat Shoetown pakai WST
+GHI_ADJUSTED;Charoen Pokphand Majalengka;ISO_1479456_5_10_2;2026-05-01;;CP Majalengka pakai sensor WST sama seperti Shoetown mulai Mei 2026
+GHI_ACTUAL_OVERRIDE;Shoetown Ligung Indonesia;ISO_1479456_5_10_2;2026-05-01;;Shoetown ghi_actual pakai WST ISO_1479456_5_10_2 mulai 1 Mei 2026
+GHI_ACTUAL_OVERRIDE;Charoen Pokphand Majalengka;ISO_1479456_5_10_2;2026-05-01;;CP Majalengka ghi_actual pakai WST ISO_1479456_5_10_2 mulai 1 Mei 2026
+GHI_ADJUSTED;PLTS Rooftop Weiss Tech;ISO_1789614_5_8_1;2025-01-01;;Weiss: no GHI sensor — daily_ghi/ghi_adjusted from Meteo Station 1 POA (1789614_5_8_1)
