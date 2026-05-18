@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: dim_assets
+    description: "Unified asset dimension combining sites and devices from both systems. Must be refreshed when staging sites/devices change."
+    tags: [dimensions, daily_dimensions]
+    columns:
+      - name: asset_id
+        description: "Unique asset identifier (ISO_*, FS_*, ISO_SITE_*, FS_SITE_*)"
+      - name: asset_level
+        description: "Asset level: 'Site' or 'Device'"
+      - name: asset_name
+        description: "Asset name"
+      - name: system
+        description: "Source system: 'isolarcloud' or 'fusionsolar'"
+      - name: site_id
+        description: "Site identifier"
+      - name: site_name
+        description: "Site name"
+      - name: actual_capacity_kw
+        description: "Site capacity in kW (only for asset_level = 'Site')"
+      - name: tariff
+        description: "Site tariff (only for asset_level = 'Site')"
+      - name: total_inverters
+        description: "Fixed total inverters count (only for asset_level = 'Site')"
+
+  - name: dim_date_generated
+    description: "Date dimension table with monthly week numbers. Static table that rarely needs refresh."
+    tags: [dimensions]
+    columns:
+      - name: date_key
+        description: "Primary key (DATE)"
+      - name: year
+        description: "Year"
+      - name: month
+        description: "Month (1-12)"
+      - name: week_of_month
+        description: "Week number within month (1-5, resets each month)"
+      - name: day_type
+        description: "'Weekday' or 'Weekend'"
+      - name: season
+        description: "'Dry Season (Kemarau)' or 'Wet Season (Hujan)'"
+

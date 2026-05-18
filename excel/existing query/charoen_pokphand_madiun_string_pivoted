@@ -1,0 +1,3039 @@
+-- public.charoen_pokphand_madiun_inverter_pivoted source
+
+CREATE OR REPLACE VIEW public.charoen_pokphand_madiun_inverter_pivoted
+AS SELECT h."timestamp",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p96'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p96'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_1_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p97'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p97'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_2_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p98'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p98'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_3_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p99'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p99'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_4_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p100'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p100'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_5_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p101'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p101'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_6_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p102'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p102'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_7_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p103'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p103'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_8_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p104'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p104'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_9_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p105'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p105'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_10_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p106'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p106'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_11_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p107'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p107'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_12_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p108'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p108'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_13_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p109'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p109'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_14_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p110'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p110'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_15_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p111'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p111'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_16_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p112'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p112'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_17_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p113'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p113'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_18_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p70'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p70'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_1_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p71'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p71'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_2_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p72'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p72'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_3_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p73'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p73'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_4_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p74'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p74'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_5_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p75'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p75'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_6_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p76'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p76'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_7_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p77'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p77'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_8_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p78'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p78'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_9_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p79'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p79'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_10_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p80'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p80'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_11_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p81'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p81'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_12_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p82'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p82'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_13_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p83'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p83'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_14_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p84'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p84'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_15_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p85'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p85'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_16_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p92'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p92'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_17_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p93'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p93'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_18_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7166'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7166'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_19_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7167'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7167'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_20_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7168'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7168'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_21_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7169'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7169'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_22_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7170'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7170'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_23_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7171'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7171'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_24_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p313'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p313'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_19_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p314'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p314'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_20_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p315'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p315'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_21_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p316'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p316'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_22_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p317'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p317'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_23_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p318'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p318'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_string_24_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p96'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p96'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_1_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p97'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p97'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_2_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p98'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p98'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_3_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p99'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p99'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_4_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p100'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p100'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_5_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p101'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p101'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_6_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p102'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p102'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_7_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p103'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p103'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_8_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p104'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p104'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_9_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p105'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p105'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_10_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p106'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p106'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_11_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p107'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p107'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_12_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p108'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p108'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_13_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p109'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p109'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_14_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p110'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p110'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_15_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p111'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p111'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_16_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p112'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p112'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_17_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p113'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p113'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_18_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p70'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p70'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_1_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p71'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p71'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_2_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p72'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p72'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_3_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p73'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p73'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_4_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p74'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p74'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_5_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p75'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p75'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_6_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p76'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p76'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_7_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p77'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p77'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_8_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p78'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p78'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_9_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p79'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p79'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_10_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p80'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p80'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_11_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p81'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p81'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_12_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p82'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p82'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_13_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p83'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p83'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_14_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p84'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p84'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_15_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p85'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p85'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_16_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p92'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p92'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_17_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p93'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p93'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_18_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7166'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7166'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_19_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7167'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7167'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_20_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7168'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7168'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_21_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7169'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7169'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_22_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7170'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7170'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_23_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7171'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7171'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_24_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p313'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p313'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_19_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p314'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p314'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_20_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p315'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p315'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_21_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p316'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p316'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_22_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p317'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p317'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_23_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p318'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p318'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_string_24_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p96'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p96'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_1_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p97'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p97'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_2_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p98'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p98'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_3_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p99'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p99'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_4_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p100'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p100'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_5_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p101'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p101'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_6_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p102'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p102'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_7_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p103'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p103'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_8_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p104'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p104'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_9_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p105'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p105'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_10_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p106'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p106'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_11_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p107'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p107'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_12_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p108'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p108'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_13_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p109'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p109'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_14_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p110'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p110'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_15_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p111'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p111'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_16_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p112'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p112'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_17_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p113'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p113'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_18_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p70'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p70'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_1_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p71'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p71'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_2_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p72'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p72'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_3_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p73'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p73'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_4_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p74'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p74'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_5_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p75'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p75'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_6_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p76'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p76'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_7_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p77'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p77'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_8_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p78'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p78'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_9_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p79'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p79'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_10_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p80'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p80'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_11_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p81'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p81'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_12_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p82'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p82'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_13_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p83'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p83'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_14_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p84'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p84'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_15_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p85'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p85'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_16_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p92'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p92'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_17_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p93'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p93'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_18_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7166'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7166'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_19_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7167'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7167'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_20_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7168'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7168'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_21_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7169'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7169'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_22_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7170'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7170'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_23_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7171'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7171'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_24_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p313'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p313'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_19_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p314'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p314'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_20_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p315'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p315'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_21_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p316'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p316'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_22_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p317'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p317'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_23_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p318'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p318'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_string_24_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p96'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p96'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_1_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p97'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p97'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_2_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p98'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p98'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_3_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p99'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p99'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_4_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p100'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p100'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_5_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p101'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p101'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_6_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p102'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p102'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_7_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p103'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p103'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_8_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p104'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p104'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_9_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p105'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p105'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_10_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p106'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p106'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_11_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p107'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p107'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_12_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p108'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p108'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_13_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p109'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p109'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_14_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p110'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p110'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_15_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p111'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p111'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_16_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p112'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p112'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_17_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p113'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p113'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_18_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p70'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p70'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_1_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p71'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p71'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_2_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p72'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p72'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_3_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p73'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p73'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_4_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p74'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p74'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_5_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p75'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p75'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_6_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p76'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p76'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_7_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p77'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p77'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_8_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p78'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p78'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_9_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p79'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p79'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_10_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p80'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p80'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_11_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p81'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p81'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_12_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p82'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p82'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_13_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p83'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p83'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_14_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p84'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p84'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_15_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p85'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p85'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_16_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p92'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p92'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_17_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p93'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p93'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_18_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7166'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7166'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_19_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7167'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7167'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_20_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7168'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7168'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_21_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7169'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7169'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_22_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7170'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7170'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_23_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7171'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7171'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_24_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p313'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p313'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_19_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p314'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p314'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_20_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p315'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p315'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_21_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p316'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p316'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_22_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p317'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p317'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_23_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p318'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p318'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_string_24_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p96'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p96'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_1_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p97'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p97'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_2_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p98'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p98'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_3_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p99'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p99'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_4_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p100'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p100'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_5_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p101'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p101'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_6_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p102'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p102'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_7_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p103'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p103'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_8_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p104'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p104'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_9_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p105'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p105'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_10_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p106'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p106'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_11_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p107'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p107'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_12_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p108'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p108'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_13_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p109'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p109'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_14_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p110'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p110'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_15_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p111'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p111'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_16_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p112'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p112'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_17_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p113'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p113'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_18_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p70'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p70'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_1_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p71'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p71'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_2_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p72'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p72'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_3_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p73'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p73'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_4_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p74'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p74'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_5_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p75'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p75'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_6_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p76'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p76'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_7_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p77'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p77'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_8_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p78'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p78'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_9_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p79'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p79'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_10_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p80'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p80'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_11_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p81'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p81'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_12_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p82'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p82'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_13_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p83'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p83'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_14_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p84'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p84'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_15_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p85'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p85'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_16_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p92'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p92'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_17_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p93'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p93'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_18_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7166'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7166'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_19_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7167'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7167'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_20_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7168'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7168'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_21_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7169'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7169'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_22_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7170'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7170'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_23_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7171'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7171'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_24_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p313'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p313'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_19_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p314'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p314'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_20_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p315'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p315'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_21_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p316'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p316'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_22_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p317'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p317'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_23_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p318'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p318'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_string_24_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p96'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p96'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_1_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p97'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p97'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_2_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p98'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p98'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_3_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p99'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p99'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_4_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p100'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p100'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_5_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p101'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p101'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_6_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p102'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p102'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_7_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p103'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p103'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_8_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p104'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p104'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_9_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p105'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p105'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_10_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p106'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p106'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_11_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p107'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p107'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_12_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p108'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p108'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_13_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p109'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p109'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_14_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p110'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p110'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_15_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p111'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p111'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_16_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p112'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p112'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_17_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p113'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p113'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_18_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p70'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p70'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_1_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p71'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p71'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_2_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p72'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p72'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_3_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p73'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p73'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_4_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p74'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p74'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_5_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p75'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p75'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_6_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p76'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p76'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_7_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p77'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p77'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_8_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p78'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p78'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_9_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p79'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p79'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_10_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p80'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p80'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_11_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p81'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p81'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_12_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p82'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p82'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_13_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p83'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p83'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_14_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p84'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p84'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_15_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p85'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p85'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_16_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p92'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p92'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_17_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p93'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p93'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_18_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7166'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7166'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_19_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7167'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7167'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_20_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7168'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7168'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_21_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7169'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7169'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_22_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7170'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7170'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_23_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7171'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7171'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_24_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p313'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p313'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_19_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p314'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p314'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_20_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p315'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p315'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_21_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p316'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p316'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_22_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p317'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p317'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_23_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p318'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p318'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_string_24_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p96'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p96'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_1_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p97'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p97'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_2_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p98'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p98'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_3_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p99'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p99'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_4_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p100'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p100'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_5_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p101'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p101'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_6_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p102'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p102'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_7_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p103'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p103'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_8_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p104'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p104'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_9_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p105'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p105'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_10_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p106'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p106'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_11_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p107'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p107'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_12_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p108'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p108'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_13_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p109'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p109'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_14_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p110'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p110'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_15_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p111'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p111'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_16_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p112'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p112'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_17_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p113'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p113'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_18_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p70'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p70'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_1_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p71'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p71'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_2_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p72'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p72'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_3_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p73'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p73'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_4_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p74'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p74'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_5_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p75'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p75'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_6_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p76'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p76'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_7_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p77'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p77'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_8_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p78'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p78'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_9_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p79'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p79'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_10_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p80'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p80'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_11_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p81'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p81'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_12_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p82'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p82'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_13_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p83'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p83'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_14_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p84'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p84'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_15_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p85'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p85'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_16_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p92'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p92'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_17_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p93'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p93'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_18_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7166'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7166'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_19_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7167'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7167'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_20_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7168'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7168'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_21_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7169'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7169'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_22_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7170'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7170'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_23_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p7171'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p7171'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_24_voltage",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p313'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p313'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_19_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p314'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p314'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_20_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p315'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p315'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_21_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p316'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p316'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_22_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p317'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p317'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_23_current",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p318'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p318'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_string_24_current"
+   FROM isolarcloud_historical_data h
+     JOIN isolarcloud_devices d ON h.device_ps_key::text = d.device_ps_key::text
+     JOIN isolarcloud_power_stations ps ON d.ps_id::text = ps.ps_id::text
+  WHERE ps.ps_name::text = 'Charoen Pokphand Madiun'::text AND d.device_type = 1
+  GROUP BY h."timestamp"
+  ORDER BY h."timestamp";
+
+-- Permissions
+
+ALTER TABLE public.charoen_pokphand_madiun_inverter_pivoted OWNER TO postgres;
+GRANT ALL ON TABLE public.charoen_pokphand_madiun_inverter_pivoted TO postgres;

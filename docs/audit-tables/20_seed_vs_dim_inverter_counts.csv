@@ -1,0 +1,19 @@
+site_id,site_name,seed_active_rows,dim_active_rows,seed_inverter_count,dim_inverter_count,row_diff_dim_minus_seed,inverter_diff_dim_minus_seed
+1445767,Garuda Metalindo (IKP),54,54,3,3,0,0
+1449886,Garuda Metalindo (MPF),54,54,3,3,0,0
+1453245,Garuda Metalindo 2,108,108,6,6,0,0
+1458125,Garuda Metalindo 1,108,108,6,6,0,0
+1479456,Shoetown Ligung Indonesia,432,432,18,18,0,0
+1614122,Charoen Pokphand Majalengka,168,168,7,7,0,0
+1628909,PLTS Frina Lestari Nusantara,168,168,7,7,0,0
+1637095,Charoen Pokphand Bandung,240,240,10,10,0,0
+1637816,Charoen Pokphand Madiun,168,168,7,7,0,0
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,378,378,18,18,0,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,210,210,10,10,0,0
+NE=50488260,PT. MMKI 1.75 MWp - Painting Building,144,144,8,8,0,0
+NE=51758766,PT. MMKI 5.7 MWp - Phase 2,476,476,17,17,0,0
+NE=53771627,PLTS Mall Panakkukang,200,200,10,10,0,0
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,280,280,14,14,0,0
+NE=58630782,PT. MMKI 4.292 MWP - Phase 3,504,504,24,24,0,0
+NE=61847068,PT Gelora Djaja 1 MWp,126,126,6,6,0,0
+NE=62806354,PLTS ONGRID PT SUPARMA TBK,441,441,21,21,0,0

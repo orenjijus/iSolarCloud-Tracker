@@ -1,0 +1,126 @@
+site_id,site_name,inverter_no,layout_string_rows,dim_inverter_id,dim_id_status,cfg_inverter_id,cfg_inverter_sn,cfg_status,mart_inv_keys_missing_dim_45d
+1445767,Garuda Metalindo (IKP),1,18,1,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,3
+1445767,Garuda Metalindo (IKP),2,18,2,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,3
+1445767,Garuda Metalindo (IKP),3,18,3,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,3
+1449886,Garuda Metalindo (MPF),1,18,1,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,3
+1449886,Garuda Metalindo (MPF),2,18,2,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,3
+1449886,Garuda Metalindo (MPF),3,18,3,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,3
+1453245,Garuda Metalindo 2,1,18,1,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1453245,Garuda Metalindo 2,2,18,2,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1453245,Garuda Metalindo 2,3,18,3,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1453245,Garuda Metalindo 2,4,18,4,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1453245,Garuda Metalindo 2,5,18,5,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1453245,Garuda Metalindo 2,6,18,6,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1458125,Garuda Metalindo 1,1,18,1,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1458125,Garuda Metalindo 1,2,18,2,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1458125,Garuda Metalindo 1,3,18,3,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1458125,Garuda Metalindo 1,4,18,4,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1458125,Garuda Metalindo 1,5,18,5,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1458125,Garuda Metalindo 1,6,18,6,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,6
+1479456,Shoetown Ligung Indonesia,1,24,1,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,2,25,2,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,3,23,3,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,4,24,4,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,5,24,5,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,6,24,6,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,7,24,7,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,8,24,8,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,9,24,9,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,10,24,10,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,11,24,11,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,12,24,12,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,13,24,13,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,14,24,14,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,15,24,15,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,16,24,16,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,17,24,17,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1479456,Shoetown Ligung Indonesia,18,24,18,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1614122,Charoen Pokphand Majalengka,1,24,1614122_1_1_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1614122,Charoen Pokphand Majalengka,2,24,1614122_1_2_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1614122,Charoen Pokphand Majalengka,3,24,1614122_1_4_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1614122,Charoen Pokphand Majalengka,4,24,1614122_1_5_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1614122,Charoen Pokphand Majalengka,5,24,1614122_1_6_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1614122,Charoen Pokphand Majalengka,6,24,1614122_1_7_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1614122,Charoen Pokphand Majalengka,7,24,1614122_1_3_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1628909,PLTS Frina Lestari Nusantara,1,24,1,dim_inverter_id_numeric_only,,A2511716323,no_seed_inverter_config_row,7
+1628909,PLTS Frina Lestari Nusantara,2,24,2,dim_inverter_id_numeric_only,,A2511120009,no_seed_inverter_config_row,7
+1628909,PLTS Frina Lestari Nusantara,3,24,3,dim_inverter_id_numeric_only,,A2511120038,no_seed_inverter_config_row,7
+1628909,PLTS Frina Lestari Nusantara,4,24,4,dim_inverter_id_numeric_only,,A2511120157,no_seed_inverter_config_row,7
+1628909,PLTS Frina Lestari Nusantara,5,24,5,dim_inverter_id_numeric_only,,A2510700171,no_seed_inverter_config_row,7
+1628909,PLTS Frina Lestari Nusantara,6,24,6,dim_inverter_id_numeric_only,,A2510700142,no_seed_inverter_config_row,7
+1628909,PLTS Frina Lestari Nusantara,7,24,7,dim_inverter_id_numeric_only,,A2511120226,no_seed_inverter_config_row,7
+1637095,Charoen Pokphand Bandung,1,24,1637095_1_5_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,2,24,1637095_1_6_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,3,24,1637095_1_4_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,4,24,1637095_1_8_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,5,24,1637095_1_2_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,6,24,1637095_1_1_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,7,24,1637095_1_10_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,8,24,1637095_1_7_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,9,24,1637095_1_3_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637095,Charoen Pokphand Bandung,10,24,1637095_1_9_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637816,Charoen Pokphand Madiun,1,24,1637816_1_1_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637816,Charoen Pokphand Madiun,2,24,1637816_1_4_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637816,Charoen Pokphand Madiun,3,24,1637816_1_3_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637816,Charoen Pokphand Madiun,4,24,1637816_1_7_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637816,Charoen Pokphand Madiun,5,24,1637816_1_5_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637816,Charoen Pokphand Madiun,6,24,1637816_1_2_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1637816,Charoen Pokphand Madiun,7,24,1637816_1_6_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,1,21,1,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,2,21,2,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,3,21,3,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,4,21,4,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,5,21,5,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,6,21,6,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,7,21,7,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,8,21,8,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,9,21,9,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,10,21,10,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,11,21,11,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,12,21,12,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,13,21,13,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,14,21,14,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,15,21,15,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,16,21,16,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,17,21,17,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,18,21,18,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,18
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,1,21,1763661_1_1_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,2,21,1763661_1_2_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,3,21,1763661_1_3_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,4,21,1763661_1_4_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,5,21,1763661_1_7_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,6,21,1763661_1_10_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,7,21,1763661_1_8_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,8,21,1763661_1_9_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,9,21,1763661_1_6_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,10,21,1763661_1_5_1,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+NE=53771627,PLTS Mall Panakkukang,1,20,1,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,2,20,2,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,3,20,3,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,4,20,4,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,5,20,5,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,6,20,6,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,7,20,7,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,8,20,8,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,9,20,9,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=53771627,PLTS Mall Panakkukang,10,20,10,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,10
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,1,20,1,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,2,20,2,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,3,20,3,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,4,20,4,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,5,20,5,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,6,20,6,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,7,20,7,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,8,20,8,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,9,20,9,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,10,20,10,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,11,20,11,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,12,20,12,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,13,20,13,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,14,20,14,dim_inverter_id_numeric_only,,,no_seed_inverter_config_row,14
+NE=61847068,PT Gelora Djaja 1 MWp,1,21,ES2550107337,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+NE=61847068,PT Gelora Djaja 1 MWp,2,21,ES2550107300,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+NE=61847068,PT Gelora Djaja 1 MWp,3,21,ES2550107309,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+NE=61847068,PT Gelora Djaja 1 MWp,4,21,ES2550107302,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+NE=61847068,PT Gelora Djaja 1 MWp,5,21,ES2550107307,dim_inverter_id_ok,,,no_seed_inverter_config_row,0
+NE=61847068,PT Gelora Djaja 1 MWp,6,21,ES2550152915,dim_inverter_id_ok,,,no_seed_inverter_config_row,0

@@ -1,0 +1,234 @@
+# Code Review: Recent Changes (MMSR API - Server MA)
+
+**Review Date:** 2025-01-28  
+**Scope:** Git-modified FusionSolar/iSolarCloud harvesters, run_daily_pipeline, Prefect flow, configs, and related Python/SQL changes.
+
+---
+
+## 1. Code Quality and Readability
+
+### 1.1 Strengths
+- **Consistent raw schema:** Moving tables to `raw.fusionsolar_*` and `raw.isolarcloud_*` improves layering and aligns with documented design.
+- **Timezone handling:** FusionSolar and iSolarCloud now use explicit UTC+7 (Asia/Jakarta) for “yesterday” and user-facing dates, then convert to UTC for APIs. This avoids silent date-shift bugs.
+- **Structured logging:** Use of `logging.info`/`logging.error` with clear messages and progress (e.g. device sync summaries) aids debugging and operations.
+- **Flexible API response handling:** FusionSolar data processing supports multiple response shapes (`data.list`, `data` as list, `results`, etc.), which improves robustness against API changes.
+
+### 1.2 Issues and Suggestions
+
+**Mixed language in comments and logs**  
+- Comments and log text mix Indonesian (“sama seperti no_limit version”, “Tambahkan”, “Dari”, “Sampai”) and English.  
+- **Suggestion:** Standardise on one language (prefer English for code/logs) or add a short glossary so all maintainers understand terms.
+
+**Inline debug prints**  
+- `fusionsolar_data_processing.py` still has `print("CASCADE_DEBUG: ...", flush=True)` and similar `print(...)` blocks.  
+- **Suggestion:** Remove or convert to `logging.debug()` and control visibility via log level.
+
+**Long functions**  
+- `fetch_and_store_device_data` and `fetch_historical_data` in FusionSolar, and analogous functions in iSolarCloud, are long and do many things (API call, parsing, DB write, logging).  
+- **Suggestion:** Extract helpers such as `_parse_api_response()`, `_build_upsert_query()`, `_write_db_records()` to shorten and clarify control flow.
+
+**Magic numbers**  
+- Examples: `time.sleep(30)` for rate limit, `timezone(timedelta(hours=7))`, `PARALLEL_MAX_WORKERS = 8`.  
+- **Suggestion:** Move to config (e.g. `fusionsolar_config` / `isolar_config`) or named constants and document meaning and tuning.
+
+---
+
+## 2. Potential Bugs or Issues
+
+### 2.1 Session handling in exception path (FusionSolar)
+
+**File:** `fusionsolar/fusionsolar_harvester_src/fusionsolar_data_processing.py` (and similar pattern in iSolarCloud)
+
+```python
+if db_records:
+    try:
+        session = Session()
+        for record in db_records:
+            ...
+    except SQLAlchemyError as e:
+        session.rollback()   # NameError if Session() raised
+    finally:
+        session.close()      # NameError if Session() raised
+```
+
+If `Session()` raises before `session` is assigned, `session.rollback()` and `session.close()` can raise `NameError`.
+
+**Fix:** Ensure `session` is always defined before use:
+
+```python
+session = None
+try:
+    session = Session()
+    ...
+except SQLAlchemyError as e:
+    if session is not None:
+        session.rollback()
+    ...
+finally:
+    if session is not None:
+        session.close()
+```
+
+Apply the same pattern wherever `session` is created in a `try` and used in `except`/`finally`.
+
+### 2.2 Rate-limit retry logic (FusionSolar API client)
+
+**File:** `fusionsolar/fusionsolar_harvester_src/fusionsolar_api_client.py`
+
+On `failCode == 407`, the code does `return _make_api_request(endpoint, payload, retry=False)`. So it only retries once. A second 407 or a slow API can still cause immediate failure.
+
+**Suggestion:** Consider a small number of retries with backoff (e.g. 30s, 60s) and a cap, and log each attempt. Document the chosen policy next to the constant (e.g. “wait 30s and retry once”).
+
+### 2.3 Token expiry and naïve datetime
+
+**File:** `fusionsolar/fusionsolar_harvester_src/fusionsolar_api_client.py`
+
+- `_token_expiry = datetime.now() + timedelta(minutes=29)`  
+- `return datetime.now() < _token_expiry`  
+
+Uses server-local time. If the API token is effectively UTC-based and the server is not in UTC, expiry can be wrong.
+
+**Suggestion:** Use UTC explicitly, e.g. `datetime.now(timezone.utc)` (and store/compare in UTC) so behaviour is consistent across environments.
+
+### 2.4 Pipeline still depends on iSolarCloud
+
+**Files:** `scripts/run_daily_pipeline.py`, `prefect/flows/mmsr_daily_pipeline.py`
+
+Both import and run `run_isolarcloud_ingest` and assume iSolarCloud is part of the pipeline. Commit `0911c52` (“Remove isolarcloud data harvester…”) indicates a move to drop iSolarCloud.
+
+**Risk:** If that removal is merged without updating these callers, the daily pipeline and Prefect flow will raise `ImportError` (or similar) when loading `isolarcloud.tasks`.
+
+**Suggestions:**
+- If iSolarCloud is being removed: delete or stub `run_isolarcloud_ingestion` and make the pipeline FusionSolar-only (and update Prefect flow similarly).
+- If iSolarCloud stays: ensure the “delete isolarcloud” branch does not get merged as-is, or add a feature flag / config so the pipeline can run with “FusionSolar only” or “FusionSolar + iSolarCloud”.
+
+### 2.5 Hardcoded date in fetch script
+
+**File:** `isolarcloud/fetch_historical_device_data.py` (from diff)
+
+- `start_date = "2026-01-27"`, `end_date = "2026-01-27"` are hardcoded.
+
+**Suggestion:** Use CLI arguments or “yesterday” by default so the script is safe to run in cron/task scheduler without editing the file.
+
+### 2.6 Indentation typo (iSolarCloud)
+
+**File:** `isolarcloud/isolarcloud_harvester_src/isolar_data_processing.py` (line 247)
+
+Inside the `if current_interval_end < current_interval_start:` block, the assignment uses one extra space:
+
+```python
+if current_interval_end < current_interval_start:
+     current_interval_end = current_interval_start   # 5 spaces vs 8 — inconsistent
+```
+
+**Fix:** Use the same indentation as the rest of the block (e.g. 8 spaces or your project’s standard for that block).
+
+### 2.7 Database URL when password is missing
+
+**Files:** `fusionsolar/fusionsolar_harvester_src/fusionsolar_config.py`, `isolarcloud/isolarcloud_harvester_src/isolar_config.py`
+
+```python
+encoded_password = urllib.parse.quote_plus(POSTGRES_PASSWORD) if POSTGRES_PASSWORD else ""
+DATABASE_URL = f"postgresql://{POSTGRES_USER}:{encoded_password}@{POSTGRES_HOST}:..."
+```
+
+If `POSTGRES_PASSWORD` is `None` or empty, the URL becomes `postgresql://user:@host/...`. That may still connect if the server uses `trust` or peer auth, and can hide misconfiguration.
+
+**Suggestion:** When running in non-local environments, require that `POSTGRES_PASSWORD` is set (or fail fast with a clear error) so credentials are explicit.
+
+---
+
+## 3. Security Considerations
+
+### 3.1 Credentials and config
+
+- **Password masking:** FusionSolar config correctly masks password length in print (`'*' * len(...)`). Ensure no log line or print ever includes the raw password or token.
+- **.env and git:** `.env` is listed in `.gitignore` and was removed from the repo (commit `577db56`). Keep `.env` out of version control and document required vars (e.g. in README or `docs`).
+- **Username in logs:** `fusionsolar_config.py` does `print(f"Using FusionSolar Username: {FUSIONSOLAR_USERNAME}")`. Usernames can be sensitive in some policies.
+  - **Suggestion:** Log “username is set” (or hash/redact) instead of the value, or restrict to `logging.DEBUG` and avoid default INFO for credentials.
+
+### 3.2 SQL injection risk (dynamic column names)
+
+**Files:**  
+- `fusionsolar/fusionsolar_harvester_src/fusionsolar_data_processing.py` (approx. lines 409–416)  
+- `fusionsolar/fusionsolar_data_harvester_no_limit.py` (approx. 400–406)  
+- `isolarcloud/isolarcloud_harvester_src/isolar_data_processing.py` (approx. 189–194)
+
+The INSERT is built with:
+
+```python
+columns = list(record.keys())
+query = text(f"""
+    INSERT INTO raw.... ({', '.join(columns)})
+    VALUES ({', '.join([':' + col for col in columns])})
+    ON CONFLICT ... DO UPDATE SET {update_clause}
+""")
+```
+
+`columns` come from API response parsing (`record.keys()`). If a compromised or malicious API returns keys like `"); DROP TABLE raw.fusionsolar_historical_data; --`, that string could be interpolated into the SQL.
+
+**Mitigation:** Validate or whitelist column names before building the query. For example:
+
+- Restrict to known keys:  
+  `allowed = {'dev_id', 'collect_time', 'measurement_data'}`  
+  and ensure `columns ⊆ allowed` and that order is fixed.
+- Or map API keys to a fixed set of DB column names and use only those in the INSERT.
+- Reject any key containing spaces, semicolons, or SQL comments.
+
+Values are passed via `record` bindings, so they are parameterised and safe as long as column names are safe.
+
+### 3.3 Secrets in process list and logs
+
+- Ensure `POSTGRES_PASSWORD`, `FUSIONSOLAR_*`, and `ISOLARCLOUD_*` are not passed on the command line (e.g. `python script.py --password …`), so they do not appear in process listings.
+- Avoid logging full request/response bodies; the existing truncation in the API client (e.g. `str(data)[:500]`) is in the right direction. Keep credentials and tokens out of all log messages.
+
+---
+
+## 4. Best Practices Compliance
+
+### 4.1 Parameterised SQL
+
+- Where values are passed (e.g. `session.execute(text("..."), {...})`), parameterised execution is used correctly.
+- The only unsanitised parts are identifiers (table and column names) built via f-strings. Restrict those to a fixed/validated set as in §3.2.
+
+### 4.2 Error handling and idempotency
+
+- Use of `ON CONFLICT DO UPDATE` for devices and historical data is appropriate for idempotent ingestion.
+- Sync logic often uses “continue on single-plant/device failure” (e.g. iSolarCloud `sync_all_devices`). That’s good for resilience; ensure failed items are logged (and optionally reported) so they can be retried or investigated.
+
+### 4.3 Configuration and env
+
+- DB and API settings are read from the environment (and optionally `.env`). That aligns with 12-factor style.
+- **Improvement:** Document all required and optional variables (e.g. in `docs/` or README), including which are sensitive, and validate presence of required vars at startup.
+
+### 4.4 Rate limiter bypass in FusionSolar
+
+The rate limiter is patched so `can_make_api_call` and `wait_for_api_call` always allow calls. That effectively disables rate limiting. If the FusionSolar API enforces strict limits, this can lead to 407s or blocking.
+
+**Suggestion:** Make “no limit” mode explicit (e.g. env var `FUSIONSOLAR_DISABLE_RATE_LIMIT=true`) and add a short comment or doc section describing when it’s safe to use and what the operational risks are.
+
+### 4.5 iSolarCloud DB init in data_processing
+
+`isolar_data_processing` uses `ensure_db_initialized()` and its own `engine` / `Session` refs populated from `isolar_db_operations` after `init_database()`. The pattern works but duplicates “who owns the engine” and can make future refactors (e.g. connection pooling, testing) harder.
+
+**Suggestion:** Prefer a single place that creates and holds `engine`/`Session` (e.g. `isolar_db_operations`) and have data_processing import and use them, possibly with a thin “ensure init” wrapper that only calls `init_database()` if needed.
+
+---
+
+## 5. Summary of Actionable Recommendations
+
+| Priority | Item |
+|----------|------|
+| High     | Fix `session` possibly undefined in `except`/`finally` in FusionSolar (and iSolarCloud) data processing. |
+| High     | Align pipeline with iSolarCloud removal: either remove iSolarCloud from `run_daily_pipeline` and Prefect flow, or keep both and avoid merging the “delete isolarcloud” branch without changes. |
+| High     | Validate or whitelist column names used in dynamic `INSERT … DO UPDATE` to prevent SQL injection via API-controlled keys. |
+| Medium   | Use UTC for token expiry in the FusionSolar API client. |
+| Medium   | Remove or gate `print`/CASCADE_DEBUG and avoid logging usernames in production. |
+| Medium   | Replace hardcoded dates in `fetch_historical_device_data.py` with args or “yesterday”. |
+| Medium   | Fix indentation typo in iSolarCloud interval logic. |
+| Low      | Standardise comment/log language; extract long functions and name magic numbers. |
+| Low      | Make rate-limit bypass configurable and documented. |
+
+---
+
+*End of review.*

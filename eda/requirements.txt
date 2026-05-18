@@ -1,0 +1,15 @@
+# EDA Site PLTS for ML — Python dependencies
+# Install: pip install -r eda/requirements.txt
+
+pandas>=1.5.0
+numpy>=1.21.0
+matplotlib>=3.5.0
+seaborn>=0.12.0
+psycopg2-binary>=2.9.0
+sqlalchemy>=2.0.0
+python-dotenv>=1.0.0
+
+# PV-specific EDA (Solar Data Tools, PVAnalytics, pvlib)
+solar-data-tools>=2.0.0
+pvanalytics>=0.4.0
+pvlib>=0.10.0

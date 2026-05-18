@@ -1,0 +1,8 @@
+table_schema;table_name;column_name;display_name_id;business_definition;formula;unit;source_trail;how_to_verify;where_to_correct;common_confusion;priority
+mart;mart_hidden_valley_villa_load_5min;timestamp;Waktu 5-menit;Timestamp kalkulasi beban villa HV;Grain timestamp;timestamp;mart_inverter_performance_5min + mart_meter_performance_5min -> mart_hidden_valley_villa_load_5min;Cek satu timestamp HV;Upstream inverter/meter;-;P0
+mart;mart_hidden_valley_villa_load_5min;date_key;Tanggal operasi;Tanggal turunan dari timestamp;DATE(timestamp);date;timestamp -> date_key;Bandingkan DATE(timestamp);Model dbt;P1
+mart;mart_hidden_valley_villa_load_5min;minute_key;Index 5-menit;Posisi slot 5-menit dalam hari;(hour*60 + minute)/5;integer;derived from timestamp;Cek minute_key 0..287;Model dbt;P1
+mart;mart_hidden_valley_villa_load_5min;site_id;ID site HV;Identitas site Hidden Valley;Dari dim_assets site;text;dim_assets site;Cek site_id tetap HV;dim_assets / site_name var;P0
+mart;mart_hidden_valley_villa_load_5min;inv_active_power_kw;Daya inverter;Total daya inverter pada slot 5-menit;SUM inv_active_power (normalisasi unit);kW;mart_inverter_performance_5min(metric inv_active_power);Bandingkan agregasi inverter;seed_metric_mapper / source data;P0
+mart;mart_hidden_valley_villa_load_5min;sa_active_power_kw;Daya Smart Assistant;Total daya Smart Assistant pada slot 5-menit;SUM sa_active_power (normalisasi unit);kW;mart_meter_performance_5min(metric sa_active_power);Bandingkan agregasi SA;seed_metric_mapper / source data;P0
+mart;mart_hidden_valley_villa_load_5min;beban_villa_kw;Beban villa total;Daya total beban villa per slot;COALESCE(inv_active_power_kw,0)+COALESCE(sa_active_power_kw,0);kW;derived;Hitung ulang manual dari dua komponen;Model logic;Bukan energi kWh;P0

@@ -1,0 +1,7 @@
+log_date,site_id,site_name,problem_identification,corrective_action,status,created_at,updated_at
+2025-12-09,ISO_SITE_1637095,CP Majalengka,"1. Overcurrent protection active
+2. Client's component make power quality problem
+3. Other trip in 13 December 2025",Adjust ACB Settings,Open,2025-12-14 10:00:00,2025-12-14 10:00:00
+2025-12-09,ISO_SITE_1637095,Charoen Pokphand,Cleaning Proposed not scheduled yet,,Open,2025-12-14 10:00:00,2025-12-14 10:00:00
+2025-12-09,ISO_SITE_1637816,SPF,Grid Overvoltage and Undervoltage,Evaluate action Grid Overvoltage and Undervoltage done in october,Resolved,2025-12-14 10:00:00,2025-12-14 10:00:00
+2025-12-09,ISO_SITE_1637095,Pusan Manis,KVAR fine in December 2025,,Open,2025-12-14 10:00:00,2025-12-14 10:00:00

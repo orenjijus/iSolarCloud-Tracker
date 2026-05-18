@@ -1,0 +1,1751 @@
+<?xml version='1.0' encoding='utf-8'?>
+<lineage project="mmsr_solar_data" generated="2026-05-11T04:35:27">
+  <layers>
+    <layer id="raw" label="Raw Sources" />
+    <layer id="seeds" label="Seed Tables" />
+    <layer id="staging" label="Staging Views" />
+    <layer id="dimensions" label="Dimension Tables" />
+    <layer id="facts" label="Fact Tables" />
+    <layer id="marts" label="Mart Tables" />
+  </layers>
+  <nodes>
+    <node id="raw.isolarcloud_historical_data" name="isolarcloud_historical_data" layer="raw" schema="raw" materialized="table" in_db="true">
+      <columns>
+        <column name="device_ps_key" />
+        <column name="timestamp" />
+        <column name="measurement_data" />
+      </columns>
+    </node>
+    <node id="raw.isolarcloud_devices" name="isolarcloud_devices" layer="raw" schema="raw" materialized="table" in_db="true">
+      <columns>
+        <column name="device_ps_key" />
+        <column name="ps_id" />
+        <column name="device_type" />
+        <column name="type_name" />
+        <column name="device_sn" />
+        <column name="dev_status" />
+        <column name="factory_name" />
+        <column name="uuid" />
+        <column name="grid_connection_date" />
+        <column name="device_name" />
+        <column name="dev_fault_status" />
+        <column name="rel_state" />
+        <column name="device_code" />
+        <column name="device_model_id" />
+        <column name="communication_dev_sn" />
+        <column name="device_model_code" />
+        <column name="chnnl_id" />
+      </columns>
+    </node>
+    <node id="raw.isolarcloud_power_stations" name="isolarcloud_power_stations" layer="raw" schema="raw" materialized="table" in_db="true">
+      <columns>
+        <column name="ps_id" />
+        <column name="ps_name" />
+        <column name="install_date" />
+        <column name="latitude" />
+        <column name="longitude" />
+        <column name="online_status" />
+        <column name="description" />
+        <column name="valid_flag" />
+        <column name="grid_connection_status" />
+        <column name="ps_fault_status" />
+        <column name="ps_location" />
+        <column name="update_time_api" />
+        <column name="ps_current_time_zone" />
+        <column name="grid_connection_time" />
+        <column name="connect_type" />
+        <column name="build_status" />
+        <column name="ps_type" />
+      </columns>
+    </node>
+    <node id="raw.fusionsolar_historical_data" name="fusionsolar_historical_data" layer="raw" schema="raw" materialized="table" in_db="true">
+      <columns>
+        <column name="dev_id" />
+        <column name="collect_time" />
+        <column name="measurement_data" />
+      </columns>
+    </node>
+    <node id="raw.fusionsolar_devices" name="fusionsolar_devices" layer="raw" schema="raw" materialized="table" in_db="true">
+      <columns>
+        <column name="dev_id" />
+        <column name="plant_code" />
+        <column name="dev_type_id" />
+        <column name="dev_name" />
+        <column name="esn_code" />
+        <column name="software_version" />
+        <column name="inv_type" />
+        <column name="model" />
+        <column name="last_update" />
+        <column name="dev_dn" />
+        <column name="longitude" />
+        <column name="latitude" />
+      </columns>
+    </node>
+    <node id="raw.fusionsolar_plants" name="fusionsolar_plants" layer="raw" schema="raw" materialized="table" in_db="true">
+      <columns>
+        <column name="plant_code" />
+        <column name="plant_name" />
+        <column name="grid_connection_date" />
+        <column name="latitude" />
+        <column name="longitude" />
+        <column name="capacity" />
+        <column name="status" />
+        <column name="last_update" />
+      </columns>
+    </node>
+    <node id="seed.seed_cleaning_log" name="seed_cleaning_log" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_cleaning_log.csv">
+      <columns>
+        <column name="asset_type" />
+        <column name="asset_id" />
+        <column name="site_id" />
+        <column name="site_name" />
+        <column name="cleaning_date" />
+        <column name="notes" />
+        <column name="is_active" />
+        <column name="cleaning_date_end" />
+      </columns>
+    </node>
+    <node id="seed.seed_daily_kpi_monthly" name="seed_daily_kpi_monthly" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_daily_kpi_monthly.csv">
+      <columns>
+        <column name="site_Name" />
+        <column name="site_id" />
+        <column name="Year" />
+        <column name="Month" />
+        <column name="Month_Number" />
+        <column name="Energy_KPI_MWh" />
+      </columns>
+    </node>
+    <node id="seed.seed_daily_simulation_target" name="seed_daily_simulation_target" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_daily_simulation_target.csv">
+      <columns>
+        <column name="Site_Name" />
+        <column name="Site_Code" />
+        <column name="Week" />
+        <column name="Month" />
+        <column name="Date" />
+        <column name="GHI" />
+        <column name="POA" />
+        <column name="Energy Simulation (MW)" />
+        <column name="Energy Target (MW)" />
+        <column name="Daily PR POA Simulation" />
+        <column name="Daily PR POA Target" />
+        <column name="GHI vs POA" />
+        <column name="Daily PR GHI Simulation" />
+        <column name="Daily PR GHI Target" />
+      </columns>
+    </node>
+    <node id="seed.seed_daily_simulation_target_old" name="seed_daily_simulation_target_old" layer="seeds" schema="staging" materialized="seed" in_db="false" csv_path="seeds\seed_daily_simulation_target_old.csv">
+      <columns>
+        <column name="Site_Name" />
+        <column name="Site_Code" />
+        <column name="Week" />
+        <column name="Month" />
+        <column name="Date" />
+        <column name="GHI" />
+        <column name="POA" />
+        <column name="Energy Simulation (MW)" />
+        <column name="Energy Target (MW)" />
+        <column name="Daily PR POA Simulation" />
+        <column name="Daily PR POA Target" />
+        <column name="GHI vs POA" />
+        <column name="Daily PR GHI Simulation" />
+        <column name="Daily PR GHI Target" />
+      </columns>
+    </node>
+    <node id="seed.seed_energy_adjustment_daily" name="seed_energy_adjustment_daily" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_energy_adjustment_daily.csv">
+      <columns>
+        <column name="site_name" />
+        <column name="date_key" />
+        <column name="energy_adjusted_value" />
+        <column name="notes" />
+      </columns>
+    </node>
+    <node id="seed.seed_ghi_adjustment_daily" name="seed_ghi_adjustment_daily" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_ghi_adjustment_daily.csv">
+      <columns>
+        <column name="site_name" />
+        <column name="date_key" />
+        <column name="ghi_adjusted_value" />
+        <column name="notes" />
+      </columns>
+    </node>
+    <node id="seed.seed_inverter_config" name="seed_inverter_config" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_inverter_config.csv">
+      <columns>
+        <column name="source" />
+        <column name="site_id" />
+        <column name="site_name" />
+        <column name="inverter_no" />
+        <column name="inverter_sn" />
+        <column name="inverter_id" />
+        <column name="inverter_name" />
+        <column name="inverter_ac_capacity_kw" />
+        <column name="inverter_model" />
+        <column name="inverter_manufacturer" />
+        <column name="inverter_dc_capacity_kw" />
+        <column name="mppt_count" />
+        <column name="is_active" />
+        <column name="valid_from" />
+        <column name="valid_to" />
+        <column name="notes" />
+      </columns>
+    </node>
+    <node id="seed.seed_inverter_site_mapping" name="seed_inverter_site_mapping" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_inverter_site_mapping.csv">
+      <columns>
+        <column name="mapping_type" />
+        <column name="device_id" />
+        <column name="logical_device_id" />
+        <column name="logical_device_name" />
+        <column name="effective_date_start" />
+        <column name="effective_date_end" />
+        <column name="notes" />
+      </columns>
+    </node>
+    <node id="seed.seed_inverter_string_layout" name="seed_inverter_string_layout" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_inverter_string_layout.csv">
+      <columns>
+        <column name="source" />
+        <column name="site_id" />
+        <column name="site_name" />
+        <column name="inverter_id" />
+        <column name="inverter_name" />
+        <column name="inverter_no" />
+        <column name="mppt_no" />
+        <column name="string_no" />
+        <column name="module_qty" />
+        <column name="orient_code" />
+        <column name="is_active" />
+        <column name="commission_date" />
+        <column name="decommission_date" />
+        <column name="notes" />
+      </columns>
+    </node>
+    <node id="seed.seed_inverter_string_poa_mapping" name="seed_inverter_string_poa_mapping" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_inverter_string_poa_mapping.csv">
+      <columns>
+        <column name="source" />
+        <column name="site_id" />
+        <column name="inverter_id" />
+        <column name="inverter_name" />
+        <column name="string_number" />
+        <column name="string_id" />
+        <column name="poa_sensor_id" />
+        <column name="poa_sensor_name" />
+        <column name="azimuth_degrees" />
+        <column name="tilt_degrees" />
+        <column name="panel_count" />
+        <column name="string_capacity_w" />
+        <column name="notes" />
+      </columns>
+    </node>
+    <node id="seed.seed_issue_dates" name="seed_issue_dates" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_issue_dates.csv">
+      <columns>
+        <column name="site_id" />
+        <column name="site_name" />
+        <column name="issue_date" />
+        <column name="is_active" />
+      </columns>
+    </node>
+    <node id="seed.seed_meter_config" name="seed_meter_config" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_meter_config.csv">
+      <columns>
+        <column name="source" />
+        <column name="site_id" />
+        <column name="dev_name" />
+        <column name="esn_code" />
+        <column name="voltage_level" />
+        <column name="meter_type" />
+        <column name="polarity_swapped" />
+      </columns>
+    </node>
+    <node id="seed.seed_meter_site_mapping" name="seed_meter_site_mapping" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_meter_site_mapping.csv">
+      <columns>
+        <column name="mapping_type" />
+        <column name="device_id" />
+        <column name="logical_device_id" />
+        <column name="logical_device_name" />
+        <column name="effective_date_start" />
+        <column name="effective_date_end" />
+        <column name="notes" />
+      </columns>
+    </node>
+    <node id="seed.seed_metric_mapper" name="seed_metric_mapper" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_metric_mapper.csv">
+      <columns>
+        <column name="platform" />
+        <column name="metric_id" />
+        <column name="metric_name" />
+        <column name="device_type" />
+        <column name="metric_group" />
+        <column name="metric_unit" />
+        <column name="used" />
+        <column name="unified_name" />
+      </columns>
+    </node>
+    <node id="seed.seed_sensor_config" name="seed_sensor_config" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_sensor_config.csv">
+      <columns>
+        <column name="source" />
+        <column name="site_id" />
+        <column name="dev_name" />
+        <column name="device_id" />
+        <column name="sensor_type" />
+        <column name="sensor_capacity" />
+        <column name="orient_code" />
+      </columns>
+    </node>
+    <node id="seed.seed_sensor_site_mapping" name="seed_sensor_site_mapping" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_sensor_site_mapping.csv">
+      <columns>
+        <column name="mapping_type" />
+        <column name="device_id" />
+        <column name="logical_site_id" />
+        <column name="effective_date_start" />
+        <column name="effective_date_end" />
+        <column name="notes" />
+      </columns>
+    </node>
+    <node id="seed.seed_site_config" name="seed_site_config" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_site_config.csv">
+      <columns>
+        <column name="site" />
+        <column name="capacity" />
+        <column name="tariff" />
+        <column name="siteorder" />
+        <column name="calculationstartdate" />
+        <column name="totalinverters" />
+      </columns>
+    </node>
+    <node id="seed.seed_weekly_log" name="seed_weekly_log" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_weekly_log.csv">
+      <columns>
+        <column name="log_date" />
+        <column name="site_id" />
+        <column name="site_name" />
+        <column name="problem_identification" />
+        <column name="corrective_action" />
+        <column name="status" />
+        <column name="created_at" />
+        <column name="updated_at" />
+      </columns>
+    </node>
+    <node id="seed.seed_yearly_simulation_target" name="seed_yearly_simulation_target" layer="seeds" schema="staging" materialized="seed" in_db="true" csv_path="seeds\seed_yearly_simulation_target.csv">
+      <columns>
+        <column name="Site_Name" />
+        <column name="Site_Code" />
+        <column name="Year" />
+        <column name="Energy TS (MWh)" />
+        <column name="Energy Sim Target (MWh)" />
+      </columns>
+    </node>
+    <node id="dim_assets" name="dim_assets" layer="dimensions" schema="dimensions" materialized="table" in_db="true" sql_path="models\dimensions\dim_assets.sql">
+      <columns>
+        <column name="asset_id">
+          <formula>ua.asset_id</formula>
+        </column>
+        <column name="asset_level">
+          <formula>ua.asset_level</formula>
+        </column>
+        <column name="asset_name">
+          <formula>ua.asset_name</formula>
+        </column>
+        <column name="device_type_id">
+          <formula>ua.device_type_id</formula>
+        </column>
+        <column name="device_category">
+          <formula>ua.device_category</formula>
+        </column>
+        <column name="system">
+          <formula>ua.system</formula>
+        </column>
+        <column name="site_id">
+          <formula>ua.site_id</formula>
+        </column>
+        <column name="site_name">
+          <formula>ua.site_name</formula>
+        </column>
+        <column name="site_name_clean">
+          <formula>ua.site_name_clean</formula>
+        </column>
+        <column name="latitude">
+          <formula>ua.latitude</formula>
+        </column>
+        <column name="longitude">
+          <formula>ua.longitude</formula>
+        </column>
+        <column name="actual_capacity_kw">
+          <formula>CASE WHEN ua.asset_level = 'Site' AND NOT sc.Capacity IS NULL AND TRIM(CAST(sc.Capacity AS TEXT)) &lt;&gt; '' THEN CAST(REPLACE(CAST(sc.Capacity AS TEXT), ',', '.') AS DECIMAL) ELSE NULL END</formula>
+        </column>
+        <column name="tariff">
+          <formula>CASE WHEN ua.asset_level = 'Site' AND NOT sc.Tariff IS NULL AND TRIM(CAST(sc.Tariff AS TEXT)) &lt;&gt; '' THEN CAST(REPLACE(CAST(sc.Tariff AS TEXT), ',', '.') AS DECIMAL) ELSE NULL END</formula>
+        </column>
+        <column name="site_order">
+          <formula>CASE WHEN ua.asset_level = 'Site' AND NOT sc.SiteOrder IS NULL THEN CAST(sc.SiteOrder AS INT) ELSE NULL END</formula>
+        </column>
+        <column name="calculation_start_date">
+          <formula>CASE WHEN ua.asset_level = 'Site' AND NOT sc.CalculationStartDate IS NULL AND TRIM(CAST(sc.CalculationStartDate AS TEXT)) &lt;&gt; '' THEN CASE WHEN CAST(sc.CalculationStartDate AS TEXT) ~ '^\d{4}-\d{2}-\d{2}' THEN TO_DATE(CAST(sc.CalculationStartDate AS TEXT), 'YYYY-MM-DD') WHEN CAST(sc.CalculationStartDate AS TEXT) ~ '^\d{1,2}/\d{1,2}/\d{4}' THEN TO_DATE(CAST(sc.CalculationStartDate AS TEXT), 'FMMM/FMDD/YYYY') ELSE CAST(sc.CalculationStartDate AS DATE) END ELSE NULL END</formula>
+        </column>
+        <column name="total_inverters">
+          <formula>CASE WHEN ua.asset_level = 'Site' AND NOT sc.TotalInverters IS NULL THEN CAST(sc.TotalInverters AS INT) ELSE NULL END</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="dim_date_generated" name="dim_date_generated" layer="dimensions" schema="dimensions" materialized="table" in_db="true" sql_path="models\dimensions\dim_date_generated.sql">
+      <columns>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="year">
+          <formula>EXTRACT(YEAR FROM date_key)</formula>
+        </column>
+        <column name="month">
+          <formula>EXTRACT(MONTH FROM date_key)</formula>
+        </column>
+        <column name="day">
+          <formula>EXTRACT(DAY FROM date_key)</formula>
+        </column>
+        <column name="week_of_month">
+          <formula>CASE WHEN week_of_month = 6 AND week6_day_count = 1 THEN 5 ELSE week_of_month END</formula>
+        </column>
+        <column name="day_of_week">
+          <formula>iso_dow</formula>
+        </column>
+        <column name="day_of_year">
+          <formula>EXTRACT(DOY FROM date_key)</formula>
+        </column>
+        <column name="day_name">
+          <formula>TO_CHAR(date_key, 'Day')</formula>
+        </column>
+        <column name="month_name">
+          <formula>TO_CHAR(date_key, 'Month')</formula>
+        </column>
+        <column name="month_key">
+          <formula>DATE_TRUNC('MONTH', date_key)</formula>
+        </column>
+        <column name="quarter_key">
+          <formula>DATE_TRUNC('QUARTER', date_key)</formula>
+        </column>
+        <column name="year_key">
+          <formula>DATE_TRUNC('YEAR', date_key)</formula>
+        </column>
+        <column name="season">
+          <formula>CASE WHEN EXTRACT(MONTH FROM date_key) BETWEEN 4 AND 9 THEN 'Dry Season (Kemarau)' ELSE 'Wet Season (Hujan)' END</formula>
+        </column>
+        <column name="day_type">
+          <formula>CASE WHEN iso_dow IN (6, 7) THEN 'Weekend' ELSE 'Weekday' END</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="fact_inverter_calculations_5min" name="fact_inverter_calculations_5min" layer="facts" schema="mart" materialized="incremental" in_db="true" sql_path="models\facts\fact_inverter_calculations_5min.sql">
+      <columns>
+        <column name="timestamp">
+          <formula>timestamp</formula>
+        </column>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="inverter_id">
+          <formula>inverter_id</formula>
+        </column>
+        <column name="inverter_name">
+          <formula>inverter_name</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="system">
+          <formula>system</formula>
+        </column>
+        <column name="active_power_kw">
+          <formula>active_power_kw</formula>
+        </column>
+        <column name="mit">
+          <formula>mit</formula>
+        </column>
+        <column name="inverter_availability">
+          <formula>inverter_availability</formula>
+        </column>
+        <column name="inverter_availability_with_mit">
+          <formula>inverter_availability_with_mit</formula>
+        </column>
+        <column name="calculation_timestamp">
+          <formula>calculation_timestamp</formula>
+        </column>
+        <column name="site_id">
+          <formula>site_id</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="fact_sensor_calculations_5min" name="fact_sensor_calculations_5min" layer="facts" schema="mart" materialized="incremental" in_db="true" sql_path="models\facts\fact_sensor_calculations_5min.sql">
+      <columns>
+        <column name="timestamp">
+          <formula>timestamp</formula>
+        </column>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="sensor_id">
+          <formula>sensor_id</formula>
+        </column>
+        <column name="sensor_name">
+          <formula>sensor_name</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="system">
+          <formula>system</formula>
+        </column>
+        <column name="sensor_type">
+          <formula>sensor_type</formula>
+        </column>
+        <column name="irradiance_w_m2">
+          <formula>irradiance_w_m2</formula>
+        </column>
+        <column name="is_fallback">
+          <formula>is_fallback</formula>
+        </column>
+        <column name="mit">
+          <formula>mit</formula>
+        </column>
+        <column name="mit_irradiance_source">
+          <formula>mit_irradiance_source /* Track which source was used for MIT: 'GHI', 'POA', or 'GHI_FALLBACK' */</formula>
+        </column>
+        <column name="calculation_timestamp">
+          <formula>calculation_timestamp</formula>
+        </column>
+        <column name="site_id">
+          <formula>site_id</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="fact_site_calculations_5min" name="fact_site_calculations_5min" layer="facts" schema="mart" materialized="incremental" in_db="true" sql_path="models\facts\fact_site_calculations_5min.sql">
+      <columns>
+        <column name="timestamp">
+          <formula>timestamp</formula>
+        </column>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="system">
+          <formula>system</formula>
+        </column>
+        <column name="total_inverters">
+          <formula>total_inverters</formula>
+        </column>
+        <column name="available_inverters">
+          <formula>available_inverters</formula>
+        </column>
+        <column name="mit">
+          <formula>mit</formula>
+        </column>
+        <column name="power_available_ratio">
+          <formula>power_available_ratio</formula>
+        </column>
+        <column name="unavailability_ratio">
+          <formula>unavailability_ratio</formula>
+        </column>
+        <column name="calculation_timestamp">
+          <formula>calculation_timestamp</formula>
+        </column>
+        <column name="site_id">
+          <formula>site_id</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_inverter_performance_5min" name="mart_inverter_performance_5min" layer="marts" schema="mart" materialized="incremental" in_db="true" sql_path="models\marts\mart_inverter_performance_5min.sql">
+      <columns>
+        <column name="timestamp">
+          <formula>i.timestamp</formula>
+        </column>
+        <column name="asset_id">
+          <formula>da.asset_id</formula>
+        </column>
+        <column name="asset_name">
+          <formula>da.asset_name</formula>
+        </column>
+        <column name="site_name">
+          <formula>da.site_name</formula>
+        </column>
+        <column name="system">
+          <formula>da.system</formula>
+        </column>
+        <column name="date_key">
+          <formula>dd.date_key</formula>
+        </column>
+        <column name="metric_id">
+          <formula>i.metric_id</formula>
+        </column>
+        <column name="metric_name">
+          <formula>i.metric_name</formula>
+        </column>
+        <column name="metric_group">
+          <formula>i.metric_group</formula>
+        </column>
+        <column name="metric_unit">
+          <formula>i.metric_unit</formula>
+        </column>
+        <column name="metric_value">
+          <formula>i.metric_value</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_inverter_yield_daily" name="mart_inverter_yield_daily" layer="marts" schema="mart" materialized="incremental" in_db="true" sql_path="models\marts\mart_inverter_yield_daily.sql">
+      <columns>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="asset_id">
+          <formula>asset_id</formula>
+        </column>
+        <column name="inverter_name">
+          <formula>inverter_name</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="system">
+          <formula>system</formula>
+        </column>
+        <column name="daily_yield_kwh">
+          <formula>COALESCE(last_yield_kwh, max_yield_kwh)</formula>
+        </column>
+        <column name="first_yield_kwh">
+          <formula>first_yield_kwh</formula>
+        </column>
+        <column name="last_yield_kwh">
+          <formula>last_yield_kwh</formula>
+        </column>
+        <column name="min_yield_kwh">
+          <formula>min_yield_kwh</formula>
+        </column>
+        <column name="max_yield_kwh">
+          <formula>max_yield_kwh</formula>
+        </column>
+        <column name="measurement_count">
+          <formula>measurement_count</formula>
+        </column>
+        <column name="site_id">
+          <formula>site_id</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_meter_performance_5min" name="mart_meter_performance_5min" layer="marts" schema="mart" materialized="incremental" in_db="true" sql_path="models\marts\mart_meter_performance_5min.sql">
+      <columns>
+        <column name="timestamp">
+          <formula>m.timestamp</formula>
+        </column>
+        <column name="asset_id">
+          <formula>da.asset_id</formula>
+        </column>
+        <column name="asset_name">
+          <formula>da.asset_name</formula>
+        </column>
+        <column name="site_name">
+          <formula>da.site_name</formula>
+        </column>
+        <column name="system">
+          <formula>da.system</formula>
+        </column>
+        <column name="date_key">
+          <formula>dd.date_key</formula>
+        </column>
+        <column name="metric_id">
+          <formula>m.metric_id</formula>
+        </column>
+        <column name="metric_name">
+          <formula>mm.unified_name</formula>
+        </column>
+        <column name="metric_group">
+          <formula>mm.metric_group</formula>
+        </column>
+        <column name="metric_unit">
+          <formula>mm.metric_unit</formula>
+        </column>
+        <column name="metric_value">
+          <formula>m.metric_value</formula>
+        </column>
+        <column name="meter_type">
+          <formula>mc.meter_type</formula>
+        </column>
+        <column name="voltage_level">
+          <formula>mc.voltage_level</formula>
+        </column>
+        <column name="meter_dev_name">
+          <formula>mc.dev_name</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_sensor_daily" name="mart_sensor_daily" layer="marts" schema="mart" materialized="incremental" in_db="true" sql_path="models\marts\mart_sensor_daily.sql">
+      <columns>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="asset_id">
+          <formula>asset_id</formula>
+        </column>
+        <column name="asset_name">
+          <formula>asset_name</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="system">
+          <formula>system</formula>
+        </column>
+        <column name="sensor_type">
+          <formula>sensor_type</formula>
+        </column>
+        <column name="sensor_dev_name">
+          <formula>sensor_dev_name</formula>
+        </column>
+        <column name="device_id">
+          <formula>device_id</formula>
+        </column>
+        <column name="sensor_capacity_kwp">
+          <formula>sensor_capacity_kwp</formula>
+        </column>
+        <column name="daily_irradiance_kwh_m2">
+          <formula>daily_irradiance_kwh_m2 /* Irradiance metrics */</formula>
+        </column>
+        <column name="avg_irradiance_w_m2">
+          <formula>avg_irradiance_w_m2</formula>
+        </column>
+        <column name="max_irradiance_w_m2">
+          <formula>max_irradiance_w_m2</formula>
+        </column>
+        <column name="daily_horizontal_irradiation_kwh_m2">
+          <formula>daily_horizontal_irradiation_kwh_m2</formula>
+        </column>
+        <column name="avg_ambient_temperature_c">
+          <formula>avg_ambient_temperature_c /* Temperature metrics */</formula>
+        </column>
+        <column name="max_ambient_temperature_c">
+          <formula>max_ambient_temperature_c</formula>
+        </column>
+        <column name="min_ambient_temperature_c">
+          <formula>min_ambient_temperature_c</formula>
+        </column>
+        <column name="avg_module_temperature_c">
+          <formula>avg_module_temperature_c</formula>
+        </column>
+        <column name="max_module_temperature_c">
+          <formula>max_module_temperature_c</formula>
+        </column>
+        <column name="min_module_temperature_c">
+          <formula>min_module_temperature_c</formula>
+        </column>
+        <column name="avg_wind_speed_m_s">
+          <formula>avg_wind_speed_m_s /* Wind metrics */</formula>
+        </column>
+        <column name="max_wind_speed_m_s">
+          <formula>max_wind_speed_m_s</formula>
+        </column>
+        <column name="avg_wind_direction_deg">
+          <formula>avg_wind_direction_deg</formula>
+        </column>
+        <column name="avg_humidity_pct">
+          <formula>avg_humidity_pct /* Other weather metrics */</formula>
+        </column>
+        <column name="max_humidity_pct">
+          <formula>max_humidity_pct</formula>
+        </column>
+        <column name="min_humidity_pct">
+          <formula>min_humidity_pct</formula>
+        </column>
+        <column name="total_rainfall_mm">
+          <formula>total_rainfall_mm</formula>
+        </column>
+        <column name="measurement_count">
+          <formula>measurement_count /* Data quality */</formula>
+        </column>
+        <column name="timestamp_count">
+          <formula>timestamp_count</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_sensor_measurements_5min" name="mart_sensor_measurements_5min" layer="marts" schema="mart" materialized="incremental" in_db="true" sql_path="models\marts\mart_sensor_measurements_5min.sql">
+      <columns>
+        <column name="timestamp">
+          <formula>s.timestamp</formula>
+        </column>
+        <column name="asset_id">
+          <formula>da.asset_id</formula>
+        </column>
+        <column name="asset_name">
+          <formula>da.asset_name</formula>
+        </column>
+        <column name="site_name">
+          <formula>da.site_name</formula>
+        </column>
+        <column name="system">
+          <formula>da.system</formula>
+        </column>
+        <column name="date_key">
+          <formula>dd.date_key</formula>
+        </column>
+        <column name="metric_id">
+          <formula>s.metric_id</formula>
+        </column>
+        <column name="metric_name">
+          <formula>m.unified_name</formula>
+        </column>
+        <column name="metric_group">
+          <formula>m.metric_group</formula>
+        </column>
+        <column name="metric_unit">
+          <formula>m.metric_unit</formula>
+        </column>
+        <column name="metric_value">
+          <formula>s.metric_value</formula>
+        </column>
+        <column name="sensor_type">
+          <formula>sc.sensor_type</formula>
+        </column>
+        <column name="sensor_dev_name">
+          <formula>sc.dev_name</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_simulation_daily_25y" name="mart_simulation_daily_25y" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_simulation_daily_25y.sql">
+      <columns>
+        <column name="site_code">
+          <formula>site_code</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="simulation_year">
+          <formula>simulation_year</formula>
+        </column>
+        <column name="simulation_start_year">
+          <formula>simulation_start_year</formula>
+        </column>
+        <column name="day_of_year">
+          <formula>day_of_year</formula>
+        </column>
+        <column name="degradation_factor">
+          <formula>degradation_factor</formula>
+        </column>
+        <column name="energy_simulation_mwh">
+          <formula>energy_year1_mwh * degradation_factor</formula>
+        </column>
+        <column name="energy_target_mwh">
+          <formula>energy_target_year1_mwh * degradation_factor</formula>
+        </column>
+        <column name="ghi">
+          <formula>ghi</formula>
+        </column>
+        <column name="poa">
+          <formula>poa</formula>
+        </column>
+        <column name="daily_pr_poa_simulation">
+          <formula>pr_poa_sim_year1 * degradation_factor</formula>
+        </column>
+        <column name="daily_pr_poa_target">
+          <formula>pr_poa_target_year1 * degradation_factor</formula>
+        </column>
+        <column name="daily_pr_ghi_simulation">
+          <formula>pr_ghi_sim_year1 * degradation_factor</formula>
+        </column>
+        <column name="daily_pr_ghi_target">
+          <formula>pr_ghi_target_year1 * degradation_factor</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_simulation_daily_25y_poc" name="mart_simulation_daily_25y_poc" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_simulation_daily_25y_poc.sql">
+      <columns>
+        <column name="site_code">
+          <formula>site_code</formula>
+        </column>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="simulation_year">
+          <formula>simulation_year</formula>
+        </column>
+        <column name="simulation_start_year">
+          <formula>simulation_start_year</formula>
+        </column>
+        <column name="day_of_year">
+          <formula>day_of_year</formula>
+        </column>
+        <column name="degradation_factor">
+          <formula>degradation_factor</formula>
+        </column>
+        <column name="energy_simulation_mwh">
+          <formula>energy_year1_mwh * degradation_factor</formula>
+        </column>
+        <column name="energy_target_mwh">
+          <formula>energy_target_year1_mwh * degradation_factor</formula>
+        </column>
+        <column name="ghi">
+          <formula>ghi</formula>
+        </column>
+        <column name="poa">
+          <formula>poa</formula>
+        </column>
+        <column name="daily_pr_poa_simulation">
+          <formula>pr_poa_sim_year1 * degradation_factor</formula>
+        </column>
+        <column name="daily_pr_poa_target">
+          <formula>pr_poa_target_year1 * degradation_factor</formula>
+        </column>
+        <column name="daily_pr_ghi_simulation">
+          <formula>pr_ghi_sim_year1 * degradation_factor</formula>
+        </column>
+        <column name="daily_pr_ghi_target">
+          <formula>pr_ghi_target_year1 * degradation_factor</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_simulation_degradation_factors" name="mart_simulation_degradation_factors" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_simulation_degradation_factors.sql">
+      <columns>
+        <column name="site_code">
+          <formula>site_code</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="simulation_year">
+          <formula>simulation_year</formula>
+        </column>
+        <column name="energy_yearly_mwh">
+          <formula>energy_yearly_mwh</formula>
+        </column>
+        <column name="energy_year1_mwh">
+          <formula>energy_year1_mwh</formula>
+        </column>
+        <column name="degradation_factor">
+          <formula>degradation_factor</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_simulation_site_start_year" name="mart_simulation_site_start_year" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_simulation_site_start_year.sql">
+      <columns>
+        <column name="site_code" />
+        <column name="simulation_start_year" />
+      </columns>
+    </node>
+    <node id="mart_simulation_targets_daily" name="mart_simulation_targets_daily" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_simulation_targets_daily.sql">
+      <columns>
+        <column name="date_key">
+          <formula>sd.date_key</formula>
+        </column>
+        <column name="year">
+          <formula>sd.year</formula>
+        </column>
+        <column name="month">
+          <formula>sd.month</formula>
+        </column>
+        <column name="month_name">
+          <formula>sd.month_name</formula>
+        </column>
+        <column name="day_type">
+          <formula>sd.day_type</formula>
+        </column>
+        <column name="site_name">
+          <formula>sd.site_name</formula>
+        </column>
+        <column name="site_code">
+          <formula>sd.site_code</formula>
+        </column>
+        <column name="asset_id">
+          <formula>da.asset_id</formula>
+        </column>
+        <column name="system">
+          <formula>da.system</formula>
+        </column>
+        <column name="ghi">
+          <formula>sd.ghi</formula>
+        </column>
+        <column name="poa">
+          <formula>sd.poa</formula>
+        </column>
+        <column name="ghi_vs_poa">
+          <formula>sd.ghi_vs_poa</formula>
+        </column>
+        <column name="energy_simulation_mwh">
+          <formula>sd.energy_simulation_mwh</formula>
+        </column>
+        <column name="energy_target_mwh">
+          <formula>sd.energy_target_mwh</formula>
+        </column>
+        <column name="energy_variance_mwh">
+          <formula>sd.energy_target_mwh - sd.energy_simulation_mwh</formula>
+        </column>
+        <column name="energy_kpi_daily_mwh">
+          <formula>CASE WHEN mt.energy_target_monthly_mwh &gt; 0 AND NOT mkpi.energy_kpi_mwh IS NULL THEN mkpi.energy_kpi_mwh * (sd.energy_target_mwh / mt.energy_target_monthly_mwh) ELSE NULL END</formula>
+        </column>
+        <column name="energy_a_kpi_daily_mwh">
+          <formula>CASE WHEN ms.energy_simulation_monthly_mwh &gt; 0 AND NOT mkpi.energy_kpi_mwh IS NULL THEN sd.energy_target_mwh * (mkpi.energy_kpi_mwh / ms.energy_simulation_monthly_mwh) ELSE NULL END</formula>
+        </column>
+        <column name="energy_kpi_monthly_mwh">
+          <formula>mkpi.energy_kpi_mwh</formula>
+        </column>
+        <column name="energy_target_monthly_mwh">
+          <formula>mt.energy_target_monthly_mwh</formula>
+        </column>
+        <column name="energy_simulation_monthly_mwh">
+          <formula>ms.energy_simulation_monthly_mwh</formula>
+        </column>
+        <column name="daily_pr_poa_simulation">
+          <formula>sd.daily_pr_poa_simulation</formula>
+        </column>
+        <column name="daily_pr_poa_target">
+          <formula>sd.daily_pr_poa_target</formula>
+        </column>
+        <column name="pr_poa_variance">
+          <formula>sd.daily_pr_poa_target - sd.daily_pr_poa_simulation</formula>
+        </column>
+        <column name="daily_pr_ghi_simulation">
+          <formula>sd.daily_pr_ghi_simulation</formula>
+        </column>
+        <column name="daily_pr_ghi_target">
+          <formula>sd.daily_pr_ghi_target</formula>
+        </column>
+        <column name="pr_ghi_variance">
+          <formula>sd.daily_pr_ghi_target - sd.daily_pr_ghi_simulation</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_simulation_targets_monthly" name="mart_simulation_targets_monthly" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_simulation_targets_monthly.sql">
+      <columns>
+        <column name="month_date_key">
+          <formula>mt.month_date_key</formula>
+        </column>
+        <column name="year">
+          <formula>mt.year</formula>
+        </column>
+        <column name="month">
+          <formula>mt.month</formula>
+        </column>
+        <column name="month_name">
+          <formula>mt.month_name</formula>
+        </column>
+        <column name="site_name">
+          <formula>mt.site_name</formula>
+        </column>
+        <column name="site_code">
+          <formula>mt.site_code</formula>
+        </column>
+        <column name="asset_id">
+          <formula>mt.asset_id</formula>
+        </column>
+        <column name="system">
+          <formula>mt.system</formula>
+        </column>
+        <column name="ghi">
+          <formula>mt.ghi</formula>
+        </column>
+        <column name="poa">
+          <formula>mt.poa</formula>
+        </column>
+        <column name="ghi_vs_poa_avg">
+          <formula>mt.ghi_vs_poa_avg</formula>
+        </column>
+        <column name="energy_simulation_mwh">
+          <formula>mt.energy_simulation_mwh</formula>
+        </column>
+        <column name="energy_target_mwh">
+          <formula>mt.energy_target_mwh</formula>
+        </column>
+        <column name="energy_variance_mwh">
+          <formula>mt.energy_variance_mwh</formula>
+        </column>
+        <column name="energy_kpi_mwh">
+          <formula>COALESCE(kc.energy_kpi_mwh, kn.energy_kpi_mwh)</formula>
+        </column>
+        <column name="energy_kpi_gap_ratio">
+          <formula>CASE WHEN mt.energy_target_mwh IS NULL OR mt.energy_target_mwh = 0 THEN NULL ELSE ROUND((CAST(COALESCE(kc.energy_kpi_mwh, kn.energy_kpi_mwh) AS DECIMAL) / CAST(mt.energy_target_mwh AS DECIMAL)), 6) END</formula>
+        </column>
+        <column name="monthly_pr_poa_simulation">
+          <formula>mt.monthly_pr_poa_simulation</formula>
+        </column>
+        <column name="monthly_pr_poa_target">
+          <formula>mt.monthly_pr_poa_target</formula>
+        </column>
+        <column name="pr_poa_variance">
+          <formula>mt.pr_poa_variance</formula>
+        </column>
+        <column name="monthly_pr_ghi_simulation">
+          <formula>mt.monthly_pr_ghi_simulation</formula>
+        </column>
+        <column name="monthly_pr_ghi_target">
+          <formula>mt.monthly_pr_ghi_target</formula>
+        </column>
+        <column name="pr_ghi_variance">
+          <formula>mt.pr_ghi_variance</formula>
+        </column>
+        <column name="days_count">
+          <formula>mt.days_count</formula>
+        </column>
+        <column name="created_at">
+          <formula>CURRENT_TIMESTAMP</formula>
+        </column>
+        <column name="updated_at">
+          <formula>CURRENT_TIMESTAMP</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_site_kpi_monthly" name="mart_site_kpi_monthly" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_site_kpi_monthly.sql">
+      <columns>
+        <column name="site_id">
+          <formula>kd.site_id</formula>
+        </column>
+        <column name="site_name">
+          <formula>kd.site_name</formula>
+        </column>
+        <column name="year">
+          <formula>kd.year</formula>
+        </column>
+        <column name="month">
+          <formula>kd.month</formula>
+        </column>
+        <column name="month_name">
+          <formula>kd.month_name</formula>
+        </column>
+        <column name="energy_kpi_mwh">
+          <formula>kd.energy_kpi_mwh</formula>
+        </column>
+        <column name="created_at">
+          <formula>CURRENT_TIMESTAMP</formula>
+        </column>
+        <column name="updated_at">
+          <formula>CURRENT_TIMESTAMP</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_site_performance_daily" name="mart_site_performance_daily" layer="marts" schema="mart" materialized="incremental" in_db="true" sql_path="models\marts\mart_site_performance_daily.sql">
+      <columns>
+        <column name="date_key">
+          <formula>sm.date_key</formula>
+        </column>
+        <column name="year">
+          <formula>dd.year</formula>
+        </column>
+        <column name="month">
+          <formula>dd.month</formula>
+        </column>
+        <column name="month_name">
+          <formula>dd.month_name</formula>
+        </column>
+        <column name="week_of_month">
+          <formula>dd.week_of_month</formula>
+        </column>
+        <column name="site_id">
+          <formula>da.asset_id</formula>
+        </column>
+        <column name="site_name">
+          <formula>da.site_name</formula>
+        </column>
+        <column name="system">
+          <formula>da.system</formula>
+        </column>
+        <column name="actual_capacity_kw">
+          <formula>da.actual_capacity_kw</formula>
+        </column>
+        <column name="tariff">
+          <formula>da.tariff</formula>
+        </column>
+        <column name="site_order">
+          <formula>da.site_order</formula>
+        </column>
+        <column name="is_issue_date">
+          <formula>CASE WHEN NOT id.issue_date IS NULL THEN TRUE ELSE FALSE END</formula>
+        </column>
+        <column name="daily_energy_mwh">
+          <formula>CAST(COALESCE(sm.daily_energy_mwh, 0) AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="energy_actual">
+          <formula>CAST(COALESCE(sm.daily_energy_mwh, 0) AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="energy_adjusted">
+          <formula>CAST(COALESCE(energy_adj.energy_adjusted_value /* Priority 1: Manual adjustment from seed file */, sm.daily_energy_mwh /* Priority 2: Default: Use actual energy */) AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="daily_ghi_kwh_m2">
+          <formula>CAST(sm.daily_ghi_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="ghi_actual">
+          <formula>CAST(sm.daily_ghi_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="daily_poa_weighted_kwh_m2">
+          <formula>CAST(sm.daily_poa_weighted_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="ghi_adjusted">
+          <formula>CAST(COALESCE(ghi_manual.ghi_adjusted_value /* Priority 1: Manual adjustment from seed file (e.g., calculated from POA ratio) */, ghi_adj.ghi_adjusted_value /* Priority 2: Adjusted GHI from sensor mapping if available */, sm.daily_ghi_kwh_m2 /* Priority 3: Default: Use actual GHI */) AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="power_available_hours">
+          <formula>CAST(sm.power_available_hours AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="unavailability_hours">
+          <formula>CAST(sm.unavailability_hours AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="mit_hours">
+          <formula>CAST(sm.mit_hours AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="total_hours">
+          <formula>CAST(sm.total_hours AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="availability_percent">
+          <formula>CAST(sm.availability_percent AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="pr_ghi_actual">
+          <formula>CASE WHEN NOT COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2) IS NULL AND COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2) &gt;= 0.1 /* Minimum threshold to prevent overflow */ AND NOT sm.daily_energy_mwh IS NULL AND sm.daily_energy_mwh &gt;= 0.01 /* Minimum energy threshold */ AND NOT da.actual_capacity_kw IS NULL AND da.actual_capacity_kw &gt; 0 THEN LEAST(CAST(((sm.daily_energy_mwh * 1000.0) / NULLIF(COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2), 0) / NULLIF(da.actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 10.0 /* Cap at 10.0 (1000%) to prevent overflow from data errors while still capturing anomalies */) ELSE NULL END</formula>
+        </column>
+        <column name="pr_adjusted">
+          <formula>CASE WHEN NOT COALESCE(ghi_manual.ghi_adjusted_value /* Priority 1: Manual adjustment */, ghi_adj.ghi_adjusted_value /* Priority 2: Sensor mapping */, sm.daily_ghi_kwh_m2 /* Priority 3: Actual GHI */) IS NULL AND COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2) &gt;= 0.1 /* Minimum threshold to prevent overflow */ AND NOT COALESCE(energy_adj.energy_adjusted_value /* Priority 1: Manual energy adjustment */, sm.daily_energy_mwh /* Priority 2: Actual energy */) IS NULL AND COALESCE(energy_adj.energy_adjusted_value, sm.daily_energy_mwh) &gt;= 0.01 /* Minimum energy threshold */ AND NOT da.actual_capacity_kw IS NULL AND da.actual_capacity_kw &gt; 0 THEN LEAST(CAST(((COALESCE(energy_adj.energy_adjusted_value, sm.daily_energy_mwh) * 1000.0) / NULLIF(COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2), 0) / NULLIF(da.actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 10.0 /* Cap at 10.0 (1000%) to prevent overflow from data errors while still capturing anomalies */) ELSE NULL END</formula>
+        </column>
+        <column name="pr_poa_actual">
+          <formula>CASE WHEN NOT sm.daily_poa_weighted_kwh_m2 IS NULL AND sm.daily_poa_weighted_kwh_m2 &gt;= 0.1 /* Minimum threshold to prevent overflow */ AND NOT sm.daily_energy_mwh IS NULL AND sm.daily_energy_mwh &gt;= 0.01 /* Minimum energy threshold */ AND NOT da.actual_capacity_kw IS NULL AND da.actual_capacity_kw &gt; 0 THEN LEAST(CAST(((sm.daily_energy_mwh * 1000.0) / NULLIF(sm.daily_poa_weighted_kwh_m2, 0) / NULLIF(da.actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 2.0 /* Cap at 2.0 (200%) to prevent overflow from data errors */) ELSE NULL END</formula>
+        </column>
+        <column name="energy_target_mwh">
+          <formula>CAST(t.energy_target_mwh AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="daily_pr_ghi_target">
+          <formula>CAST(t.daily_pr_ghi_target AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="daily_pr_poa_target">
+          <formula>CAST(t.daily_pr_poa_target AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="ghi_target">
+          <formula>CAST(t.ghi AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="poa_target">
+          <formula>CAST(t.poa AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="energy_actual_vs_target_pct">
+          <formula>CASE WHEN NOT t.energy_target_mwh IS NULL AND t.energy_target_mwh &gt; 0 AND NOT sm.daily_energy_mwh IS NULL THEN CAST((sm.daily_energy_mwh / NULLIF(t.energy_target_mwh, 0)) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="ghi_actual_vs_target_pct">
+          <formula>CASE WHEN NOT t.ghi IS NULL AND t.ghi &gt; 0 AND NOT sm.daily_ghi_kwh_m2 IS NULL THEN CAST((sm.daily_ghi_kwh_m2 / NULLIF(t.ghi, 0)) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="poa_actual_vs_target_pct">
+          <formula>CASE WHEN NOT t.poa IS NULL AND t.poa &gt; 0 AND NOT sm.daily_poa_weighted_kwh_m2 IS NULL THEN CAST((sm.daily_poa_weighted_kwh_m2 / NULLIF(t.poa, 0)) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="energy_vs_ghi_variance_pct">
+          <formula>CASE WHEN NOT t.energy_target_mwh IS NULL AND t.energy_target_mwh &gt; 0 AND NOT t.ghi IS NULL AND t.ghi &gt; 0 AND NOT sm.daily_energy_mwh IS NULL AND NOT sm.daily_ghi_kwh_m2 IS NULL THEN CAST(((sm.daily_energy_mwh / NULLIF(t.energy_target_mwh, 0)) - (sm.daily_ghi_kwh_m2 / NULLIF(t.ghi, 0))) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="energy_kpi_daily_mwh">
+          <formula>CASE WHEN mt_kpi.energy_target_monthly_mwh &gt; 0 AND NOT mkpi.energy_kpi_mwh IS NULL AND NOT t.energy_target_mwh IS NULL THEN CAST(mkpi.energy_kpi_mwh * (t.energy_target_mwh / mt_kpi.energy_target_monthly_mwh) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="energy_a_kpi_daily_mwh">
+          <formula>CASE WHEN ms_kpi.energy_simulation_monthly_mwh &gt; 0 AND NOT mkpi.energy_kpi_mwh IS NULL AND NOT t.energy_target_mwh IS NULL THEN CAST(t.energy_target_mwh * (mkpi.energy_kpi_mwh / ms_kpi.energy_simulation_monthly_mwh) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="energy_kpi_monthly_mwh">
+          <formula>CAST(mkpi.energy_kpi_mwh AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="energy_target_monthly_mwh">
+          <formula>CAST(mt_kpi.energy_target_monthly_mwh AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="energy_simulation_monthly_mwh">
+          <formula>CAST(ms_kpi.energy_simulation_monthly_mwh AS DECIMAL(18, 6))</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_site_performance_monthly" name="mart_site_performance_monthly" layer="marts" schema="mart" materialized="view" in_db="true" sql_path="models\marts\mart_site_performance_monthly.sql">
+      <columns>
+        <column name="year">
+          <formula>year</formula>
+        </column>
+        <column name="month">
+          <formula>month</formula>
+        </column>
+        <column name="month_name">
+          <formula>month_name</formula>
+        </column>
+        <column name="site_id">
+          <formula>site_id</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="system">
+          <formula>system</formula>
+        </column>
+        <column name="actual_capacity_kw">
+          <formula>actual_capacity_kw</formula>
+        </column>
+        <column name="tariff">
+          <formula>tariff</formula>
+        </column>
+        <column name="site_order">
+          <formula>site_order</formula>
+        </column>
+        <column name="daily_energy_mwh">
+          <formula>CAST(monthly_energy_mwh AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="daily_ghi_kwh_m2">
+          <formula>CAST(monthly_ghi_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="monthly_poa_weighted_kwh_m2">
+          <formula>CAST(monthly_poa_weighted_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="energy_target_mwh">
+          <formula>CAST(monthly_energy_target_mwh AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="ghi_target">
+          <formula>CAST(monthly_ghi_target AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="poa_target">
+          <formula>CAST(monthly_poa_target AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="availability_percent">
+          <formula>CASE WHEN (monthly_power_available_hours + monthly_unavailability_hours) &gt; 0 THEN CAST((monthly_power_available_hours / NULLIF(monthly_power_available_hours + monthly_unavailability_hours, 0)) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="pr_ghi_actual">
+          <formula>CASE WHEN NOT monthly_ghi_kwh_m2 IS NULL AND monthly_ghi_kwh_m2 &gt;= 0.1 /* Minimum threshold */ AND NOT monthly_energy_mwh IS NULL AND monthly_energy_mwh &gt;= 0.01 /* Minimum energy threshold */ AND NOT actual_capacity_kw IS NULL AND actual_capacity_kw &gt; 0 THEN LEAST(CAST(((monthly_energy_mwh * 1000.0) / NULLIF(monthly_ghi_kwh_m2, 0) / NULLIF(actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 10.0 /* Cap at 10.0 to prevent overflow */) ELSE NULL END</formula>
+        </column>
+        <column name="pr_poa_actual">
+          <formula>CASE WHEN NOT monthly_poa_weighted_kwh_m2 IS NULL AND monthly_poa_weighted_kwh_m2 &gt;= 0.1 /* Minimum threshold */ AND NOT monthly_energy_mwh IS NULL AND monthly_energy_mwh &gt;= 0.01 /* Minimum energy threshold */ AND NOT actual_capacity_kw IS NULL AND actual_capacity_kw &gt; 0 THEN LEAST(CAST(((monthly_energy_mwh * 1000.0) / NULLIF(monthly_poa_weighted_kwh_m2, 0) / NULLIF(actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 2.0 /* Cap at 2.0 to prevent overflow */) ELSE NULL END</formula>
+        </column>
+        <column name="energy_actual_vs_target_pct">
+          <formula>CASE WHEN NOT monthly_energy_target_mwh IS NULL AND monthly_energy_target_mwh &gt; 0 AND NOT monthly_energy_mwh IS NULL THEN CAST((monthly_energy_mwh / NULLIF(monthly_energy_target_mwh, 0)) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="ghi_actual_vs_target_pct">
+          <formula>CASE WHEN NOT monthly_ghi_target IS NULL AND monthly_ghi_target &gt; 0 AND NOT monthly_ghi_kwh_m2 IS NULL THEN CAST((monthly_ghi_kwh_m2 / NULLIF(monthly_ghi_target, 0)) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="poa_actual_vs_target_pct">
+          <formula>CASE WHEN NOT monthly_poa_target IS NULL AND monthly_poa_target &gt; 0 AND NOT monthly_poa_weighted_kwh_m2 IS NULL THEN CAST((monthly_poa_weighted_kwh_m2 / NULLIF(monthly_poa_target, 0)) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="energy_vs_ghi_variance_pct">
+          <formula>CASE WHEN NOT monthly_energy_target_mwh IS NULL AND monthly_energy_target_mwh &gt; 0 AND NOT monthly_ghi_target IS NULL AND monthly_ghi_target &gt; 0 AND NOT monthly_energy_mwh IS NULL AND NOT monthly_ghi_kwh_m2 IS NULL THEN CAST(((monthly_energy_mwh / NULLIF(monthly_energy_target_mwh, 0)) - (monthly_ghi_kwh_m2 / NULLIF(monthly_ghi_target, 0))) AS DECIMAL(18, 6)) ELSE NULL END</formula>
+        </column>
+        <column name="days_with_data">
+          <formula>days_with_data /* Metadata */</formula>
+        </column>
+        <column name="days_with_energy">
+          <formula>days_with_energy</formula>
+        </column>
+        <column name="days_with_ghi">
+          <formula>days_with_ghi</formula>
+        </column>
+        <column name="days_with_poa">
+          <formula>days_with_poa</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_string_performance_daily" name="mart_string_performance_daily" layer="marts" schema="mart" materialized="incremental" in_db="true" sql_path="models\marts\mart_string_performance_daily.sql">
+      <columns>
+        <column name="date_key">
+          <formula>date_key</formula>
+        </column>
+        <column name="inverter_id">
+          <formula>inverter_id</formula>
+        </column>
+        <column name="inverter_name">
+          <formula>inverter_name</formula>
+        </column>
+        <column name="site_id">
+          <formula>site_id</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="system">
+          <formula>system</formula>
+        </column>
+        <column name="string_number">
+          <formula>string_number</formula>
+        </column>
+        <column name="string_id">
+          <formula>string_id</formula>
+        </column>
+        <column name="interval_count_5min">
+          <formula>interval_count_5min</formula>
+        </column>
+        <column name="daily_ghi_kwh_m2">
+          <formula>CAST(daily_ghi_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="pr_ghi_string">
+          <formula>CASE WHEN NOT daily_ghi_kwh_m2 IS NULL AND daily_ghi_kwh_m2 &gt;= 0.1 AND NOT daily_energy_kwh IS NULL AND daily_energy_kwh &gt;= 0.01 AND NOT string_dc_capacity_kw_stc IS NULL AND string_dc_capacity_kw_stc &gt; 0 THEN LEAST(CAST((daily_energy_kwh / 1000.0) / NULLIF(daily_ghi_kwh_m2 * string_dc_capacity_kw_stc, 0) AS DECIMAL(18, 6)), 10.0) ELSE NULL END</formula>
+        </column>
+        <column name="pr_poa_string">
+          <formula>CASE WHEN NOT daily_poa_kwh_m2 IS NULL AND daily_poa_kwh_m2 &gt;= 0.1 AND NOT daily_energy_kwh IS NULL AND daily_energy_kwh &gt;= 0.01 AND NOT string_dc_capacity_kw_stc IS NULL AND string_dc_capacity_kw_stc &gt; 0 THEN LEAST(CAST((daily_energy_kwh / 1000.0) / NULLIF(daily_poa_kwh_m2 * string_dc_capacity_kw_stc, 0) AS DECIMAL(18, 6)), 10.0) ELSE NULL END</formula>
+        </column>
+        <column name="daily_energy_wh">
+          <formula>daily_energy_wh</formula>
+        </column>
+        <column name="daily_energy_kwh">
+          <formula>daily_energy_kwh</formula>
+        </column>
+        <column name="layout_module_qty">
+          <formula>layout_module_qty</formula>
+        </column>
+        <column name="layout_orient_code">
+          <formula>layout_orient_code</formula>
+        </column>
+        <column name="string_dc_capacity_kw_stc">
+          <formula>string_dc_capacity_kw_stc</formula>
+        </column>
+        <column name="daily_poa_kwh_m2">
+          <formula>CAST(daily_poa_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_string_performance_monthly" name="mart_string_performance_monthly" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_string_performance_monthly.sql">
+      <columns>
+        <column name="year">
+          <formula>year</formula>
+        </column>
+        <column name="month">
+          <formula>month</formula>
+        </column>
+        <column name="inverter_id">
+          <formula>inverter_id</formula>
+        </column>
+        <column name="inverter_name">
+          <formula>inverter_name</formula>
+        </column>
+        <column name="site_id">
+          <formula>site_id</formula>
+        </column>
+        <column name="site_name">
+          <formula>site_name</formula>
+        </column>
+        <column name="system">
+          <formula>system</formula>
+        </column>
+        <column name="string_number">
+          <formula>string_number</formula>
+        </column>
+        <column name="string_id">
+          <formula>string_id</formula>
+        </column>
+        <column name="monthly_energy_wh">
+          <formula>CAST(monthly_energy_wh AS DECIMAL(38, 10))</formula>
+        </column>
+        <column name="monthly_energy_kwh">
+          <formula>CAST(monthly_energy_kwh AS DECIMAL(38, 12))</formula>
+        </column>
+        <column name="interval_count_5min">
+          <formula>interval_count_5min</formula>
+        </column>
+        <column name="layout_module_qty">
+          <formula>layout_module_qty</formula>
+        </column>
+        <column name="layout_orient_code">
+          <formula>layout_orient_code</formula>
+        </column>
+        <column name="string_dc_capacity_kw_stc">
+          <formula>CAST(string_dc_capacity_kw_stc AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="monthly_ghi_kwh_m2">
+          <formula>CAST(monthly_ghi_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="monthly_poa_kwh_m2">
+          <formula>CAST(monthly_poa_kwh_m2 AS DECIMAL(18, 6))</formula>
+        </column>
+        <column name="pr_ghi_string">
+          <formula>CASE WHEN monthly_ghi_kwh_m2 &gt; 0 AND monthly_energy_kwh &gt; 0 AND string_dc_capacity_kw_stc &gt; 0 THEN LEAST(CAST((monthly_energy_kwh / 1000.0) / NULLIF(monthly_ghi_kwh_m2 * string_dc_capacity_kw_stc, 0) AS DECIMAL(18, 6)), 10.0) ELSE NULL END</formula>
+        </column>
+        <column name="pr_poa_string">
+          <formula>CASE WHEN monthly_poa_kwh_m2 &gt; 0 AND monthly_energy_kwh &gt; 0 AND string_dc_capacity_kw_stc &gt; 0 THEN LEAST(CAST((monthly_energy_kwh / 1000.0) / NULLIF(monthly_poa_kwh_m2 * string_dc_capacity_kw_stc, 0) AS DECIMAL(18, 6)), 10.0) ELSE NULL END</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="mart_weekly_log" name="mart_weekly_log" layer="marts" schema="mart" materialized="table" in_db="true" sql_path="models\marts\mart_weekly_log.sql">
+      <columns>
+        <column name="log_date">
+          <formula>w.log_date</formula>
+        </column>
+        <column name="site_id">
+          <formula>w.site_id</formula>
+        </column>
+        <column name="site_name">
+          <formula>w.site_name</formula>
+        </column>
+        <column name="problem_identification">
+          <formula>w.problem_identification</formula>
+        </column>
+        <column name="corrective_action">
+          <formula>w.corrective_action</formula>
+        </column>
+        <column name="status">
+          <formula>w.status</formula>
+        </column>
+        <column name="created_at">
+          <formula>w.created_at</formula>
+        </column>
+        <column name="updated_at">
+          <formula>w.updated_at</formula>
+        </column>
+        <column name="days_open">
+          <formula>CAST((CURRENT_DATE - w.log_date) /* Berapa lama issue berjalan (hari sejak log_date) — untuk set prioritas decision */ AS INT)</formula>
+        </column>
+        <column name="is_open">
+          <formula>CASE WHEN UPPER(TRIM(COALESCE(w.status, ''))) IN ('OPEN', 'IN PROGRESS') THEN 1 ELSE 0 END</formula>
+        </column>
+        <column name="date_key">
+          <formula>dd.date_key /* Week/month/year dari dim_date_generated (algoritma sama dengan mart lain) */</formula>
+        </column>
+        <column name="year">
+          <formula>dd.year</formula>
+        </column>
+        <column name="month">
+          <formula>dd.month</formula>
+        </column>
+        <column name="month_name">
+          <formula>dd.month_name</formula>
+        </column>
+        <column name="week_of_month">
+          <formula>dd.week_of_month</formula>
+        </column>
+        <column name="day_of_week">
+          <formula>dd.day_of_week</formula>
+        </column>
+        <column name="day_name">
+          <formula>dd.day_name</formula>
+        </column>
+        <column name="day_type">
+          <formula>dd.day_type</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="stg_fusionsolar__devices" name="stg_fusionsolar__devices" layer="staging" schema="staging" materialized="table" in_db="true" sql_path="models\staging\stg_fusionsolar__devices.sql">
+      <columns>
+        <column name="dev_id">
+          <formula>dev_id</formula>
+        </column>
+        <column name="plant_code">
+          <formula>plant_code</formula>
+        </column>
+        <column name="dev_type_id">
+          <formula>dev_type_id</formula>
+        </column>
+        <column name="dev_name">
+          <formula>dev_name</formula>
+        </column>
+        <column name="inv_type">
+          <formula>inv_type</formula>
+        </column>
+        <column name="device_category">
+          <formula>CASE WHEN dev_type_id = 1 THEN 'Inverter' WHEN dev_type_id = 17 THEN 'Meter' WHEN dev_type_id = 10 THEN 'Meteo Station' ELSE 'Unknown' END</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="stg_fusionsolar__perf_unpivoted" name="stg_fusionsolar__perf_unpivoted" layer="staging" schema="staging" materialized="incremental" in_db="true" sql_path="models\staging\stg_fusionsolar__perf_unpivoted.sql">
+      <columns>
+        <column name="timestamp">
+          <formula>h.collect_time</formula>
+        </column>
+        <column name="dev_id">
+          <formula>h.dev_id</formula>
+        </column>
+        <column name="device_name">
+          <formula>d.dev_name</formula>
+        </column>
+        <column name="plant_code">
+          <formula>d.plant_code</formula>
+        </column>
+        <column name="plant_name">
+          <formula>p.plant_name</formula>
+        </column>
+        <column name="metric_id">
+          <formula>metric_id</formula>
+        </column>
+        <column name="metric_value">
+          <formula>CASE WHEN JSONB_TYPEOF(metric_value) = 'string' THEN CASE WHEN (metric_value #&gt;&gt; '{}') IN ('nan', '-nan', 'infinity', '-infinity', 'Infinity', '-Infinity') THEN NULL ELSE CAST((metric_value #&gt;&gt; '{}') AS DECIMAL) END WHEN JSONB_TYPEOF(metric_value) = 'number' THEN CASE WHEN CAST(metric_value AS TEXT) IN ('nan', '-nan', 'infinity', '-infinity', 'Infinity', '-Infinity') THEN NULL ELSE CAST(metric_value AS DECIMAL) END ELSE NULL END</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="stg_fusionsolar__sites" name="stg_fusionsolar__sites" layer="staging" schema="staging" materialized="table" in_db="true" sql_path="models\staging\stg_fusionsolar__sites.sql">
+      <columns>
+        <column name="plant_code">
+          <formula>plant_code</formula>
+        </column>
+        <column name="plant_name">
+          <formula>plant_name</formula>
+        </column>
+        <column name="plant_name_clean">
+          <formula>LOWER(REPLACE(REPLACE(REPLACE(REPLACE(plant_name, ' ', '_'), '(', ''), ')', ''), ' ', '_'))</formula>
+        </column>
+        <column name="grid_connection_date">
+          <formula>grid_connection_date</formula>
+        </column>
+        <column name="latitude">
+          <formula>latitude</formula>
+        </column>
+        <column name="longitude">
+          <formula>longitude</formula>
+        </column>
+        <column name="capacity">
+          <formula>capacity</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="stg_isolarcloud__devices" name="stg_isolarcloud__devices" layer="staging" schema="staging" materialized="table" in_db="true" sql_path="models\staging\stg_isolarcloud__devices.sql">
+      <columns>
+        <column name="device_ps_key">
+          <formula>device_ps_key</formula>
+        </column>
+        <column name="ps_id">
+          <formula>ps_id</formula>
+        </column>
+        <column name="device_type">
+          <formula>device_type</formula>
+        </column>
+        <column name="type_name">
+          <formula>type_name</formula>
+        </column>
+        <column name="device_name">
+          <formula>device_name</formula>
+        </column>
+        <column name="device_sn">
+          <formula>device_sn</formula>
+        </column>
+        <column name="device_category">
+          <formula>CASE WHEN device_type = 1 THEN 'Inverter' WHEN device_type = 7 THEN 'Meter' WHEN device_type = 5 THEN 'Meteo Station' ELSE 'Unknown' END</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="stg_isolarcloud__perf_unpivoted" name="stg_isolarcloud__perf_unpivoted" layer="staging" schema="staging" materialized="incremental" in_db="true" sql_path="models\staging\stg_isolarcloud__perf_unpivoted.sql">
+      <columns>
+        <column name="timestamp">
+          <formula>h.timestamp</formula>
+        </column>
+        <column name="device_ps_key">
+          <formula>h.device_ps_key</formula>
+        </column>
+        <column name="device_name">
+          <formula>d.device_name</formula>
+        </column>
+        <column name="ps_id">
+          <formula>d.ps_id</formula>
+        </column>
+        <column name="ps_name">
+          <formula>ps.ps_name</formula>
+        </column>
+        <column name="ps_name_clean">
+          <formula>ps.ps_name_clean</formula>
+        </column>
+        <column name="metric_id">
+          <formula>metric_id</formula>
+        </column>
+        <column name="metric_value">
+          <formula>CASE WHEN JSONB_TYPEOF(metric_value) = 'string' THEN CASE WHEN (metric_value #&gt;&gt; '{}') IN ('nan', '-nan', 'infinity', '-infinity', 'Infinity', '-Infinity') THEN NULL ELSE CAST((metric_value #&gt;&gt; '{}') AS DECIMAL) END WHEN JSONB_TYPEOF(metric_value) = 'number' THEN CASE WHEN CAST(metric_value AS TEXT) IN ('nan', '-nan', 'infinity', '-infinity', 'Infinity', '-Infinity') THEN NULL ELSE CAST(metric_value AS DECIMAL) END ELSE NULL END</formula>
+        </column>
+      </columns>
+    </node>
+    <node id="stg_isolarcloud__sites" name="stg_isolarcloud__sites" layer="staging" schema="staging" materialized="table" in_db="true" sql_path="models\staging\stg_isolarcloud__sites.sql">
+      <columns>
+        <column name="ps_id">
+          <formula>ps_id</formula>
+        </column>
+        <column name="ps_name">
+          <formula>ps_name</formula>
+        </column>
+        <column name="ps_name_clean">
+          <formula>LOWER(REPLACE(REPLACE(REPLACE(REPLACE(ps_name, ' ', '_'), '(', ''), ')', ''), ' ', '_'))</formula>
+        </column>
+        <column name="install_date">
+          <formula>install_date</formula>
+        </column>
+        <column name="latitude">
+          <formula>latitude</formula>
+        </column>
+        <column name="longitude">
+          <formula>longitude</formula>
+        </column>
+      </columns>
+    </node>
+  </nodes>
+  <edges>
+    <edge from="stg_isolarcloud__devices" to="dim_assets" type="ref" />
+    <edge from="stg_isolarcloud__sites" to="dim_assets" type="ref" />
+    <edge from="stg_fusionsolar__devices" to="dim_assets" type="ref" />
+    <edge from="stg_fusionsolar__sites" to="dim_assets" type="ref" />
+    <edge from="seed.seed_site_config" to="dim_assets" type="ref" />
+    <edge from="mart_inverter_performance_5min" to="fact_inverter_calculations_5min" type="ref" />
+    <edge from="dim_assets" to="fact_inverter_calculations_5min" type="ref" />
+    <edge from="fact_sensor_calculations_5min" to="fact_inverter_calculations_5min" type="ref" />
+    <edge from="mart_sensor_measurements_5min" to="fact_sensor_calculations_5min" type="ref" />
+    <edge from="seed.seed_sensor_config" to="fact_sensor_calculations_5min" type="ref" />
+    <edge from="dim_assets" to="fact_sensor_calculations_5min" type="ref" />
+    <edge from="seed.seed_sensor_site_mapping" to="fact_sensor_calculations_5min" type="ref" />
+    <edge from="fact_inverter_calculations_5min" to="fact_site_calculations_5min" type="ref" />
+    <edge from="dim_assets" to="fact_site_calculations_5min" type="ref" />
+    <edge from="stg_isolarcloud__perf_unpivoted" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="stg_isolarcloud__devices" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="stg_isolarcloud__sites" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="seed.seed_metric_mapper" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="stg_fusionsolar__perf_unpivoted" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="stg_fusionsolar__devices" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="seed.seed_inverter_site_mapping" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="dim_assets" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="dim_date_generated" to="mart_inverter_performance_5min" type="ref" />
+    <edge from="mart_inverter_performance_5min" to="mart_inverter_yield_daily" type="ref" />
+    <edge from="dim_assets" to="mart_inverter_yield_daily" type="ref" />
+    <edge from="stg_isolarcloud__perf_unpivoted" to="mart_meter_performance_5min" type="ref" />
+    <edge from="stg_isolarcloud__devices" to="mart_meter_performance_5min" type="ref" />
+    <edge from="stg_isolarcloud__sites" to="mart_meter_performance_5min" type="ref" />
+    <edge from="seed.seed_metric_mapper" to="mart_meter_performance_5min" type="ref" />
+    <edge from="stg_fusionsolar__perf_unpivoted" to="mart_meter_performance_5min" type="ref" />
+    <edge from="stg_fusionsolar__devices" to="mart_meter_performance_5min" type="ref" />
+    <edge from="seed.seed_meter_site_mapping" to="mart_meter_performance_5min" type="ref" />
+    <edge from="dim_assets" to="mart_meter_performance_5min" type="ref" />
+    <edge from="dim_date_generated" to="mart_meter_performance_5min" type="ref" />
+    <edge from="seed.seed_meter_config" to="mart_meter_performance_5min" type="ref" />
+    <edge from="mart_sensor_measurements_5min" to="mart_sensor_daily" type="ref" />
+    <edge from="seed.seed_sensor_config" to="mart_sensor_daily" type="ref" />
+    <edge from="seed.seed_sensor_site_mapping" to="mart_sensor_daily" type="ref" />
+    <edge from="stg_isolarcloud__perf_unpivoted" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="stg_isolarcloud__devices" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="stg_isolarcloud__sites" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="seed.seed_metric_mapper" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="stg_fusionsolar__perf_unpivoted" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="stg_fusionsolar__devices" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="dim_assets" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="dim_date_generated" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="seed.seed_sensor_config" to="mart_sensor_measurements_5min" type="ref" />
+    <edge from="mart_simulation_degradation_factors" to="mart_simulation_daily_25y" type="ref" />
+    <edge from="seed.seed_daily_simulation_target" to="mart_simulation_daily_25y" type="ref" />
+    <edge from="mart_simulation_site_start_year" to="mart_simulation_daily_25y" type="ref" />
+    <edge from="seed.seed_yearly_simulation_target" to="mart_simulation_daily_25y_poc" type="ref" />
+    <edge from="seed.seed_daily_simulation_target" to="mart_simulation_daily_25y_poc" type="ref" />
+    <edge from="stg_isolarcloud__sites" to="mart_simulation_daily_25y_poc" type="ref" />
+    <edge from="seed.seed_yearly_simulation_target" to="mart_simulation_degradation_factors" type="ref" />
+    <edge from="stg_isolarcloud__sites" to="mart_simulation_site_start_year" type="ref" />
+    <edge from="stg_fusionsolar__sites" to="mart_simulation_site_start_year" type="ref" />
+    <edge from="seed.seed_daily_simulation_target" to="mart_simulation_targets_daily" type="ref" />
+    <edge from="dim_date_generated" to="mart_simulation_targets_daily" type="ref" />
+    <edge from="dim_assets" to="mart_simulation_targets_daily" type="ref" />
+    <edge from="mart_site_kpi_monthly" to="mart_simulation_targets_daily" type="ref" />
+    <edge from="mart_simulation_targets_daily" to="mart_simulation_targets_monthly" type="ref" />
+    <edge from="mart_site_kpi_monthly" to="mart_simulation_targets_monthly" type="ref" />
+    <edge from="seed.seed_daily_kpi_monthly" to="mart_site_kpi_monthly" type="ref" />
+    <edge from="mart_meter_performance_5min" to="mart_site_performance_daily" type="ref" />
+    <edge from="seed.seed_meter_config" to="mart_site_performance_daily" type="ref" />
+    <edge from="seed.seed_energy_adjustment_daily" to="mart_site_performance_daily" type="ref" />
+    <edge from="mart_sensor_daily" to="mart_site_performance_daily" type="ref" />
+    <edge from="seed.seed_sensor_site_mapping" to="mart_site_performance_daily" type="ref" />
+    <edge from="seed.seed_ghi_adjustment_daily" to="mart_site_performance_daily" type="ref" />
+    <edge from="fact_site_calculations_5min" to="mart_site_performance_daily" type="ref" />
+    <edge from="dim_assets" to="mart_site_performance_daily" type="ref" />
+    <edge from="mart_simulation_targets_daily" to="mart_site_performance_daily" type="ref" />
+    <edge from="dim_date_generated" to="mart_site_performance_daily" type="ref" />
+    <edge from="mart_site_kpi_monthly" to="mart_site_performance_daily" type="ref" />
+    <edge from="seed.seed_issue_dates" to="mart_site_performance_daily" type="ref" />
+    <edge from="mart_site_performance_daily" to="mart_site_performance_monthly" type="ref" />
+    <edge from="seed.seed_metric_mapper" to="mart_string_performance_daily" type="ref" />
+    <edge from="mart_sensor_daily" to="mart_string_performance_daily" type="ref" />
+    <edge from="mart_site_performance_daily" to="mart_string_performance_daily" type="ref" />
+    <edge from="mart_string_performance_daily" to="mart_string_performance_monthly" type="ref" />
+    <edge from="seed.seed_weekly_log" to="mart_weekly_log" type="ref" />
+    <edge from="dim_date_generated" to="mart_weekly_log" type="ref" />
+    <edge from="raw.fusionsolar_devices" to="stg_fusionsolar__devices" type="source" />
+    <edge from="stg_fusionsolar__devices" to="stg_fusionsolar__perf_unpivoted" type="ref" />
+    <edge from="stg_fusionsolar__sites" to="stg_fusionsolar__perf_unpivoted" type="ref" />
+    <edge from="raw.fusionsolar_historical_data" to="stg_fusionsolar__perf_unpivoted" type="source" />
+    <edge from="raw.fusionsolar_plants" to="stg_fusionsolar__sites" type="source" />
+    <edge from="raw.isolarcloud_devices" to="stg_isolarcloud__devices" type="source" />
+    <edge from="stg_isolarcloud__devices" to="stg_isolarcloud__perf_unpivoted" type="ref" />
+    <edge from="stg_isolarcloud__sites" to="stg_isolarcloud__perf_unpivoted" type="ref" />
+    <edge from="raw.isolarcloud_historical_data" to="stg_isolarcloud__perf_unpivoted" type="source" />
+    <edge from="raw.isolarcloud_power_stations" to="stg_isolarcloud__sites" type="source" />
+  </edges>
+  <stats total_nodes="53" total_edges="92" nodes_in_db="52" total_columns="621">
+    <layer_count layer="raw" count="6" />
+    <layer_count layer="seeds" count="19" />
+    <layer_count layer="staging" count="6" />
+    <layer_count layer="dimensions" count="2" />
+    <layer_count layer="facts" count="3" />
+    <layer_count layer="marts" count="17" />
+    <formulas models_with_formulas="27" columns_with_formula="401" manifest_models="28" sqlglot_missing="false" />
+  </stats>
+</lineage>

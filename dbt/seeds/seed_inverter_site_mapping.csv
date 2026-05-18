@@ -1,0 +1,14 @@
+mapping_type;device_id;logical_device_id;logical_device_name;effective_date_start;effective_date_end;notes
+ID_CONSOLIDATION;"1458125_1_1_1";"1458125_1_29_1";Inverter.102;2025-07-02;;Garuda Metalindo 1 - Old Inverter 102 (ID 1458125_1_1_1, INACTIVE) consolidated to new Inverter.102 (ID 1458125_1_29_1, ACTIVE) starting 2025-07-02
+ID_CONSOLIDATION;"1458125_1_4_1";"1458125_1_32_1";Inverter.104;2025-07-03;;Garuda Metalindo 1 - Old Inverter 104 (ID 1458125_1_4_1, INACTIVE) consolidated to new Inverter.104 (ID 1458125_1_32_1, ACTIVE) starting 2025-07-03
+ID_CONSOLIDATION;"1458125_1_2_1";"1458125_1_30_1";Inverter.105;2025-07-02;;Garuda Metalindo 1 - Old Inverter 105 (ID 1458125_1_2_1, INACTIVE) consolidated to new Inverter.105 (ID 1458125_1_30_1, ACTIVE) starting 2025-07-02
+ID_CONSOLIDATION;"1458125_1_33_1";"1458125_1_6_1";Inverter 101;2025-08-01;2025-09-30;Garuda Metalindo 1 - New Inverter.101 (ID 1458125_1_33_1) mengisi gap old Inverter 101 (ID 1458125_1_6_1) di Agustus-September, data new di-consolidate ke old ID, Old kembali aktif di Oktober
+ID_CONSOLIDATION;"1458125_1_31_1";"1458125_1_5_1";Inverter 103;2025-08-01;2025-09-30;Garuda Metalindo 1 - New Inverter.103 (ID 1458125_1_31_1) mengisi gap old Inverter 103 (ID 1458125_1_5_1) di Agustus-September, data new di-consolidate ke old ID, Old kembali aktif di Oktober
+ID_CONSOLIDATION;"1458125_1_34_1";"1458125_1_3_1";Inverter 106;2025-08-01;2025-09-30;Garuda Metalindo 1 - New Inverter.106 (ID 1458125_1_34_1) mengisi gap old Inverter 106 (ID 1458125_1_3_1) di Agustus-September, data new di-consolidate ke old ID, Old kembali aktif di Oktober
+NAME_OVERRIDE;"1458125_1_29_1";;Inverter.102;2025-07-02;;Garuda Metalindo 1 - Ensure name consistency for Inverter.102
+NAME_OVERRIDE;"1458125_1_32_1";;Inverter.104;2025-07-03;;Garuda Metalindo 1 - Ensure name consistency for Inverter.104
+NAME_OVERRIDE;"1458125_1_30_1";;Inverter.105;2025-07-02;;Garuda Metalindo 1 - Ensure name consistency for Inverter.105
+ID_CONSOLIDATION;"1680199_1_10_1";"1680199_1_4_1";INV-8(new);2025-10-11;;Sumatera Prima Fibreboard - Old INV-8 (ID 1680199_1_10_1) mati tanggal 10, digantikan oleh INV-8(new) (ID 1680199_1_4_1) mulai tanggal 11
+ID_CONSOLIDATION;"1680199_1_11_1";"1680199_1_7_1";INV-9(new);2025-10-11;;Sumatera Prima Fibreboard - Old INV-9 (ID 1680199_1_11_1) mati tanggal 10, digantikan oleh INV-9(new) (ID 1680199_1_7_1) mulai tanggal 11
+NAME_OVERRIDE;"1680199_1_4_1";;INV-8(new);2025-10-11;;Sumatera Prima Fibreboard - Ensure name consistency for INV-8(new)
+NAME_OVERRIDE;"1680199_1_7_1";;INV-9(new);2025-10-11;;Sumatera Prima Fibreboard - Ensure name consistency for INV-9(new)

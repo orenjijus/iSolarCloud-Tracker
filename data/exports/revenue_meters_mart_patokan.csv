@@ -1,0 +1,25 @@
+﻿site_name,system,asset_id,meter_dev_name_seed,esn_code,plant_or_ps_ref,meter_config_source
+Charoen Pokphand Bandung,isolarcloud,ISO_1637095_7_15_1,CPBDG-EM-POI,1637095_7_15_1,1637095,iSolarCloud
+Charoen Pokphand Madiun,isolarcloud,ISO_1637816_7_15_1,CPMAD-EM-POI-01,1637816_7_15_1,1637816,iSolarCloud
+Charoen Pokphand Madiun,isolarcloud,ISO_1637816_7_16_1,CPMAD-EM-POI-02,1637816_7_16_1,1637816,iSolarCloud
+Charoen Pokphand Majalengka,isolarcloud,ISO_1614122_7_18_1,CPMJL-EM-POI,1614122_7_18_1,1614122,iSolarCloud
+Garuda Metalindo (IKP),isolarcloud,ISO_1445767_7_12_1,RevenueMeter_ACComb,1445767_7_12_1,1445767,iSolarCloud
+Garuda Metalindo (MPF),isolarcloud,ISO_1449886_7_7_1,RevenueMeter_ACComb,1449886_7_7_1,1449886,iSolarCloud
+Garuda Metalindo 1,isolarcloud,ISO_1458125_7_7_1,RevenueMeter_ACComb,1458125_7_7_1,1458125,iSolarCloud
+Garuda Metalindo 2,isolarcloud,ISO_1453245_7_7_1,EnergyMeter_ACComb,1453245_7_7_1,1453245,iSolarCloud
+PLTS Frina Lestari Nusantara,isolarcloud,ISO_1628909_7_4_2,FLN-Injection-KWH-01,1628909_7_4_2,1628909,iSolarCloud
+PLTS Frina Lestari Nusantara,isolarcloud,ISO_1628909_7_5_1,FLN-Painting-KWH-01,1628909_7_5_1,1628909,iSolarCloud
+PLTS Mall Panakkukang,fusionsolar,FS_AM011023A5160368,EM-MV(COM3-2),AM011023A5160368,NE=53771627,FusionSolar
+PLTS ONGRID PT SUPARMA TBK,fusionsolar,FS_AM02102527099822,SPM-RM-03-PM10,AM02102527099822,NE=62806354,FusionSolar
+PLTS ONGRID PT SUPARMA TBK,fusionsolar,FS_AM03102527099805,SPM-RM-01-WH,AM03102527099805,NE=62806354,FusionSolar
+PLTS Rooftop Sumatera Prima Fibreboard,isolarcloud,ISO_1680199_7_13_2,Meter-kWh-02,1680199_7_13_2,1680199,iSolarCloud
+PLTS Rooftop Sumatera Prima Fibreboard,isolarcloud,ISO_1680199_7_18_1,Meter-kWh-01,1680199_7_18_1,1680199,iSolarCloud
+PT. MMKI 1.75 MWp - Painting Building,fusionsolar,FS_AM00102287046729,Meter-MV,AM00102287046729,NE=50488260,FusionSolar
+PT. MMKI 4.292 MWP - Phase 3,fusionsolar,FS_AM021024B6566719,RM-01-MV-PW,AM021024B6566719,NE=58630782,FusionSolar
+PT. MMKI 4.292 MWP - Phase 3,fusionsolar,FS_AM021024B6566722,RM-01-MV-ASSY,AM021024B6566722,NE=58630782,FusionSolar
+PT. MMKI 5.7 MWp - Phase 2,fusionsolar,FS_AM001023C7355634,EM-MVMDP-PV3,AM001023C7355634,NE=51758766,FusionSolar
+PT. MMKI 5.7 MWp - Phase 2,fusionsolar,FS_AM011023B7436516,EM-MVMDP-PV2,AM011023B7436516,NE=51758766,FusionSolar
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,fusionsolar,FS_AM01102459944283,RM-01-IEM3255-1,AM01102459944283,NE=54435794,FusionSolar
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,fusionsolar,FS_AM01102467487012,RM-01-IEM3255-2,AM01102467487012,NE=54435794,FusionSolar
+Shoetown Ligung Indonesia,isolarcloud,ISO_1479456_7_12_2,SLI-RM-01-A,1479456_7_12_2,1479456,iSolarCloud
+Shoetown Ligung Indonesia,isolarcloud,ISO_1479456_7_3_1,SLI-RM-01-F,1479456_7_3_1,1479456,iSolarCloud

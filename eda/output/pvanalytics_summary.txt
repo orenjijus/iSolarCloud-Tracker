@@ -1,0 +1,18 @@
+=== PVAnalytics results ===
+Series: ac_power, n=2246
+
+--- completeness_score (per day) ---
+count    0.0
+mean     NaN
+std      NaN
+min      NaN
+25%      NaN
+50%      NaN
+75%      NaN
+max      NaN
+
+--- outliers (Tukey k=2) ---
+Outlier count: 2226 / 2246
+
+--- daytime (power_or_irradiance) ---
+Daytime points: 2040 / 2246

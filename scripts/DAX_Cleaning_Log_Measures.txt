@@ -1,0 +1,193 @@
+============================================
+DAX Measures untuk Cleaning Log
+============================================
+File ini berisi formula DAX untuk menghitung
+"Days Since Last Cleaning" di Power BI
+============================================
+
+CATATAN PENTING:
+- Logika menggunakan TODAY() - cleaning_date adalah BENAR
+- Formula ini mengambil tanggal pembersihan terakhir (MAX)
+- Jika belum pernah dibersihkan, akan return BLANK()
+- Untuk MMKI: Gunakan site_name, bukan site_id
+- Untuk FusionSolar: Gunakan site_id
+
+============================================
+1. Days Since Last Cleaning (Sensor)
+============================================
+
+Days Since Last Cleaning (Sensor) = 
+VAR LastCleaningDate = 
+    CALCULATE(
+        MAX('seed_cleaning_log'[cleaning_date]),
+        FILTER(
+            'seed_cleaning_log',
+            'seed_cleaning_log'[asset_type] = "Sensor" &&
+            (
+                ('seed_cleaning_log'[site_id] = RELATED('seed_sensor_config'[site_id]) && NOT ISBLANK(RELATED('seed_sensor_config'[site_id]))) ||
+                ('seed_cleaning_log'[site_name] = RELATED('seed_site_config'[Site]) && NOT ISBLANK(RELATED('seed_site_config'[Site])))
+            ) &&
+            'seed_cleaning_log'[is_active] = TRUE()
+        )
+    )
+RETURN
+    IF(
+        ISBLANK(LastCleaningDate),
+        BLANK(),
+        DATEDIFF(LastCleaningDate, TODAY(), DAY)
+    )
+
+
+============================================
+2. Days Since Last Cleaning (Module)
+============================================
+
+Days Since Last Cleaning (Module) = 
+VAR LastCleaningDate = 
+    CALCULATE(
+        MAX('seed_cleaning_log'[cleaning_date]),
+        FILTER(
+            'seed_cleaning_log',
+            'seed_cleaning_log'[asset_type] = "Module" &&
+            (
+                ('seed_cleaning_log'[site_id] = RELATED('dim_assets'[site_id]) && NOT ISBLANK(RELATED('dim_assets'[site_id]))) ||
+                ('seed_cleaning_log'[site_name] = RELATED('seed_site_config'[Site]) && NOT ISBLANK(RELATED('seed_site_config'[Site]))) ||
+                ('seed_cleaning_log'[site_name] = RELATED('dim_assets'[site_name]) && NOT ISBLANK(RELATED('dim_assets'[site_name])))
+            ) &&
+            'seed_cleaning_log'[is_active] = TRUE()
+        )
+    )
+RETURN
+    IF(
+        ISBLANK(LastCleaningDate),
+        BLANK(),
+        DATEDIFF(LastCleaningDate, TODAY(), DAY)
+    )
+
+
+============================================
+3. Versi Sederhana (jika sudah ada relationship)
+============================================
+
+Days Since Last Cleaning = 
+VAR LastCleaningDate = 
+    MAX('seed_cleaning_log'[cleaning_date])
+RETURN
+    IF(
+        ISBLANK(LastCleaningDate),
+        BLANK(),
+        TODAY() - LastCleaningDate
+    )
+
+
+============================================
+4. Last Cleaning Date (untuk display)
+============================================
+
+Last Cleaning Date = 
+CALCULATE(
+    MAX('seed_cleaning_log'[cleaning_date]),
+    FILTER(
+        'seed_cleaning_log',
+        'seed_cleaning_log'[asset_type] = "Sensor" &&  -- atau "Module"
+        (
+            ('seed_cleaning_log'[site_id] = RELATED('seed_sensor_config'[site_id]) && NOT ISBLANK(RELATED('seed_sensor_config'[site_id]))) ||
+            ('seed_cleaning_log'[site_name] = RELATED('seed_site_config'[Site]) && NOT ISBLANK(RELATED('seed_site_config'[Site])))
+        ) &&
+        'seed_cleaning_log'[is_active] = TRUE()
+    )
+)
+
+
+============================================
+5. Cleaning Status (Kategori)
+============================================
+
+Cleaning Status = 
+VAR DaysSinceCleaning = [Days Since Last Cleaning (Sensor)]
+RETURN
+    SWITCH(
+        TRUE(),
+        ISBLANK(DaysSinceCleaning), "Never Cleaned",
+        DaysSinceCleaning <= 30, "Recent (< 30 days)",
+        DaysSinceCleaning <= 60, "Moderate (30-60 days)",
+        DaysSinceCleaning <= 90, "Overdue (60-90 days)",
+        "Critical (> 90 days)"
+    )
+
+
+============================================
+6. Cleaning Alert (untuk visual indicator)
+============================================
+
+Cleaning Alert = 
+VAR DaysSinceCleaning = [Days Since Last Cleaning (Sensor)]
+RETURN
+    IF(
+        ISBLANK(DaysSinceCleaning),
+        "⚠️ No Data",
+        IF(
+            DaysSinceCleaning > 90,
+            "🔴 Critical",
+            IF(
+                DaysSinceCleaning > 60,
+                "🟡 Warning",
+                "🟢 OK"
+            )
+        )
+    )
+
+
+============================================
+CARA PENGGUNAAN:
+============================================
+
+1. Pastikan relationship sudah dibuat di Power BI:
+   - seed_cleaning_log[site_id] → seed_sensor_config[site_id] (untuk FusionSolar)
+   - seed_cleaning_log[site_name] → seed_site_config[Site] (untuk MMKI dan sites lainnya)
+   - seed_cleaning_log[site_id] → dim_assets[site_id] (alternatif untuk Module)
+   - seed_cleaning_log[site_name] → dim_assets[site_name] (alternatif untuk Module)
+   
+   **CATATAN PENTING**: 
+   - Cleaning log adalah per site, bukan per sensor/module individual
+   - Untuk MMKI: Gunakan site_name, bukan site_id
+   - Untuk FusionSolar: Gunakan site_id
+
+2. Copy formula yang sesuai ke Power BI:
+   - Buka Power BI Desktop
+   - Pilih tabel yang sesuai (seed_sensor_config atau dim_assets)
+   - Klik "New Measure"
+   - Paste formula
+   - Sesuaikan nama tabel jika berbeda
+
+3. Untuk menampilkan di visual:
+   - Gunakan measure "Days Since Last Cleaning" di table/matrix
+   - Gunakan "Cleaning Status" untuk kategori
+   - Gunakan "Cleaning Alert" untuk visual indicator
+
+4. Format measure:
+   - Format: Whole Number (untuk days)
+   - Format: Date (untuk Last Cleaning Date)
+   - Format: Text (untuk Status/Alert)
+
+
+============================================
+CONTOH VISUAL:
+============================================
+
+Table Visual:
+- Sensor Name
+- Last Cleaning Date
+- Days Since Last Cleaning
+- Cleaning Status
+- Cleaning Alert
+
+Conditional Formatting:
+- Days Since Last Cleaning:
+  * Green: <= 30 days
+  * Yellow: 31-60 days
+  * Orange: 61-90 days
+  * Red: > 90 days
+
+============================================
+

@@ -1,0 +1,2177 @@
+{
+  "project": "mmsr_solar_data",
+  "generated": "2026-05-11T04:35:27",
+  "layers": [
+    {
+      "id": "raw",
+      "label": "Raw Sources",
+      "color": "#64748b"
+    },
+    {
+      "id": "seeds",
+      "label": "Seed Tables",
+      "color": "#7c3aed"
+    },
+    {
+      "id": "staging",
+      "label": "Staging Views",
+      "color": "#0284c7"
+    },
+    {
+      "id": "dimensions",
+      "label": "Dimension Tables",
+      "color": "#0891b2"
+    },
+    {
+      "id": "facts",
+      "label": "Fact Tables",
+      "color": "#d97706"
+    },
+    {
+      "id": "marts",
+      "label": "Mart Tables",
+      "color": "#16a34a"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "raw.isolarcloud_historical_data",
+      "name": "isolarcloud_historical_data",
+      "layer": "raw",
+      "schema": "raw",
+      "materialized": "table",
+      "columns": [
+        "device_ps_key",
+        "timestamp",
+        "measurement_data"
+      ],
+      "in_db": true
+    },
+    {
+      "id": "raw.isolarcloud_devices",
+      "name": "isolarcloud_devices",
+      "layer": "raw",
+      "schema": "raw",
+      "materialized": "table",
+      "columns": [
+        "device_ps_key",
+        "ps_id",
+        "device_type",
+        "type_name",
+        "device_sn",
+        "dev_status",
+        "factory_name",
+        "uuid",
+        "grid_connection_date",
+        "device_name",
+        "dev_fault_status",
+        "rel_state",
+        "device_code",
+        "device_model_id",
+        "communication_dev_sn",
+        "device_model_code",
+        "chnnl_id"
+      ],
+      "in_db": true
+    },
+    {
+      "id": "raw.isolarcloud_power_stations",
+      "name": "isolarcloud_power_stations",
+      "layer": "raw",
+      "schema": "raw",
+      "materialized": "table",
+      "columns": [
+        "ps_id",
+        "ps_name",
+        "install_date",
+        "latitude",
+        "longitude",
+        "online_status",
+        "description",
+        "valid_flag",
+        "grid_connection_status",
+        "ps_fault_status",
+        "ps_location",
+        "update_time_api",
+        "ps_current_time_zone",
+        "grid_connection_time",
+        "connect_type",
+        "build_status",
+        "ps_type"
+      ],
+      "in_db": true
+    },
+    {
+      "id": "raw.fusionsolar_historical_data",
+      "name": "fusionsolar_historical_data",
+      "layer": "raw",
+      "schema": "raw",
+      "materialized": "table",
+      "columns": [
+        "dev_id",
+        "collect_time",
+        "measurement_data"
+      ],
+      "in_db": true
+    },
+    {
+      "id": "raw.fusionsolar_devices",
+      "name": "fusionsolar_devices",
+      "layer": "raw",
+      "schema": "raw",
+      "materialized": "table",
+      "columns": [
+        "dev_id",
+        "plant_code",
+        "dev_type_id",
+        "dev_name",
+        "esn_code",
+        "software_version",
+        "inv_type",
+        "model",
+        "last_update",
+        "dev_dn",
+        "longitude",
+        "latitude"
+      ],
+      "in_db": true
+    },
+    {
+      "id": "raw.fusionsolar_plants",
+      "name": "fusionsolar_plants",
+      "layer": "raw",
+      "schema": "raw",
+      "materialized": "table",
+      "columns": [
+        "plant_code",
+        "plant_name",
+        "grid_connection_date",
+        "latitude",
+        "longitude",
+        "capacity",
+        "status",
+        "last_update"
+      ],
+      "in_db": true
+    },
+    {
+      "id": "seed.seed_cleaning_log",
+      "name": "seed_cleaning_log",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "asset_type",
+        "asset_id",
+        "site_id",
+        "site_name",
+        "cleaning_date",
+        "notes",
+        "is_active",
+        "cleaning_date_end"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_cleaning_log.csv"
+    },
+    {
+      "id": "seed.seed_daily_kpi_monthly",
+      "name": "seed_daily_kpi_monthly",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "site_Name",
+        "site_id",
+        "Year",
+        "Month",
+        "Month_Number",
+        "Energy_KPI_MWh"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_daily_kpi_monthly.csv"
+    },
+    {
+      "id": "seed.seed_daily_simulation_target",
+      "name": "seed_daily_simulation_target",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "Site_Name",
+        "Site_Code",
+        "Week",
+        "Month",
+        "Date",
+        "GHI",
+        "POA",
+        "Energy Simulation (MW)",
+        "Energy Target (MW)",
+        "Daily PR POA Simulation",
+        "Daily PR POA Target",
+        "GHI vs POA",
+        "Daily PR GHI Simulation",
+        "Daily PR GHI Target"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_daily_simulation_target.csv"
+    },
+    {
+      "id": "seed.seed_daily_simulation_target_old",
+      "name": "seed_daily_simulation_target_old",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "Site_Name",
+        "Site_Code",
+        "Week",
+        "Month",
+        "Date",
+        "GHI",
+        "POA",
+        "Energy Simulation (MW)",
+        "Energy Target (MW)",
+        "Daily PR POA Simulation",
+        "Daily PR POA Target",
+        "GHI vs POA",
+        "Daily PR GHI Simulation",
+        "Daily PR GHI Target"
+      ],
+      "in_db": false,
+      "csv_path": "seeds\\seed_daily_simulation_target_old.csv"
+    },
+    {
+      "id": "seed.seed_energy_adjustment_daily",
+      "name": "seed_energy_adjustment_daily",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "site_name",
+        "date_key",
+        "energy_adjusted_value",
+        "notes"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_energy_adjustment_daily.csv"
+    },
+    {
+      "id": "seed.seed_ghi_adjustment_daily",
+      "name": "seed_ghi_adjustment_daily",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "site_name",
+        "date_key",
+        "ghi_adjusted_value",
+        "notes"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_ghi_adjustment_daily.csv"
+    },
+    {
+      "id": "seed.seed_inverter_config",
+      "name": "seed_inverter_config",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "source",
+        "site_id",
+        "site_name",
+        "inverter_no",
+        "inverter_sn",
+        "inverter_id",
+        "inverter_name",
+        "inverter_ac_capacity_kw",
+        "inverter_model",
+        "inverter_manufacturer",
+        "inverter_dc_capacity_kw",
+        "mppt_count",
+        "is_active",
+        "valid_from",
+        "valid_to",
+        "notes"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_inverter_config.csv"
+    },
+    {
+      "id": "seed.seed_inverter_site_mapping",
+      "name": "seed_inverter_site_mapping",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "mapping_type",
+        "device_id",
+        "logical_device_id",
+        "logical_device_name",
+        "effective_date_start",
+        "effective_date_end",
+        "notes"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_inverter_site_mapping.csv"
+    },
+    {
+      "id": "seed.seed_inverter_string_layout",
+      "name": "seed_inverter_string_layout",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "source",
+        "site_id",
+        "site_name",
+        "inverter_id",
+        "inverter_name",
+        "inverter_no",
+        "mppt_no",
+        "string_no",
+        "module_qty",
+        "orient_code",
+        "is_active",
+        "commission_date",
+        "decommission_date",
+        "notes"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_inverter_string_layout.csv"
+    },
+    {
+      "id": "seed.seed_inverter_string_poa_mapping",
+      "name": "seed_inverter_string_poa_mapping",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "source",
+        "site_id",
+        "inverter_id",
+        "inverter_name",
+        "string_number",
+        "string_id",
+        "poa_sensor_id",
+        "poa_sensor_name",
+        "azimuth_degrees",
+        "tilt_degrees",
+        "panel_count",
+        "string_capacity_w",
+        "notes"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_inverter_string_poa_mapping.csv"
+    },
+    {
+      "id": "seed.seed_issue_dates",
+      "name": "seed_issue_dates",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "site_id",
+        "site_name",
+        "issue_date",
+        "is_active"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_issue_dates.csv"
+    },
+    {
+      "id": "seed.seed_meter_config",
+      "name": "seed_meter_config",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "source",
+        "site_id",
+        "dev_name",
+        "esn_code",
+        "voltage_level",
+        "meter_type",
+        "polarity_swapped"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_meter_config.csv"
+    },
+    {
+      "id": "seed.seed_meter_site_mapping",
+      "name": "seed_meter_site_mapping",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "mapping_type",
+        "device_id",
+        "logical_device_id",
+        "logical_device_name",
+        "effective_date_start",
+        "effective_date_end",
+        "notes"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_meter_site_mapping.csv"
+    },
+    {
+      "id": "seed.seed_metric_mapper",
+      "name": "seed_metric_mapper",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "platform",
+        "metric_id",
+        "metric_name",
+        "device_type",
+        "metric_group",
+        "metric_unit",
+        "used",
+        "unified_name"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_metric_mapper.csv"
+    },
+    {
+      "id": "seed.seed_sensor_config",
+      "name": "seed_sensor_config",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "source",
+        "site_id",
+        "dev_name",
+        "device_id",
+        "sensor_type",
+        "sensor_capacity",
+        "orient_code"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_sensor_config.csv"
+    },
+    {
+      "id": "seed.seed_sensor_site_mapping",
+      "name": "seed_sensor_site_mapping",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "mapping_type",
+        "device_id",
+        "logical_site_id",
+        "effective_date_start",
+        "effective_date_end",
+        "notes"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_sensor_site_mapping.csv"
+    },
+    {
+      "id": "seed.seed_site_config",
+      "name": "seed_site_config",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "site",
+        "capacity",
+        "tariff",
+        "siteorder",
+        "calculationstartdate",
+        "totalinverters"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_site_config.csv"
+    },
+    {
+      "id": "seed.seed_weekly_log",
+      "name": "seed_weekly_log",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "log_date",
+        "site_id",
+        "site_name",
+        "problem_identification",
+        "corrective_action",
+        "status",
+        "created_at",
+        "updated_at"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_weekly_log.csv"
+    },
+    {
+      "id": "seed.seed_yearly_simulation_target",
+      "name": "seed_yearly_simulation_target",
+      "layer": "seeds",
+      "schema": "staging",
+      "materialized": "seed",
+      "columns": [
+        "Site_Name",
+        "Site_Code",
+        "Year",
+        "Energy TS (MWh)",
+        "Energy Sim Target (MWh)"
+      ],
+      "in_db": true,
+      "csv_path": "seeds\\seed_yearly_simulation_target.csv"
+    },
+    {
+      "id": "dim_assets",
+      "name": "dim_assets",
+      "layer": "dimensions",
+      "schema": "dimensions",
+      "materialized": "table",
+      "columns": [
+        "asset_id",
+        "asset_level",
+        "asset_name",
+        "device_type_id",
+        "device_category",
+        "system",
+        "site_id",
+        "site_name",
+        "site_name_clean",
+        "latitude",
+        "longitude",
+        "actual_capacity_kw",
+        "tariff",
+        "site_order",
+        "calculation_start_date",
+        "total_inverters"
+      ],
+      "in_db": true,
+      "sql_path": "models\\dimensions\\dim_assets.sql",
+      "column_formulas": {
+        "asset_id": "ua.asset_id",
+        "asset_level": "ua.asset_level",
+        "asset_name": "ua.asset_name",
+        "device_type_id": "ua.device_type_id",
+        "device_category": "ua.device_category",
+        "system": "ua.system",
+        "site_id": "ua.site_id",
+        "site_name": "ua.site_name",
+        "site_name_clean": "ua.site_name_clean",
+        "latitude": "ua.latitude",
+        "longitude": "ua.longitude",
+        "actual_capacity_kw": "CASE WHEN ua.asset_level = 'Site' AND NOT sc.Capacity IS NULL AND TRIM(CAST(sc.Capacity AS TEXT)) <> '' THEN CAST(REPLACE(CAST(sc.Capacity AS TEXT), ',', '.') AS DECIMAL) ELSE NULL END",
+        "tariff": "CASE WHEN ua.asset_level = 'Site' AND NOT sc.Tariff IS NULL AND TRIM(CAST(sc.Tariff AS TEXT)) <> '' THEN CAST(REPLACE(CAST(sc.Tariff AS TEXT), ',', '.') AS DECIMAL) ELSE NULL END",
+        "site_order": "CASE WHEN ua.asset_level = 'Site' AND NOT sc.SiteOrder IS NULL THEN CAST(sc.SiteOrder AS INT) ELSE NULL END",
+        "calculation_start_date": "CASE WHEN ua.asset_level = 'Site' AND NOT sc.CalculationStartDate IS NULL AND TRIM(CAST(sc.CalculationStartDate AS TEXT)) <> '' THEN CASE WHEN CAST(sc.CalculationStartDate AS TEXT) ~ '^\\d{4}-\\d{2}-\\d{2}' THEN TO_DATE(CAST(sc.CalculationStartDate AS TEXT), 'YYYY-MM-DD') WHEN CAST(sc.CalculationStartDate AS TEXT) ~ '^\\d{1,2}/\\d{1,2}/\\d{4}' THEN TO_DATE(CAST(sc.CalculationStartDate AS TEXT), 'FMMM/FMDD/YYYY') ELSE CAST(sc.CalculationStartDate AS DATE) END ELSE NULL END",
+        "total_inverters": "CASE WHEN ua.asset_level = 'Site' AND NOT sc.TotalInverters IS NULL THEN CAST(sc.TotalInverters AS INT) ELSE NULL END"
+      }
+    },
+    {
+      "id": "dim_date_generated",
+      "name": "dim_date_generated",
+      "layer": "dimensions",
+      "schema": "dimensions",
+      "materialized": "table",
+      "columns": [
+        "date_key",
+        "year",
+        "month",
+        "day",
+        "week_of_month",
+        "day_of_week",
+        "day_of_year",
+        "day_name",
+        "month_name",
+        "month_key",
+        "quarter_key",
+        "year_key",
+        "season",
+        "day_type"
+      ],
+      "in_db": true,
+      "sql_path": "models\\dimensions\\dim_date_generated.sql",
+      "column_formulas": {
+        "date_key": "date_key",
+        "year": "EXTRACT(YEAR FROM date_key)",
+        "month": "EXTRACT(MONTH FROM date_key)",
+        "day": "EXTRACT(DAY FROM date_key)",
+        "week_of_month": "CASE WHEN week_of_month = 6 AND week6_day_count = 1 THEN 5 ELSE week_of_month END",
+        "day_of_week": "iso_dow",
+        "day_of_year": "EXTRACT(DOY FROM date_key)",
+        "day_name": "TO_CHAR(date_key, 'Day')",
+        "month_name": "TO_CHAR(date_key, 'Month')",
+        "month_key": "DATE_TRUNC('MONTH', date_key)",
+        "quarter_key": "DATE_TRUNC('QUARTER', date_key)",
+        "year_key": "DATE_TRUNC('YEAR', date_key)",
+        "season": "CASE WHEN EXTRACT(MONTH FROM date_key) BETWEEN 4 AND 9 THEN 'Dry Season (Kemarau)' ELSE 'Wet Season (Hujan)' END",
+        "day_type": "CASE WHEN iso_dow IN (6, 7) THEN 'Weekend' ELSE 'Weekday' END"
+      }
+    },
+    {
+      "id": "fact_inverter_calculations_5min",
+      "name": "fact_inverter_calculations_5min",
+      "layer": "facts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "timestamp",
+        "date_key",
+        "inverter_id",
+        "inverter_name",
+        "site_name",
+        "system",
+        "active_power_kw",
+        "mit",
+        "inverter_availability",
+        "inverter_availability_with_mit",
+        "calculation_timestamp",
+        "site_id"
+      ],
+      "in_db": true,
+      "sql_path": "models\\facts\\fact_inverter_calculations_5min.sql",
+      "column_formulas": {
+        "timestamp": "timestamp",
+        "date_key": "date_key",
+        "inverter_id": "inverter_id",
+        "inverter_name": "inverter_name",
+        "site_name": "site_name",
+        "system": "system",
+        "active_power_kw": "active_power_kw",
+        "mit": "mit",
+        "inverter_availability": "inverter_availability",
+        "inverter_availability_with_mit": "inverter_availability_with_mit",
+        "calculation_timestamp": "calculation_timestamp",
+        "site_id": "site_id"
+      }
+    },
+    {
+      "id": "fact_sensor_calculations_5min",
+      "name": "fact_sensor_calculations_5min",
+      "layer": "facts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "timestamp",
+        "date_key",
+        "sensor_id",
+        "sensor_name",
+        "site_name",
+        "system",
+        "sensor_type",
+        "irradiance_w_m2",
+        "is_fallback",
+        "mit",
+        "mit_irradiance_source",
+        "calculation_timestamp",
+        "site_id"
+      ],
+      "in_db": true,
+      "sql_path": "models\\facts\\fact_sensor_calculations_5min.sql",
+      "column_formulas": {
+        "timestamp": "timestamp",
+        "date_key": "date_key",
+        "sensor_id": "sensor_id",
+        "sensor_name": "sensor_name",
+        "site_name": "site_name",
+        "system": "system",
+        "sensor_type": "sensor_type",
+        "irradiance_w_m2": "irradiance_w_m2",
+        "is_fallback": "is_fallback",
+        "mit": "mit",
+        "mit_irradiance_source": "mit_irradiance_source /* Track which source was used for MIT: 'GHI', 'POA', or 'GHI_FALLBACK' */",
+        "calculation_timestamp": "calculation_timestamp",
+        "site_id": "site_id"
+      }
+    },
+    {
+      "id": "fact_site_calculations_5min",
+      "name": "fact_site_calculations_5min",
+      "layer": "facts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "timestamp",
+        "date_key",
+        "site_name",
+        "system",
+        "total_inverters",
+        "available_inverters",
+        "mit",
+        "power_available_ratio",
+        "unavailability_ratio",
+        "calculation_timestamp",
+        "site_id"
+      ],
+      "in_db": true,
+      "sql_path": "models\\facts\\fact_site_calculations_5min.sql",
+      "column_formulas": {
+        "timestamp": "timestamp",
+        "date_key": "date_key",
+        "site_name": "site_name",
+        "system": "system",
+        "total_inverters": "total_inverters",
+        "available_inverters": "available_inverters",
+        "mit": "mit",
+        "power_available_ratio": "power_available_ratio",
+        "unavailability_ratio": "unavailability_ratio",
+        "calculation_timestamp": "calculation_timestamp",
+        "site_id": "site_id"
+      }
+    },
+    {
+      "id": "mart_inverter_performance_5min",
+      "name": "mart_inverter_performance_5min",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "timestamp",
+        "asset_id",
+        "asset_name",
+        "site_name",
+        "system",
+        "date_key",
+        "metric_id",
+        "metric_name",
+        "metric_group",
+        "metric_unit",
+        "metric_value"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_inverter_performance_5min.sql",
+      "column_formulas": {
+        "timestamp": "i.timestamp",
+        "asset_id": "da.asset_id",
+        "asset_name": "da.asset_name",
+        "site_name": "da.site_name",
+        "system": "da.system",
+        "date_key": "dd.date_key",
+        "metric_id": "i.metric_id",
+        "metric_name": "i.metric_name",
+        "metric_group": "i.metric_group",
+        "metric_unit": "i.metric_unit",
+        "metric_value": "i.metric_value"
+      }
+    },
+    {
+      "id": "mart_inverter_yield_daily",
+      "name": "mart_inverter_yield_daily",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "date_key",
+        "asset_id",
+        "inverter_name",
+        "site_name",
+        "system",
+        "daily_yield_kwh",
+        "first_yield_kwh",
+        "last_yield_kwh",
+        "min_yield_kwh",
+        "max_yield_kwh",
+        "measurement_count",
+        "site_id"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_inverter_yield_daily.sql",
+      "column_formulas": {
+        "date_key": "date_key",
+        "asset_id": "asset_id",
+        "inverter_name": "inverter_name",
+        "site_name": "site_name",
+        "system": "system",
+        "daily_yield_kwh": "COALESCE(last_yield_kwh, max_yield_kwh)",
+        "first_yield_kwh": "first_yield_kwh",
+        "last_yield_kwh": "last_yield_kwh",
+        "min_yield_kwh": "min_yield_kwh",
+        "max_yield_kwh": "max_yield_kwh",
+        "measurement_count": "measurement_count",
+        "site_id": "site_id"
+      }
+    },
+    {
+      "id": "mart_meter_performance_5min",
+      "name": "mart_meter_performance_5min",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "timestamp",
+        "asset_id",
+        "asset_name",
+        "site_name",
+        "system",
+        "date_key",
+        "metric_id",
+        "metric_name",
+        "metric_group",
+        "metric_unit",
+        "metric_value",
+        "meter_type",
+        "voltage_level",
+        "meter_dev_name"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_meter_performance_5min.sql",
+      "column_formulas": {
+        "timestamp": "m.timestamp",
+        "asset_id": "da.asset_id",
+        "asset_name": "da.asset_name",
+        "site_name": "da.site_name",
+        "system": "da.system",
+        "date_key": "dd.date_key",
+        "metric_id": "m.metric_id",
+        "metric_name": "mm.unified_name",
+        "metric_group": "mm.metric_group",
+        "metric_unit": "mm.metric_unit",
+        "metric_value": "m.metric_value",
+        "meter_type": "mc.meter_type",
+        "voltage_level": "mc.voltage_level",
+        "meter_dev_name": "mc.dev_name"
+      }
+    },
+    {
+      "id": "mart_sensor_daily",
+      "name": "mart_sensor_daily",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "date_key",
+        "asset_id",
+        "asset_name",
+        "site_name",
+        "system",
+        "sensor_type",
+        "sensor_dev_name",
+        "device_id",
+        "sensor_capacity_kwp",
+        "daily_irradiance_kwh_m2",
+        "avg_irradiance_w_m2",
+        "max_irradiance_w_m2",
+        "daily_horizontal_irradiation_kwh_m2",
+        "avg_ambient_temperature_c",
+        "max_ambient_temperature_c",
+        "min_ambient_temperature_c",
+        "avg_module_temperature_c",
+        "max_module_temperature_c",
+        "min_module_temperature_c",
+        "avg_wind_speed_m_s",
+        "max_wind_speed_m_s",
+        "avg_wind_direction_deg",
+        "avg_humidity_pct",
+        "max_humidity_pct",
+        "min_humidity_pct",
+        "total_rainfall_mm",
+        "measurement_count",
+        "timestamp_count"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_sensor_daily.sql",
+      "column_formulas": {
+        "date_key": "date_key",
+        "asset_id": "asset_id",
+        "asset_name": "asset_name",
+        "site_name": "site_name",
+        "system": "system",
+        "sensor_type": "sensor_type",
+        "sensor_dev_name": "sensor_dev_name",
+        "device_id": "device_id",
+        "sensor_capacity_kwp": "sensor_capacity_kwp",
+        "daily_irradiance_kwh_m2": "daily_irradiance_kwh_m2 /* Irradiance metrics */",
+        "avg_irradiance_w_m2": "avg_irradiance_w_m2",
+        "max_irradiance_w_m2": "max_irradiance_w_m2",
+        "daily_horizontal_irradiation_kwh_m2": "daily_horizontal_irradiation_kwh_m2",
+        "avg_ambient_temperature_c": "avg_ambient_temperature_c /* Temperature metrics */",
+        "max_ambient_temperature_c": "max_ambient_temperature_c",
+        "min_ambient_temperature_c": "min_ambient_temperature_c",
+        "avg_module_temperature_c": "avg_module_temperature_c",
+        "max_module_temperature_c": "max_module_temperature_c",
+        "min_module_temperature_c": "min_module_temperature_c",
+        "avg_wind_speed_m_s": "avg_wind_speed_m_s /* Wind metrics */",
+        "max_wind_speed_m_s": "max_wind_speed_m_s",
+        "avg_wind_direction_deg": "avg_wind_direction_deg",
+        "avg_humidity_pct": "avg_humidity_pct /* Other weather metrics */",
+        "max_humidity_pct": "max_humidity_pct",
+        "min_humidity_pct": "min_humidity_pct",
+        "total_rainfall_mm": "total_rainfall_mm",
+        "measurement_count": "measurement_count /* Data quality */",
+        "timestamp_count": "timestamp_count"
+      }
+    },
+    {
+      "id": "mart_sensor_measurements_5min",
+      "name": "mart_sensor_measurements_5min",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "timestamp",
+        "asset_id",
+        "asset_name",
+        "site_name",
+        "system",
+        "date_key",
+        "metric_id",
+        "metric_name",
+        "metric_group",
+        "metric_unit",
+        "metric_value",
+        "sensor_type",
+        "sensor_dev_name"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_sensor_measurements_5min.sql",
+      "column_formulas": {
+        "timestamp": "s.timestamp",
+        "asset_id": "da.asset_id",
+        "asset_name": "da.asset_name",
+        "site_name": "da.site_name",
+        "system": "da.system",
+        "date_key": "dd.date_key",
+        "metric_id": "s.metric_id",
+        "metric_name": "m.unified_name",
+        "metric_group": "m.metric_group",
+        "metric_unit": "m.metric_unit",
+        "metric_value": "s.metric_value",
+        "sensor_type": "sc.sensor_type",
+        "sensor_dev_name": "sc.dev_name"
+      }
+    },
+    {
+      "id": "mart_simulation_daily_25y",
+      "name": "mart_simulation_daily_25y",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "site_code",
+        "site_name",
+        "date_key",
+        "simulation_year",
+        "simulation_start_year",
+        "day_of_year",
+        "degradation_factor",
+        "energy_simulation_mwh",
+        "energy_target_mwh",
+        "ghi",
+        "poa",
+        "daily_pr_poa_simulation",
+        "daily_pr_poa_target",
+        "daily_pr_ghi_simulation",
+        "daily_pr_ghi_target"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_simulation_daily_25y.sql",
+      "column_formulas": {
+        "site_code": "site_code",
+        "site_name": "site_name",
+        "date_key": "date_key",
+        "simulation_year": "simulation_year",
+        "simulation_start_year": "simulation_start_year",
+        "day_of_year": "day_of_year",
+        "degradation_factor": "degradation_factor",
+        "energy_simulation_mwh": "energy_year1_mwh * degradation_factor",
+        "energy_target_mwh": "energy_target_year1_mwh * degradation_factor",
+        "ghi": "ghi",
+        "poa": "poa",
+        "daily_pr_poa_simulation": "pr_poa_sim_year1 * degradation_factor",
+        "daily_pr_poa_target": "pr_poa_target_year1 * degradation_factor",
+        "daily_pr_ghi_simulation": "pr_ghi_sim_year1 * degradation_factor",
+        "daily_pr_ghi_target": "pr_ghi_target_year1 * degradation_factor"
+      }
+    },
+    {
+      "id": "mart_simulation_daily_25y_poc",
+      "name": "mart_simulation_daily_25y_poc",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "site_code",
+        "date_key",
+        "simulation_year",
+        "simulation_start_year",
+        "day_of_year",
+        "degradation_factor",
+        "energy_simulation_mwh",
+        "energy_target_mwh",
+        "ghi",
+        "poa",
+        "daily_pr_poa_simulation",
+        "daily_pr_poa_target",
+        "daily_pr_ghi_simulation",
+        "daily_pr_ghi_target"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_simulation_daily_25y_poc.sql",
+      "column_formulas": {
+        "site_code": "site_code",
+        "date_key": "date_key",
+        "simulation_year": "simulation_year",
+        "simulation_start_year": "simulation_start_year",
+        "day_of_year": "day_of_year",
+        "degradation_factor": "degradation_factor",
+        "energy_simulation_mwh": "energy_year1_mwh * degradation_factor",
+        "energy_target_mwh": "energy_target_year1_mwh * degradation_factor",
+        "ghi": "ghi",
+        "poa": "poa",
+        "daily_pr_poa_simulation": "pr_poa_sim_year1 * degradation_factor",
+        "daily_pr_poa_target": "pr_poa_target_year1 * degradation_factor",
+        "daily_pr_ghi_simulation": "pr_ghi_sim_year1 * degradation_factor",
+        "daily_pr_ghi_target": "pr_ghi_target_year1 * degradation_factor"
+      }
+    },
+    {
+      "id": "mart_simulation_degradation_factors",
+      "name": "mart_simulation_degradation_factors",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "site_code",
+        "site_name",
+        "simulation_year",
+        "energy_yearly_mwh",
+        "energy_year1_mwh",
+        "degradation_factor"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_simulation_degradation_factors.sql",
+      "column_formulas": {
+        "site_code": "site_code",
+        "site_name": "site_name",
+        "simulation_year": "simulation_year",
+        "energy_yearly_mwh": "energy_yearly_mwh",
+        "energy_year1_mwh": "energy_year1_mwh",
+        "degradation_factor": "degradation_factor"
+      }
+    },
+    {
+      "id": "mart_simulation_site_start_year",
+      "name": "mart_simulation_site_start_year",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "site_code",
+        "simulation_start_year"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_simulation_site_start_year.sql"
+    },
+    {
+      "id": "mart_simulation_targets_daily",
+      "name": "mart_simulation_targets_daily",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "date_key",
+        "year",
+        "month",
+        "month_name",
+        "day_type",
+        "site_name",
+        "site_code",
+        "asset_id",
+        "system",
+        "ghi",
+        "poa",
+        "ghi_vs_poa",
+        "energy_simulation_mwh",
+        "energy_target_mwh",
+        "energy_variance_mwh",
+        "energy_kpi_daily_mwh",
+        "energy_a_kpi_daily_mwh",
+        "energy_kpi_monthly_mwh",
+        "energy_target_monthly_mwh",
+        "energy_simulation_monthly_mwh",
+        "daily_pr_poa_simulation",
+        "daily_pr_poa_target",
+        "pr_poa_variance",
+        "daily_pr_ghi_simulation",
+        "daily_pr_ghi_target",
+        "pr_ghi_variance"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_simulation_targets_daily.sql",
+      "column_formulas": {
+        "date_key": "sd.date_key",
+        "year": "sd.year",
+        "month": "sd.month",
+        "month_name": "sd.month_name",
+        "day_type": "sd.day_type",
+        "site_name": "sd.site_name",
+        "site_code": "sd.site_code",
+        "asset_id": "da.asset_id",
+        "system": "da.system",
+        "ghi": "sd.ghi",
+        "poa": "sd.poa",
+        "ghi_vs_poa": "sd.ghi_vs_poa",
+        "energy_simulation_mwh": "sd.energy_simulation_mwh",
+        "energy_target_mwh": "sd.energy_target_mwh",
+        "energy_variance_mwh": "sd.energy_target_mwh - sd.energy_simulation_mwh",
+        "energy_kpi_daily_mwh": "CASE WHEN mt.energy_target_monthly_mwh > 0 AND NOT mkpi.energy_kpi_mwh IS NULL THEN mkpi.energy_kpi_mwh * (sd.energy_target_mwh / mt.energy_target_monthly_mwh) ELSE NULL END",
+        "energy_a_kpi_daily_mwh": "CASE WHEN ms.energy_simulation_monthly_mwh > 0 AND NOT mkpi.energy_kpi_mwh IS NULL THEN sd.energy_target_mwh * (mkpi.energy_kpi_mwh / ms.energy_simulation_monthly_mwh) ELSE NULL END",
+        "energy_kpi_monthly_mwh": "mkpi.energy_kpi_mwh",
+        "energy_target_monthly_mwh": "mt.energy_target_monthly_mwh",
+        "energy_simulation_monthly_mwh": "ms.energy_simulation_monthly_mwh",
+        "daily_pr_poa_simulation": "sd.daily_pr_poa_simulation",
+        "daily_pr_poa_target": "sd.daily_pr_poa_target",
+        "pr_poa_variance": "sd.daily_pr_poa_target - sd.daily_pr_poa_simulation",
+        "daily_pr_ghi_simulation": "sd.daily_pr_ghi_simulation",
+        "daily_pr_ghi_target": "sd.daily_pr_ghi_target",
+        "pr_ghi_variance": "sd.daily_pr_ghi_target - sd.daily_pr_ghi_simulation"
+      }
+    },
+    {
+      "id": "mart_simulation_targets_monthly",
+      "name": "mart_simulation_targets_monthly",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "month_date_key",
+        "year",
+        "month",
+        "month_name",
+        "site_name",
+        "site_code",
+        "asset_id",
+        "system",
+        "ghi",
+        "poa",
+        "ghi_vs_poa_avg",
+        "energy_simulation_mwh",
+        "energy_target_mwh",
+        "energy_variance_mwh",
+        "energy_kpi_mwh",
+        "energy_kpi_gap_ratio",
+        "monthly_pr_poa_simulation",
+        "monthly_pr_poa_target",
+        "pr_poa_variance",
+        "monthly_pr_ghi_simulation",
+        "monthly_pr_ghi_target",
+        "pr_ghi_variance",
+        "days_count",
+        "created_at",
+        "updated_at"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_simulation_targets_monthly.sql",
+      "column_formulas": {
+        "month_date_key": "mt.month_date_key",
+        "year": "mt.year",
+        "month": "mt.month",
+        "month_name": "mt.month_name",
+        "site_name": "mt.site_name",
+        "site_code": "mt.site_code",
+        "asset_id": "mt.asset_id",
+        "system": "mt.system",
+        "ghi": "mt.ghi",
+        "poa": "mt.poa",
+        "ghi_vs_poa_avg": "mt.ghi_vs_poa_avg",
+        "energy_simulation_mwh": "mt.energy_simulation_mwh",
+        "energy_target_mwh": "mt.energy_target_mwh",
+        "energy_variance_mwh": "mt.energy_variance_mwh",
+        "energy_kpi_mwh": "COALESCE(kc.energy_kpi_mwh, kn.energy_kpi_mwh)",
+        "energy_kpi_gap_ratio": "CASE WHEN mt.energy_target_mwh IS NULL OR mt.energy_target_mwh = 0 THEN NULL ELSE ROUND((CAST(COALESCE(kc.energy_kpi_mwh, kn.energy_kpi_mwh) AS DECIMAL) / CAST(mt.energy_target_mwh AS DECIMAL)), 6) END",
+        "monthly_pr_poa_simulation": "mt.monthly_pr_poa_simulation",
+        "monthly_pr_poa_target": "mt.monthly_pr_poa_target",
+        "pr_poa_variance": "mt.pr_poa_variance",
+        "monthly_pr_ghi_simulation": "mt.monthly_pr_ghi_simulation",
+        "monthly_pr_ghi_target": "mt.monthly_pr_ghi_target",
+        "pr_ghi_variance": "mt.pr_ghi_variance",
+        "days_count": "mt.days_count",
+        "created_at": "CURRENT_TIMESTAMP",
+        "updated_at": "CURRENT_TIMESTAMP"
+      }
+    },
+    {
+      "id": "mart_site_kpi_monthly",
+      "name": "mart_site_kpi_monthly",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "site_id",
+        "site_name",
+        "year",
+        "month",
+        "month_name",
+        "energy_kpi_mwh",
+        "created_at",
+        "updated_at"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_site_kpi_monthly.sql",
+      "column_formulas": {
+        "site_id": "kd.site_id",
+        "site_name": "kd.site_name",
+        "year": "kd.year",
+        "month": "kd.month",
+        "month_name": "kd.month_name",
+        "energy_kpi_mwh": "kd.energy_kpi_mwh",
+        "created_at": "CURRENT_TIMESTAMP",
+        "updated_at": "CURRENT_TIMESTAMP"
+      }
+    },
+    {
+      "id": "mart_site_performance_daily",
+      "name": "mart_site_performance_daily",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "date_key",
+        "year",
+        "month",
+        "month_name",
+        "week_of_month",
+        "site_id",
+        "site_name",
+        "system",
+        "actual_capacity_kw",
+        "tariff",
+        "site_order",
+        "is_issue_date",
+        "daily_energy_mwh",
+        "energy_actual",
+        "energy_adjusted",
+        "daily_ghi_kwh_m2",
+        "ghi_actual",
+        "daily_poa_weighted_kwh_m2",
+        "ghi_adjusted",
+        "power_available_hours",
+        "unavailability_hours",
+        "mit_hours",
+        "total_hours",
+        "availability_percent",
+        "pr_ghi_actual",
+        "pr_adjusted",
+        "pr_poa_actual",
+        "energy_target_mwh",
+        "daily_pr_ghi_target",
+        "daily_pr_poa_target",
+        "ghi_target",
+        "poa_target",
+        "energy_actual_vs_target_pct",
+        "ghi_actual_vs_target_pct",
+        "poa_actual_vs_target_pct",
+        "energy_vs_ghi_variance_pct",
+        "energy_kpi_daily_mwh",
+        "energy_a_kpi_daily_mwh",
+        "energy_kpi_monthly_mwh",
+        "energy_target_monthly_mwh",
+        "energy_simulation_monthly_mwh"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_site_performance_daily.sql",
+      "column_formulas": {
+        "date_key": "sm.date_key",
+        "year": "dd.year",
+        "month": "dd.month",
+        "month_name": "dd.month_name",
+        "week_of_month": "dd.week_of_month",
+        "site_id": "da.asset_id",
+        "site_name": "da.site_name",
+        "system": "da.system",
+        "actual_capacity_kw": "da.actual_capacity_kw",
+        "tariff": "da.tariff",
+        "site_order": "da.site_order",
+        "is_issue_date": "CASE WHEN NOT id.issue_date IS NULL THEN TRUE ELSE FALSE END",
+        "daily_energy_mwh": "CAST(COALESCE(sm.daily_energy_mwh, 0) AS DECIMAL(18, 6))",
+        "energy_actual": "CAST(COALESCE(sm.daily_energy_mwh, 0) AS DECIMAL(18, 6))",
+        "energy_adjusted": "CAST(COALESCE(energy_adj.energy_adjusted_value /* Priority 1: Manual adjustment from seed file */, sm.daily_energy_mwh /* Priority 2: Default: Use actual energy */) AS DECIMAL(18, 6))",
+        "daily_ghi_kwh_m2": "CAST(sm.daily_ghi_kwh_m2 AS DECIMAL(18, 6))",
+        "ghi_actual": "CAST(sm.daily_ghi_kwh_m2 AS DECIMAL(18, 6))",
+        "daily_poa_weighted_kwh_m2": "CAST(sm.daily_poa_weighted_kwh_m2 AS DECIMAL(18, 6))",
+        "ghi_adjusted": "CAST(COALESCE(ghi_manual.ghi_adjusted_value /* Priority 1: Manual adjustment from seed file (e.g., calculated from POA ratio) */, ghi_adj.ghi_adjusted_value /* Priority 2: Adjusted GHI from sensor mapping if available */, sm.daily_ghi_kwh_m2 /* Priority 3: Default: Use actual GHI */) AS DECIMAL(18, 6))",
+        "power_available_hours": "CAST(sm.power_available_hours AS DECIMAL(18, 6))",
+        "unavailability_hours": "CAST(sm.unavailability_hours AS DECIMAL(18, 6))",
+        "mit_hours": "CAST(sm.mit_hours AS DECIMAL(18, 6))",
+        "total_hours": "CAST(sm.total_hours AS DECIMAL(18, 6))",
+        "availability_percent": "CAST(sm.availability_percent AS DECIMAL(18, 6))",
+        "pr_ghi_actual": "CASE WHEN NOT COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2) IS NULL AND COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2) >= 0.1 /* Minimum threshold to prevent overflow */ AND NOT sm.daily_energy_mwh IS NULL AND sm.daily_energy_mwh >= 0.01 /* Minimum energy threshold */ AND NOT da.actual_capacity_kw IS NULL AND da.actual_capacity_kw > 0 THEN LEAST(CAST(((sm.daily_energy_mwh * 1000.0) / NULLIF(COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2), 0) / NULLIF(da.actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 10.0 /* Cap at 10.0 (1000%) to prevent overflow from data errors while still capturing anomalies */) ELSE NULL END",
+        "pr_adjusted": "CASE WHEN NOT COALESCE(ghi_manual.ghi_adjusted_value /* Priority 1: Manual adjustment */, ghi_adj.ghi_adjusted_value /* Priority 2: Sensor mapping */, sm.daily_ghi_kwh_m2 /* Priority 3: Actual GHI */) IS NULL AND COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2) >= 0.1 /* Minimum threshold to prevent overflow */ AND NOT COALESCE(energy_adj.energy_adjusted_value /* Priority 1: Manual energy adjustment */, sm.daily_energy_mwh /* Priority 2: Actual energy */) IS NULL AND COALESCE(energy_adj.energy_adjusted_value, sm.daily_energy_mwh) >= 0.01 /* Minimum energy threshold */ AND NOT da.actual_capacity_kw IS NULL AND da.actual_capacity_kw > 0 THEN LEAST(CAST(((COALESCE(energy_adj.energy_adjusted_value, sm.daily_energy_mwh) * 1000.0) / NULLIF(COALESCE(ghi_manual.ghi_adjusted_value, ghi_adj.ghi_adjusted_value, sm.daily_ghi_kwh_m2), 0) / NULLIF(da.actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 10.0 /* Cap at 10.0 (1000%) to prevent overflow from data errors while still capturing anomalies */) ELSE NULL END",
+        "pr_poa_actual": "CASE WHEN NOT sm.daily_poa_weighted_kwh_m2 IS NULL AND sm.daily_poa_weighted_kwh_m2 >= 0.1 /* Minimum threshold to prevent overflow */ AND NOT sm.daily_energy_mwh IS NULL AND sm.daily_energy_mwh >= 0.01 /* Minimum energy threshold */ AND NOT da.actual_capacity_kw IS NULL AND da.actual_capacity_kw > 0 THEN LEAST(CAST(((sm.daily_energy_mwh * 1000.0) / NULLIF(sm.daily_poa_weighted_kwh_m2, 0) / NULLIF(da.actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 2.0 /* Cap at 2.0 (200%) to prevent overflow from data errors */) ELSE NULL END",
+        "energy_target_mwh": "CAST(t.energy_target_mwh AS DECIMAL(18, 6))",
+        "daily_pr_ghi_target": "CAST(t.daily_pr_ghi_target AS DECIMAL(18, 6))",
+        "daily_pr_poa_target": "CAST(t.daily_pr_poa_target AS DECIMAL(18, 6))",
+        "ghi_target": "CAST(t.ghi AS DECIMAL(18, 6))",
+        "poa_target": "CAST(t.poa AS DECIMAL(18, 6))",
+        "energy_actual_vs_target_pct": "CASE WHEN NOT t.energy_target_mwh IS NULL AND t.energy_target_mwh > 0 AND NOT sm.daily_energy_mwh IS NULL THEN CAST((sm.daily_energy_mwh / NULLIF(t.energy_target_mwh, 0)) AS DECIMAL(18, 6)) ELSE NULL END",
+        "ghi_actual_vs_target_pct": "CASE WHEN NOT t.ghi IS NULL AND t.ghi > 0 AND NOT sm.daily_ghi_kwh_m2 IS NULL THEN CAST((sm.daily_ghi_kwh_m2 / NULLIF(t.ghi, 0)) AS DECIMAL(18, 6)) ELSE NULL END",
+        "poa_actual_vs_target_pct": "CASE WHEN NOT t.poa IS NULL AND t.poa > 0 AND NOT sm.daily_poa_weighted_kwh_m2 IS NULL THEN CAST((sm.daily_poa_weighted_kwh_m2 / NULLIF(t.poa, 0)) AS DECIMAL(18, 6)) ELSE NULL END",
+        "energy_vs_ghi_variance_pct": "CASE WHEN NOT t.energy_target_mwh IS NULL AND t.energy_target_mwh > 0 AND NOT t.ghi IS NULL AND t.ghi > 0 AND NOT sm.daily_energy_mwh IS NULL AND NOT sm.daily_ghi_kwh_m2 IS NULL THEN CAST(((sm.daily_energy_mwh / NULLIF(t.energy_target_mwh, 0)) - (sm.daily_ghi_kwh_m2 / NULLIF(t.ghi, 0))) AS DECIMAL(18, 6)) ELSE NULL END",
+        "energy_kpi_daily_mwh": "CASE WHEN mt_kpi.energy_target_monthly_mwh > 0 AND NOT mkpi.energy_kpi_mwh IS NULL AND NOT t.energy_target_mwh IS NULL THEN CAST(mkpi.energy_kpi_mwh * (t.energy_target_mwh / mt_kpi.energy_target_monthly_mwh) AS DECIMAL(18, 6)) ELSE NULL END",
+        "energy_a_kpi_daily_mwh": "CASE WHEN ms_kpi.energy_simulation_monthly_mwh > 0 AND NOT mkpi.energy_kpi_mwh IS NULL AND NOT t.energy_target_mwh IS NULL THEN CAST(t.energy_target_mwh * (mkpi.energy_kpi_mwh / ms_kpi.energy_simulation_monthly_mwh) AS DECIMAL(18, 6)) ELSE NULL END",
+        "energy_kpi_monthly_mwh": "CAST(mkpi.energy_kpi_mwh AS DECIMAL(18, 6))",
+        "energy_target_monthly_mwh": "CAST(mt_kpi.energy_target_monthly_mwh AS DECIMAL(18, 6))",
+        "energy_simulation_monthly_mwh": "CAST(ms_kpi.energy_simulation_monthly_mwh AS DECIMAL(18, 6))"
+      }
+    },
+    {
+      "id": "mart_site_performance_monthly",
+      "name": "mart_site_performance_monthly",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "view",
+      "columns": [
+        "year",
+        "month",
+        "month_name",
+        "site_id",
+        "site_name",
+        "system",
+        "actual_capacity_kw",
+        "tariff",
+        "site_order",
+        "daily_energy_mwh",
+        "daily_ghi_kwh_m2",
+        "monthly_poa_weighted_kwh_m2",
+        "energy_target_mwh",
+        "ghi_target",
+        "poa_target",
+        "availability_percent",
+        "pr_ghi_actual",
+        "pr_poa_actual",
+        "energy_actual_vs_target_pct",
+        "ghi_actual_vs_target_pct",
+        "poa_actual_vs_target_pct",
+        "energy_vs_ghi_variance_pct",
+        "days_with_data",
+        "days_with_energy",
+        "days_with_ghi",
+        "days_with_poa"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_site_performance_monthly.sql",
+      "column_formulas": {
+        "year": "year",
+        "month": "month",
+        "month_name": "month_name",
+        "site_id": "site_id",
+        "site_name": "site_name",
+        "system": "system",
+        "actual_capacity_kw": "actual_capacity_kw",
+        "tariff": "tariff",
+        "site_order": "site_order",
+        "daily_energy_mwh": "CAST(monthly_energy_mwh AS DECIMAL(18, 6))",
+        "daily_ghi_kwh_m2": "CAST(monthly_ghi_kwh_m2 AS DECIMAL(18, 6))",
+        "monthly_poa_weighted_kwh_m2": "CAST(monthly_poa_weighted_kwh_m2 AS DECIMAL(18, 6))",
+        "energy_target_mwh": "CAST(monthly_energy_target_mwh AS DECIMAL(18, 6))",
+        "ghi_target": "CAST(monthly_ghi_target AS DECIMAL(18, 6))",
+        "poa_target": "CAST(monthly_poa_target AS DECIMAL(18, 6))",
+        "availability_percent": "CASE WHEN (monthly_power_available_hours + monthly_unavailability_hours) > 0 THEN CAST((monthly_power_available_hours / NULLIF(monthly_power_available_hours + monthly_unavailability_hours, 0)) AS DECIMAL(18, 6)) ELSE NULL END",
+        "pr_ghi_actual": "CASE WHEN NOT monthly_ghi_kwh_m2 IS NULL AND monthly_ghi_kwh_m2 >= 0.1 /* Minimum threshold */ AND NOT monthly_energy_mwh IS NULL AND monthly_energy_mwh >= 0.01 /* Minimum energy threshold */ AND NOT actual_capacity_kw IS NULL AND actual_capacity_kw > 0 THEN LEAST(CAST(((monthly_energy_mwh * 1000.0) / NULLIF(monthly_ghi_kwh_m2, 0) / NULLIF(actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 10.0 /* Cap at 10.0 to prevent overflow */) ELSE NULL END",
+        "pr_poa_actual": "CASE WHEN NOT monthly_poa_weighted_kwh_m2 IS NULL AND monthly_poa_weighted_kwh_m2 >= 0.1 /* Minimum threshold */ AND NOT monthly_energy_mwh IS NULL AND monthly_energy_mwh >= 0.01 /* Minimum energy threshold */ AND NOT actual_capacity_kw IS NULL AND actual_capacity_kw > 0 THEN LEAST(CAST(((monthly_energy_mwh * 1000.0) / NULLIF(monthly_poa_weighted_kwh_m2, 0) / NULLIF(actual_capacity_kw, 0)) AS DECIMAL(18, 6)), 2.0 /* Cap at 2.0 to prevent overflow */) ELSE NULL END",
+        "energy_actual_vs_target_pct": "CASE WHEN NOT monthly_energy_target_mwh IS NULL AND monthly_energy_target_mwh > 0 AND NOT monthly_energy_mwh IS NULL THEN CAST((monthly_energy_mwh / NULLIF(monthly_energy_target_mwh, 0)) AS DECIMAL(18, 6)) ELSE NULL END",
+        "ghi_actual_vs_target_pct": "CASE WHEN NOT monthly_ghi_target IS NULL AND monthly_ghi_target > 0 AND NOT monthly_ghi_kwh_m2 IS NULL THEN CAST((monthly_ghi_kwh_m2 / NULLIF(monthly_ghi_target, 0)) AS DECIMAL(18, 6)) ELSE NULL END",
+        "poa_actual_vs_target_pct": "CASE WHEN NOT monthly_poa_target IS NULL AND monthly_poa_target > 0 AND NOT monthly_poa_weighted_kwh_m2 IS NULL THEN CAST((monthly_poa_weighted_kwh_m2 / NULLIF(monthly_poa_target, 0)) AS DECIMAL(18, 6)) ELSE NULL END",
+        "energy_vs_ghi_variance_pct": "CASE WHEN NOT monthly_energy_target_mwh IS NULL AND monthly_energy_target_mwh > 0 AND NOT monthly_ghi_target IS NULL AND monthly_ghi_target > 0 AND NOT monthly_energy_mwh IS NULL AND NOT monthly_ghi_kwh_m2 IS NULL THEN CAST(((monthly_energy_mwh / NULLIF(monthly_energy_target_mwh, 0)) - (monthly_ghi_kwh_m2 / NULLIF(monthly_ghi_target, 0))) AS DECIMAL(18, 6)) ELSE NULL END",
+        "days_with_data": "days_with_data /* Metadata */",
+        "days_with_energy": "days_with_energy",
+        "days_with_ghi": "days_with_ghi",
+        "days_with_poa": "days_with_poa"
+      }
+    },
+    {
+      "id": "mart_string_performance_daily",
+      "name": "mart_string_performance_daily",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "incremental",
+      "columns": [
+        "date_key",
+        "inverter_id",
+        "inverter_name",
+        "site_id",
+        "site_name",
+        "system",
+        "string_number",
+        "string_id",
+        "interval_count_5min",
+        "daily_ghi_kwh_m2",
+        "pr_ghi_string",
+        "pr_poa_string",
+        "daily_energy_wh",
+        "daily_energy_kwh",
+        "layout_module_qty",
+        "layout_orient_code",
+        "string_dc_capacity_kw_stc",
+        "daily_poa_kwh_m2"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_string_performance_daily.sql",
+      "column_formulas": {
+        "date_key": "date_key",
+        "inverter_id": "inverter_id",
+        "inverter_name": "inverter_name",
+        "site_id": "site_id",
+        "site_name": "site_name",
+        "system": "system",
+        "string_number": "string_number",
+        "string_id": "string_id",
+        "interval_count_5min": "interval_count_5min",
+        "daily_ghi_kwh_m2": "CAST(daily_ghi_kwh_m2 AS DECIMAL(18, 6))",
+        "pr_ghi_string": "CASE WHEN NOT daily_ghi_kwh_m2 IS NULL AND daily_ghi_kwh_m2 >= 0.1 AND NOT daily_energy_kwh IS NULL AND daily_energy_kwh >= 0.01 AND NOT string_dc_capacity_kw_stc IS NULL AND string_dc_capacity_kw_stc > 0 THEN LEAST(CAST((daily_energy_kwh / 1000.0) / NULLIF(daily_ghi_kwh_m2 * string_dc_capacity_kw_stc, 0) AS DECIMAL(18, 6)), 10.0) ELSE NULL END",
+        "pr_poa_string": "CASE WHEN NOT daily_poa_kwh_m2 IS NULL AND daily_poa_kwh_m2 >= 0.1 AND NOT daily_energy_kwh IS NULL AND daily_energy_kwh >= 0.01 AND NOT string_dc_capacity_kw_stc IS NULL AND string_dc_capacity_kw_stc > 0 THEN LEAST(CAST((daily_energy_kwh / 1000.0) / NULLIF(daily_poa_kwh_m2 * string_dc_capacity_kw_stc, 0) AS DECIMAL(18, 6)), 10.0) ELSE NULL END",
+        "daily_energy_wh": "daily_energy_wh",
+        "daily_energy_kwh": "daily_energy_kwh",
+        "layout_module_qty": "layout_module_qty",
+        "layout_orient_code": "layout_orient_code",
+        "string_dc_capacity_kw_stc": "string_dc_capacity_kw_stc",
+        "daily_poa_kwh_m2": "CAST(daily_poa_kwh_m2 AS DECIMAL(18, 6))"
+      }
+    },
+    {
+      "id": "mart_string_performance_monthly",
+      "name": "mart_string_performance_monthly",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "year",
+        "month",
+        "inverter_id",
+        "inverter_name",
+        "site_id",
+        "site_name",
+        "system",
+        "string_number",
+        "string_id",
+        "monthly_energy_wh",
+        "monthly_energy_kwh",
+        "interval_count_5min",
+        "layout_module_qty",
+        "layout_orient_code",
+        "string_dc_capacity_kw_stc",
+        "monthly_ghi_kwh_m2",
+        "monthly_poa_kwh_m2",
+        "pr_ghi_string",
+        "pr_poa_string"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_string_performance_monthly.sql",
+      "column_formulas": {
+        "year": "year",
+        "month": "month",
+        "inverter_id": "inverter_id",
+        "inverter_name": "inverter_name",
+        "site_id": "site_id",
+        "site_name": "site_name",
+        "system": "system",
+        "string_number": "string_number",
+        "string_id": "string_id",
+        "monthly_energy_wh": "CAST(monthly_energy_wh AS DECIMAL(38, 10))",
+        "monthly_energy_kwh": "CAST(monthly_energy_kwh AS DECIMAL(38, 12))",
+        "interval_count_5min": "interval_count_5min",
+        "layout_module_qty": "layout_module_qty",
+        "layout_orient_code": "layout_orient_code",
+        "string_dc_capacity_kw_stc": "CAST(string_dc_capacity_kw_stc AS DECIMAL(18, 6))",
+        "monthly_ghi_kwh_m2": "CAST(monthly_ghi_kwh_m2 AS DECIMAL(18, 6))",
+        "monthly_poa_kwh_m2": "CAST(monthly_poa_kwh_m2 AS DECIMAL(18, 6))",
+        "pr_ghi_string": "CASE WHEN monthly_ghi_kwh_m2 > 0 AND monthly_energy_kwh > 0 AND string_dc_capacity_kw_stc > 0 THEN LEAST(CAST((monthly_energy_kwh / 1000.0) / NULLIF(monthly_ghi_kwh_m2 * string_dc_capacity_kw_stc, 0) AS DECIMAL(18, 6)), 10.0) ELSE NULL END",
+        "pr_poa_string": "CASE WHEN monthly_poa_kwh_m2 > 0 AND monthly_energy_kwh > 0 AND string_dc_capacity_kw_stc > 0 THEN LEAST(CAST((monthly_energy_kwh / 1000.0) / NULLIF(monthly_poa_kwh_m2 * string_dc_capacity_kw_stc, 0) AS DECIMAL(18, 6)), 10.0) ELSE NULL END"
+      }
+    },
+    {
+      "id": "mart_weekly_log",
+      "name": "mart_weekly_log",
+      "layer": "marts",
+      "schema": "mart",
+      "materialized": "table",
+      "columns": [
+        "log_date",
+        "site_id",
+        "site_name",
+        "problem_identification",
+        "corrective_action",
+        "status",
+        "created_at",
+        "updated_at",
+        "days_open",
+        "is_open",
+        "date_key",
+        "year",
+        "month",
+        "month_name",
+        "week_of_month",
+        "day_of_week",
+        "day_name",
+        "day_type"
+      ],
+      "in_db": true,
+      "sql_path": "models\\marts\\mart_weekly_log.sql",
+      "column_formulas": {
+        "log_date": "w.log_date",
+        "site_id": "w.site_id",
+        "site_name": "w.site_name",
+        "problem_identification": "w.problem_identification",
+        "corrective_action": "w.corrective_action",
+        "status": "w.status",
+        "created_at": "w.created_at",
+        "updated_at": "w.updated_at",
+        "days_open": "CAST((CURRENT_DATE - w.log_date) /* Berapa lama issue berjalan (hari sejak log_date) — untuk set prioritas decision */ AS INT)",
+        "is_open": "CASE WHEN UPPER(TRIM(COALESCE(w.status, ''))) IN ('OPEN', 'IN PROGRESS') THEN 1 ELSE 0 END",
+        "date_key": "dd.date_key /* Week/month/year dari dim_date_generated (algoritma sama dengan mart lain) */",
+        "year": "dd.year",
+        "month": "dd.month",
+        "month_name": "dd.month_name",
+        "week_of_month": "dd.week_of_month",
+        "day_of_week": "dd.day_of_week",
+        "day_name": "dd.day_name",
+        "day_type": "dd.day_type"
+      }
+    },
+    {
+      "id": "stg_fusionsolar__devices",
+      "name": "stg_fusionsolar__devices",
+      "layer": "staging",
+      "schema": "staging",
+      "materialized": "table",
+      "columns": [
+        "dev_id",
+        "plant_code",
+        "dev_type_id",
+        "dev_name",
+        "inv_type",
+        "device_category"
+      ],
+      "in_db": true,
+      "sql_path": "models\\staging\\stg_fusionsolar__devices.sql",
+      "column_formulas": {
+        "dev_id": "dev_id",
+        "plant_code": "plant_code",
+        "dev_type_id": "dev_type_id",
+        "dev_name": "dev_name",
+        "inv_type": "inv_type",
+        "device_category": "CASE WHEN dev_type_id = 1 THEN 'Inverter' WHEN dev_type_id = 17 THEN 'Meter' WHEN dev_type_id = 10 THEN 'Meteo Station' ELSE 'Unknown' END"
+      }
+    },
+    {
+      "id": "stg_fusionsolar__perf_unpivoted",
+      "name": "stg_fusionsolar__perf_unpivoted",
+      "layer": "staging",
+      "schema": "staging",
+      "materialized": "incremental",
+      "columns": [
+        "timestamp",
+        "dev_id",
+        "device_name",
+        "plant_code",
+        "plant_name",
+        "metric_id",
+        "metric_value"
+      ],
+      "in_db": true,
+      "sql_path": "models\\staging\\stg_fusionsolar__perf_unpivoted.sql",
+      "column_formulas": {
+        "timestamp": "h.collect_time",
+        "dev_id": "h.dev_id",
+        "device_name": "d.dev_name",
+        "plant_code": "d.plant_code",
+        "plant_name": "p.plant_name",
+        "metric_id": "metric_id",
+        "metric_value": "CASE WHEN JSONB_TYPEOF(metric_value) = 'string' THEN CASE WHEN (metric_value #>> '{}') IN ('nan', '-nan', 'infinity', '-infinity', 'Infinity', '-Infinity') THEN NULL ELSE CAST((metric_value #>> '{}') AS DECIMAL) END WHEN JSONB_TYPEOF(metric_value) = 'number' THEN CASE WHEN CAST(metric_value AS TEXT) IN ('nan', '-nan', 'infinity', '-infinity', 'Infinity', '-Infinity') THEN NULL ELSE CAST(metric_value AS DECIMAL) END ELSE NULL END"
+      }
+    },
+    {
+      "id": "stg_fusionsolar__sites",
+      "name": "stg_fusionsolar__sites",
+      "layer": "staging",
+      "schema": "staging",
+      "materialized": "table",
+      "columns": [
+        "plant_code",
+        "plant_name",
+        "plant_name_clean",
+        "grid_connection_date",
+        "latitude",
+        "longitude",
+        "capacity"
+      ],
+      "in_db": true,
+      "sql_path": "models\\staging\\stg_fusionsolar__sites.sql",
+      "column_formulas": {
+        "plant_code": "plant_code",
+        "plant_name": "plant_name",
+        "plant_name_clean": "LOWER(REPLACE(REPLACE(REPLACE(REPLACE(plant_name, ' ', '_'), '(', ''), ')', ''), ' ', '_'))",
+        "grid_connection_date": "grid_connection_date",
+        "latitude": "latitude",
+        "longitude": "longitude",
+        "capacity": "capacity"
+      }
+    },
+    {
+      "id": "stg_isolarcloud__devices",
+      "name": "stg_isolarcloud__devices",
+      "layer": "staging",
+      "schema": "staging",
+      "materialized": "table",
+      "columns": [
+        "device_ps_key",
+        "ps_id",
+        "device_type",
+        "type_name",
+        "device_name",
+        "device_sn",
+        "device_category"
+      ],
+      "in_db": true,
+      "sql_path": "models\\staging\\stg_isolarcloud__devices.sql",
+      "column_formulas": {
+        "device_ps_key": "device_ps_key",
+        "ps_id": "ps_id",
+        "device_type": "device_type",
+        "type_name": "type_name",
+        "device_name": "device_name",
+        "device_sn": "device_sn",
+        "device_category": "CASE WHEN device_type = 1 THEN 'Inverter' WHEN device_type = 7 THEN 'Meter' WHEN device_type = 5 THEN 'Meteo Station' ELSE 'Unknown' END"
+      }
+    },
+    {
+      "id": "stg_isolarcloud__perf_unpivoted",
+      "name": "stg_isolarcloud__perf_unpivoted",
+      "layer": "staging",
+      "schema": "staging",
+      "materialized": "incremental",
+      "columns": [
+        "timestamp",
+        "device_ps_key",
+        "device_name",
+        "ps_id",
+        "ps_name",
+        "ps_name_clean",
+        "metric_id",
+        "metric_value"
+      ],
+      "in_db": true,
+      "sql_path": "models\\staging\\stg_isolarcloud__perf_unpivoted.sql",
+      "column_formulas": {
+        "timestamp": "h.timestamp",
+        "device_ps_key": "h.device_ps_key",
+        "device_name": "d.device_name",
+        "ps_id": "d.ps_id",
+        "ps_name": "ps.ps_name",
+        "ps_name_clean": "ps.ps_name_clean",
+        "metric_id": "metric_id",
+        "metric_value": "CASE WHEN JSONB_TYPEOF(metric_value) = 'string' THEN CASE WHEN (metric_value #>> '{}') IN ('nan', '-nan', 'infinity', '-infinity', 'Infinity', '-Infinity') THEN NULL ELSE CAST((metric_value #>> '{}') AS DECIMAL) END WHEN JSONB_TYPEOF(metric_value) = 'number' THEN CASE WHEN CAST(metric_value AS TEXT) IN ('nan', '-nan', 'infinity', '-infinity', 'Infinity', '-Infinity') THEN NULL ELSE CAST(metric_value AS DECIMAL) END ELSE NULL END"
+      }
+    },
+    {
+      "id": "stg_isolarcloud__sites",
+      "name": "stg_isolarcloud__sites",
+      "layer": "staging",
+      "schema": "staging",
+      "materialized": "table",
+      "columns": [
+        "ps_id",
+        "ps_name",
+        "ps_name_clean",
+        "install_date",
+        "latitude",
+        "longitude"
+      ],
+      "in_db": true,
+      "sql_path": "models\\staging\\stg_isolarcloud__sites.sql",
+      "column_formulas": {
+        "ps_id": "ps_id",
+        "ps_name": "ps_name",
+        "ps_name_clean": "LOWER(REPLACE(REPLACE(REPLACE(REPLACE(ps_name, ' ', '_'), '(', ''), ')', ''), ' ', '_'))",
+        "install_date": "install_date",
+        "latitude": "latitude",
+        "longitude": "longitude"
+      }
+    }
+  ],
+  "edges": [
+    {
+      "from": "stg_isolarcloud__devices",
+      "to": "dim_assets",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__sites",
+      "to": "dim_assets",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__devices",
+      "to": "dim_assets",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__sites",
+      "to": "dim_assets",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_site_config",
+      "to": "dim_assets",
+      "type": "ref"
+    },
+    {
+      "from": "mart_inverter_performance_5min",
+      "to": "fact_inverter_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "fact_inverter_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "fact_sensor_calculations_5min",
+      "to": "fact_inverter_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "mart_sensor_measurements_5min",
+      "to": "fact_sensor_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_sensor_config",
+      "to": "fact_sensor_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "fact_sensor_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_sensor_site_mapping",
+      "to": "fact_sensor_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "fact_inverter_calculations_5min",
+      "to": "fact_site_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "fact_site_calculations_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__perf_unpivoted",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__devices",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__sites",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_metric_mapper",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__perf_unpivoted",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__devices",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_inverter_site_mapping",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_date_generated",
+      "to": "mart_inverter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "mart_inverter_performance_5min",
+      "to": "mart_inverter_yield_daily",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "mart_inverter_yield_daily",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__perf_unpivoted",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__devices",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__sites",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_metric_mapper",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__perf_unpivoted",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__devices",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_meter_site_mapping",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_date_generated",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_meter_config",
+      "to": "mart_meter_performance_5min",
+      "type": "ref"
+    },
+    {
+      "from": "mart_sensor_measurements_5min",
+      "to": "mart_sensor_daily",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_sensor_config",
+      "to": "mart_sensor_daily",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_sensor_site_mapping",
+      "to": "mart_sensor_daily",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__perf_unpivoted",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__devices",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__sites",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_metric_mapper",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__perf_unpivoted",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__devices",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "dim_date_generated",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_sensor_config",
+      "to": "mart_sensor_measurements_5min",
+      "type": "ref"
+    },
+    {
+      "from": "mart_simulation_degradation_factors",
+      "to": "mart_simulation_daily_25y",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_daily_simulation_target",
+      "to": "mart_simulation_daily_25y",
+      "type": "ref"
+    },
+    {
+      "from": "mart_simulation_site_start_year",
+      "to": "mart_simulation_daily_25y",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_yearly_simulation_target",
+      "to": "mart_simulation_daily_25y_poc",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_daily_simulation_target",
+      "to": "mart_simulation_daily_25y_poc",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__sites",
+      "to": "mart_simulation_daily_25y_poc",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_yearly_simulation_target",
+      "to": "mart_simulation_degradation_factors",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__sites",
+      "to": "mart_simulation_site_start_year",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__sites",
+      "to": "mart_simulation_site_start_year",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_daily_simulation_target",
+      "to": "mart_simulation_targets_daily",
+      "type": "ref"
+    },
+    {
+      "from": "dim_date_generated",
+      "to": "mart_simulation_targets_daily",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "mart_simulation_targets_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_site_kpi_monthly",
+      "to": "mart_simulation_targets_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_simulation_targets_daily",
+      "to": "mart_simulation_targets_monthly",
+      "type": "ref"
+    },
+    {
+      "from": "mart_site_kpi_monthly",
+      "to": "mart_simulation_targets_monthly",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_daily_kpi_monthly",
+      "to": "mart_site_kpi_monthly",
+      "type": "ref"
+    },
+    {
+      "from": "mart_meter_performance_5min",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_meter_config",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_energy_adjustment_daily",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_sensor_daily",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_sensor_site_mapping",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_ghi_adjustment_daily",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "fact_site_calculations_5min",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "dim_assets",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_simulation_targets_daily",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "dim_date_generated",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_site_kpi_monthly",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_issue_dates",
+      "to": "mart_site_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_site_performance_daily",
+      "to": "mart_site_performance_monthly",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_metric_mapper",
+      "to": "mart_string_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_sensor_daily",
+      "to": "mart_string_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_site_performance_daily",
+      "to": "mart_string_performance_daily",
+      "type": "ref"
+    },
+    {
+      "from": "mart_string_performance_daily",
+      "to": "mart_string_performance_monthly",
+      "type": "ref"
+    },
+    {
+      "from": "seed.seed_weekly_log",
+      "to": "mart_weekly_log",
+      "type": "ref"
+    },
+    {
+      "from": "dim_date_generated",
+      "to": "mart_weekly_log",
+      "type": "ref"
+    },
+    {
+      "from": "raw.fusionsolar_devices",
+      "to": "stg_fusionsolar__devices",
+      "type": "source"
+    },
+    {
+      "from": "stg_fusionsolar__devices",
+      "to": "stg_fusionsolar__perf_unpivoted",
+      "type": "ref"
+    },
+    {
+      "from": "stg_fusionsolar__sites",
+      "to": "stg_fusionsolar__perf_unpivoted",
+      "type": "ref"
+    },
+    {
+      "from": "raw.fusionsolar_historical_data",
+      "to": "stg_fusionsolar__perf_unpivoted",
+      "type": "source"
+    },
+    {
+      "from": "raw.fusionsolar_plants",
+      "to": "stg_fusionsolar__sites",
+      "type": "source"
+    },
+    {
+      "from": "raw.isolarcloud_devices",
+      "to": "stg_isolarcloud__devices",
+      "type": "source"
+    },
+    {
+      "from": "stg_isolarcloud__devices",
+      "to": "stg_isolarcloud__perf_unpivoted",
+      "type": "ref"
+    },
+    {
+      "from": "stg_isolarcloud__sites",
+      "to": "stg_isolarcloud__perf_unpivoted",
+      "type": "ref"
+    },
+    {
+      "from": "raw.isolarcloud_historical_data",
+      "to": "stg_isolarcloud__perf_unpivoted",
+      "type": "source"
+    },
+    {
+      "from": "raw.isolarcloud_power_stations",
+      "to": "stg_isolarcloud__sites",
+      "type": "source"
+    }
+  ],
+  "stats": {
+    "total_nodes": 53,
+    "total_edges": 92,
+    "nodes_in_db": 52,
+    "total_columns": 621,
+    "by_layer": {
+      "raw": 6,
+      "seeds": 19,
+      "staging": 6,
+      "dimensions": 2,
+      "facts": 3,
+      "marts": 17
+    },
+    "formulas": {
+      "models_with_formulas": 27,
+      "columns_with_formula": 401,
+      "sqlglot_missing": false,
+      "manifest_models": 28
+    }
+  },
+  "formula_notes": {
+    "source": "dbt target/manifest.json → compiled_code (run `dbt compile` in dbt/)",
+    "dialect": "postgres (sqlglot)"
+  }
+}

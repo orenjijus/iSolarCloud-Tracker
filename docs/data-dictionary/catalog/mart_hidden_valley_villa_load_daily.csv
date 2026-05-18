@@ -1,0 +1,7 @@
+table_schema;table_name;column_name;display_name_id;business_definition;formula;unit;source_trail;how_to_verify;where_to_correct;common_confusion;priority
+mart;mart_hidden_valley_villa_load_daily;date_key;Tanggal;Tanggal agregasi energi villa HV;Grain date;date;mart_hidden_valley_villa_load_5min -> mart_hidden_valley_villa_load_daily;Cek satu hari HV;Source 5-menit;-;P0
+mart;mart_hidden_valley_villa_load_daily;site_id;ID site HV;Identitas site Hidden Valley;Dari source 5-menit;text;mart_hidden_valley_villa_load_5min;Cek site_id tetap HV;dim_assets/mapping;P0
+mart;mart_hidden_valley_villa_load_daily;interval_count_5min;Jumlah interval 5-menit;Jumlah slot data 5-menit dalam hari;COUNT(*);count;mart_hidden_valley_villa_load_5min;Bandingkan dengan expected 288;Upstream completeness;Indikator coverage data;P0
+mart;mart_hidden_valley_villa_load_daily;daily_inv_energy_kwh;Energi inverter harian;Energi harian dari komponen inverter;SUM(inv_active_power_kw * 5/60);kWh;mart_hidden_valley_villa_load_5min;Hitung ulang manual;Model logic;P0
+mart;mart_hidden_valley_villa_load_daily;daily_sa_energy_kwh;Energi Smart Assistant harian;Energi harian dari komponen SA;SUM(sa_active_power_kw * 5/60);kWh;mart_hidden_valley_villa_load_5min;Hitung ulang manual;Model logic;P0
+mart;mart_hidden_valley_villa_load_daily;daily_villa_load_kwh;Energi beban villa harian;Total energi beban villa per hari;SUM(beban_villa_kw * 5/60);kWh;mart_hidden_valley_villa_load_5min;Hitung ulang manual;Model logic;Bukan daya kW;P0

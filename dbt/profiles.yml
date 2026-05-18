@@ -1,0 +1,14 @@
+mmsr_solar:
+  outputs:
+    dev:
+      type: postgres
+      host: 10.101.4.88
+      user: juice
+      password: "Baramulti1!"
+      port: 5432
+      dbname: MMSR
+      schema: staging  # Default schema - staging models will go here
+      threads: 1
+      
+  target: dev
+

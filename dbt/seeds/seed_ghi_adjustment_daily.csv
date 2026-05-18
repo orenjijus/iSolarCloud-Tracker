@@ -1,0 +1,737 @@
+site_name;date_key;ghi_adjusted_value;notes
+Shoetown Ligung Indonesia;2025-03-02;5.412;GHI sensor mati
+Shoetown Ligung Indonesia;2025-03-03;2.412;GHI sensor mati
+Shoetown Ligung Indonesia;2025-03-04;3.667;GHI sensor mati
+Shoetown Ligung Indonesia;2025-03-05;5.578;GHI sensor mati
+Shoetown Ligung Indonesia;2025-03-06;6.465;GHI sensor mati
+Charoen Pokphand Madiun;2026-05-07;6.002162;GHI fixed for 7 May 2026 using POA proxy
+Charoen Pokphand Majalengka;2026-04-01;5.896283;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-02;4.293422;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-03;6.771158;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-04;5.287013;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-05;6.749486;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-06;5.867029;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-07;6.295826;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-08;3.751577;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-09;4.861597;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-10;5.222703;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-11;5.510408;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-12;6.100380;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-13;5.657044;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-14;4.494090;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-15;4.036538;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-16;6.010344;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-17;5.770333;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-19;5.857367;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-20;6.051526;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-21;5.755870;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-22;2.808371;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-23;5.352094;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-24;4.011241;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-25;5.829036;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-26;5.614058;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-27;4.726328;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-28;3.401244;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-29;5.592510;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-04-30;5.418040;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-05-01;5.479699;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-05-02;3.938286;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-05-03;5.421676;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-05-04;2.882372;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-05-05;5.067281;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-05-06;5.277617;Use POA as GHI adjusted from April 2026 onward
+Charoen Pokphand Majalengka;2026-05-07;5.522616;Use POA as GHI adjusted from April 2026 onward
+PT. MMKI 1.75 MWp - Painting Building;2025-03-01;5.833;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-02;5.246;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-03;4.119;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-04;3.230;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-05;5.387;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-06;5.975;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-07;4.348;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-08;5.092;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-09;3.731;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-10;4.095;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-11;4.638;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-12;4.077;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-13;4.060;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-14;5.008;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-15;4.462;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-16;4.860;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-17;2.178;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-18;3.897;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-19;4.967;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-20;5.206;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-21;4.232;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-22;3.242;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-23;3.396;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-24;2.279;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-25;2.890;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-26;3.151;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-27;2.059;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-28;4.263;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-29;5.366;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-30;5.475;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-03-31;3.921;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-01;2.907;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-02;3.569;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-03;5.082;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-04;4.338;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-05;4.345;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-06;5.125;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-07;6.293;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-08;5.049;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-09;4.397;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-10;4.788;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-11;4.335;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-12;3.446;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-13;4.352;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-14;4.811;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-15;2.611;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-16;5.243;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-17;2.497;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-22;0.456;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-23;5.292;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-24;4.796;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-25;5.188;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-26;4.482;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-27;5.261;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-28;5.261;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-29;4.597;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-04-30;5.584;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-01;5.349;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-02;3.963;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-03;4.198;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-04;3.522;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-05;4.851;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-06;5.370;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-07;3.843;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-08;4.058;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-09;4.720;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-10;3.696;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-11;3.653;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-12;4.008;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-13;3.097;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-14;4.845;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-15;4.186;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-16;3.383;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-17;4.653;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-18;5.078;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-19;4.118;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-20;4.395;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-21;2.135;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-22;2.330;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-23;1.519;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-24;3.957;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-25;3.013;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-26;2.373;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-27;5.260;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-28;5.181;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-29;4.243;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-30;5.083;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-05-31;4.557;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-01;2.496;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-02;4.913;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-03;4.020;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-04;4.833;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-05;4.593;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-06;3.798;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-07;4.124;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-08;5.263;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-09;3.871;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-10;4.141;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-11;3.752;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-12;3.896;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-13;4.313;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-14;3.243;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-15;3.165;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-16;4.509;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-17;4.047;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-18;2.693;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-19;1.921;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-20;4.861;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-21;2.852;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-22;4.616;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-23;4.020;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-24;2.920;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-25;4.540;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-26;5.014;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-27;2.031;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-28;2.748;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-29;1.064;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-06-30;4.055;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-01;4.390;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-02;4.519;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-03;3.302;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-04;4.654;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-05;4.192;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-06;4.991;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-07;4.685;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-08;4.493;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-09;4.247;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-10;4.506;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-11;4.129;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-12;4.775;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-13;3.319;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-14;2.940;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-15;3.597;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-16;3.844;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-17;4.556;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-18;4.348;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-19;5.101;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-20;4.678;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-21;5.270;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-22;5.300;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-23;5.240;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-24;5.257;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-25;4.635;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-26;4.771;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-27;4.401;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-28;4.687;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-29;4.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-30;4.617;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-07-31;4.993;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-01;5.072;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-02;5.412;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-03;5.406;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-04;4.052;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-05;4.542;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-06;5.589;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-07;5.333;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-08;4.308;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-09;5.027;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-10;5.150;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-11;3.793;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-12;1.813;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-13;4.607;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-14;2.994;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-15;5.708;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-16;5.374;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-17;5.469;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-18;2.758;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-19;2.537;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-20;3.318;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-21;5.310;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-22;5.497;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-23;5.588;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-24;5.163;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-25;4.251;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-26;5.853;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-27;6.057;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-28;4.396;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-29;5.199;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-30;4.172;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-08-31;4.186;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-01;6.068;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-02;5.564;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-03;6.192;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-04;5.943;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-05;5.125;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-06;5.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-07;5.978;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-08;4.283;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-09;1.049;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-10;4.672;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-11;3.525;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-12;4.048;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-13;6.800;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-14;4.246;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-15;5.247;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-16;3.577;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-17;3.848;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-18;2.578;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-19;2.634;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-20;3.522;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-21;5.444;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-22;5.897;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-23;5.759;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-24;6.542;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-25;5.399;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-26;6.395;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-27;4.322;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-28;5.540;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-29;4.621;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-09-30;4.915;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-01;5.277;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-02;3.666;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-03;4.712;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-04;6.440;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-05;5.622;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-06;5.094;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-07;5.105;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-08;5.496;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-09;6.254;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-10;5.763;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-11;5.258;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-12;5.904;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-13;3.731;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-14;5.520;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-15;4.838;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-16;5.822;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-17;6.644;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-18;5.288;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-19;4.710;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-20;5.449;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-21;5.207;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-22;4.462;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-23;4.096;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-24;4.561;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-25;5.559;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-26;6.526;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-27;5.354;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-28;2.197;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-29;4.362;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-30;3.963;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-10-31;6.765;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-01;3.267;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-02;4.519;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-03;2.471;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-04;3.462;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-05;3.127;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-06;2.764;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-07;3.834;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-08;3.034;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-09;2.841;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-10;3.073;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-11;3.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-12;5.017;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-13;6.379;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-14;4.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-15;3.476;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-16;3.293;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-17;2.851;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-18;3.481;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-19;4.174;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-20;5.011;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-21;5.527;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-22;3.255;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-23;2.847;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-24;3.437;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-25;4.883;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-26;5.246;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-27;4.828;Anomaly GHI calculated to POA ratio
+PT. MMKI 1.75 MWp - Painting Building;2025-02-28;5.740;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-01;3.267;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-02;4.519;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-03;2.471;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-04;3.462;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-05;3.127;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-06;2.764;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-07;3.834;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-08;3.034;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-09;2.841;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-10;3.073;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-11;3.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-12;5.017;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-13;6.379;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-14;4.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-15;3.476;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-16;3.293;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-17;2.851;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-18;3.481;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-19;4.174;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-20;5.011;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-21;5.527;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-22;3.255;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-23;2.847;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-24;3.437;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-25;4.883;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-26;5.246;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-27;4.828;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-02-28;5.740;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-01;5.833;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-02;5.246;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-03;4.119;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-04;3.230;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-05;5.387;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-06;5.975;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-07;4.348;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-08;5.092;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-09;3.731;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-10;4.095;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-11;4.638;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-12;4.077;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-13;4.060;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-14;5.008;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-15;4.462;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-16;4.860;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-17;2.178;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-18;3.897;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-19;4.967;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-20;5.206;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-21;4.232;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-22;3.242;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-23;3.396;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-24;2.279;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-25;2.890;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-26;3.151;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-27;2.059;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-28;4.263;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-29;5.366;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-30;5.475;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-03-31;3.921;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-01;2.907;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-02;3.569;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-03;5.082;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-04;4.338;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-05;4.345;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-06;5.125;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-07;6.293;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-08;5.049;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-09;4.397;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-10;4.788;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-11;4.335;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-12;3.446;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-13;4.352;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-14;4.811;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-15;2.611;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-16;5.243;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-17;2.497;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-18;3.140;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-19;4.867;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-20;4.854;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-21;3.452;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-22;5.003;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-23;5.292;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-24;4.796;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-25;5.188;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-26;4.482;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-27;5.261;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-28;5.261;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-29;4.597;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-04-30;5.584;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-01;5.349;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-02;3.963;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-03;4.198;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-04;3.522;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-05;4.851;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-06;5.370;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-07;3.843;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-08;4.058;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-09;4.720;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-10;3.696;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-11;3.653;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-12;4.008;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-13;3.097;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-14;4.845;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-15;4.186;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-16;3.383;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-17;4.653;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-18;5.078;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-19;4.118;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-20;4.395;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-21;2.135;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-22;2.330;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-23;1.519;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-24;3.957;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-25;3.013;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-26;2.373;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-27;5.260;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-28;5.181;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-29;4.243;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-30;5.083;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-05-31;4.557;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-01;2.496;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-02;4.913;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-03;4.020;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-04;4.833;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-05;4.593;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-06;3.798;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-07;4.124;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-08;5.263;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-09;3.871;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-10;4.141;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-11;3.752;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-12;3.896;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-13;4.313;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-14;3.243;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-15;3.165;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-16;4.509;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-17;4.047;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-18;2.693;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-19;1.921;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-20;4.861;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-21;2.852;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-22;4.616;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-23;4.020;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-24;2.920;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-25;4.540;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-26;5.014;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-27;2.031;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-28;2.748;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-29;1.064;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-06-30;4.055;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-01;4.390;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-02;4.519;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-03;3.302;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-04;4.654;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-05;4.192;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-06;4.991;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-07;4.685;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-08;4.493;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-09;4.247;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-10;4.506;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-11;4.129;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-12;4.775;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-13;3.319;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-14;2.940;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-15;3.597;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-16;3.844;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-17;4.556;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-18;4.348;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-19;5.101;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-20;4.678;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-21;5.270;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-22;5.300;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-23;5.240;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-24;5.257;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-25;4.635;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-26;4.771;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-27;4.401;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-28;4.687;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-29;4.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-30;4.617;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-07-31;4.993;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-01;5.072;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-02;5.412;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-03;5.406;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-04;4.052;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-05;4.542;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-06;5.589;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-07;5.333;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-08;4.308;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-09;5.027;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-10;5.150;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-11;3.793;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-12;1.813;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-13;4.607;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-14;2.994;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-15;5.708;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-16;5.374;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-17;5.469;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-18;2.758;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-19;2.537;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-20;3.318;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-21;5.310;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-22;5.497;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-23;5.588;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-24;5.163;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-25;4.251;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-26;5.853;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-27;6.057;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-28;4.396;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-29;5.199;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-30;4.172;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-08-31;4.186;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-01;6.068;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-02;5.564;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-03;6.192;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-04;5.943;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-05;5.125;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-06;5.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-07;5.978;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-08;4.283;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-09;1.049;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-10;4.672;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-11;3.525;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-12;4.048;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-13;6.800;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-14;4.246;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-15;5.247;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-16;3.577;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-17;3.848;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-18;2.578;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-19;2.634;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-20;3.522;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-21;5.444;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-22;5.897;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-23;5.759;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-24;6.542;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-25;5.399;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-26;6.395;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-27;4.322;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-28;5.540;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-29;4.621;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-09-30;4.915;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-01;5.277;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-02;3.666;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-03;4.712;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-04;6.440;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-05;5.622;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-06;5.094;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-07;5.105;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-08;5.496;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-09;6.254;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-10;5.763;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-11;5.258;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-12;5.904;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-13;3.731;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-14;5.520;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-15;4.838;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-16;5.822;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-17;6.644;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-18;5.288;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-19;4.710;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-20;5.449;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-21;5.207;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-22;4.462;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-23;4.096;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-24;4.561;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-25;5.559;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-26;6.526;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-27;5.354;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-28;2.197;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-29;4.362;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-30;3.963;Anomaly GHI calculated to POA ratio
+PT. MMKI 5.7 MWp - Phase 2;2025-10-31;6.765;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-01;4.390;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-02;4.519;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-03;3.302;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-04;4.654;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-05;4.192;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-06;4.991;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-07;4.685;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-08;4.493;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-09;4.247;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-10;4.506;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-11;4.129;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-12;4.775;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-13;3.319;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-14;2.940;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-15;3.597;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-16;3.844;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-17;4.556;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-18;4.348;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-19;5.101;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-20;4.678;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-21;5.270;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-22;5.300;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-23;5.240;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-24;5.257;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-25;4.635;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-26;4.771;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-27;4.401;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-28;4.687;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-29;4.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-30;4.617;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-07-31;4.993;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-01;5.072;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-02;5.412;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-03;5.406;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-04;4.052;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-05;4.542;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-06;5.589;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-07;5.333;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-08;4.308;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-09;5.027;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-10;5.150;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-11;3.793;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-12;1.813;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-13;4.607;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-14;2.994;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-15;5.708;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-16;5.374;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-17;5.469;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-18;2.758;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-19;2.537;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-20;3.318;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-21;5.310;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-22;5.497;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-23;5.588;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-24;5.163;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-25;4.251;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-26;5.853;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-27;6.057;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-28;4.396;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-29;5.199;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-30;4.172;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-08-31;4.186;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-01;6.068;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-02;5.564;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-03;6.192;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-04;5.943;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-05;5.125;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-06;5.236;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-07;5.978;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-08;4.283;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-09;1.049;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-10;4.672;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-11;3.525;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-12;4.048;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-13;6.800;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-14;4.246;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-15;5.247;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-16;3.577;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-17;3.848;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-18;2.578;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-19;2.634;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-20;3.522;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-21;5.444;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-22;5.897;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-23;5.759;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-24;6.542;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-25;5.399;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-26;6.395;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-27;4.322;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-28;5.540;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-29;4.621;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-09-30;4.915;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-01;5.277;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-02;3.666;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-03;4.712;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-04;6.440;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-05;5.622;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-06;5.094;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-07;5.105;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-08;5.496;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-09;6.254;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-10;5.763;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-11;5.258;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-12;5.904;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-13;3.731;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-14;5.520;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-15;4.838;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-16;5.822;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-17;6.644;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-18;5.288;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-19;4.710;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-20;5.449;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-21;5.207;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-22;4.462;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-23;4.096;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-24;4.561;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-25;5.559;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-26;6.526;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-27;5.354;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-28;2.197;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-29;4.362;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-30;3.963;Anomaly GHI calculated to POA ratio
+PT. MMKI 4.292 MWp - Phase 3;2025-10-31;6.765;Anomaly GHI calculated to POA ratio
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-11;4.248;switched device not configured yet
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-12;2.652;switched device not configured yet
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-13;4.731;switched device not configured yet
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-14;5.482;switched device not configured yet
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-15;5.790;switched device not configured yet
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-16;4.349;switched device not configured yet
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-17;5.289;switched device not configured yet
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-18;4.927;switched device not configured yet
+PT. MMKI 1.75 MWp - Painting Building;2026-05-02;3.677734;MMKI I 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 1.75 MWp - Painting Building;2026-05-03;5.124985;MMKI I 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 1.75 MWp - Painting Building;2026-05-04;3.587259;MMKI I 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 1.75 MWp - Painting Building;2026-05-05;2.881087;MMKI I 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 1.75 MWp - Painting Building;2026-05-06;4.769581;MMKI I 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 1.75 MWp - Painting Building;2026-05-08;4.675775;MMKI I 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 1.75 MWp - Painting Building;2026-05-09;3.792118;MMKI I 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 5.7 MWp - Phase 2;2026-05-02;3.698738;MMKI II 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 5.7 MWp - Phase 2;2026-05-03;5.215347;MMKI II 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 5.7 MWp - Phase 2;2026-05-04;3.613978;MMKI II 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 5.7 MWp - Phase 2;2026-05-05;2.900535;MMKI II 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 5.7 MWp - Phase 2;2026-05-06;4.849389;MMKI II 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 5.7 MWp - Phase 2;2026-05-08;4.739756;MMKI II 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 5.7 MWp - Phase 2;2026-05-09;3.821349;MMKI II 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 4.292 MWP - Phase 3;2026-05-02;3.735980;MMKI III 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 4.292 MWP - Phase 3;2026-05-03;5.299907;MMKI III 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 4.292 MWP - Phase 3;2026-05-04;3.640459;MMKI III 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 4.292 MWP - Phase 3;2026-05-05;2.937219;MMKI III 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 4.292 MWP - Phase 3;2026-05-06;4.947859;MMKI III 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 4.292 MWP - Phase 3;2026-05-08;4.812153;MMKI III 2-9 Mei 2026 ghi_adjusted ikuti POA harian
+PT. MMKI 4.292 MWP - Phase 3;2026-05-09;3.870505;MMKI III 2-9 Mei 2026 ghi_adjusted ikuti POA harian

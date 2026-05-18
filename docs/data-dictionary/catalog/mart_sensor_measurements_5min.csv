@@ -1,0 +1,9 @@
+table_schema;table_name;column_name;display_name_id;business_definition;formula;unit;source_trail;how_to_verify;where_to_correct;common_confusion;priority
+mart;mart_sensor_measurements_5min;timestamp;Waktu 5-menit;Timestamp observasi sensor;Grain timestamp;timestamp;stg_*_perf_unpivoted -> mart_sensor_measurements_5min;Cek continuity data 5-menit;Sumber ingest platform;-;P0
+mart;mart_sensor_measurements_5min;date_key;Tanggal operasi;Tanggal turunan dari timestamp;DATE(timestamp);date;timestamp -> dim_date_generated;Bandingkan DATE(timestamp);Model dbt;-;P1
+mart;mart_sensor_measurements_5min;asset_id;ID sensor;ID sensor standar lintas platform;Prefix platform + device id;text;mapping device -> dim_assets;Cek join ke dim_assets;seed_sensor_config + dim_assets;Bukan device_id mentah;P0
+mart;mart_sensor_measurements_5min;site_name;Nama site;Site tempat sensor berada;Dari mapping aset;text;staging devices/sites -> dim_assets;Cek mapping site sensor;dim_assets / mapping;P0
+mart;mart_sensor_measurements_5min;metric_name;Nama metrik standar;Nama metrik sensor standar;Map dari metric_id;text;seed_metric_mapper;Cek mapping untuk irradiance/daily_irradiance;seed_metric_mapper;Nama raw berbeda antar platform;P0
+mart;mart_sensor_measurements_5min;metric_value;Nilai sensor 5-menit;Nilai numerik sensor per metrik;CAST numeric;depends on metric;staging sensor -> mart;Bandingkan raw vs mart;source ingest/filter;P0
+mart;mart_sensor_measurements_5min;sensor_type;Tipe sensor;Kategori sensor untuk logika GHI/POA;Lookup konfigurasi;text;seed_sensor_config;Pastikan sensor_type benar;seed_sensor_config;Salah tipe memengaruhi MIT/POA;P0
+mart;mart_sensor_measurements_5min;sensor_dev_name;Nama sensor konfigurasi;Nama sensor sesuai seed config;Lookup konfigurasi;text;seed_sensor_config;Cek nama sensor mapping;seed_sensor_config;Metadata;P1

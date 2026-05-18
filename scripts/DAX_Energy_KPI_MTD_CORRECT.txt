@@ -1,0 +1,115 @@
+-- ============================================
+-- FORMULA DAX UNTUK ENERGY KPI (MTD) - BENAR
+-- ============================================
+-- Copy paste formula ini ke Power BI
+-- ============================================
+
+Energy KPI (MTD) = 
+VAR CurrentDate = MAX('mart mart_site_performance_daily'[date_key])
+VAR CurrentYear = YEAR(CurrentDate)
+VAR CurrentMonth = MONTH(CurrentDate)
+VAR CurrentSite = MAX('mart mart_site_performance_daily'[site_id])
+VAR KPIMonthly = 
+    CALCULATE(
+        SUM('KPI_All_Sites'[Energy_KPI_MWh]),
+        FILTER(
+            ALL('KPI_All_Sites'),
+            'KPI_All_Sites'[site_id] = CurrentSite
+                && 'KPI_All_Sites'[Year] = CurrentYear
+                && 'KPI_All_Sites'[Month_Number] = CurrentMonth
+        )
+    )
+VAR TargetMTD = 
+    CALCULATE(
+        SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+        FILTER(
+            ALL('mart mart_site_performance_daily'[date_key]),
+            'mart mart_site_performance_daily'[date_key] <= CurrentDate
+                && YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+        )
+    )
+VAR TargetMonthly = 
+    CALCULATE(
+        SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+        FILTER(
+            ALL('mart mart_site_performance_daily'[date_key]),
+            YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+        )
+    )
+RETURN
+    IF(
+        TargetMonthly > 0,
+        KPIMonthly * DIVIDE(TargetMTD, TargetMonthly),
+        BLANK()
+    )
+
+
+-- ============================================
+-- ALTERNATIF: Jika MAX() error, gunakan SELECTEDVALUE()
+-- ============================================
+
+Energy KPI (MTD) v2 = 
+VAR CurrentDate = MAX('mart mart_site_performance_daily'[date_key])
+VAR CurrentYear = YEAR(CurrentDate)
+VAR CurrentMonth = MONTH(CurrentDate)
+VAR CurrentSite = SELECTEDVALUE('mart mart_site_performance_daily'[site_id])
+VAR KPIMonthly = 
+    CALCULATE(
+        SUM('KPI_All_Sites'[Energy_KPI_MWh]),
+        FILTER(
+            ALL('KPI_All_Sites'),
+            'KPI_All_Sites'[site_id] = CurrentSite
+                && 'KPI_All_Sites'[Year] = CurrentYear
+                && 'KPI_All_Sites'[Month_Number] = CurrentMonth
+        )
+    )
+VAR TargetMTD = 
+    CALCULATE(
+        SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+        FILTER(
+            ALL('mart mart_site_performance_daily'[date_key]),
+            'mart mart_site_performance_daily'[date_key] <= CurrentDate
+                && YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+        )
+    )
+VAR TargetMonthly = 
+    CALCULATE(
+        SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+        FILTER(
+            ALL('mart mart_site_performance_daily'[date_key]),
+            YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+        )
+    )
+RETURN
+    IF(
+        TargetMonthly > 0,
+        KPIMonthly * DIVIDE(TargetMTD, TargetMonthly),
+        BLANK()
+    )
+
+
+-- ============================================
+-- CHECKLIST SEBELUM COPY PASTE:
+-- ============================================
+-- 
+-- 1. Pastikan ada tanda = setelah VAR CurrentSite
+--    BENAR: VAR CurrentSite = MAX(...)
+--    SALAH: VAR CurrentSite MAX(...)  <- TIDAK ADA =
+--    SALAH: VAR CurrentSite = (...)   <- TIDAK ADA FUNGSI
+-- 
+-- 2. Pastikan semua kurung tutup sesuai
+-- 
+-- 3. Pastikan nama tabel dan kolom sesuai dengan Power BI Anda
+--    - Month_Number (bukan Month) untuk perbandingan dengan MONTH() yang menghasilkan angka
+--    - Month adalah text, Month_Number adalah angka (1-12)
+-- 
+-- ============================================
+

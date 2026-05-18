@@ -1,0 +1,76 @@
+dim_file,dimension_column,source_expression
+dim_assets.sql,asset_id,ua.asset_id
+dim_assets.sql,asset_level,ua.asset_level
+dim_assets.sql,asset_name,ua.asset_name
+dim_assets.sql,device_type_id,ua.device_type_id
+dim_assets.sql,device_category,ua.device_category
+dim_assets.sql,system,ua.system
+dim_assets.sql,site_id,ua.site_id
+dim_assets.sql,site_name,ua.site_name
+dim_assets.sql,site_name_clean,ua.site_name_clean
+dim_assets.sql,latitude,ua.latitude
+dim_assets.sql,longitude,ua.longitude
+dim_assets.sql,actual_capacity_kw,"CASE WHEN ua.asset_level='Site' THEN CAST(REPLACE(sc.Capacity::text, ',', '.') AS NUMERIC) END"
+dim_assets.sql,tariff,"CASE WHEN ua.asset_level='Site' THEN CAST(REPLACE(sc.Tariff::text, ',', '.') AS NUMERIC) END"
+dim_assets.sql,site_order,"CASE WHEN ua.asset_level='Site' THEN sc.SiteOrder::INTEGER END"
+dim_assets.sql,calculation_start_date,"CASE WHEN ua.asset_level='Site' THEN parsed sc.CalculationStartDate END"
+dim_assets.sql,total_inverters,"CASE WHEN ua.asset_level='Site' THEN sc.TotalInverters::INTEGER END"
+dim_date_generated.sql,date_key,date_key
+dim_date_generated.sql,year,EXTRACT(YEAR FROM date_key)
+dim_date_generated.sql,month,EXTRACT(MONTH FROM date_key)
+dim_date_generated.sql,day,EXTRACT(DAY FROM date_key)
+dim_date_generated.sql,week_of_month,"CASE WHEN week_of_month=6 AND week6_day_count=1 THEN 5 ELSE week_of_month END"
+dim_date_generated.sql,day_of_week,iso_dow
+dim_date_generated.sql,day_of_year,EXTRACT(DOY FROM date_key)
+dim_date_generated.sql,day_name,TO_CHAR(date_key, 'Day')
+dim_date_generated.sql,month_name,TO_CHAR(date_key, 'Month')
+dim_date_generated.sql,month_key,DATE_TRUNC('month', date_key)
+dim_date_generated.sql,quarter_key,DATE_TRUNC('quarter', date_key)
+dim_date_generated.sql,year_key,DATE_TRUNC('year', date_key)
+dim_date_generated.sql,season,"CASE WHEN month 4-9 THEN Dry Season ELSE Wet Season END"
+dim_date_generated.sql,day_type,"CASE WHEN iso_dow IN (6,7) THEN Weekend ELSE Weekday END"
+dim_inverter_string_layout.sql,source,source
+dim_inverter_string_layout.sql,site_id,site_id
+dim_inverter_string_layout.sql,site_name,site_name
+dim_inverter_string_layout.sql,inverter_id,"COALESCE(inverter_id_from_config, inverter_id_from_config_sn, inverter_id_from_config_no, inverter_id_seed, inverter_id_auto)"
+dim_inverter_string_layout.sql,inverter_name,"COALESCE(inverter_name_from_config, inverter_name_from_config_sn, inverter_name_from_config_no, inverter_name_seed, inverter_name_auto)"
+dim_inverter_string_layout.sql,inverter_sn,"COALESCE(inverter_sn_config, inverter_sn_from_config_sn, inverter_sn_from_config_no, inverter_sn_auto)"
+dim_inverter_string_layout.sql,inverter_no,inverter_no
+dim_inverter_string_layout.sql,mppt_no,mppt_no
+dim_inverter_string_layout.sql,string_no,string_no
+dim_inverter_string_layout.sql,module_qty,module_qty
+dim_inverter_string_layout.sql,orient_code,orient_code
+dim_inverter_string_layout.sql,inverter_ac_capacity_kw,"COALESCE(inverter_ac_capacity_kw, inverter_ac_capacity_kw_master)"
+dim_inverter_string_layout.sql,inverter_model,"COALESCE(inverter_model, site_inverter_model)"
+dim_inverter_string_layout.sql,inverter_manufacturer,"COALESCE(inverter_manufacturer, inverter_model_manufacturer_master)"
+dim_inverter_string_layout.sql,inverter_dc_capacity_kw,inverter_dc_capacity_kw
+dim_inverter_string_layout.sql,mppt_count,"COALESCE(mppt_count, mppt_count_master)"
+dim_inverter_string_layout.sql,pv_module_model,pv_module_model
+dim_inverter_string_layout.sql,pv_module_manufacturer,pv_module_manufacturer
+dim_inverter_string_layout.sql,pv_module_p_nom_wp_master,pv_module_p_nom_wp_master
+dim_inverter_string_layout.sql,pv_module_model_year,pv_module_model_year
+dim_inverter_string_layout.sql,inverter_ac_capacity_max_kw_master,inverter_ac_capacity_max_kw_master
+dim_inverter_string_layout.sql,inverter_input_count_master,inverter_input_count_master
+dim_inverter_string_layout.sql,is_active,is_active
+dim_inverter_string_layout.sql,commission_date,commission_date
+dim_inverter_string_layout.sql,decommission_date,decommission_date
+dim_inverter_string_layout.sql,notes,notes
+dim_inverter_string_layout.sql,candidate_count,candidate_count_auto
+dim_inverter_string_layout.sql,inverter_mapping_status,mapping status case expression
+dim_minute.sql,timestamp,spine.timestamp
+dim_minute.sql,date_key,spine.timestamp::date
+dim_minute.sql,minute_key,"(EXTRACT(HOUR)*60 + EXTRACT(MINUTE))/5"
+dim_minute.sql,time_label,TO_CHAR(spine.timestamp, 'HH24:MI')
+dim_site.sql,asset_id,da.asset_id
+dim_site.sql,site_id,da.site_id
+dim_site.sql,site_code,da.site_id::text
+dim_site.sql,site_name,da.site_name
+dim_site.sql,site_name_clean,da.site_name_clean
+dim_site.sql,system,da.system
+dim_site.sql,actual_capacity_kw,da.actual_capacity_kw
+dim_site.sql,tariff,da.tariff
+dim_site.sql,site_order,da.site_order
+dim_site.sql,calculation_start_date,da.calculation_start_date
+dim_site.sql,total_inverters,da.total_inverters
+dim_site.sql,latitude,da.latitude
+dim_site.sql,longitude,da.longitude

@@ -1,0 +1,8 @@
+table_schema;table_name;column_name;display_name_id;business_definition;formula;unit;source_trail;how_to_verify;where_to_correct;common_confusion;priority
+mart;fact_meter_active_power_corrected_5min;timestamp;Waktu 5-menit;Timestamp koreksi daya meter HV;Grain timestamp;timestamp;stg_fusionsolar__perf_unpivoted -> fact_meter_active_power_corrected_5min;Cek satu meter satu timestamp;Source meter HV;-;P0
+mart;fact_meter_active_power_corrected_5min;asset_id;ID meter;ID meter FusionSolar;FS_<dev_id>;text;raw devices + dim mapping;Cek kesesuaian dev_id;seed/site mapping;-;P0
+mart;fact_meter_active_power_corrected_5min;site_id;ID site;Site/plant hasil merge;COALESCE(logical plant, physical plant);text;seed_site_merge + stg_fusionsolar__sites;Cek mapping plant merge;seed_site_merge;Bisa beda dari plant raw;P0
+mart;fact_meter_active_power_corrected_5min;pa_kw;Daya phase A;Daya aktif phase A meter;metric active_power_a;kW;stg_fusionsolar__perf_unpivoted;Bandingkan raw metric A;source ingestion;-;P1
+mart;fact_meter_active_power_corrected_5min;pb_kw;Daya phase B;Daya aktif phase B meter;metric active_power_b;kW;stg_fusionsolar__perf_unpivoted;Bandingkan raw metric B;source ingestion;-;P1
+mart;fact_meter_active_power_corrected_5min;pc_kw;Daya phase C;Daya aktif phase C meter;metric active_power_c;kW;stg_fusionsolar__perf_unpivoted;Bandingkan raw metric C;source ingestion;-;P1
+mart;fact_meter_active_power_corrected_5min;active_power_corrected_kw;Daya terkoreksi;Daya final setelah koreksi phase C untuk meter tertentu;Normal PA+PB+PC, jika phase C swapped dalam window: PA+PB-PC;kW;phase metrics + seed_meter_config_override;Hitung ulang manual per meter;seed_meter_config_override + vars tanggal;Koreksi berlaku pada window tanggal tertentu;P0

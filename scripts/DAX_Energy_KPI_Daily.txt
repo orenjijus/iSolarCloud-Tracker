@@ -1,0 +1,644 @@
+-- ============================================
+-- FORMULA DAX UNTUK ENERGY KPI (DAILY)
+-- ============================================
+-- Copy paste formula ini ke Power BI
+-- ============================================
+-- 
+-- Tabel yang digunakan:
+-- - Performance Daily: 'mart mart_site_performance_daily'
+-- - Target Daily: 'mart mart_site_performance_daily'[energy_target_mwh]
+-- - KPI Monthly: 'KPI_All_Sites'[Energy_KPI_MWh]
+-- 
+-- Formula: KPI Daily = Target Daily × (KPI Monthly / Target Monthly)
+-- 
+-- Penjelasan:
+-- - KPI hanya tersedia per bulan, jadi kita perlu menghitung KPI harian
+-- - KPI harian dihitung secara proporsional berdasarkan target harian
+-- - Jika target harian = 10 MWh, target bulanan = 300 MWh, KPI bulanan = 270 MWh
+-- - Maka KPI harian = 10 × (270 / 300) = 9 MWh
+-- 
+-- ============================================
+-- REKOMENDASI PENGGUNAAN:
+-- ============================================
+-- 
+-- Jika Anda mendapat error "single value cannot be determined":
+-- → Gunakan "Energy KPI (Daily) - Recommended" (versi dengan SUMX)
+-- → Gunakan "Energy KPI (MTD) - Recommended" (versi dengan SUMX)
+-- 
+-- Jika Anda yakin hanya ada 1 site dan 1 date dalam context:
+-- → Gunakan "Energy KPI (Daily) - Simple" (versi sederhana)
+-- 
+-- Versi pertama "Energy KPI (Daily)" menggunakan iteratif yang lebih kompleks
+-- tapi lebih robust untuk berbagai context.
+-- 
+-- CATATAN PENTING TENTANG MTD:
+-- - MTD (Month To Date) menghitung dari tanggal 1 sampai tanggal saat ini
+-- - Ketika slicer bulan dipilih:
+--   * Jika bulan yang dipilih adalah bulan saat ini: MTD menghitung sampai TODAY() (bukan seluruh bulan)
+--   * Jika bulan yang dipilih adalah bulan masa lalu: MTD menghitung seluruh bulan (karena sudah selesai)
+-- - Formula menggunakan REMOVEFILTERS untuk memastikan filter date_key tidak terpengaruh slicer
+-- - Jika ingin melihat seluruh bulan untuk bulan saat ini, gunakan KPI Monthly dari tabel KPI_All_Sites
+-- 
+-- ============================================
+
+Energy KPI (Daily) = 
+-- Menggunakan pendekatan iteratif untuk menghindari error "single value cannot be determined"
+-- Formula ini bekerja dengan baik dalam berbagai context (single row, multiple rows, dll)
+SUMX(
+    VALUES('mart mart_site_performance_daily'[date_key]),
+    VAR CurrentDate = 'mart mart_site_performance_daily'[date_key]
+    VAR CurrentYear = YEAR(CurrentDate)
+    VAR CurrentMonth = MONTH(CurrentDate)
+    
+    -- Ambil target harian untuk tanggal saat ini (dari context filter)
+    VAR TargetDaily = 
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[energy_target_mwh])
+        )
+    
+    -- Ambil site_id dari context (bisa multiple sites, akan diiterasi)
+    VAR SitesInContext = 
+        VALUES('mart mart_site_performance_daily'[site_id])
+    
+    -- Hitung KPI Daily untuk setiap site dalam context
+    RETURN
+        SUMX(
+            SitesInContext,
+            VAR CurrentSite = 'mart mart_site_performance_daily'[site_id]
+            
+            -- Ambil KPI bulanan untuk site, year, dan month yang sesuai
+            VAR KPIMonthly = 
+                CALCULATE(
+                    SUM('KPI_All_Sites'[Energy_KPI_MWh]),
+                    FILTER(
+                        ALL('KPI_All_Sites'),
+                        'KPI_All_Sites'[site_id] = CurrentSite
+                            && 'KPI_All_Sites'[Year] = CurrentYear
+                            && 'KPI_All_Sites'[Month_Number] = CurrentMonth
+                    )
+                )
+            
+            -- Hitung Target Bulanan (seluruh bulan) untuk site ini
+            VAR TargetMonthly = 
+                CALCULATE(
+                    SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+                    FILTER(
+                        ALL('mart mart_site_performance_daily'[date_key]),
+                        YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                            && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                            && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+                    )
+                )
+            
+            -- Hitung target daily untuk site ini dan tanggal ini
+            VAR TargetDailyForSite = 
+                CALCULATE(
+                    SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+                    FILTER(
+                        ALL('mart mart_site_performance_daily'),
+                        'mart mart_site_performance_daily'[date_key] = CurrentDate
+                            && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+                    )
+                )
+            
+            -- Hitung KPI harian secara proporsional
+            RETURN
+                IF(
+                    TargetMonthly > 0 && TargetDailyForSite > 0,
+                    TargetDailyForSite * DIVIDE(KPIMonthly, TargetMonthly),
+                    0
+                )
+        )
+)
+
+
+-- ============================================
+-- ALTERNATIF: Versi sederhana menggunakan context filter
+-- ============================================
+-- Versi ini lebih sederhana dan menggunakan context filter yang sudah ada
+-- Cocok jika Anda yakin hanya ada 1 site dan 1 date dalam context
+
+Energy KPI (Daily) - Simple = 
+VAR CurrentDate = MAX('mart mart_site_performance_daily'[date_key])
+VAR CurrentYear = YEAR(CurrentDate)
+VAR CurrentMonth = MONTH(CurrentDate)
+VAR CurrentSite = SELECTEDVALUE('mart mart_site_performance_daily'[site_id], BLANK())
+
+-- Jika tidak ada site dalam context, return blank
+RETURN
+    IF(
+        ISBLANK(CurrentSite),
+        BLANK(),
+        VAR TargetDaily = 
+            CALCULATE(
+                SUM('mart mart_site_performance_daily'[energy_target_mwh])
+            )
+        
+        VAR KPIMonthly = 
+            CALCULATE(
+                SUM('KPI_All_Sites'[Energy_KPI_MWh]),
+                FILTER(
+                    ALL('KPI_All_Sites'),
+                    'KPI_All_Sites'[site_id] = CurrentSite
+                        && 'KPI_All_Sites'[Year] = CurrentYear
+                        && 'KPI_All_Sites'[Month_Number] = CurrentMonth
+                )
+            )
+        
+        VAR TargetMonthly = 
+            CALCULATE(
+                SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+                FILTER(
+                    ALL('mart mart_site_performance_daily'[date_key]),
+                    YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                        && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                        && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+                )
+            )
+        
+        RETURN
+            IF(
+                TargetMonthly > 0 && TargetDaily > 0,
+                TargetDaily * DIVIDE(KPIMonthly, TargetMonthly),
+                BLANK()
+            )
+    )
+
+
+-- ============================================
+-- VERSI YANG LEBIH EFISIEN: Menggunakan iteratif per row
+-- ============================================
+-- Versi ini menggunakan SUMX untuk iterasi per row, menghindari error "single value"
+-- RECOMMENDED: Gunakan versi ini jika versi pertama masih error
+
+Energy KPI (Daily) - Recommended = 
+SUMX(
+    'mart mart_site_performance_daily',
+    VAR CurrentDate = 'mart mart_site_performance_daily'[date_key]
+    VAR CurrentYear = YEAR(CurrentDate)
+    VAR CurrentMonth = MONTH(CurrentDate)
+    VAR CurrentSite = 'mart mart_site_performance_daily'[site_id]
+    VAR TargetDaily = 'mart mart_site_performance_daily'[energy_target_mwh]
+    
+    -- Ambil KPI bulanan untuk site, year, dan month yang sesuai
+    VAR KPIMonthly = 
+        CALCULATE(
+            SUM('KPI_All_Sites'[Energy_KPI_MWh]),
+            FILTER(
+                ALL('KPI_All_Sites'),
+                'KPI_All_Sites'[site_id] = CurrentSite
+                    && 'KPI_All_Sites'[Year] = CurrentYear
+                    && 'KPI_All_Sites'[Month_Number] = CurrentMonth
+            )
+        )
+    
+    -- Hitung Target Bulanan (seluruh bulan) untuk site ini
+    VAR TargetMonthly = 
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+            FILTER(
+                ALL('mart mart_site_performance_daily'),
+                YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                    && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                    && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+            )
+        )
+    
+    -- Hitung KPI harian secara proporsional
+    RETURN
+        IF(
+            TargetMonthly > 0 && TargetDaily > 0,
+            TargetDaily * DIVIDE(KPIMonthly, TargetMonthly),
+            0
+        )
+)
+
+
+-- ============================================
+-- FORMULA DAX UNTUK ENERGY KPI (MTD) - MENGGUNAKAN SUM KPI DAILY
+-- ============================================
+-- KPI MTD = SUM(KPI Daily) dari tanggal 1 sampai tanggal saat ini
+-- Sama seperti Target MTD yang menjumlahkan target harian
+-- ============================================
+
+Energy KPI (MTD) = 
+-- Versi lama - menggunakan MAX() yang bisa error
+-- Gunakan "Energy KPI (MTD) - Recommended" sebagai gantinya
+VAR CurrentDate = 
+    IF(
+        HASONEVALUE('mart mart_site_performance_daily'[date_key]),
+        MAX('mart mart_site_performance_daily'[date_key]),
+        TODAY()  -- Jika multiple dates, gunakan TODAY() untuk MTD
+    )
+VAR CurrentYear = YEAR(CurrentDate)
+VAR CurrentMonth = MONTH(CurrentDate)
+VAR CurrentSite = MAX('mart mart_site_performance_daily'[site_id])
+
+-- Ambil KPI bulanan untuk site, year, dan month yang sesuai dari tabel KPI_All_Sites
+VAR KPIMonthly = 
+    CALCULATE(
+        SUM('KPI_All_Sites'[Energy_KPI_MWh]),
+        FILTER(
+            ALL('KPI_All_Sites'),
+            'KPI_All_Sites'[site_id] = CurrentSite
+                && 'KPI_All_Sites'[Year] = CurrentYear
+                && 'KPI_All_Sites'[Month_Number] = CurrentMonth
+        )
+    )
+
+-- Hitung Target MTD (dari tanggal 1 sampai tanggal saat ini dalam bulan yang sama)
+VAR TargetMTD = 
+    CALCULATE(
+        SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+        FILTER(
+            ALL('mart mart_site_performance_daily'[date_key]),
+            'mart mart_site_performance_daily'[date_key] <= CurrentDate
+                && YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+        )
+    )
+
+-- Hitung Target Bulanan (seluruh bulan)
+VAR TargetMonthly = 
+    CALCULATE(
+        SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+        FILTER(
+            ALL('mart mart_site_performance_daily'[date_key]),
+            YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+        )
+    )
+
+-- Hitung KPI MTD secara proporsional
+-- Formula: KPI MTD = KPI Monthly × (Target MTD / Target Monthly)
+-- Ini sama dengan SUM(KPI Daily) untuk semua hari dari tanggal 1 sampai tanggal saat ini
+RETURN
+    IF(
+        TargetMonthly > 0,
+        KPIMonthly * DIVIDE(TargetMTD, TargetMonthly),
+        BLANK()
+    )
+
+
+-- ============================================
+-- ALTERNATIF: KPI MTD MENGGUNAKAN SUM KPI DAILY (ITERASI)
+-- ============================================
+-- Versi ini secara eksplisit menjumlahkan KPI Daily untuk setiap hari dari tanggal 1 sampai tanggal saat ini
+-- Menggunakan SUMX untuk menghindari error "single value cannot be determined"
+
+Energy KPI (MTD) - Using SUM Daily = 
+-- PENTING: Untuk MTD, selalu gunakan TODAY() untuk memastikan hanya menghitung sampai hari ini
+VAR CurrentDate = TODAY()
+VAR CurrentYear = YEAR(CurrentDate)
+VAR CurrentMonth = MONTH(CurrentDate)
+
+        -- Ambil KPI bulanan untuk site, year, dan month yang sesuai
+        VAR KPIMonthly = 
+            CALCULATE(
+                SUM('KPI_All_Sites'[Energy_KPI_MWh]),
+                FILTER(
+                    ALL('KPI_All_Sites'),
+                    'KPI_All_Sites'[site_id] = CurrentSite
+                        && 'KPI_All_Sites'[Year] = CurrentYear
+                        && 'KPI_All_Sites'[Month_Number] = CurrentMonth
+                )
+            )
+        
+        -- Hitung Target Bulanan (seluruh bulan)
+        VAR TargetMonthly = 
+            CALCULATE(
+                SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+                FILTER(
+                    ALL('mart mart_site_performance_daily'),
+                    YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                        && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                        && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+                )
+            )
+        
+        -- Hitung KPI MTD dengan menjumlahkan KPI Daily untuk setiap hari dari tanggal 1 sampai tanggal saat ini
+        -- KPI Daily untuk setiap hari = Target Daily × (KPI Monthly / Target Monthly)
+        -- KPI MTD = SUM(KPI Daily) untuk semua hari dari tanggal 1 sampai tanggal saat ini
+        -- PENTING: CurrentDate harus selalu TODAY() untuk MTD
+        VAR MTDDate = TODAY()
+        RETURN
+            IF(
+                TargetMonthly > 0,
+                SUMX(
+                    FILTER(
+                        ALL('mart mart_site_performance_daily'[date_key]),
+                        'mart mart_site_performance_daily'[date_key] <= MTDDate
+                            && YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                            && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                    ),
+                    VAR DateKey = 'mart mart_site_performance_daily'[date_key]
+                    VAR TargetDaily = 
+                        CALCULATE(
+                            SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+                            REMOVEFILTERS('mart mart_site_performance_daily'[date_key]),
+                            FILTER(
+                                ALL('mart mart_site_performance_daily'),
+                                'mart mart_site_performance_daily'[date_key] = DateKey
+                                    && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+                            )
+                        )
+                    RETURN
+                        IF(
+                            TargetDaily > 0,
+                            TargetDaily * DIVIDE(KPIMonthly, TargetMonthly),
+                            0
+                        )
+                ),
+                0
+            )
+    )
+
+
+-- ============================================
+-- VERSI YANG LEBIH EFISIEN: KPI MTD (RECOMMENDED)
+-- ============================================
+-- Versi ini menggunakan pendekatan yang sama dengan Target MTD
+-- Lebih efisien karena tidak perlu iterasi per hari
+
+Energy KPI (MTD) - Recommended = 
+-- Menggunakan pendekatan iteratif seperti Daily - Recommended
+-- Menghitung KPI MTD dengan menjumlahkan KPI Daily dari tanggal 1 sampai tanggal saat ini
+-- Hanya menghitung dalam bulan yang sama (tidak cross-month)
+-- PENTING: MTD menghitung untuk bulan yang dipilih di slicer, sampai tanggal hari ini
+
+-- Tentukan bulan yang sedang dilihat (dari slicer atau context)
+-- Jika slicer bulan dipilih, gunakan bulan tersebut
+-- Jika tidak, gunakan bulan saat ini
+-- Catatan: Sesuaikan nama kolom year dan month sesuai dengan tabel Anda
+VAR SelectedYear = 
+    IF(
+        HASONEVALUE('mart mart_site_performance_daily'[year]),
+        MAX('mart mart_site_performance_daily'[year]),
+        YEAR(TODAY())
+    )
+VAR SelectedMonth = 
+    IF(
+        HASONEVALUE('mart mart_site_performance_daily'[month]),
+        MAX('mart mart_site_performance_daily'[month]),
+        MONTH(TODAY())
+    )
+
+-- Tentukan tanggal akhir untuk MTD
+-- Jika bulan yang dipilih adalah bulan saat ini, gunakan TODAY()
+-- Jika bulan yang dipilih adalah bulan masa lalu, gunakan akhir bulan tersebut
+-- Jika bulan yang dipilih adalah bulan masa depan, return 0 (belum ada data)
+VAR TodayDate = TODAY()
+VAR TodayYear = YEAR(TodayDate)
+VAR TodayMonth = MONTH(TodayDate)
+
+VAR CurrentDate = 
+    IF(
+        SelectedYear = TodayYear && SelectedMonth = TodayMonth,
+        TodayDate,  -- Bulan saat ini: gunakan TODAY()
+        IF(
+            SelectedYear < TodayYear || (SelectedYear = TodayYear && SelectedMonth < TodayMonth),
+            EOMONTH(DATE(SelectedYear, SelectedMonth, 1), 0),  -- Bulan masa lalu: gunakan akhir bulan
+            DATE(1900, 1, 1)  -- Bulan masa depan: return date kecil untuk filter (tidak akan ada data)
+        )
+    )
+
+VAR CurrentYear = SelectedYear
+VAR CurrentMonth = SelectedMonth
+
+-- Iterasi per site dalam context
+RETURN
+    SUMX(
+        VALUES('mart mart_site_performance_daily'[site_id]),
+        VAR CurrentSite = 'mart mart_site_performance_daily'[site_id]
+        
+        -- Ambil KPI bulanan untuk site, year, dan month yang sesuai
+        VAR KPIMonthly = 
+            CALCULATE(
+                SUM('KPI_All_Sites'[Energy_KPI_MWh]),
+                FILTER(
+                    ALL('KPI_All_Sites'),
+                    'KPI_All_Sites'[site_id] = CurrentSite
+                        && 'KPI_All_Sites'[Year] = CurrentYear
+                        && 'KPI_All_Sites'[Month_Number] = CurrentMonth
+                )
+            )
+        
+        -- Hitung Target Bulanan (seluruh bulan) untuk site ini
+        -- REMOVEFILTERS untuk memastikan kita menghitung seluruh bulan, bukan hanya yang terfilter
+        VAR TargetMonthly = 
+            CALCULATE(
+                SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+                REMOVEFILTERS('mart mart_site_performance_daily'[date_key]),
+                FILTER(
+                    ALL('mart mart_site_performance_daily'),
+                    YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                        && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                        && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+                )
+            )
+        
+        -- Hitung Target MTD (dari tanggal 1 sampai tanggal saat ini dalam bulan yang sama)
+        -- REMOVEFILTERS untuk memastikan kita menghitung MTD dengan benar, tidak terpengaruh slicer
+        VAR TargetMTD = 
+            CALCULATE(
+                SUM('mart mart_site_performance_daily'[energy_target_mwh]),
+                REMOVEFILTERS('mart mart_site_performance_daily'[date_key]),
+                FILTER(
+                    ALL('mart mart_site_performance_daily'),
+                    'mart mart_site_performance_daily'[date_key] <= CurrentDate
+                        && YEAR('mart mart_site_performance_daily'[date_key]) = CurrentYear
+                        && MONTH('mart mart_site_performance_daily'[date_key]) = CurrentMonth
+                        && 'mart mart_site_performance_daily'[site_id] = CurrentSite
+                )
+            )
+        
+        -- Hitung KPI MTD secara proporsional
+        -- Formula: KPI MTD = KPI Monthly × (Target MTD / Target Monthly)
+        -- Ini setara dengan: SUM(KPI Daily) untuk semua hari dari tanggal 1 sampai tanggal saat ini
+        RETURN
+            IF(
+                TargetMonthly > 0,
+                KPIMonthly * DIVIDE(TargetMTD, TargetMonthly),
+                0
+            )
+    )
+
+
+-- ============================================
+-- PENJELASAN FORMULA KPI MTD:
+-- ============================================
+-- 
+-- KPI MTD dihitung dengan cara yang sama seperti Target MTD:
+-- 
+-- 1. Target MTD = SUM(target_daily) dari tanggal 1 sampai tanggal saat ini
+-- 2. KPI MTD = SUM(kpi_daily) dari tanggal 1 sampai tanggal saat ini
+-- 
+-- Karena KPI Daily = Target Daily × (KPI Monthly / Target Monthly),
+-- maka KPI MTD dapat dihitung dengan:
+-- 
+-- KPI MTD = SUM(Target Daily × (KPI Monthly / Target Monthly))
+--         = (KPI Monthly / Target Monthly) × SUM(Target Daily)
+--         = (KPI Monthly / Target Monthly) × Target MTD
+--         = KPI Monthly × (Target MTD / Target Monthly)
+-- 
+-- Contoh:
+--    - Target Daily (tanggal 1-15): 10 MWh per hari
+--    - Target MTD (tanggal 1-15): 150 MWh
+--    - Target Monthly (seluruh bulan): 300 MWh
+--    - KPI Monthly: 270 MWh
+--    - KPI MTD = 270 × (150 / 300) = 135 MWh
+-- 
+-- Verifikasi dengan KPI Daily:
+--    - KPI Daily per hari = 10 × (270 / 300) = 9 MWh
+--    - KPI MTD = 9 × 15 hari = 135 MWh ✓
+-- 
+-- ============================================
+-- PENJELASAN FORMULA KPI DAILY:
+-- ============================================
+-- 
+-- 1. Target Daily: Target harian untuk tanggal yang sedang dilihat
+--    - Diambil dari kolom energy_target_mwh di tabel mart_site_performance_daily
+--    - Filter berdasarkan date_key = CurrentDate dan site_id = CurrentSite
+-- 
+-- 2. KPI Monthly: KPI bulanan untuk bulan yang sedang dilihat
+--    - Diambil dari tabel KPI_All_Sites
+--    - Filter berdasarkan site_id, Year, dan Month_Number
+-- 
+-- 3. Target Monthly: Total target untuk seluruh bulan
+--    - Diambil dari kolom energy_target_mwh di tabel mart_site_performance_daily
+--    - Filter berdasarkan Year, Month, dan site_id
+-- 
+-- 4. KPI Daily: KPI harian dihitung dengan formula:
+--    KPI Daily = Target Daily × (KPI Monthly / Target Monthly)
+-- 
+-- Contoh:
+--    - Target Daily (tanggal 15) = 10 MWh
+--    - Target Monthly (seluruh bulan) = 300 MWh
+--    - KPI Monthly = 270 MWh
+--    - KPI Daily (tanggal 15) = 10 × (270 / 300) = 9 MWh
+-- 
+-- ============================================
+-- CARA MENGGUNAKAN DI POWER BI:
+-- ============================================
+-- 
+-- 1. Buka Power BI Desktop
+-- 2. Pilih tabel 'mart mart_site_performance_daily' (atau nama tabel yang sesuai)
+-- 3. Klik kanan pada tabel → New Measure
+-- 4. Copy paste formula "Energy KPI (Daily)" di atas
+-- 5. Pastikan nama tabel dan kolom sesuai dengan Power BI Anda
+-- 6. Gunakan measure ini di visualisasi (table, chart, dll)
+-- 
+-- ============================================
+-- CATATAN PENTING:
+-- ============================================
+-- 
+-- 1. Pastikan nama tabel sesuai dengan Power BI Anda:
+--    - 'mart mart_site_performance_daily' (dengan spasi)
+--    - Atau 'mart_site_performance_daily' (tanpa spasi)
+--    - Atau nama lain yang sesuai
+-- 
+-- 2. Pastikan nama kolom sesuai:
+--    - date_key
+--    - site_id
+--    - energy_target_mwh
+-- 
+-- 3. Pastikan tabel KPI_All_Sites memiliki kolom:
+--    - site_id
+--    - Year
+--    - Month_Number
+--    - Energy_KPI_MWh
+-- 
+-- 4. Jika ada error, coba:
+--    - Ganti MAX() dengan SELECTEDVALUE() untuk CurrentSite
+--    - Periksa nama tabel dan kolom
+--    - Pastikan relationship antara tabel sudah benar
+-- 
+-- ============================================
+-- VERIFIKASI:
+-- ============================================
+-- 
+-- Untuk memverifikasi formula bekerja dengan benar:
+-- 
+-- 1. Buat tabel dengan kolom:
+--    - date_key
+--    - site_id
+--    - energy_target_mwh (Target Daily)
+--    - Energy KPI (Daily) (measure baru)
+-- 
+-- 2. Pastikan:
+--    - KPI Daily untuk tanggal 1-31 dalam bulan yang sama memiliki proporsi yang benar
+--    - Jumlah KPI Daily untuk seluruh bulan = KPI Monthly
+--    - KPI Daily = Target Daily × (KPI Monthly / Target Monthly)
+-- 
+-- 3. Untuk KPI MTD:
+--    - KPI MTD = SUM(KPI Daily) dari tanggal 1 sampai tanggal saat ini
+--    - KPI MTD = KPI Monthly × (Target MTD / Target Monthly)
+--    - Pastikan KPI MTD pada akhir bulan = KPI Monthly
+-- 
+-- ============================================
+-- CONTOH PERHITUNGAN LENGKAP:
+-- ============================================
+-- 
+-- Misalkan kita melihat data untuk tanggal 15 Januari 2025:
+-- 
+-- Data Bulanan:
+--    - Target Monthly (Januari) = 300 MWh
+--    - KPI Monthly (Januari) = 270 MWh
+-- 
+-- Data Harian (tanggal 1-15):
+--    - Target Daily per hari = 10 MWh
+--    - Target MTD (tanggal 1-15) = 10 × 15 = 150 MWh
+-- 
+-- Perhitungan KPI Daily:
+--    - KPI Daily (tanggal 15) = 10 × (270 / 300) = 9 MWh
+--    - KPI Daily (tanggal 1) = 10 × (270 / 300) = 9 MWh
+--    - KPI Daily (tanggal 2) = 10 × (270 / 300) = 9 MWh
+--    - ... dst untuk setiap hari
+-- 
+-- Perhitungan KPI MTD:
+--    - KPI MTD (tanggal 15) = SUM(KPI Daily dari tanggal 1-15)
+--                            = 9 × 15 = 135 MWh
+--    - Atau menggunakan formula langsung:
+--      KPI MTD = 270 × (150 / 300) = 135 MWh ✓
+-- 
+-- Verifikasi:
+--    - Pada akhir bulan (tanggal 31):
+--      Target MTD = 300 MWh (seluruh bulan)
+--      KPI MTD = 270 × (300 / 300) = 270 MWh = KPI Monthly ✓
+-- 
+-- ============================================
+-- REKOMENDASI PENGGUNAAN:
+-- ============================================
+-- 
+-- 1. Gunakan "Energy KPI (Daily) - Recommended" untuk melihat KPI per hari
+-- 2. Gunakan "Energy KPI (MTD) - Recommended" untuk melihat KPI MTD
+--    (ini adalah versi yang direkomendasikan karena menghindari error)
+-- 
+-- 3. Kedua measure ini dapat digunakan bersama-sama:
+--    - Tabel harian: tampilkan date_key, Target Daily, KPI Daily
+--    - Card/Visual MTD: tampilkan Target MTD, KPI MTD
+--    - Chart trend: tampilkan KPI Daily per hari untuk melihat pola harian
+-- 
+-- 4. Hubungan antara KPI Daily dan KPI MTD:
+--    - KPI MTD = SUM(KPI Daily) dari tanggal 1 sampai tanggal saat ini
+--    - Sama seperti Target MTD = SUM(Target Daily) dari tanggal 1 sampai tanggal saat ini
+--    - Ini memungkinkan tracking progress harian yang konsisten
+-- 
+-- 5. PENTING: Penggunaan dengan Slicer Bulan
+--    - KPI Daily: Ketika slicer bulan dipilih, measure ini akan SUM semua KPI Daily
+--      dalam bulan tersebut (bukan MTD). Ini adalah behavior yang benar untuk Daily.
+--    - KPI MTD: Ketika slicer bulan dipilih, measure ini akan menghitung MTD sampai
+--      tanggal saat ini (TODAY()) dalam bulan yang dipilih, bukan seluruh bulan.
+--    - Jika Anda ingin melihat KPI untuk seluruh bulan, gunakan KPI Monthly langsung
+--      dari tabel KPI_All_Sites, bukan KPI MTD.
+-- 
+-- 6. Cara kerja MTD dengan slicer:
+--    - Jika slicer bulan = Januari 2025, dan hari ini = 15 Januari 2025
+--    - KPI MTD akan menghitung dari tanggal 1-15 Januari 2025 (MTD)
+--    - Bukan dari tanggal 1-31 Januari 2025 (seluruh bulan)
+--    - Untuk melihat seluruh bulan, gunakan KPI Monthly dari KPI_All_Sites
+-- 
+-- ============================================
+

@@ -1,0 +1,20 @@
+version: 2
+
+sources:
+  - name: raw
+    schema: raw
+    description: "Raw schema containing all raw data tables"
+    tables:
+      - name: isolarcloud_devices
+        description: "iSolarCloud device metadata"
+      - name: isolarcloud_power_stations
+        description: "iSolarCloud power station (site) metadata"
+      - name: isolarcloud_historical_data
+        description: "Raw iSolarCloud historical performance data with JSONB measurements"
+      - name: fusionsolar_devices
+        description: "FusionSolar device metadata"
+      - name: fusionsolar_plants
+        description: "FusionSolar plant (site) metadata"
+      - name: fusionsolar_historical_data
+        description: "Raw FusionSolar historical performance data with JSONB measurements"
+

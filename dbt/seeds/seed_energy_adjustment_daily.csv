@@ -1,0 +1,46 @@
+site_name;date_key;energy_adjusted_value;notes
+PT. MMKI 5.7 MWp - Phase 2;2025-02-11;14.385;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-12;21.698;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-13;27.108;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-14;18.972;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-15;15.469;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-16;14.720;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-17;12.873;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-18;15.719;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-19;18.590;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-20;22.327;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-21;24.815;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-22;14.865;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-23;13.466;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-24;15.814;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-02-25;20.847;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-03-12;18.552;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+PT. MMKI 5.7 MWp - Phase 2;2025-03-13;18.832;Meter Assembly mati, dikalkulasi menggunakan rasio terhadap nilai GHI hariannya
+Charoen Pokphand Majalengka;2025-11-18;4.494;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-19;4.608;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-20;3.319;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-21;3.872;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-22;3.730;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-23;3.031;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-24;4.455;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-25;4.728;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-26;4.420;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-27;4.024;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-28;4.746;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-29;4.311;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-11-30;1.677;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-12-01;4.423;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+Charoen Pokphand Majalengka;2025-12-02;3.006;Komunikasi meter mati, dikalkulasi menggunakan rasio terhadap nilai inverter yield hariannya
+PT. MMKI 4.292 MWP - Phase 3;2025-12-05;16.787;Meter Assembly mati, perhitungan database dan excel beda jadi MTD missmatch
+PT. MMKI 4.292 MWP - Phase 3;2025-12-06;0;Full komunikasi meter mati, perhitungan database dan excel beda jadi MTD missmatch, dibuat 0 ditumpuk di tanggal 8
+PT. MMKI 4.292 MWP - Phase 3;2025-12-07;0;Full komunikasi meter mati, perhitungan database dan excel beda jadi MTD missmatch, dibuat 0 ditumpuk di tanggal 8
+PT. MMKI 4.292 MWP - Phase 3;2025-12-08;46.829;Komunikasi baru nyala, energy ditumpuk di tanggal 8
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-10;9.661;Komunikasi meter anomaly, perhitungan database dan excel beda jadi MTD missmatch
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-11;11.449;Komunikasi meter baru nyala, perhitungan database dan excel beda jadi MTD missmatch
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-12;6.276;Komunikasi meter baru nyala, perhitungan database dan excel beda jadi MTD missmatch
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-13;9.856;Komunikasi meter baru nyala, perhitungan database dan excel beda jadi MTD missmatch
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-14;5.717;Komunikasi meter baru nyala, perhitungan database dan excel beda jadi MTD missmatch
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-15;19.087;Komunikasi meter baru nyala, perhitungan database dan excel beda jadi MTD missmatch
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-16;9.737;Komunikasi meter baru nyala, perhitungan database dan excel beda jadi MTD missmatch
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-17;11.992;Komunikasi meter baru nyala, perhitungan database dan excel beda jadi MTD missmatch
+PLTS Rooftop Sumatera Prima Fibreboard;2025-12-18;10.443;Komunikasi meter baru nyala, perhitungan database dan excel beda jadi MTD missmatch

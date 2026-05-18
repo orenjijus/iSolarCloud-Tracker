@@ -1,0 +1,131 @@
+name: 'mmsr_solar_data'
+version: '1.0.0'
+config-version: 2
+
+profile: 'mmsr_solar'
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros"]
+snapshot-paths: ["snapshots"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  mmsr_solar_data:
+    staging:
+      +materialized: view
+    marts:
+      +materialized: table
+      +tags: ["marts"]
+      mart_inverter_performance_daily:
+        +enabled: false
+    dimensions:
+      +materialized: table
+    facts:
+      +materialized: table
+      +tags: ["facts", "calculated_metrics"]
+
+seeds:
+  mmsr_solar_data:
+    +quote_columns: false
+    +schema: staging
+    seed_metric_mapper:
+      +quote_columns: false
+    seed_meter_config:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_sensor_config:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_meter_config_override:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_sensor_config_override:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_site_config:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_site_equipment_config:
+      +quote_columns: false
+    seed_inverter_model_master:
+      +quote_columns: false
+    seed_pv_module_model_master:
+      +quote_columns: false
+    seed_site_merge:
+      +quote_columns: false
+      +delimiter: ","
+      +column_types:
+        plant_code: varchar(50)
+        logical_plant_code: varchar(50)
+    seed_daily_simulation_target:
+      +quote_columns: true
+      +delimiter: ";"
+    seed_sensor_site_mapping:
+      +quote_columns: false
+      +delimiter: ";"
+      +column_types:
+        effective_date_start: date
+        effective_date_end: date
+    seed_inverter_site_mapping:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_inverter_string_poa_mapping:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_inverter_config:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_inverter_string_layout:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_poa_sensor_config:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_site_module_spec:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_string_module_override:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_meter_site_mapping:
+      +quote_columns: true
+      +delimiter: ";"
+      +column_types:
+        device_id: varchar(64)
+        logical_device_id: varchar(32)
+        logical_device_name: varchar(255)
+    seed_monthly_simulation_target:
+      +quote_columns: false
+      +enabled: false
+    seed_yearly_simulation_target:
+      +quote_columns: true
+      +delimiter: ";"
+      +enabled: true
+    seed_daily_kpi_monthly:
+      +quote_columns: true
+      +delimiter: ","
+    seed_issue_dates:
+      +quote_columns: false
+      +delimiter: ","
+    seed_ghi_adjustment_daily:
+      +quote_columns: true
+      +delimiter: ";"
+    seed_energy_adjustment_daily:
+      +quote_columns: true
+      +delimiter: ";"
+    seed_cleaning_log:
+      +quote_columns: false
+      +delimiter: ";"
+    seed_weekly_log:
+      +quote_columns: false
+      +delimiter: ","
+
+vars:
+  project_name: mmsr_solar_data

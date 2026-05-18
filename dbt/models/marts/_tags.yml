@@ -1,0 +1,35 @@
+version: 2
+
+models:
+  # Staging models - incremental tables that need daily updates
+  # Note: stg_isolarcloud__perf_unpivoted and stg_fusionsolar__perf_unpivoted 
+  # are defined in models/staging/staging.yml to avoid duplication
+  
+  # Mart models - device measurements 5min (from staging)
+  - name: mart_inverter_performance_5min
+    tags: [daily_marts_measurement_5min]
+    
+  - name: mart_meter_performance_5min
+    tags: [daily_marts_measurement_5min]
+    
+  - name: mart_sensor_measurements_5min
+    tags: [daily_marts_measurement_5min]
+  
+  # Facts models - device calculations 5min (from mart measurements)
+  - name: fact_inverter_calculations_5min
+    tags: [daily_facts_calculation_5min]
+    
+  - name: fact_sensor_calculations_5min
+    tags: [daily_facts_calculation_5min]
+    
+  - name: fact_site_calculations_5min
+    tags: [daily_facts_calculation_5min]
+  
+  # Mart models - device daily aggregations (from mart measurements 5min)
+  - name: mart_sensor_daily
+    tags: [daily_marts_daily]
+    
+  # Mart models - site performance daily (from mart daily + facts calculations)
+  - name: mart_site_performance_daily
+    tags: [daily_marts_daily]
+

@@ -1,0 +1,628 @@
+-- ============================================
+-- PowerBI DAX Measures: Actual vs Adjusted Performance
+-- ============================================
+-- File ini berisi semua DAX measures untuk toggle Actual vs Adjusted performance
+-- Menggunakan slicer untuk exclude issue dates dari semua metrics
+--
+-- Cara menggunakan:
+-- 1. Copy calculated table dan measures ke PowerBI
+-- 2. Buat slicer dari Parameter_ViewType[ViewType]
+-- 3. Semua measures akan otomatis mengikuti pilihan slicer
+-- ============================================
+
+-- ============================================
+-- STEP 1: BUAT CALCULATED TABLE (Parameter)
+-- ============================================
+-- Buat di PowerBI: Modeling > New Table
+-- Copy paste code di bawah ini:
+
+Parameter_ViewType = 
+DATATABLE(
+    "ViewType", STRING,
+    "ViewTypeValue", INTEGER,
+    {
+        {"Actual", 0},
+        {"Adjusted", 1}
+    }
+)
+
+-- ============================================
+-- STEP 2: HELPER MEASURES
+-- ============================================
+
+-- Helper measure untuk check apakah harus exclude issue dates
+_ShouldExcludeIssueDates = 
+VAR SelectedView = SELECTEDVALUE(Parameter_ViewType[ViewTypeValue], 0)
+RETURN
+    IF(SelectedView = 1, TRUE(), FALSE())
+
+-- Helper untuk filter context (exclude issue dates)
+_AdjustedFilter = 
+FILTER(
+    ALL('mart mart_site_performance_daily'[is_issue_date]),
+    'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+)
+
+-- ============================================
+-- STEP 3: ENERGY MEASURES
+-- ============================================
+
+-- Energy (MWh) - Daily
+Energy MWh = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        SUM('mart mart_site_performance_daily'[daily_energy_mwh])
+    )
+
+-- Energy Monthly (MWh)
+Energy Monthly MWh = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR CurrentMonth = SELECTEDVALUE('mart mart_site_performance_daily'[month])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        ),
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        )
+    )
+
+-- Energy YTD (MWh)
+Energy YTD MWh = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR MaxDate = MAX('mart mart_site_performance_daily'[date_key])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        ),
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        )
+    )
+
+-- ============================================
+-- STEP 4: GHI MEASURES
+-- ============================================
+
+-- GHI (kWh/m²) - Daily Average
+GHI kWh/m² = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_ghi_kwh_m2]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        AVERAGE('mart mart_site_performance_daily'[daily_ghi_kwh_m2])
+    )
+
+-- GHI Monthly Average (kWh/m²)
+GHI Monthly Avg kWh/m² = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR CurrentMonth = SELECTEDVALUE('mart mart_site_performance_daily'[month])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_ghi_kwh_m2]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_ghi_kwh_m2]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        )
+    )
+
+-- GHI YTD Average (kWh/m²)
+GHI YTD Avg kWh/m² = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR MaxDate = MAX('mart mart_site_performance_daily'[date_key])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_ghi_kwh_m2]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_ghi_kwh_m2]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        )
+    )
+
+-- ============================================
+-- STEP 5: POA MEASURES
+-- ============================================
+
+-- POA (kWh/m²) - Daily Average
+POA kWh/m² = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_poa_weighted_kwh_m2]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        AVERAGE('mart mart_site_performance_daily'[daily_poa_weighted_kwh_m2])
+    )
+
+-- POA Monthly Average (kWh/m²)
+POA Monthly Avg kWh/m² = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR CurrentMonth = SELECTEDVALUE('mart mart_site_performance_daily'[month])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_poa_weighted_kwh_m2]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_poa_weighted_kwh_m2]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        )
+    )
+
+-- POA YTD Average (kWh/m²)
+POA YTD Avg kWh/m² = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR MaxDate = MAX('mart mart_site_performance_daily'[date_key])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_poa_weighted_kwh_m2]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[daily_poa_weighted_kwh_m2]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        )
+    )
+
+-- ============================================
+-- STEP 6: PERFORMANCE RATIO (PR) MEASURES
+-- ============================================
+
+-- PR GHI - Daily Average
+PR GHI = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_ghi_actual]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        AVERAGE('mart mart_site_performance_daily'[pr_ghi_actual])
+    )
+
+-- PR GHI Monthly Average
+PR GHI Monthly Avg = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR CurrentMonth = SELECTEDVALUE('mart mart_site_performance_daily'[month])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_ghi_actual]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_ghi_actual]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        )
+    )
+
+-- PR GHI YTD Average
+PR GHI YTD Avg = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR MaxDate = MAX('mart mart_site_performance_daily'[date_key])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_ghi_actual]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_ghi_actual]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        )
+    )
+
+-- PR POA - Daily Average
+PR POA = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_poa_actual]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        AVERAGE('mart mart_site_performance_daily'[pr_poa_actual])
+    )
+
+-- PR POA Monthly Average
+PR POA Monthly Avg = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR CurrentMonth = SELECTEDVALUE('mart mart_site_performance_daily'[month])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_poa_actual]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_poa_actual]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        )
+    )
+
+-- PR POA YTD Average
+PR POA YTD Avg = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR MaxDate = MAX('mart mart_site_performance_daily'[date_key])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_poa_actual]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[pr_poa_actual]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        )
+    )
+
+-- ============================================
+-- STEP 7: AVAILABILITY MEASURES
+-- ============================================
+
+-- Availability (%) - Daily Average
+Availability % = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[availability_percent]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        AVERAGE('mart mart_site_performance_daily'[availability_percent])
+    )
+
+-- Availability Monthly Average (%)
+Availability Monthly Avg % = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR CurrentMonth = SELECTEDVALUE('mart mart_site_performance_daily'[month])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[availability_percent]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[availability_percent]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        )
+    )
+
+-- Availability YTD Average (%)
+Availability YTD Avg % = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR MaxDate = MAX('mart mart_site_performance_daily'[date_key])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[availability_percent]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[availability_percent]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        )
+    )
+
+-- Power Available Hours
+Power Available Hours = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[power_available_hours]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        SUM('mart mart_site_performance_daily'[power_available_hours])
+    )
+
+-- Unavailability Hours
+Unavailability Hours = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[unavailability_hours]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        SUM('mart mart_site_performance_daily'[unavailability_hours])
+    )
+
+-- ============================================
+-- STEP 8: TARGET COMPARISON MEASURES
+-- ============================================
+
+-- Energy vs Target (%)
+Energy vs Target % = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[energy_actual_vs_target_pct]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        AVERAGE('mart mart_site_performance_daily'[energy_actual_vs_target_pct])
+    )
+
+-- Energy vs Target Monthly (%)
+Energy vs Target Monthly % = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR CurrentMonth = SELECTEDVALUE('mart mart_site_performance_daily'[month])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[energy_actual_vs_target_pct]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[energy_actual_vs_target_pct]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        )
+    )
+
+-- Energy vs Target YTD (%)
+Energy vs Target YTD % = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR MaxDate = MAX('mart mart_site_performance_daily'[date_key])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[energy_actual_vs_target_pct]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        ),
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[energy_actual_vs_target_pct]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        )
+    )
+
+-- GHI vs Target (%)
+GHI vs Target % = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[ghi_actual_vs_target_pct]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        AVERAGE('mart mart_site_performance_daily'[ghi_actual_vs_target_pct])
+    )
+
+-- POA vs Target (%)
+POA vs Target % = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            AVERAGE('mart mart_site_performance_daily'[poa_actual_vs_target_pct]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        AVERAGE('mart mart_site_performance_daily'[poa_actual_vs_target_pct])
+    )
+
+-- ============================================
+-- STEP 9: COUNT MEASURES
+-- ============================================
+
+-- Total Days Count
+Total Days = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            COUNTROWS('mart mart_site_performance_daily'),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+        ),
+        COUNTROWS('mart mart_site_performance_daily')
+    )
+
+-- Issue Days Count
+Issue Days Count = 
+COUNTROWS(
+    FILTER(
+        'mart mart_site_performance_daily',
+        'mart mart_site_performance_daily'[is_issue_date] = TRUE()
+    )
+)
+
+-- Adjusted Days Count (non-issue days)
+Adjusted Days Count = 
+COUNTROWS(
+    FILTER(
+        'mart mart_site_performance_daily',
+        'mart mart_site_performance_daily'[is_issue_date] = FALSE()
+    )
+)
+
+-- Issue Days Percentage
+Issue Days % = 
+DIVIDE(
+    [Issue Days Count],
+    COUNTROWS('mart mart_site_performance_daily'),
+    0
+) * 100
+
+-- ============================================
+-- STEP 10: AGGREGATION MEASURES (Monthly/YTD)
+-- ============================================
+
+-- Energy Monthly Sum (MWh)
+Energy Monthly Sum MWh = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR CurrentMonth = SELECTEDVALUE('mart mart_site_performance_daily'[month])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        ),
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[month] = CurrentMonth
+        )
+    )
+
+-- Energy YTD Sum (MWh)
+Energy YTD Sum MWh = 
+VAR ExcludeIssues = [_ShouldExcludeIssueDates]
+VAR CurrentYear = SELECTEDVALUE('mart mart_site_performance_daily'[year])
+VAR MaxDate = MAX('mart mart_site_performance_daily'[date_key])
+RETURN
+    IF(
+        ExcludeIssues,
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[is_issue_date] = FALSE(),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        ),
+        CALCULATE(
+            SUM('mart mart_site_performance_daily'[daily_energy_mwh]),
+            'mart mart_site_performance_daily'[year] = CurrentYear,
+            'mart mart_site_performance_daily'[date_key] <= MaxDate
+        )
+    )
+
+-- ============================================
+-- INSTRUKSI PENGGUNAAN
+-- ============================================
+-- 
+-- 1. BUAT CALCULATED TABLE:
+--    - Buka PowerBI Desktop
+--    - Tab "Modeling" > "New Table"
+--    - Copy paste code "Parameter_ViewType" di atas
+--    - Klik OK
+--
+-- 2. BUAT MEASURES:
+--    - Tab "Modeling" > "New Measure"
+--    - Copy paste setiap measure di atas satu per satu
+--    - Atau gunakan "New Measure" untuk setiap measure
+--
+-- 3. BUAT SLICER:
+--    - Insert > Slicer
+--    - Field: Parameter_ViewType[ViewType]
+--    - Format: Single select
+--    - Style: Sesuai preferensi
+--
+-- 4. GUNAKAN MEASURES DI VISUAL:
+--    - Semua measures akan otomatis mengikuti pilihan slicer
+--    - Pilih "Actual" = semua data termasuk issue dates
+--    - Pilih "Adjusted" = exclude issue dates
+--
+-- 5. TIPS:
+--    - Helper measure "_ShouldExcludeIssueDates" bisa digunakan untuk measures custom
+--    - Semua measures sudah handle NULL values
+--    - Measures Monthly/YTD otomatis respect year/month filter
+--
+-- ============================================
+

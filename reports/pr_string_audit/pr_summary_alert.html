@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PR String Summary & Alert</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0b0f1a;--surface:#111827;--surface2:#1a2234;--border:rgba(255,255,255,0.07);
+  --text:#e8edf5;--muted:#6b7a99;--accent:#f59e0b;--a2:#38bdf8;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;line-height:1.55;}
+.stripe{background:linear-gradient(90deg,#1a1033,#0f1e38,#0b1a2e);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px;gap:.5rem;flex-wrap:wrap;}
+.sid{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase;}
+.bdg-top{padding:4px 12px;border-radius:4px;font-family:'DM Mono',monospace;font-size:11px;background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.5);color:#fca5a5;}
+.hero{padding:2rem 2rem 1.5rem;background:radial-gradient(ellipse 80% 60% at 50% -10%,rgba(239,68,68,.07),transparent);border-bottom:1px solid var(--border);}
+.hi{max-width:1320px;margin:0 auto;}
+.hl{font-family:'DM Mono',monospace;font-size:11px;color:var(--a2);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem;}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(1.6rem,3vw,2.4rem);color:#fff;line-height:1.14;margin-bottom:.3rem;}
+.hero h1 em{color:#f87171;font-style:italic;}
+.hsub{color:var(--muted);font-size:12px;margin-bottom:1rem;}
+.pills{display:flex;gap:.4rem;flex-wrap:wrap;}
+.pill{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;border-radius:16px;font-size:10px;font-family:'DM Mono',monospace;border:1px solid rgba(255,255,255,.12);}
+.main{max-width:1320px;margin:0 auto;padding:1.5rem 2rem;}
+.sec-title{font-family:'DM Serif Display',serif;font-size:1.2rem;color:#fff;display:flex;align-items:center;gap:.6rem;margin-bottom:.9rem;}
+.num{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);background:var(--surface2);border:1px solid var(--border);padding:2px 7px;border-radius:3px;}
+.section{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.1rem;margin-bottom:1rem;}
+
+/* Cards grid */
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:.75rem;margin-bottom:1rem;}
+.card{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:.9rem 1rem;position:relative;overflow:hidden;}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--a2);}
+.card-name{font-size:.8rem;font-weight:600;color:#fff;margin-bottom:.45rem;line-height:1.3;}
+.card-row{display:flex;justify-content:space-between;font-size:11px;margin-top:3px;}
+.card-lbl{color:var(--muted);font-family:'DM Mono',monospace;font-size:10px;}
+.card-val{font-family:'DM Mono',monospace;font-size:11px;color:var(--text);}
+.card-footer{display:flex;gap:.5rem;margin-top:.6rem;padding-top:.5rem;border-top:1px solid var(--border);font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);}
+.card-footer span{flex:1;text-align:center;}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:9px;font-family:'DM Mono',monospace;font-weight:500;letter-spacing:.05em;margin-bottom:.4rem;}
+.badge-crit{background:rgba(239,68,68,.2);border:1px solid rgba(239,68,68,.6);color:#fca5a5;}
+.badge-warn{background:rgba(245,158,11,.18);border:1px solid rgba(245,158,11,.5);color:#fcd34d;}
+.badge-below{background:rgba(249,115,22,.18);border:1px solid rgba(249,115,22,.5);color:#fdba74;}
+.badge-ok{background:rgba(34,197,94,.15);border:1px solid rgba(34,197,94,.4);color:#86efac;}
+.badge-grey{background:rgba(107,122,153,.15);border:1px solid var(--border);color:var(--muted);}
+
+/* Tables */
+.ctrl-row{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center;margin-bottom:.8rem;}
+.sel{background:var(--surface2);color:var(--text);border:1px solid var(--border);border-radius:6px;padding:6px 10px;font-family:'DM Mono',monospace;font-size:11px;}
+.tw{max-height:480px;overflow:auto;border:1px solid var(--border);border-radius:8px;}
+.pt{width:100%;border-collapse:collapse;font-size:12px;}
+.pt th{position:sticky;top:0;background:var(--surface2);text-align:left;padding:7px 10px;font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-family:'DM Mono',monospace;border-bottom:1px solid var(--border);}
+.pt td{padding:7px 10px;border-bottom:1px solid rgba(255,255,255,.04);font-size:12px;}
+.pt tr:hover td{background:rgba(255,255,255,.025);}
+.lv-critical{color:#fca5a5;font-weight:600;}
+.lv-warning{color:#fcd34d;}
+.lv-notice{color:#fdba74;}
+.gap-neg-big{color:#ef4444;font-weight:600;}
+.gap-neg{color:#f59e0b;}
+.gap-ok{color:#22c55e;}
+.foot{text-align:center;color:var(--muted);font-size:10px;font-family:'DM Mono',monospace;border-top:1px solid var(--border);margin-top:1rem;padding-top:1rem;}
+.bar{height:8px;border-radius:3px;background:rgba(239,68,68,.7);display:inline-block;max-width:80px;}
+@media(max-width:700px){.main{padding:1rem;}}
+</style>
+</head>
+<body>
+<div class="stripe">
+  <span class="sid">PR String Summary · Alert · 2025-11-01 s/d 2026-05-06</span>
+  <span class="bdg-top">24 bulan below target · 8 string PR=0%</span>
+</div>
+<div class="hero">
+  <div class="hi">
+    <div class="hl">Solar PV · String Performance Alert</div>
+    <h1>Summary &amp; <em>Alert</em><br>
+      <span style="font-size:.58em;color:var(--muted)">Semua Site — 2025-11-01 s/d 2026-05-06</span></h1>
+    <div class="hsub">Periode 2025-11-01 s/d 2026-05-06 · 17 site · Generated 2026-05-06 12:47</div>
+    <div class="pills">
+      <span class="pill" style="border-color:rgba(239,68,68,.4)">⬇ 24 bulan below-target</span>
+      <span class="pill" style="border-color:rgba(245,158,11,.4)">⚠ 8 string PR=0%</span>
+      <span class="pill">11 site ada target</span>
+    </div>
+  </div>
+</div>
+<div class="main">
+
+  <div class="section">
+    <div class="sec-title"><span class="num">01</span> Ringkasan Per Site</div>
+    <div class="cards">
+  <div class="card" data-sid="1458125">
+    <div class="card-name">Garuda Metalindo 1</div>
+    <span class="badge badge-below">Below Target</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">79.32%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">80.58%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#f59e0b;font-weight:600">-1.26%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">7 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1680199">
+    <div class="card-name">PLTS Rooftop Sumatera Prima Fibreboard</div>
+    <span class="badge badge-crit">⚠ PR + String 0%</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">71.76%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">78.04%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#ef4444;font-weight:600">-6.28%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">6 bln ↓</span>
+      <span title="String PR=0%">2 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1614122">
+    <div class="card-name">Charoen Pokphand Majalengka</div>
+    <span class="badge badge-crit">⚠ PR + String 0%</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">82.07%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">80.30%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#22c55e;font-weight:600">+1.77%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">3 bln ↓</span>
+      <span title="String PR=0%">2 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1637816">
+    <div class="card-name">Charoen Pokphand Madiun</div>
+    <span class="badge badge-warn">String 0%</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">83.03%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">81.24%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#22c55e;font-weight:600">+1.79%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">0 bln ↓</span>
+      <span title="String PR=0%">4 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1449886">
+    <div class="card-name">Garuda Metalindo (MPF)</div>
+    <span class="badge badge-below">Below Target</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">83.78%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">82.58%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#22c55e;font-weight:600">+1.20%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">2 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1453245">
+    <div class="card-name">Garuda Metalindo 2</div>
+    <span class="badge badge-below">Below Target</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">80.03%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">80.96%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#f59e0b;font-weight:600">-0.93%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">2 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1637095">
+    <div class="card-name">Charoen Pokphand Bandung</div>
+    <span class="badge badge-below">Below Target</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">86.82%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">80.95%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#22c55e;font-weight:600">+5.87%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">1 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1445767">
+    <div class="card-name">Garuda Metalindo (IKP)</div>
+    <span class="badge badge-below">Below Target</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">84.91%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">82.61%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#22c55e;font-weight:600">+2.30%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">1 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1763661">
+    <div class="card-name">PLTS On Grid Sorini Towa Berlian Corporindo</div>
+    <span class="badge badge-below">Below Target</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Apr 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">87.70%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">79.66%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#22c55e;font-weight:600">+8.04%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">1 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">2 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1479456">
+    <div class="card-name">Shoetown Ligung Indonesia</div>
+    <span class="badge badge-below">Below Target</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">2.66%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">80.97%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#ef4444;font-weight:600">-78.31%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">1 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">3 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="1628909">
+    <div class="card-name">PLTS Frina Lestari Nusantara</div>
+    <span class="badge badge-ok">✓ On Target</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">87.57%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">80.34%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:#22c55e;font-weight:600">+7.23%</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">0 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="NE=53771627">
+    <div class="card-name">PLTS Mall Panakkukang</div>
+    <span class="badge badge-grey">No Target Data</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">83.37%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">—</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:var(--muted);font-weight:600">—</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">0 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">3 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="NE=62806354">
+    <div class="card-name">PLTS ONGRID PT SUPARMA TBK</div>
+    <span class="badge badge-grey">No Target Data</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">87.77%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">—</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:var(--muted);font-weight:600">—</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">0 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="NE=50488260">
+    <div class="card-name">PT. MMKI 1.75 MWp - Painting Building</div>
+    <span class="badge badge-grey">No Target Data</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">55.13%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">—</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:var(--muted);font-weight:600">—</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">0 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="NE=58630782">
+    <div class="card-name">PT. MMKI 4.292 MWP - Phase 3</div>
+    <span class="badge badge-grey">No Target Data</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">63.38%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">—</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:var(--muted);font-weight:600">—</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">0 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="NE=51758766">
+    <div class="card-name">PT. MMKI 5.7 MWp - Phase 2</div>
+    <span class="badge badge-grey">No Target Data</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">63.25%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">—</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:var(--muted);font-weight:600">—</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">0 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div>
+  <div class="card" data-sid="NE=54435794">
+    <div class="card-name">PT. Pusan Manis Mulia 2.06 MWp - Tangerang</div>
+    <span class="badge badge-grey">No Target Data</span>
+    <div class="card-row">
+      <span class="card-lbl">Bulan terakhir</span><span class="card-val">Mei 26</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR aktual</span><span class="card-val">84.55%</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">PR target</span><span class="card-val">—</span>
+    </div>
+    <div class="card-row">
+      <span class="card-lbl">Gap</span>
+      <span class="card-val" style="color:var(--muted);font-weight:600">—</span>
+    </div>
+    <div class="card-footer">
+      <span title="Bulan below target">0 bln ↓</span>
+      <span title="String PR=0%">0 str 0%</span>
+      <span title="Bulan ada data">7 bln data</span>
+    </div>
+  </div></div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title"><span class="num">02</span> Bulan Below PR Target</div>
+    <div class="ctrl-row">
+      <select id="belowSiteSel" class="sel"><option value="">Semua site</option></select>
+      <span id="belowCount" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)"></span>
+    </div>
+    <div class="tw">
+      <table class="pt">
+        <thead><tr>
+          <th>Site</th><th>Bulan</th><th>PR Aktual</th><th>PR Target</th><th>Gap</th>
+        </tr></thead>
+        <tbody id="belowBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="sec-title"><span class="num">03</span> String PR = 0% (Ada Kapasitas)</div>
+    <div class="ctrl-row">
+      <select id="zeroSiteSel" class="sel"><option value="">Semua site</option></select>
+      <select id="zeroLvSel" class="sel">
+        <option value="">Semua level</option>
+        <option value="critical">Critical ≥80%</option>
+        <option value="warning">Warning ≥50%</option>
+        <option value="notice">Notice ≥30%</option>
+      </select>
+      <span id="zeroCount" style="font-family:'DM Mono',monospace;font-size:11px;color:var(--muted)"></span>
+    </div>
+    <div class="tw">
+      <table class="pt">
+        <thead><tr>
+          <th>Site</th><th>Inverter</th><th>String</th><th>Kapasitas</th>
+          <th>Hari 0%</th><th>Total Hari</th><th>% Hari 0%</th><th>Level</th>
+        </tr></thead>
+        <tbody id="zeroBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="foot">Generated 2026-05-06 12:47 · scripts/generate_pr_summary_alert_html.py · Periode 2025-11-01 s/d 2026-05-06</div>
+</div>
+
+<script>
+const belowData = [{"sid": "1637095", "site": "Charoen Pokphand Bandung", "ym": "Mar 26", "actual": 77.71, "target": 80.8, "gap": -3.09}, {"sid": "1614122", "site": "Charoen Pokphand Majalengka", "ym": "Nov 25", "actual": 77.41, "target": 80.02, "gap": -2.61}, {"sid": "1614122", "site": "Charoen Pokphand Majalengka", "ym": "Mar 26", "actual": 77.91, "target": 80.41, "gap": -2.5}, {"sid": "1614122", "site": "Charoen Pokphand Majalengka", "ym": "Apr 26", "actual": 75.94, "target": 80.33, "gap": -4.39}, {"sid": "1445767", "site": "Garuda Metalindo (IKP)", "ym": "Apr 26", "actual": 82.6, "target": 82.75, "gap": -0.15}, {"sid": "1449886", "site": "Garuda Metalindo (MPF)", "ym": "Mar 26", "actual": 82.06, "target": 82.14, "gap": -0.09}, {"sid": "1449886", "site": "Garuda Metalindo (MPF)", "ym": "Apr 26", "actual": 79.79, "target": 82.36, "gap": -2.58}, {"sid": "1458125", "site": "Garuda Metalindo 1", "ym": "Nov 25", "actual": 71.37, "target": 79.56, "gap": -8.19}, {"sid": "1458125", "site": "Garuda Metalindo 1", "ym": "Des 25", "actual": 73.4, "target": 80.86, "gap": -7.46}, {"sid": "1458125", "site": "Garuda Metalindo 1", "ym": "Jan 26", "actual": 74.74, "target": 80.45, "gap": -5.71}, {"sid": "1458125", "site": "Garuda Metalindo 1", "ym": "Feb 26", "actual": 73.17, "target": 80.2, "gap": -7.04}, {"sid": "1458125", "site": "Garuda Metalindo 1", "ym": "Mar 26", "actual": 71.89, "target": 79.78, "gap": -7.88}, {"sid": "1458125", "site": "Garuda Metalindo 1", "ym": "Apr 26", "actual": 78.61, "target": 80.25, "gap": -1.64}, {"sid": "1458125", "site": "Garuda Metalindo 1", "ym": "Mei 26", "actual": 79.32, "target": 80.58, "gap": -1.25}, {"sid": "1453245", "site": "Garuda Metalindo 2", "ym": "Apr 26", "actual": 78.39, "target": 80.34, "gap": -1.95}, {"sid": "1453245", "site": "Garuda Metalindo 2", "ym": "Mei 26", "actual": 80.03, "target": 80.96, "gap": -0.92}, {"sid": "1763661", "site": "PLTS On Grid Sorini Towa Berlian Corporindo", "ym": "Mar 26", "actual": 79.4, "target": 79.66, "gap": -0.27}, {"sid": "1680199", "site": "PLTS Rooftop Sumatera Prima Fibreboard", "ym": "Nov 25", "actual": 71.85, "target": 81.07, "gap": -9.22}, {"sid": "1680199", "site": "PLTS Rooftop Sumatera Prima Fibreboard", "ym": "Jan 26", "actual": 77.81, "target": 80.96, "gap": -3.15}, {"sid": "1680199", "site": "PLTS Rooftop Sumatera Prima Fibreboard", "ym": "Feb 26", "actual": 68.07, "target": 81.06, "gap": -12.99}, {"sid": "1680199", "site": "PLTS Rooftop Sumatera Prima Fibreboard", "ym": "Mar 26", "actual": 66.99, "target": 80.42, "gap": -13.43}, {"sid": "1680199", "site": "PLTS Rooftop Sumatera Prima Fibreboard", "ym": "Apr 26", "actual": 70.22, "target": 80.3, "gap": -10.08}, {"sid": "1680199", "site": "PLTS Rooftop Sumatera Prima Fibreboard", "ym": "Mei 26", "actual": 71.76, "target": 78.04, "gap": -6.28}, {"sid": "1479456", "site": "Shoetown Ligung Indonesia", "ym": "Mei 26", "actual": 2.66, "target": 80.97, "gap": -78.3}];
+const zeroData  = [{"sid": "1637816", "site": "Charoen Pokphand Madiun", "inv": "Inv CPMAD-INV-04.", "str_num": 4, "cap_kw": 9.76, "total": 181, "n_zero": 135, "pct_zero": 74.6, "level": "warning"}, {"sid": "1637816", "site": "Charoen Pokphand Madiun", "inv": "Inv CPMAD-INV-01.", "str_num": 23, "cap_kw": 12.2, "total": 181, "n_zero": 135, "pct_zero": 74.6, "level": "warning"}, {"sid": "1637816", "site": "Charoen Pokphand Madiun", "inv": "Inv CPMAD-INV-04.", "str_num": 23, "cap_kw": 9.15, "total": 181, "n_zero": 135, "pct_zero": 74.6, "level": "warning"}, {"sid": "1637816", "site": "Charoen Pokphand Madiun", "inv": "Inv CPMAD-INV-04.", "str_num": 2, "cap_kw": 9.76, "total": 181, "n_zero": 135, "pct_zero": 74.6, "level": "warning"}, {"sid": "1614122", "site": "Charoen Pokphand Majalengka", "inv": "Inv CPMJL-INV-05", "str_num": 23, "cap_kw": 9.76, "total": 185, "n_zero": 140, "pct_zero": 75.7, "level": "warning"}, {"sid": "1614122", "site": "Charoen Pokphand Majalengka", "inv": "Inv CPMJL-INV-03", "str_num": 5, "cap_kw": 12.2, "total": 185, "n_zero": 68, "pct_zero": 36.8, "level": "notice"}, {"sid": "1680199", "site": "PLTS Rooftop Sumatera Prima Fibreboard", "inv": "INV-10", "str_num": 14, "cap_kw": 11.16, "total": 169, "n_zero": 136, "pct_zero": 80.5, "level": "critical"}, {"sid": "1680199", "site": "PLTS Rooftop Sumatera Prima Fibreboard", "inv": "INV-01", "str_num": 11, "cap_kw": 11.16, "total": 173, "n_zero": 100, "pct_zero": 57.8, "level": "warning"}];
+
+// ── populate site selects ─────────────────────────────────────────────────
+function uniqSites(arr) {
+  const seen = new Set();
+  return arr.map(r => r.site).filter(s => { if (seen.has(s)) return false; seen.add(s); return true; }).sort();
+}
+function fillSel(sel, arr) {
+  uniqSites(arr).forEach(s => {
+    const o = document.createElement('option'); o.value = s; o.textContent = s; sel.appendChild(o);
+  });
+}
+fillSel(document.getElementById('belowSiteSel'), belowData);
+fillSel(document.getElementById('zeroSiteSel'),  zeroData);
+
+// ── Below table ───────────────────────────────────────────────────────────
+function gapClass(g) {
+  if (g < -5) return 'gap-neg-big';
+  if (g < 0)  return 'gap-neg';
+  return 'gap-ok';
+}
+function renderBelow() {
+  const f    = document.getElementById('belowSiteSel').value;
+  const rows = f ? belowData.filter(r => r.site === f) : belowData;
+  document.getElementById('belowCount').textContent = rows.length + ' baris';
+  const tb = document.getElementById('belowBody');
+  tb.innerHTML = '';
+  rows.forEach(r => {
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + r.site + '</td>' +
+      '<td style="font-family:'DM Mono',monospace">' + r.ym + '</td>' +
+      '<td style="font-family:'DM Mono',monospace">' + r.actual.toFixed(2) + '%</td>' +
+      '<td style="font-family:'DM Mono',monospace">' + r.target.toFixed(2) + '%</td>' +
+      '<td class="' + gapClass(r.gap) + '" style="font-family:'DM Mono',monospace">' + (r.gap > 0 ? '+' : '') + r.gap.toFixed(2) + '%</td>';
+    tb.appendChild(tr);
+  });
+}
+document.getElementById('belowSiteSel').addEventListener('change', renderBelow);
+renderBelow();
+
+// ── Zero-PR table ─────────────────────────────────────────────────────────
+function lvLabel(lv) {
+  if (lv === 'critical') return '<span class="lv-critical">Critical</span>';
+  if (lv === 'warning')  return '<span class="lv-warning">Warning</span>';
+  return '<span class="lv-notice">Notice</span>';
+}
+function renderZero() {
+  const fs   = document.getElementById('zeroSiteSel').value;
+  const flv  = document.getElementById('zeroLvSel').value;
+  const rows = zeroData.filter(r =>
+    (!fs  || r.site === fs) && (!flv || r.level === flv)
+  );
+  document.getElementById('zeroCount').textContent = rows.length + ' string';
+  const tb = document.getElementById('zeroBody');
+  tb.innerHTML = '';
+  rows.forEach(r => {
+    const barW = Math.round(r.pct_zero * 0.8);
+    const tr = document.createElement('tr');
+    tr.innerHTML =
+      '<td>' + r.site + '</td>' +
+      '<td>' + r.inv + '</td>' +
+      '<td style="font-family:'DM Mono',monospace">S' + String(r.str_num).padStart(2,'0') + '</td>' +
+      '<td style="font-family:'DM Mono',monospace">' + r.cap_kw.toFixed(2) + ' kW</td>' +
+      '<td style="font-family:'DM Mono',monospace;color:#ef4444">' + r.n_zero + '</td>' +
+      '<td style="font-family:'DM Mono',monospace">' + r.total + '</td>' +
+      '<td><span class="bar" style="width:' + barW + 'px"></span> ' +
+        '<span style="font-family:'DM Mono',monospace;font-size:11px">' + r.pct_zero + '%</span></td>' +
+      '<td>' + lvLabel(r.level) + '</td>';
+    tb.appendChild(tr);
+  });
+}
+document.getElementById('zeroSiteSel').addEventListener('change', renderZero);
+document.getElementById('zeroLvSel').addEventListener('change', renderZero);
+renderZero();
+</script>
+</body>
+</html>

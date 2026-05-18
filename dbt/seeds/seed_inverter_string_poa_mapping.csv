@@ -1,0 +1,7 @@
+source;site_id;inverter_id;inverter_name;string_number;string_id;poa_sensor_id;poa_sensor_name;azimuth_degrees;tilt_degrees;panel_count;string_capacity_w;notes
+FusionSolar;NE=50488260;DEV001;Inverter-01;1;FS_DEV001_STR01;EM01102287046729;EMI-1 [NORTH];0;15;20;6000;North-facing string - match POA azimuth 0
+FusionSolar;NE=50488260;DEV001;Inverter-01;2;FS_DEV001_STR02;EM02102287046729;EMI-2 [SOUTH];180;15;20;6000;South-facing string - match POA azimuth 180
+iSolarCloud;1458125;1458125_1_29_1;Inverter.102;1;ISO_1458125_1_29_1_STR01;1458125_5_21_1;IRR-NE-B;45;15;22;6600;Garuda Metalindo 1 - string 1 NE orientation
+iSolarCloud;1458125;1458125_1_29_1;Inverter.102;2;ISO_1458125_1_29_1_STR02;1458125_5_20_1;IRR-SW-B;225;15;22;6600;Garuda Metalindo 1 - string 2 SW orientation
+iSolarCloud;1680199;1680199_1_4_1;INV-8(new);1;ISO_1680199_1_4_1_STR01;1680199_5_11_2;IRR-01 (-31);329;10;24;7200;Sumatera Prima - string 1 (azimuth from sensor name)
+iSolarCloud;1680199;1680199_1_4_1;INV-8(new);2;ISO_1680199_1_4_1_STR02;1680199_5_12_2;IRR-02 (149);149;10;24;7200;Sumatera Prima - string 2

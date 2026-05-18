@@ -1,0 +1,375 @@
+platform,metric_id,metric_name,device_type,metric_group,metric_unit,used,unified_name
+fusionsolar,ab_u,A-B line voltage of grid,1,inverter,V,,
+fusionsolar,bc_u,B-C line voltage of grid,1,inverter,V,,
+fusionsolar,ca_u,C-A line voltage of grid,1,inverter,V,,
+fusionsolar,a_u,Phase A voltage,1,inverter,V,,
+fusionsolar,b_u,Phase B voltage,1,inverter,V,,
+fusionsolar,c_u,Phase C voltage,1,inverter,V,,
+fusionsolar,a_i,Phase A current of grid,1,inverter,A,,
+fusionsolar,b_i,Phase B current of grid,1,inverter,A,,
+fusionsolar,c_i,Phase C current of grid,1,inverter,A,,
+fusionsolar,efficiency,Inverter conversion efficiency (manufacturer),1,inverter,%,,
+fusionsolar,temperature,Internal temperature in inverter,1,inverter,°C,,
+fusionsolar,power_factor,Power factor,1,inverter,None,yes,inv_power_factor
+fusionsolar,elec_freq,Grid frequency,1,inverter,Hz,,
+fusionsolar,active_power,Active power,1,inverter,kW,yes,inv_active_power
+fusionsolar,reactive_power,Output reactive power,1,inverter,kVar,yes,inv_reactive_power
+fusionsolar,day_cap,Energy yield of current day,1,inverter,kWh,yes,inv_yield
+fusionsolar,mppt_power,MPPT total input power,1,mppt,kW,,
+fusionsolar,pv1_u,PV1 input voltage,1,string,V,yes,string_1_voltage
+fusionsolar,pv2_u,PV2 input voltage,1,string,V,yes,string_2_voltage
+fusionsolar,pv3_u,PV3 input voltage,1,string,V,yes,string_3_voltage
+fusionsolar,pv4_u,PV4 input voltage,1,string,V,yes,string_4_voltage
+fusionsolar,pv5_u,PV5 input voltage,1,string,V,yes,string_5_voltage
+fusionsolar,pv6_u,PV6 input voltage,1,string,V,yes,string_6_voltage
+fusionsolar,pv7_u,PV7 input voltage,1,string,V,yes,string_7_voltage
+fusionsolar,pv8_u,PV8 input voltage,1,string,V,yes,string_8_voltage
+fusionsolar,pv9_u,PV9 input voltage,1,string,V,yes,string_9_voltage
+fusionsolar,pv10_u,PV10 input voltage,1,string,V,yes,string_10_voltage
+fusionsolar,pv11_u,PV11 input voltage,1,string,V,yes,string_11_voltage
+fusionsolar,pv12_u,PV12 input voltage,1,string,V,yes,string_12_voltage
+fusionsolar,pv13_u,PV13 input voltage,1,string,V,yes,string_13_voltage
+fusionsolar,pv14_u,PV14 input voltage,1,string,V,yes,string_14_voltage
+fusionsolar,pv15_u,PV15 input voltage,1,string,V,yes,string_15_voltage
+fusionsolar,pv16_u,PV16 input voltage,1,string,V,yes,string_16_voltage
+fusionsolar,pv17_u,PV17 input voltage,1,string,V,yes,string_17_voltage
+fusionsolar,pv18_u,PV18 input voltage,1,string,V,yes,string_18_voltage
+fusionsolar,pv19_u,PV19 input voltage,1,string,V,yes,string_19_voltage
+fusionsolar,pv20_u,PV20 input voltage,1,string,V,yes,string_20_voltage
+fusionsolar,pv21_u,PV21 input voltage,1,string,V,yes,string_21_voltage
+fusionsolar,pv22_u,PV22 input voltage,1,string,V,yes,string_22_voltage
+fusionsolar,pv23_u,PV23 input voltage,1,string,V,yes,string_23_voltage
+fusionsolar,pv24_u,PV24 input voltage,1,string,V,yes,string_24_voltage
+fusionsolar,pv25_u,PV25 input voltage,1,string,V,yes,string_25_voltage
+fusionsolar,pv26_u,PV26 input voltage,1,string,V,yes,string_26_voltage
+fusionsolar,pv27_u,PV27 input voltage,1,string,V,yes,string_27_voltage
+fusionsolar,pv28_u,PV28 input voltage,1,string,V,yes,string_28_voltage
+fusionsolar,pv29_u,PV29 input voltage,1,string,V,,
+fusionsolar,pv30_u,PV30 input voltage,1,string,V,,
+fusionsolar,pv31_u,PV31 input voltage,1,string,V,,
+fusionsolar,pv32_u,PV32 input voltage,1,string,V,,
+fusionsolar,pv33_u,PV33 input voltage,1,string,V,,
+fusionsolar,pv34_u,PV34 input voltage,1,string,V,,
+fusionsolar,pv35_u,PV35 input voltage,1,string,V,,
+fusionsolar,pv36_u,PV36 input voltage,1,string,V,,
+fusionsolar,pv1_i,PV1 input current,1,string,A,yes,string_1_current
+fusionsolar,pv2_i,PV2 input current,1,string,A,yes,string_2_current
+fusionsolar,pv3_i,PV3 input current,1,string,A,yes,string_3_current
+fusionsolar,pv4_i,PV4 input current,1,string,A,yes,string_4_current
+fusionsolar,pv5_i,PV5 input current,1,string,A,yes,string_5_current
+fusionsolar,pv6_i,PV6 input current,1,string,A,yes,string_6_current
+fusionsolar,pv7_i,PV7 input current,1,string,A,yes,string_7_current
+fusionsolar,pv8_i,PV8 input current,1,string,A,yes,string_8_current
+fusionsolar,pv9_i,PV9 input current,1,string,A,yes,string_9_current
+fusionsolar,pv10_i,PV10 input current,1,string,A,yes,string_10_current
+fusionsolar,pv11_i,PV11 input current,1,string,A,yes,string_11_current
+fusionsolar,pv12_i,PV12 input current,1,string,A,yes,string_12_current
+fusionsolar,pv13_i,PV13 input current,1,string,A,yes,string_13_current
+fusionsolar,pv14_i,PV14 input current,1,string,A,yes,string_14_current
+fusionsolar,pv15_i,PV15 input current,1,string,A,yes,string_15_current
+fusionsolar,pv16_i,PV16 input current,1,string,A,yes,string_16_current
+fusionsolar,pv17_i,PV17 input current,1,string,A,yes,string_17_current
+fusionsolar,pv18_i,PV18 input current,1,string,A,yes,string_18_current
+fusionsolar,pv19_i,PV19 input current,1,string,A,yes,string_19_current
+fusionsolar,pv20_i,PV20 input current,1,string,A,yes,string_20_current
+fusionsolar,pv21_i,PV21 input current,1,string,A,yes,string_21_current
+fusionsolar,pv22_i,PV22 input current,1,string,A,yes,string_22_current
+fusionsolar,pv23_i,PV23 input current,1,string,A,yes,string_23_current
+fusionsolar,pv24_i,PV24 input current,1,string,A,yes,string_24_current
+fusionsolar,pv25_i,PV25 input current,1,string,A,yes,string_25_current
+fusionsolar,pv26_i,PV26 input current,1,string,A,yes,string_26_current
+fusionsolar,pv27_i,PV27 input current,1,string,A,yes,string_27_current
+fusionsolar,pv28_i,PV28 input current,1,string,A,yes,string_28_current
+fusionsolar,pv29_i,PV29 input current,1,string,A,,
+fusionsolar,pv30_i,PV30 input current,1,string,A,,
+fusionsolar,pv31_i,PV31 input current,1,string,A,,
+fusionsolar,pv32_i,PV32 input current,1,string,A,,
+fusionsolar,pv33_i,PV33 input current,1,string,A,,
+fusionsolar,pv34_i,PV34 input current,1,string,A,,
+fusionsolar,pv35_i,PV35 input current,1,string,A,,
+fusionsolar,pv36_i,PV36 input current,1,string,A,,
+fusionsolar,total_cap,Total yield,1,inverter,kWh,,
+fusionsolar,open_time,Inverter startup time,1,inverter,ms,,
+fusionsolar,close_time,Inverter shutdown time,1,inverter,ms,,
+fusionsolar,mppt_total_cap,Total DC input energy,1,inverter,kWh,yes,inv_dc_power
+fusionsolar,mppt_1_cap,MPPT 1 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_2_cap,MPPT 2 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_3_cap,MPPT 3 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_4_cap,MPPT 4 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_5_cap,MPPT 5 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_6_cap,MPPT 6 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_7_cap,MPPT 7 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_8_cap,MPPT 8 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_9_cap,MPPT 9 DC total yield,1,mppt,kWh,,
+fusionsolar,mppt_10_cap,MPPT 10 DC total yield,1,mppt,kWh,,
+fusionsolar,temperature,Temperature,10,sensor,°C,yes,ambient_temp
+fusionsolar,pv_temperature,PV temperature,10,sensor,°C,yes,pv_temp
+fusionsolar,wind_speed,Wind speed,10,sensor,m/s,,
+fusionsolar,wind_direction,Wind direction,10,sensor,Degree,,
+fusionsolar,radiant_total,Daily irradiation,10,sensor,MJ/m2,yes,daily_irradiance
+fusionsolar,radiant_line,Irradiance,10,sensor,W/m2,yes,irradiance
+fusionsolar,ab_u,A-B line voltage of grid,17,meter,V,,
+fusionsolar,bc_u,B-C line voltage of grid,17,meter,V,,
+fusionsolar,ca_u,C-A line voltage of grid,17,meter,V,,
+fusionsolar,a_u,Phase A voltage (AC output),17,meter,V,,
+fusionsolar,b_u,Phase B voltage (AC output),17,meter,V,,
+fusionsolar,c_u,Phase C voltage (AC output),17,meter,V,,
+fusionsolar,a_i,Phase A current of grid (IA),17,meter,A,,
+fusionsolar,b_i,Phase B current of grid (IB),17,meter,A,,
+fusionsolar,c_i,Phase C current of grid (IC),17,meter,A,,
+fusionsolar,active_power,Active power,17,meter,W,yes,meter_active_power
+fusionsolar,power_factor,Power factor,17,meter,None,yes,meter_power_factor
+fusionsolar,active_cap,Active energy (positive active energy),17,meter,kWh,yes,positive_active_energy
+fusionsolar,reactive_power,Reactive power,17,meter,kVar,,
+fusionsolar,reverse_active_cap,Negative active energy,17,meter,kWh,yes,negative_active_energy
+fusionsolar,forward_reactive_cap,Positive reactive energy,17,meter,kWh,yes,positive_reactive_energy
+fusionsolar,reverse_reactive_cap,Negative reactive energy,17,meter,kWh,yes,negative_reactive_energy
+fusionsolar,active_power_a,Active power PA,17,meter,kW,,
+fusionsolar,active_power_b,Active power PB,17,meter,kW,,
+fusionsolar,active_power_c,Active power PC,17,meter,kW,,
+fusionsolar,total_apparent_power,Total apparent power,17,meter,kVA,,
+isolarcloud,p1,Yield Today,1,inverter,Wh,yes,inv_yield
+isolarcloud,p87,Yield This Month,1,inverter,Wh,,
+isolarcloud,p88,Yield This Year,1,inverter,Wh,,
+isolarcloud,p2,Total Yield,1,inverter,Wh,,
+isolarcloud,p67,Daily Yield (Theoretical),1,inverter,Wh,,
+isolarcloud,p24,Total Active Power,1,inverter,W,yes,inv_active_power
+isolarcloud,p25,Total Reactive Power,1,inverter,var,yes,inv_reactive_power
+isolarcloud,p14,Total DC Power,1,inverter,W,yes,inv_dc_power
+isolarcloud,p43,Total Apparent Power,1,inverter,VA,,
+isolarcloud,p26,Total Power Factor,1,inverter,,yes,inv_power_factor
+isolarcloud,p18,Phase A Voltage,1,inverter,V,,
+isolarcloud,p19,Phase B Voltage,1,inverter,V,,
+isolarcloud,p20,Phase C Voltage,1,inverter,V,,
+isolarcloud,p21,Phase A Current,1,inverter,A,,
+isolarcloud,p22,Phase B Current,1,inverter,A,,
+isolarcloud,p23,Phase C Current,1,inverter,A,,
+isolarcloud,p94,Array Insulation Resistahce,1,inverter,kΩ,,
+isolarcloud,p27,Grid Frequency,1,inverter,Hz,,
+isolarcloud,p7356,Total Operation Time,1,inverter,h,,
+isolarcloud,p3,Total On-grid Running Time,1,inverter,h,,
+isolarcloud,p15,A-B Line Voltage,1,inverter,V,,
+isolarcloud,p16,B-C Line Voltage,1,inverter,V,,
+isolarcloud,p17,C-A Line Voltage,1,inverter,V,,
+isolarcloud,p95,Bus Voltage,1,inverter,V,,
+isolarcloud,p90,Negative Voltage to Ground,1,inverter,V,,
+isolarcloud,p120,Number of AFCI Faults,1,inverter,,,
+isolarcloud,p4,Internal Air Temperature,1,inverter,℃,,
+isolarcloud,p33,Module 1 Temperature,1,inverter,℃,,
+isolarcloud,p34,Module 2 Temperature,1,inverter,℃,,
+isolarcloud,p35,Module 3 Temperature,1,inverter,℃,,
+isolarcloud,p36,Module 4 Temperature,1,inverter,℃,,
+isolarcloud,p37,Module 5 Temperature,1,inverter,℃,,
+isolarcloud,p38,Module 6 Temperature,1,inverter,℃,,
+isolarcloud,p39,Positive Impedance to Ground,1,inverter,Ω,,
+isolarcloud,p40,Negative Impedance to Ground,1,inverter,Ω,,
+isolarcloud,p41,P-limit-actual,1,inverter,W,,
+isolarcloud,p42,Reactive Power Regulation Actual Value,1,inverter,va,,
+isolarcloud,p5,MPPT1 Voltage,1,mppt,V,,
+isolarcloud,p7,MPPT2 Voltage,1,mppt,V,,
+isolarcloud,p9,MPPT3 Voltage,1,mppt,V,,
+isolarcloud,p45,MPPT4 Voltage,1,mppt,V,,
+isolarcloud,p47,MPPT5 Voltage,1,mppt,V,,
+isolarcloud,p49,MPPT6 Voltage,1,mppt,V,,
+isolarcloud,p51,MPPT7 Voltage,1,mppt,V,,
+isolarcloud,p53,MPPT8 Voltage,1,mppt,V,,
+isolarcloud,p55,MPPT9 Voltage,1,mppt,V,,
+isolarcloud,p57,MPPT10 Voltage,1,mppt,V,,
+isolarcloud,p7401,MPPT11 Voltage,1,mppt,V,,
+isolarcloud,p7402,MPPT12 Voltage,1,mppt,V,,
+isolarcloud,p7723,MPPT13 Voltage,1,mppt,V,,
+isolarcloud,p7725,MPPT14 Voltage,1,mppt,V,,
+isolarcloud,p7727,MPPT15 Voltage,1,mppt,V,,
+isolarcloud,p7729,MPPT16 Voltage,1,mppt,V,,
+isolarcloud,p7731,MPPT17 Voltage,1,mppt,V,,
+isolarcloud,p7733,MPPT18 Voltage,1,mppt,V,,
+isolarcloud,p7735,MPPT19 Voltage,1,mppt,V,,
+isolarcloud,p7737,MPPT20 Voltage,1,mppt,V,,
+isolarcloud,p6,MPPT1 Current,1,mppt,A,,
+isolarcloud,p8,MPPT2 Current,1,mppt,A,,
+isolarcloud,p10,MPPT3 Current,1,mppt,A,,
+isolarcloud,p46,MPPT4 Current,1,mppt,A,,
+isolarcloud,p48,MPPT5 Current,1,mppt,A,,
+isolarcloud,p50,MPPT6 Current,1,mppt,A,,
+isolarcloud,p52,MPPT7 Current,1,mppt,A,,
+isolarcloud,p54,MPPT8 Current,1,mppt,A,,
+isolarcloud,p56,MPPT9 Current,1,mppt,A,,
+isolarcloud,p58,MPPT10 Current,1,mppt,A,,
+isolarcloud,p7451,MPPT11 Current,1,mppt,A,,
+isolarcloud,p7452,MPPT12 Current,1,mppt,A,,
+isolarcloud,p7724,MPPT13 Current,1,mppt,A,,
+isolarcloud,p7726,MPPT14 Current,1,mppt,A,,
+isolarcloud,p7728,MPPT15 Current,1,mppt,A,,
+isolarcloud,p7730,MPPT16 Current,1,mppt,A,,
+isolarcloud,p7732,MPPT17 Current,1,mppt,A,,
+isolarcloud,p7734,MPPT18 Current,1,mppt,A,,
+isolarcloud,p7736,MPPT19 Current,1,mppt,A,,
+isolarcloud,p7738,MPPT20 Current,1,mppt,A,,
+isolarcloud,p96,String 1 Voltage,1,string,V,yes,string_1_voltage
+isolarcloud,p97,String 2 Voltage,1,string,V,yes,string_2_voltage
+isolarcloud,p98,String 3 Voltage,1,string,V,yes,string_3_voltage
+isolarcloud,p99,String 4 Voltage,1,string,V,yes,string_4_voltage
+isolarcloud,p100,String 5 Voltage,1,string,V,yes,string_5_voltage
+isolarcloud,p101,String 6 Voltage,1,string,V,yes,string_6_voltage
+isolarcloud,p102,String 7 Voltage,1,string,V,yes,string_7_voltage
+isolarcloud,p103,String 8 Voltage,1,string,V,yes,string_8_voltage
+isolarcloud,p104,String 9 Voltage,1,string,V,yes,string_9_voltage
+isolarcloud,p105,String 10 Voltage,1,string,V,yes,string_10_voltage
+isolarcloud,p106,String 11 Voltage,1,string,V,yes,string_11_voltage
+isolarcloud,p107,String 12 Voltage,1,string,V,yes,string_12_voltage
+isolarcloud,p108,String 13 Voltage,1,string,V,yes,string_13_voltage
+isolarcloud,p109,String 14 Voltage,1,string,V,yes,string_14_voltage
+isolarcloud,p110,String 15 Voltage,1,string,V,yes,string_15_voltage
+isolarcloud,p111,String 16 Voltage,1,string,V,yes,string_16_voltage
+isolarcloud,p112,String 17 Voltage,1,string,V,yes,string_17_voltage
+isolarcloud,p113,String 18 Voltage,1,string,V,yes,string_18_voltage
+isolarcloud,p7166,String 19 Voltage,1,string,V,yes,string_19_voltage
+isolarcloud,p7167,String 20 Voltage,1,string,V,yes,string_20_voltage
+isolarcloud,p7168,String 21 Voltage,1,string,V,yes,string_21_voltage
+isolarcloud,p7169,String 22 Voltage,1,string,V,yes,string_22_voltage
+isolarcloud,p7170,String 23 Voltage,1,string,V,yes,string_23_voltage
+isolarcloud,p7171,String 24 Voltage,1,string,V,yes,string_24_voltage
+isolarcloud,p7172,String 25 Voltage,1,string,V,,
+isolarcloud,p7173,String 26 Voltage,1,string,V,,
+isolarcloud,p7174,String 27 Voltage,1,string,V,,
+isolarcloud,p7175,String 28 Voltage,1,string,V,,
+isolarcloud,p7176,String 29 Voltage,1,string,V,,
+isolarcloud,p7177,String 30 Voltage,1,string,V,,
+isolarcloud,p7178,String 31 Voltage,1,string,V,,
+isolarcloud,p7179,String 32 Voltage,1,string,V,,
+isolarcloud,p7707,String 33 Voltage,1,string,V,,
+isolarcloud,p7709,String 34 Voltage,1,string,V,,
+isolarcloud,p7711,String 35 Voltage,1,string,V,,
+isolarcloud,p7713,String 36 Voltage,1,string,V,,
+isolarcloud,p7715,String 37 Voltage,1,string,V,,
+isolarcloud,p7717,String 38 Voltage,1,string,V,,
+isolarcloud,p7719,String 39 Voltage,1,string,V,,
+isolarcloud,p7721,String 40 Voltage,1,string,V,,
+isolarcloud,p70,String 1 Current,1,string,A,yes,string_1_current
+isolarcloud,p71,String 2 Current,1,string,A,yes,string_2_current
+isolarcloud,p72,String 3 Current,1,string,A,yes,string_3_current
+isolarcloud,p73,String 4 Current,1,string,A,yes,string_4_current
+isolarcloud,p74,String 5 Current,1,string,A,yes,string_5_current
+isolarcloud,p75,String 6 Current,1,string,A,yes,string_6_current
+isolarcloud,p76,String 7 Current,1,string,A,yes,string_7_current
+isolarcloud,p77,String 8 Current,1,string,A,yes,string_8_current
+isolarcloud,p78,String 9 Current,1,string,A,yes,string_9_current
+isolarcloud,p79,String 10 Current,1,string,A,yes,string_10_current
+isolarcloud,p80,String 11 Current,1,string,A,yes,string_11_current
+isolarcloud,p81,String 12 Current,1,string,A,yes,string_12_current
+isolarcloud,p82,String 13 Current,1,string,A,yes,string_13_current
+isolarcloud,p83,String 14 Current,1,string,A,yes,string_14_current
+isolarcloud,p84,String 15 Current,1,string,A,yes,string_15_current
+isolarcloud,p85,String 16 Current,1,string,A,yes,string_16_current
+isolarcloud,p92,String 17 Current,1,string,A,yes,string_17_current
+isolarcloud,p93,String 18 Current,1,string,A,yes,string_18_current
+isolarcloud,p313,String 19 Current,1,string,A,yes,string_19_current
+isolarcloud,p314,String 20 Current,1,string,A,yes,string_20_current
+isolarcloud,p315,String 21 Current,1,string,A,yes,string_21_current
+isolarcloud,p316,String 22 Current,1,string,A,yes,string_22_current
+isolarcloud,p317,String 23 Current,1,string,A,yes,string_23_current
+isolarcloud,p318,String 24 Current,1,string,A,yes,string_24_current
+isolarcloud,p319,String 25 Current,1,string,A,,
+isolarcloud,p320,String 26 Current,1,string,A,,
+isolarcloud,p321,String 27 Current,1,string,A,,
+isolarcloud,p322,String 28 Current,1,string,A,,
+isolarcloud,p323,String 29 Current,1,string,A,,
+isolarcloud,p324,String 30 Current,1,string,A,,
+isolarcloud,p325,String 31 Current,1,string,A,,
+isolarcloud,p326,String 32 Current,1,string,A,,
+isolarcloud,p7708,String 33 Current,1,string,A,,
+isolarcloud,p7710,String 34 Current,1,string,A,,
+isolarcloud,p7712,String 35 Current,1,string,A,,
+isolarcloud,p7714,String 36 Current,1,string,A,,
+isolarcloud,p7716,String 37 Current,1,string,A,,
+isolarcloud,p7718,String 38 Current,1,string,A,,
+isolarcloud,p7720,String 39 Current,1,string,A,,
+isolarcloud,p7722,String 40 Current,1,string,A,,
+isolarcloud,p2003,Transient Horizontal Irradiation,5,sensor,W/㎡,yes,irradiance
+isolarcloud,p2001,Daily Horizontal Irradiation,5,sensor,Wh/㎡,yes,daily_irradiance
+isolarcloud,p2002,Total Horizontal Irradiation,5,sensor,Wh/㎡,,
+isolarcloud,p2007,Slope Transient Irradiation,5,sensor,W/㎡,yes,irradiance
+isolarcloud,p2005,Slope Daily Irradiation,5,sensor,Wh/㎡,yes,daily_irradiance
+isolarcloud,p2006,Total Slope Irradiation,5,sensor,Wh/㎡,,
+isolarcloud,p2009,Ambient Temperature,5,sensor,℃,yes,ambient_temp
+isolarcloud,p2010,Temp. (PV module),5,sensor,℃,yes,pv_temp
+isolarcloud,p2016,Wind Speed,5,sensor,m/s,,
+isolarcloud,p2011,Wind Speed Scale,5,sensor,,,
+isolarcloud,p2012,Wind Angle,5,sensor,°,,
+isolarcloud,p2014,Atmospheric Pressure,5,sensor,hPa,,
+isolarcloud,p2015,Ambient Humidity,5,sensor,%RH,,
+isolarcloud,p2022,Rainfall,5,sensor,mm,yes,rainfall
+isolarcloud,p8030,Forward Active Energy,7,meter,Wh,yes,positive_active_energy
+isolarcloud,p8031,Reverse Active Energy,7,meter,Wh,yes,negative_active_energy
+isolarcloud,p8062,Daily Forward Active Energy,7,meter,Wh,,
+isolarcloud,p8063,Daily Reverse Active Energy,7,meter,Wh,,
+isolarcloud,p8032,Forward Reactive Energy,7,meter,varh,yes,positive_reactive_energy
+isolarcloud,p8033,Reverse Reactive Energy,7,meter,varh,yes,negative_reactive_energy
+isolarcloud,p8034,Peak Forward Active Energy,7,meter,Wh,,
+isolarcloud,p8035,Peak Reverse Active Energy,7,meter,Wh,,
+isolarcloud,p8038,Valley Forward Active Energy,7,meter,Wh,,
+isolarcloud,p8039,Valley Reverse Active Energy,7,meter,Wh,,
+isolarcloud,p8042,Flat Forward Active Energy,7,meter,Wh,,
+isolarcloud,p8043,Flat Reverse Active Energy,7,meter,Wh,,
+isolarcloud,p8058,Wave Forward Active Energy,7,meter,Wh,,
+isolarcloud,p8059,Wave Reverse Active Energy,7,meter,Wh,,
+isolarcloud,p8036,Peak Forward Reactive Energy,7,meter,Wh,,
+isolarcloud,p8037,Peak Reverse Reactive Energy,7,meter,Wh,,
+isolarcloud,p8040,Valley Forward Reactive Energy,7,meter,Wh,,
+isolarcloud,p8041,Valley Reverse Reactive Energy,7,meter,Wh,,
+isolarcloud,p8044,Flat Forward Reactive Energy,7,meter,Wh,,
+isolarcloud,p8045,Flat Reverse Reactive Energy,7,meter,Wh,,
+isolarcloud,p8060,Wave Forward Reactive Energy,7,meter,Wh,,
+isolarcloud,p8061,Wave Reverse Reactive Energy,7,meter,Wh,,
+isolarcloud,p8000,Phase A Voltage,7,meter,V,,
+isolarcloud,p8001,Phase B Voltage,7,meter,V,,
+isolarcloud,p8002,Phase C Voltage,7,meter,V,,
+isolarcloud,p8003,A-B Line Voltage,7,meter,V,,
+isolarcloud,p8004,B-C Line Voltage,7,meter,V,,
+isolarcloud,p8005,C-A Line Voltage,7,meter,V,,
+isolarcloud,p8006,Phase A Current,7,meter,A,,
+isolarcloud,p8007,Phase B Current,7,meter,A,,
+isolarcloud,p8008,Phase C Current,7,meter,A,,
+isolarcloud,p8064,Frequency,7,meter,Hz,,
+isolarcloud,p8018,Meter Active Power,7,meter,W,yes,meter_active_power
+isolarcloud,p8022,Reactive Power,7,meter,var,,
+isolarcloud,p8014,PF,7,meter,None,yes,meter_power_factor
+isolarcloud,p8026,Apparent Power,7,meter,VA,,
+isolarcloud,p8076,Meter Phase A Active Power,7,meter,W,,
+isolarcloud,p8077,Meter Phase B Active Power,7,meter,W,,
+isolarcloud,p8078,Meter Phase C Active Power,7,meter,W,,
+isolarcloud,p8084,Daily Direct Power Consumption,7,meter,Wh,,
+fusionsolar,charge_cap,Energy charged today,39,battery,kWh,yes,battery_charge_cap
+fusionsolar,discharge_cap,Energy discharged today,39,battery,kWh,yes,battery_discharge_cap
+fusionsolar,ch_discharge_power,Charge/Discharge power,39,battery,W,yes,battery_ch_discharge_power
+fusionsolar,a_i,Power grid current / Phase A current (SmartAssistant),23070,smart_assistant,A,,
+fusionsolar,b_i,Phase B current (SmartAssistant),23070,smart_assistant,A,,
+fusionsolar,c_i,Phase C current (SmartAssistant),23070,smart_assistant,A,,
+fusionsolar,ab_u,A-B line voltage (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,bc_u,B-C line voltage (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,ca_u,C-A line voltage (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,a_u,Power grid voltage / Phase A voltage (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,b_u,Phase B voltage (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,c_u,Phase C voltage (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,active_power_a,Phase A active power (SmartAssistant),23070,smart_assistant,kW,,
+fusionsolar,active_power_b,Phase B active power (SmartAssistant),23070,smart_assistant,kW,,
+fusionsolar,active_power_c,Phase C active power (SmartAssistant),23070,smart_assistant,kW,,
+fusionsolar,active_power,Active power (SmartAssistant),23070,smart_assistant,kW,yes,sa_active_power
+fusionsolar,reactive_power,Reactive power (SmartAssistant),23070,smart_assistant,kVar,yes,sa_reactive_power
+fusionsolar,power_factor,Power factor (SmartAssistant),23070,smart_assistant,None,yes,sa_power_factor
+fusionsolar,active_cap,Positive active energy (SmartAssistant),23070,smart_assistant,kWh,yes,sa_grid_positive_active_energy
+fusionsolar,reverse_active_cap,Negative active energy (SmartAssistant),23070,smart_assistant,kWh,yes,sa_grid_negative_active_energy
+fusionsolar,ex_a_i,Grid current of external CT / Phase A current of external CT (SmartAssistant),23070,smart_assistant,A,,
+fusionsolar,ex_b_i,Phase B current of external CT (SmartAssistant),23070,smart_assistant,A,,
+fusionsolar,ex_c_i,Phase C current of external CT (SmartAssistant),23070,smart_assistant,A,,
+fusionsolar,ex_a_u,Grid voltage of external CT / Phase A voltage of external CT (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,ex_b_u,Phase B voltage of external CT (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,ex_c_u,Phase C voltage of external CT (SmartAssistant),23070,smart_assistant,V,,
+fusionsolar,ex_active_power_a,Phase A active power of external CT (SmartAssistant),23070,smart_assistant,kW,,
+fusionsolar,ex_active_power_b,Phase B active power of external CT (SmartAssistant),23070,smart_assistant,kW,,
+fusionsolar,ex_active_power_c,Phase C active power of external CT (SmartAssistant),23070,smart_assistant,kW,,
+fusionsolar,ex_active_power,Active power of external CT (SmartAssistant),23070,smart_assistant,kW,yes,ct_active_power
+fusionsolar,ex_reactive_power,Reactive power of external CT (SmartAssistant),23070,smart_assistant,kVar,,
+fusionsolar,ex_power_factor,Power factor of external CT (SmartAssistant),23070,smart_assistant,None,,
+fusionsolar,ex_active_cap,Positive active energy of external CT (SmartAssistant),23070,smart_assistant,kWh,yes,sa_positive_active_energy
+fusionsolar,ex_reverse_active_cap,Negative active energy of external CT (SmartAssistant),23070,smart_assistant,kWh,,sa_negative_active_energy

@@ -1,0 +1,9 @@
+table_schema;table_name;column_name;display_name_id;business_definition;formula;unit;source_trail;how_to_verify;where_to_correct;common_confusion;priority
+mart;mart_battery_performance_5min;timestamp;Waktu 5-menit;Timestamp observasi battery;Grain timestamp;timestamp;stg_fusionsolar__perf_battery_unpivoted -> mart_battery_performance_5min;Cek continuity 5-menit;Source battery ingest;-;P0
+mart;mart_battery_performance_5min;date_key;Tanggal operasi;Tanggal turunan dari timestamp;DATE(timestamp);date;timestamp -> dim_date_generated;Bandingkan DATE(timestamp);Model dbt;-;P1
+mart;mart_battery_performance_5min;asset_id;ID battery;ID perangkat battery di dim_assets;FS_<dev_id>;text;staging battery + dim_assets;Cek join asset_id;dim_assets;P0
+mart;mart_battery_performance_5min;site_name;Nama site;Site battery;Dari dim_assets/site mapping;text;staging battery -> dim_assets;Cek site battery;dim_assets;P0
+mart;mart_battery_performance_5min;metric_id;ID metrik raw;Kode metrik battery dari sumber;Raw metric id;text;stg_fusionsolar__perf_battery_unpivoted;Cek metric_id mentah;source ingestion;-;P1
+mart;mart_battery_performance_5min;metric_name;Nama metrik standar;Nama metrik battery standar (group battery);Map dari seed_metric_mapper;text;seed_metric_mapper -> mart_battery_performance_5min;Validasi mapping per metric_id;seed_metric_mapper;Metrik di luar used=yes tidak ikut;P0
+mart;mart_battery_performance_5min;metric_unit;Unit metrik;Unit standar battery;Map seed;unit;seed_metric_mapper;Cek unit sesuai metrik;seed_metric_mapper;P1
+mart;mart_battery_performance_5min;metric_value;Nilai metrik battery;Nilai numerik 5-menit battery;CAST numeric;depends on metric;staging battery;Bandingkan raw vs mart;source ingestion/filter;nan/infinity dibuang;P0

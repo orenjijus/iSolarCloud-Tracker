@@ -1,0 +1,134 @@
+layer|object_name|total_rows|min_timestamp|max_timestamp|unique_devices|unique_metrics
+1_RAW|FusionSolar devices|227||||
+1_RAW|iSolarCloud devices|315||||
+1_RAW|FusionSolar historical|13191064|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|201|
+1_RAW|iSolarCloud historical|17110847|2024-10-10 16:15:00|2026-01-29 23:55:00|293|
+(4 rows)
+layer|object_name|total_rows|min_timestamp|max_timestamp|unique_devices|unique_metrics
+2_STAGING|stg_isolarcloud__perf_unpivoted|347531974|2024-10-10 16:15:00|2026-01-27 23:55:00|293|71
+2_STAGING|stg_fusionsolar__perf_unpivoted|508777855|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|201|101
+(2 rows)
+layer|object_name|total_rows|min_timestamp|max_timestamp|unique_devices|unique_metrics
+2_STAGING_BY_TYPE|FusionSolar_Inverter|421497906|2024-05-01 05:10:00+07|2026-01-29 18:40:00+07|103|88
+2_STAGING_BY_TYPE|FusionSolar_Meter|67347398|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|38|20
+2_STAGING_BY_TYPE|FusionSolar_Sensor|19932551|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|60|6
+2_STAGING_BY_TYPE|iSolarCloud_Inverter|306553312|2024-10-10 16:15:00|2026-01-29 23:55:00|117|52
+2_STAGING_BY_TYPE|iSolarCloud_Meter|28030331|2024-10-10 16:15:00|2026-01-29 23:55:00|100|12
+2_STAGING_BY_TYPE|iSolarCloud_Sensor|14056986|2024-10-13 12:10:00|2026-01-29 23:55:00|66|7
+(6 rows)
+layer|object_name|total_rows|min_timestamp|max_timestamp|unique_assets|unique_metrics
+4_DIMENSIONS|dim_assets|556|||556|
+4_DIMENSIONS|dim_date_generated|2930||||
+(2 rows)
+layer|object_name|total_rows|min_timestamp|max_timestamp|unique_assets|unique_metrics
+5_MART_5MIN|mart_sensor_measurements_5min|30397075|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|126|11
+5_MART_5MIN|mart_meter_performance_5min|48436481|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|135|12
+5_MART_5MIN|mart_inverter_performance_5min|52339748|2024-05-01 05:10:00+07|2026-01-29 23:55:00+07|220|9
+(3 rows)
+layer|mart_name|system|total_rows|min_timestamp|max_timestamp|unique_assets|unique_metrics
+5_MART_5MIN_BY_SYSTEM|mart_inverter_performance_5min|fusionsolar|25132850|2024-05-01 05:10:00+07|2026-01-29 18:40:00+07|103|5
+5_MART_5MIN_BY_SYSTEM|mart_inverter_performance_5min|isolarcloud|27206898|2024-10-10 16:15:00+07|2026-01-29 23:55:00+07|117|4
+5_MART_5MIN_BY_SYSTEM|mart_meter_performance_5min|fusionsolar|27790757|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|38|6
+5_MART_5MIN_BY_SYSTEM|mart_meter_performance_5min|isolarcloud|20645724|2024-10-10 16:15:00+07|2026-01-29 23:55:00+07|97|6
+5_MART_5MIN_BY_SYSTEM|mart_sensor_measurements_5min|fusionsolar|16340089|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|60|4
+5_MART_5MIN_BY_SYSTEM|mart_sensor_measurements_5min|isolarcloud|14056986|2024-10-13 12:10:00+07|2026-01-29 23:55:00+07|66|7
+(6 rows)
+site_id|site_name|system|first_date|last_date|days_with_data|total_energy_mwh
+FS_SITE_NE=53771627|PLTS Mall Panakkukang|fusionsolar|2024-12-19|2026-01-29|407|1777.82
+FS_SITE_NE=62806354|PLTS ONGRID PT SUPARMA TBK|fusionsolar|2025-10-17|2026-01-29|105|1177.16
+FS_SITE_NE=50488260|PT. MMKI 1.75 MWp - Painting Building|fusionsolar|2024-04-30|2026-01-29|627|3540.85
+FS_SITE_NE=58630782|PT. MMKI 4.292 MWP - Phase 3|fusionsolar|2025-07-16|2026-01-29|198|2946.83
+FS_SITE_NE=51758766|PT. MMKI 5.7 MWp - Phase 2|fusionsolar|2024-06-26|2026-01-29|583|11115.78
+FS_SITE_NE=54435794|PT. Pusan Manis Mulia 2.06 MWp - Tangerang|fusionsolar|2024-11-26|2026-01-29|430|2819.38
+ISO_SITE_1637095|Charoen Pokphand Bandung|isolarcloud|2025-09-01|2026-01-29|150|831.87
+ISO_SITE_1637816|Charoen Pokphand Madiun|isolarcloud|2025-09-01|2026-01-29|150|618.12
+ISO_SITE_1614122|Charoen Pokphand Majalengka|isolarcloud|2025-09-01|2026-01-29|150|562.88
+ISO_SITE_1445767|Garuda Metalindo (IKP)|isolarcloud|2024-11-01|2026-01-29|454|497.03
+ISO_SITE_1449886|Garuda Metalindo (MPF)|isolarcloud|2024-11-11|2026-01-29|444|534.30
+ISO_SITE_1458125|Garuda Metalindo 1|isolarcloud|2024-11-07|2026-01-29|448|1097.03
+ISO_SITE_1453245|Garuda Metalindo 2|isolarcloud|2024-11-07|2026-01-29|448|981.24
+ISO_SITE_1628909|PLTS Frina Lestari Nusantara|isolarcloud|2025-09-01|2026-01-29|150|562.41
+ISO_SITE_1680199|PLTS Rooftop Sumatera Prima Fibreboard|isolarcloud|2025-10-01|2026-01-29|120|921.98
+ISO_SITE_1722752|Samator Ame Krian 6,82 kWp|isolarcloud|2026-01-27|2026-01-29|2|0.00
+ISO_SITE_1731512|Samator Bali|isolarcloud|2026-01-29|2026-01-29|1|0.00
+ISO_SITE_1734912|Samator Gas Industri Malang 6,82 kWp|isolarcloud|2026-01-26|2026-01-29|3|0.00
+ISO_SITE_1728142|Samator Gas Industri Sidoarjo 6,82 kWP|isolarcloud|2026-01-27|2026-01-29|2|0.00
+ISO_SITE_1730375|Samator Gas Industri Solo 6,82 kWp|isolarcloud|2026-01-26|2026-01-29|3|0.00
+ISO_SITE_1723575|Samator Indo Gas Semarang 9,92 kWp|isolarcloud|2025-12-17|2026-01-29|30|0.00
+ISO_SITE_1479456|Shoetown Ligung Indonesia|isolarcloud|2025-01-09|2026-01-29|385|3799.35
+(22 rows)
+layer|object_name|total_rows|min_timestamp|max_timestamp|unique_sites|unique_metrics
+9_MART_OTHER|mart_site_performance_monthly|186|||22|
+9_MART_OTHER|mart_site_kpi_monthly|143||||
+9_MART_OTHER|mart_simulation_targets_monthly|138||||
+9_MART_OTHER|mart_weekly_log|4||||
+(4 rows)
+check_type|table_name|null_metric_count|outlier_likely_count|total_rows
+10_QUALITY|mart_sensor_5min|0|0|30397075
+10_QUALITY|mart_inverter_5min|0|0|52339748
+10_QUALITY|mart_meter_5min|0|1573123|48436481
+(3 rows)
+table_name|system|last_timestamp|last_date_key
+mart_inverter_performance_5min|fusionsolar|2026-01-29 18:40:00+07|2026-01-29
+mart_inverter_performance_5min|isolarcloud|2026-01-29 23:55:00+07|2026-01-29
+mart_meter_performance_5min|fusionsolar|2026-01-29 23:55:00+07|2026-01-29
+mart_meter_performance_5min|isolarcloud|2026-01-29 23:55:00+07|2026-01-29
+mart_sensor_measurements_5min|fusionsolar|2026-01-29 23:55:00+07|2026-01-29
+mart_sensor_measurements_5min|isolarcloud|2026-01-29 23:55:00+07|2026-01-29
+(6 rows)
+layer|object_name|total_rows|min_timestamp|max_timestamp|unique_assets|unique_metrics
+12_FACTS|fact_site_calculations_5min|1237685|2024-05-01 05:10:00+07|2026-01-29 23:55:00+07|23|
+12_FACTS|fact_sensor_calculations_5min|6385935|2024-04-30 23:00:00+07|2026-01-29 23:55:00+07|89|
+12_FACTS|fact_inverter_calculations_5min|11347469|2024-05-01 05:10:00+07|2026-01-29 23:55:00+07|219|
+(3 rows)
+schema_name|table_name|total_size_pretty|total_size_bytes
+mart|mart_sensor_measurements_5min|6750 MB|7078027264
+mart|fact_inverter_calculations_5min|2748 MB|2881126400
+mart|fact_sensor_calculations_5min|1617 MB|1695711232
+mart|fact_site_calculations_5min|245 MB|256901120
+mart|mart_inverter_yield_daily|14 MB|14295040
+mart|mart_sensor_daily|8872 kB|9084928
+mart|mart_site_performance_daily|2480 kB|2539520
+mart|mart_simulation_targets_daily|1488 kB|1523712
+staging|seed_daily_simulation_target|712 kB|729088
+raw|isolarcloud_historical_alarm|568 kB|581632
+dimensions|dim_date_generated|472 kB|483328
+raw|isolarcloud_devices|160 kB|163840
+raw|fusionsolar_devices|152 kB|155648
+dimensions|dim_assets|136 kB|139264
+mart|mart_simulation_targets_monthly|120 kB|122880
+staging|seed_ghi_adjustment_daily|112 kB|114688
+mart|mart_site_kpi_monthly|88 kB|90112
+staging|seed_metric_mapper|64 kB|65536
+staging|seed_issue_dates|56 kB|57344
+staging|seed_meter_config|48 kB|49152
+staging|seed_sensor_config|48 kB|49152
+staging|seed_daily_kpi_monthly|48 kB|49152
+staging|stg_fusionsolar__devices|40 kB|40960
+staging|stg_isolarcloud__devices|40 kB|40960
+raw|fusionsolar_plants|32 kB|32768
+mart|mart_meter_performance_5min|32 kB|32768
+raw|isolarcloud_power_stations|32 kB|32768
+mart|mart_inverter_performance_5min|32 kB|32768
+raw|fusionsolar_historical_data|24 kB|24576
+raw|isolarcloud_historical_data|24 kB|24576
+staging|stg_isolarcloud__sites|16 kB|16384
+staging|seed_sensor_site_mapping|16 kB|16384
+dimensions|dim_site|16 kB|16384
+staging|stg_fusionsolar__sites|16 kB|16384
+staging|seed_inverter_site_mapping|16 kB|16384
+mart|mart_weekly_log|16 kB|16384
+staging|seed_meter_site_mapping|16 kB|16384
+staging|seed_weekly_log|16 kB|16384
+staging|seed_site_config|16 kB|16384
+staging|seed_energy_adjustment_daily|16 kB|16384
+staging|seed_cleaning_log|16 kB|16384
+staging|stg_fusionsolar__perf_unpivoted|16 kB|16384
+staging|stg_isolarcloud__perf_unpivoted|16 kB|16384
+(43 rows)
+schema_name|total_size_pretty|total_size_bytes|table_count
+mart|11 GB|11939504128|13
+staging|1344 kB|1376256|20
+raw|992 kB|1015808|7
+dimensions|624 kB|638976|3
+(4 rows)

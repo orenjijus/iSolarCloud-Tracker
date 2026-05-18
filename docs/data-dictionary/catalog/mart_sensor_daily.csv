@@ -1,0 +1,12 @@
+table_schema;table_name;column_name;display_name_id;business_definition;formula;unit;source_trail;how_to_verify;where_to_correct;common_confusion;priority
+mart;mart_sensor_daily;date_key;Tanggal;Tanggal agregasi harian sensor;Grain date;date;mart_sensor_measurements_5min -> mart_sensor_daily;Cek satu sensor satu tanggal;Model aggregation;-;P0
+mart;mart_sensor_daily;asset_id;ID sensor;Identitas sensor harian;Dari sensor 5-menit;text;mart_sensor_measurements_5min;Join balik ke sensor 5-menit;dim_assets / sensor config;P0
+mart;mart_sensor_daily;site_name;Nama site;Site sensor setelah logic override;POA override/site mapping;text;seed_sensor_site_mapping + sensor daily;Cek site sebelum/sesudah override;seed_sensor_site_mapping;Bisa beda dari physical site;P0
+mart;mart_sensor_daily;sensor_type;Tipe sensor;Kategori sensor;Dari seed sensor config;text;seed_sensor_config;Cek klasifikasi sensor;seed_sensor_config;P0
+mart;mart_sensor_daily;sensor_capacity_kwp;Kapasitas sensor;Kapasitas sensor POA untuk weighted calc;Parse numeric dari seed;kWp;seed_sensor_config;Cek nilai kapasitas sensor;seed_sensor_config;Null untuk non-POA;P1
+mart;mart_sensor_daily;daily_irradiance_kwh_m2;Irradiance harian;Irradiance harian terkonversi unit;MAX/convert sesuai unit sumber;kWh/m2;mart_sensor_measurements_5min + unit conversion;Bandingkan raw daily_irradiance;seed_metric_mapper / sensor config;Konversi unit sering bikin salah baca;P0
+mart;mart_sensor_daily;daily_horizontal_irradiation_kwh_m2;Horizontal irradiation harian;Horizontal irradiation terkonversi;MAX/convert horizontal_irradiation;kWh/m2;mart_sensor_measurements_5min;Bandingkan raw horizontal_irradiation;mapping metric/unit;P1
+mart;mart_sensor_daily;avg_irradiance_w_m2;Rata-rata irradiance;Rata-rata irradiance slot 5-menit;AVG irradiance;W/m2;mart_sensor_measurements_5min;Hitung AVG manual;Model aggregation;P1
+mart;mart_sensor_daily;max_irradiance_w_m2;Puncak irradiance;Nilai irradiance tertinggi harian;MAX irradiance;W/m2;mart_sensor_measurements_5min;Hitung MAX manual;Model aggregation;P1
+mart;mart_sensor_daily;measurement_count;Jumlah record;Jumlah total record sensor harian;COUNT(*);count;mart_sensor_measurements_5min;Bandingkan count raw;Source ingestion;Indikator kelengkapan data;P0
+mart;mart_sensor_daily;timestamp_count;Jumlah timestamp unik;Jumlah slot waktu unik harian;COUNT(DISTINCT timestamp);count;mart_sensor_measurements_5min;Bandingkan slot unik raw;Source ingestion;P0

@@ -1,0 +1,560 @@
+site_Name,site_id,Year,Month,Month_Number,Energy_KPI_MWh
+Charoen Pokphand Bandung,ISO_SITE_1637095,2024,August,8,195.02
+Charoen Pokphand Bandung,ISO_SITE_1637095,2024,September,9,194.34
+Charoen Pokphand Bandung,ISO_SITE_1637095,2024,October,10,213.61
+Charoen Pokphand Bandung,ISO_SITE_1637095,2024,November,11,176.69
+Charoen Pokphand Bandung,ISO_SITE_1637095,2024,December,12,177.71
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,January,1,170.73
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,February,2,175.22
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,March,3,185.77
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,April,4,182.82
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,May,5,185.87
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,June,6,181.15
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,July,7,186.87
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,August,8,96.567
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,September,9,190.201
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,October,10,209.696
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,November,11,170.54
+Charoen Pokphand Bandung,ISO_SITE_1637095,2025,December,12,173.504
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,January,1,165.43
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,February,2,170.47
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,March,3,176.88
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,April,4,164.99
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,May,5,180.39
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,June,6,175.93
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,July,7,181.56
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,August,8,189.88
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,September,9,189
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,October,10,208.38
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,November,11,169.47
+Charoen Pokphand Bandung,ISO_SITE_1637095,2026,December,12,172.41
+Charoen Pokphand Madiun,ISO_SITE_1637816,2024,August,8,143.78
+Charoen Pokphand Madiun,ISO_SITE_1637816,2024,September,9,148.07
+Charoen Pokphand Madiun,ISO_SITE_1637816,2024,October,10,146.52
+Charoen Pokphand Madiun,ISO_SITE_1637816,2024,November,11,122.47
+Charoen Pokphand Madiun,ISO_SITE_1637816,2024,December,12,119.56
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,January,1,116.54
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,February,2,105.36
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,March,3,126.36
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,April,4,122.23
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,May,5,124.13
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,June,6,117.46
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,July,7,127.47
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,August,8,71.348
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,September,9,145.285
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,October,10,143.842
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,November,11,120.5
+Charoen Pokphand Madiun,ISO_SITE_1637816,2025,December,12,117.738
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,January,1,114.16
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,February,2,103.20
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,March,3,117.70
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,April,4,114.64
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,May,5,113.53
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,June,6,114.98
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,July,7,124.66
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,August,8,140.37
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,September,9,144.44
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,October,10,143.01
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,November,11,119.80
+Charoen Pokphand Madiun,ISO_SITE_1637816,2026,December,12,117.06
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2024,August,8,127.80
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2024,September,9,127.34
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2024,October,10,138.43
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2024,November,11,121.69
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2024,December,12,120.82
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,January,1,112.90
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,February,2,112.81
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,March,3,124.18
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,April,4,119.31
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,May,5,119.36
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,June,6,116.33
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,July,7,122.03
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,August,8,62.501
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,September,9,123.209
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,October,10,125.965
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,November,11,117.789
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2025,December,12,116.917
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,January,1,108.66
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,February,2,108.52
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,March,3,116.34
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,April,4,114.79
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,May,5,114.80
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,June,6,107.61
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,July,7,117.43
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,August,8,122.96
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,September,9,122.50
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,October,10,125.23
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,November,11,117.11
+Charoen Pokphand Majalengka,ISO_SITE_1614122,2026,December,12,116.24
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,January,1,35.74
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,February,2,36.78
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,March,3,40.98
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,April,4,39.37
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,May,5,39.74
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,June,6,38.58
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,July,7,40.58
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,August,8,42.21
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,September,9,42.20
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,October,10,46.56
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,November,11,38.73
+Garuda Metalindo (IKP),ISO_SITE_1445767,2024,December,12,37.95
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,January,1,35.384
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,February,2,36.415
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,March,3,40.572
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,April,4,38.978
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,May,5,36.283
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,June,6,38.2
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,July,7,40.177
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,August,8,41.787
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,September,9,41.778
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,October,10,46.097
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,November,11,38.347
+Garuda Metalindo (IKP),ISO_SITE_1445767,2025,December,12,35.28
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,January,1,33.93
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,February,2,34.96
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,March,3,39.09
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,April,4,37.50
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,May,5,34.83
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,June,6,36.73
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,July,7,38.70
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,August,8,40.29
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,September,9,40.29
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,October,10,44.58
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,November,11,36.88
+Garuda Metalindo (IKP),ISO_SITE_1445767,2026,December,12,33.83
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,January,1,31.54
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,February,2,33.42
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,March,3,41.98
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,April,4,43.21
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,May,5,43.70
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,June,6,42.31
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,July,7,43.79
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,August,8,48.80
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,September,9,47.81
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,October,10,45.86
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,November,11,49.18
+Garuda Metalindo (MPF),ISO_SITE_1449886,2024,December,12,39.85
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,January,1,28.982
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,February,2,31.465
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,March,3,41.558
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,April,4,42.785
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,May,5,43.268
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,June,6,41.893
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,July,7,43.356
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,August,8,48.322
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,September,9,45.512
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,October,10,45.405
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,November,11,48.689
+Garuda Metalindo (MPF),ISO_SITE_1449886,2025,December,12,39.452
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,January,1,26.64
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,February,2,29.10
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,March,3,39.13
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,April,4,40.35
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,May,5,40.83
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,June,6,39.46
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,July,7,40.92
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,August,8,45.85
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,September,9,43.06
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,October,10,42.95
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,November,11,46.21
+Garuda Metalindo (MPF),ISO_SITE_1449886,2026,December,12,37.04
+Garuda Metalindo 1,ISO_SITE_1458125,2024,January,1,59.62
+Garuda Metalindo 1,ISO_SITE_1458125,2024,February,2,61.42
+Garuda Metalindo 1,ISO_SITE_1458125,2024,March,3,76.93
+Garuda Metalindo 1,ISO_SITE_1458125,2024,April,4,80.37
+Garuda Metalindo 1,ISO_SITE_1458125,2024,May,5,81.48
+Garuda Metalindo 1,ISO_SITE_1458125,2024,June,6,78.09
+Garuda Metalindo 1,ISO_SITE_1458125,2024,July,7,81.14
+Garuda Metalindo 1,ISO_SITE_1458125,2024,August,8,91.15
+Garuda Metalindo 1,ISO_SITE_1458125,2024,September,9,87.97
+Garuda Metalindo 1,ISO_SITE_1458125,2024,October,10,85.23
+Garuda Metalindo 1,ISO_SITE_1458125,2024,November,11,93.69
+Garuda Metalindo 1,ISO_SITE_1458125,2024,December,12,73.09
+Garuda Metalindo 1,ISO_SITE_1458125,2025,January,1,59.025
+Garuda Metalindo 1,ISO_SITE_1458125,2025,February,2,60.804
+Garuda Metalindo 1,ISO_SITE_1458125,2025,March,3,76.157
+Garuda Metalindo 1,ISO_SITE_1458125,2025,April,4,79.57
+Garuda Metalindo 1,ISO_SITE_1458125,2025,May,5,70.598
+Garuda Metalindo 1,ISO_SITE_1458125,2025,June,6,77.31
+Garuda Metalindo 1,ISO_SITE_1458125,2025,July,7,80.329
+Garuda Metalindo 1,ISO_SITE_1458125,2025,August,8,90.236
+Garuda Metalindo 1,ISO_SITE_1458125,2025,September,9,87.087
+Garuda Metalindo 1,ISO_SITE_1458125,2025,October,10,84.373
+Garuda Metalindo 1,ISO_SITE_1458125,2025,November,11,92.751
+Garuda Metalindo 1,ISO_SITE_1458125,2025,December,12,72.363
+Garuda Metalindo 1,ISO_SITE_1458125,2026,January,1,56.19
+Garuda Metalindo 1,ISO_SITE_1458125,2026,February,2,57.96
+Garuda Metalindo 1,ISO_SITE_1458125,2026,March,3,73.22
+Garuda Metalindo 1,ISO_SITE_1458125,2026,April,4,76.61
+Garuda Metalindo 1,ISO_SITE_1458125,2026,May,5,67.69
+Garuda Metalindo 1,ISO_SITE_1458125,2026,June,6,74.36
+Garuda Metalindo 1,ISO_SITE_1458125,2026,July,7,77.36
+Garuda Metalindo 1,ISO_SITE_1458125,2026,August,8,87.21
+Garuda Metalindo 1,ISO_SITE_1458125,2026,September,9,84.08
+Garuda Metalindo 1,ISO_SITE_1458125,2026,October,10,81.38
+Garuda Metalindo 1,ISO_SITE_1458125,2026,November,11,89.71
+Garuda Metalindo 1,ISO_SITE_1458125,2026,December,12,69.45
+Garuda Metalindo 2,ISO_SITE_1453245,2024,January,1,55.55
+Garuda Metalindo 2,ISO_SITE_1453245,2024,February,2,58.73
+Garuda Metalindo 2,ISO_SITE_1453245,2024,March,3,73.72
+Garuda Metalindo 2,ISO_SITE_1453245,2024,April,4,75.96
+Garuda Metalindo 2,ISO_SITE_1453245,2024,May,5,77.34
+Garuda Metalindo 2,ISO_SITE_1453245,2024,June,6,74.87
+Garuda Metalindo 2,ISO_SITE_1453245,2024,July,7,77.56
+Garuda Metalindo 2,ISO_SITE_1453245,2024,August,8,86.11
+Garuda Metalindo 2,ISO_SITE_1453245,2024,September,9,83.54
+Garuda Metalindo 2,ISO_SITE_1453245,2024,October,10,80.64
+Garuda Metalindo 2,ISO_SITE_1453245,2024,November,11,85.81
+Garuda Metalindo 2,ISO_SITE_1453245,2024,December,12,69.34
+Garuda Metalindo 2,ISO_SITE_1453245,2025,January,1,51.554
+Garuda Metalindo 2,ISO_SITE_1453245,2025,February,2,58.143
+Garuda Metalindo 2,ISO_SITE_1453245,2025,March,3,72.988
+Garuda Metalindo 2,ISO_SITE_1453245,2025,April,4,75.2
+Garuda Metalindo 2,ISO_SITE_1453245,2025,May,5,76.571
+Garuda Metalindo 2,ISO_SITE_1453245,2025,June,6,71.12
+Garuda Metalindo 2,ISO_SITE_1453245,2025,July,7,76.786
+Garuda Metalindo 2,ISO_SITE_1453245,2025,August,8,85.246
+Garuda Metalindo 2,ISO_SITE_1453245,2025,September,9,82.705
+Garuda Metalindo 2,ISO_SITE_1453245,2025,October,10,79.838
+Garuda Metalindo 2,ISO_SITE_1453245,2025,November,11,81.845
+Garuda Metalindo 2,ISO_SITE_1453245,2025,December,12,68.649
+Garuda Metalindo 2,ISO_SITE_1453245,2026,January,1,48.67
+Garuda Metalindo 2,ISO_SITE_1453245,2026,February,2,55.22
+Garuda Metalindo 2,ISO_SITE_1453245,2026,March,3,69.98
+Garuda Metalindo 2,ISO_SITE_1453245,2026,April,4,72.18
+Garuda Metalindo 2,ISO_SITE_1453245,2026,May,5,73.54
+Garuda Metalindo 2,ISO_SITE_1453245,2026,June,6,68.12
+Garuda Metalindo 2,ISO_SITE_1453245,2026,July,7,73.75
+Garuda Metalindo 2,ISO_SITE_1453245,2026,August,8,82.16
+Garuda Metalindo 2,ISO_SITE_1453245,2026,September,9,79.64
+Garuda Metalindo 2,ISO_SITE_1453245,2026,October,10,76.79
+Garuda Metalindo 2,ISO_SITE_1453245,2026,November,11,78.78
+Garuda Metalindo 2,ISO_SITE_1453245,2026,December,12,65.67
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2024,August,8,124.28
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2024,September,9,124.51
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2024,October,10,136.24
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2024,November,11,112.76
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2024,December,12,111.02
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,January,1,103.94
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,February,2,107.76
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,March,3,119.11
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,April,4,115.08
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,May,5,117.60
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,June,6,113.72
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,July,7,119.62
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,August,8,61.209
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,September,9,121.189
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,October,10,126.692
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,November,11,109.836
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2025,December,12,108.126
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,January,1,100.61
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,February,2,104.23
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,March,3,110.40
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,April,4,111.41
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,May,5,113.98
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,June,6,105.93
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,July,7,115.96
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,August,8,120.39
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,September,9,120.46
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,October,10,125.93
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,November,11,109.18
+PLTS Frina Lestari Nusantara,ISO_SITE_1628909,2026,December,12,107.48
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,January,1,118.07
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,February,2,118.90
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,March,3,145.22
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,April,4,148.01
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,May,5,145.94
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,June,6,135.12
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,July,7,157.17
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,August,8,185.05
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,September,9,187.73
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,October,10,181.57
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,November,11,148.73
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2024,December,12,121.10
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,January,1,113.317
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,February,2,118.903
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,March,3,145.216
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,April,4,148.01
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,May,5,145.944
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,June,6,135.115
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,July,7,157.17
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,August,8,178.961
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,September,9,187.731
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,October,10,181.573
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,November,11,141.314
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2025,December,12,121.104
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,January,1,112.64
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,February,2,118.19
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,March,3,144.35
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,April,4,147.13
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,May,5,145.07
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,June,6,134.31
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,July,7,156.23
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,August,8,177.89
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,September,9,186.61
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,October,10,180.49
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,November,11,140.47
+PLTS Mall Panakkukang,FS_SITE_NE=53771627,2026,December,12,120.38
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2025,December,12,392.42
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,January,1,425.03
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,February,2,393.16
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,March,3,452.88
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,April,4,429.18
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,May,5,450.45
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,June,6,429.53
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,July,7,463.59
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,August,8,531.41
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,September,9,562.08
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,October,10,566.61
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,November,11,453.56
+PLTS ONGRID PT SUPARMA TBK,FS_SITE_NE=62806354,2026,December,12,392.42
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,January,1,226.08
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,February,2,202.40
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,March,3,224.70
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,April,4,222.40
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,May,5,219.08
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,June,6,211.11
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,July,7,229.87
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,August,8,233.09
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,September,9,235.68
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,October,10,246.76
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,November,11,197.29
+PLTS On Grid Sorini Towa Berlian Corporindo,ISO_SITE_1763661,2026,December,12,219.19
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2024,October,10,296.43
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2024,November,11,333.38
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2024,December,12,318.69
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,January,1,318.23
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,February,2,307.54
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,March,3,369.80
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,April,4,356.35
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,May,5,347.90
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,June,6,315.68
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,July,7,344.27
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,August,8,360.83
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,September,9,357.64
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,December,10,296.633
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,November,11,310.301
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2025,October,12,296.43
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,January,1,316.95
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,February,2,306.31
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,March,3,368.32
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,April,4,354.92
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,May,5,346.51
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,June,6,314.42
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,July,7,342.90
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,August,8,359.39
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,September,9,356.21
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,October,10,350.84
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,November,11,332.04
+PLTS Rooftop Sumatera Prima Fibreboard,ISO_SITE_1680199,2026,December,12,317.42
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,January,1,30.74
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,February,2,26.06
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,March,3,28.95
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,April,4,27.56
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,May,5,25.91
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,June,6,23.94
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,July,7,26.80
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,August,8,29.35
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,September,9,30.91
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,October,10,32.69
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,November,11,28.52
+PLTS Rooftop Weiss Tech,ISO_SITE_1789614,2026,December,12,30.24
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,January,1,116.54
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,February,2,105.36
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,March,3,126.36
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,April,4,122.23
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,May,5,124.13
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,June,6,117.46
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,July,7,127.47
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,August,8,143.78
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,September,9,148.07
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,October,10,146.52
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,November,11,122.47
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2025,December,12,119.56
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,January,1,116.07
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,February,2,104.94
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,March,3,125.85
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,April,4,121.75
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,May,5,123.64
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,June,6,117.00
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,July,7,126.96
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,August,8,143.21
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,September,9,147.48
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,October,10,145.93
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,November,11,121.98
+PT Gelora Djaja 1 MWp,FS_SITE_NE=61847068,2026,December,12,119.08
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,January,1,180.19
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,February,2,169.86
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,March,3,207.22
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,April,4,201.14
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,May,5,199.11
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,June,6,186.18
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,July,7,206.29
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,August,8,230.63
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,September,9,234.78
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,October,10,232.76
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,November,11,202.53
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2024,December,12,207.77
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,January,1,180.196
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,February,2,169.552
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,March,3,207.225
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,April,4,189.398
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,May,5,199.107
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,June,6,179.446
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,July,7,206.294
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,August,8,222.545
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,September,9,234.783
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,October,10,232.762
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,November,11,202.529
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2025,December,12,207.774
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,January,1,179.30
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,February,2,168.70
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,March,3,206.19
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,April,4,188.45
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,May,5,198.11
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,June,6,178.55
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,July,7,205.26
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,August,8,221.43
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,September,9,233.61
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,October,10,231.60
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,November,11,201.52
+PT. MMKI 1.75 MWp - Painting Building,FS_SITE_NE=50488260,2026,December,12,206.74
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2024,June,6,478.98
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2024,July,7,525.16
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2024,August,8,585.38
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2024,September,9,589.98
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2024,October,10,537.03
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2024,November,11,476.55
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2024,December,12,443.88
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,January,1,406.888
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,February,2,378.317
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,March,3,507.378
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,April,4,479.792
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,May,5,465.014
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,June,6,471.911
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,July,7,493.585
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,August,8,568.46
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,September,9,572.401
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,October,10,531.023
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,November,11,471.911
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2025,December,12,414.769
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,January,1,404.24
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,February,2,375.86
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,March,3,504.08
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,April,4,476.67
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,May,5,461.99
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,June,6,468.84
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,July,7,490.38
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,August,8,564.77
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,September,9,568.68
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,October,10,527.57
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,November,11,468.84
+PT. MMKI 4.292 MWP - Phase 3,FS_SITE_NE=58630782,2026,December,12,412.07
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,January,1,549.20
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,February,2,492.00
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,March,3,666.72
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,April,4,654.66
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,May,5,663.59
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,June,6,621.14
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,July,7,680.57
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,August,8,751.18
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,September,9,758.77
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,October,10,724.81
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,November,11,625.61
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2024,December,12,592.54
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,January,1,546.872
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,February,2,489.915
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,March,3,663.9
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,April,4,651.886
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,May,5,660.785
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,June,6,618.513
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,July,7,677.694
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,August,8,748
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,September,9,755.564
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,October,10,721.746
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,November,11,622.962
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2025,December,12,590.034
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,January,1,510.54
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,February,2,453.72
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,March,3,627.30
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,April,4,615.32
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,May,5,624.20
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,June,6,579.41
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,July,7,638.21
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,August,8,708.06
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,September,9,715.57
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,October,10,681.97
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,November,11,583.83
+PT. MMKI 5.7 MWp - Phase 2,FS_SITE_NE=51758766,2026,December,12,551.12
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,January,1,224.55
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,February,2,195.20
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,March,3,251.87
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,April,4,234.67
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,May,5,222.79
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,June,6,204.06
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,July,7,229.44
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,August,8,253.10
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,September,9,252.37
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,October,10,251.96
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,November,11,215.65
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2024,December,12,236.60
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,January,1,212.98
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,February,2,185.144
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,March,3,238.896
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,April,4,222.578
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,May,5,211.318
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,June,6,186.98
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,July,7,217.623
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,August,8,240.061
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,September,9,239.377
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,October,10,238.987
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,November,11,192.754
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2025,December,12,213.645
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,January,1,211.62
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,February,2,183.96
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,March,3,237.37
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,April,4,221.15
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,May,5,209.97
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,June,6,185.78
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,July,7,216.23
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,August,8,238.52
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,September,9,237.85
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,October,10,237.46
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,November,11,191.52
+PT. Pusan Manis Mulia 2.06 MWp - Tangerang,FS_SITE_NE=54435794,2026,December,12,212.28
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,January,1,326.37
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,February,2,264.93
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,March,3,345.88
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,April,4,313.68
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,May,5,304.45
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,June,6,292.04
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,July,7,325.86
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,August,8,364.62
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,September,9,368.32
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,October,10,356.62
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,November,11,301.50
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2024,December,12,298.52
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,January,1,321.6
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,February,2,262.95
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,March,3,343.456
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,April,4,311.483
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,May,5,302.318
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,June,6,279.493
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,July,7,323.578
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,August,8,362.07
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,September,9,342.8
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,October,10,345.88
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,November,11,299.39
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2025,December,12,296.425
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,January,1,260.90
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,February,2,340.78
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,March,3,309.05
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,April,4,299.96
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,May,5,277.31
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,June,6,321.06
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,July,7,359.25
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,August,8,340.13
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,September,9,343.18
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,October,10,297.06
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,November,11,297.06
+Shoetown Ligung Indonesia,ISO_SITE_1479456,2026,December,12,319.10

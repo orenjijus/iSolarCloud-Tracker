@@ -1,0 +1,267 @@
+-- public.charoen_pokphand_madiun_inverter_summary_pivoted source
+
+CREATE OR REPLACE VIEW public.charoen_pokphand_madiun_inverter_summary_pivoted
+AS SELECT h."timestamp",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p1'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p1'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_yield_today_kWh",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p14'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p14'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_total_dc_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p24'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p24'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_total_active_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_5_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p25'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p25'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_01_total_reactive_power_var",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p1'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p1'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_yield_today_kWh",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p14'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p14'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_total_dc_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p24'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p24'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_total_active_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_6_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p25'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p25'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_02_total_reactive_power_var",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p1'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p1'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_yield_today_kWh",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p14'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p14'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_total_dc_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p24'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p24'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_total_active_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_3_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p25'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p25'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_03_total_reactive_power_var",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p1'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p1'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_yield_today_kWh",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p14'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p14'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_total_dc_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p24'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p24'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_total_active_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_4_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p25'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p25'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_04_total_reactive_power_var",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p1'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p1'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_yield_today_kWh",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p14'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p14'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_total_dc_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p24'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p24'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_total_active_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_1_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p25'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p25'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_05_total_reactive_power_var",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p1'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p1'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_yield_today_kWh",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p14'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p14'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_total_dc_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p24'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p24'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_total_active_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_2_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p25'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p25'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_06_total_reactive_power_var",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p1'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p1'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_yield_today_kWh",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p14'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p14'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_total_dc_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p24'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p24'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_total_active_power_W",
+    max(
+        CASE
+            WHEN h.device_ps_key::text = '1637816_1_7_1'::text THEN
+            CASE
+                WHEN (h.measurement_data ->> 'p25'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p25'::text)::numeric
+                ELSE NULL::numeric
+            END
+            ELSE NULL::numeric
+        END) AS "CPMAD_INV_07_total_reactive_power_var"
+   FROM isolarcloud_historical_data h
+     JOIN isolarcloud_devices d ON h.device_ps_key::text = d.device_ps_key::text
+     JOIN isolarcloud_power_stations ps ON d.ps_id::text = ps.ps_id::text
+  WHERE ps.ps_name::text = 'Charoen Pokphand Madiun'::text AND d.device_type = 1
+  GROUP BY h."timestamp"
+  ORDER BY h."timestamp";
+
+-- Permissions
+
+ALTER TABLE public.charoen_pokphand_madiun_inverter_summary_pivoted OWNER TO postgres;
+GRANT ALL ON TABLE public.charoen_pokphand_madiun_inverter_summary_pivoted TO postgres;

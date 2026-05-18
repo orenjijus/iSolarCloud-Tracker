@@ -1,0 +1,49 @@
+2026-05-17 22:29:26,883 - root - INFO - Database URL constructed: postgresql://juice:***@10.101.4.88:5432/MMSR
+2026-05-17 22:29:27,584 - root - INFO - Database engine initialized at module import
+2026-05-17 22:29:27,590 - root - INFO - Database URL constructed: postgresql://juice:***@10.101.4.88:5432/MMSR
+2026-05-17 22:29:27,594 - __main__ - INFO - ================================================================================
+2026-05-17 22:29:27,594 - __main__ - INFO - Starting MMSR Daily Pipeline
+2026-05-17 22:29:27,594 - __main__ - INFO - Dates: 2026-04-26 | ingest=False | dbt=True
+2026-05-17 22:29:27,595 - __main__ - INFO - ================================================================================
+2026-05-17 22:29:27,595 - __main__ - INFO - ================================================================================
+2026-05-17 22:29:27,595 - __main__ - INFO - Processing date: 2026-04-26
+2026-05-17 22:29:27,595 - __main__ - INFO - ================================================================================
+2026-05-17 22:29:27,595 - __main__ - INFO - Step 2: dbt run (reingest window 2026-04-26) ...
+2026-05-17 22:29:27,596 - __main__ - INFO - Running: C:\Users\Administrator\Documents\Code\MMSR API - Server MA\.venv\Scripts\dbt.exe run --vars {"reingest_start_date": "2026-04-26", "reingest_end_date": "2026-04-26"}
+2026-05-17 23:14:12,654 - __main__ - INFO - dbt run completed successfully
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:01:32  17 of 28 START sql incremental model mart.mart_meter_performance_5min .......... [RUN]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:02:09  17 of 28 OK created sql incremental model mart.mart_meter_performance_5min ..... [[32mINSERT 0 198606[0m in 36.55s]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:02:09  18 of 28 START sql incremental model mart.mart_sensor_measurements_5min ........ [RUN]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:03:03  18 of 28 OK created sql incremental model mart.mart_sensor_measurements_5min ... [[32mINSERT 0 91256[0m in 53.88s]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:03:03  19 of 28 START sql table model mart.mart_simulation_targets_monthly ............ [RUN]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:03:03  19 of 28 OK created sql table model mart.mart_simulation_targets_monthly ....... [[32mSELECT 558[0m in 0.20s]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:03:03  20 of 28 START sql incremental model mart.mart_inverter_yield_daily ............ [RUN]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:03:42  20 of 28 OK created sql incremental model mart.mart_inverter_yield_daily ....... [[32mINSERT 0 204[0m in 39.60s]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:03:42  21 of 28 START sql incremental model mart.fact_sensor_calculations_5min ........ [RUN]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:03:45  21 of 28 OK created sql incremental model mart.fact_sensor_calculations_5min ... [[32mINSERT 0 21415[0m in 2.83s]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:03:45  22 of 28 START sql incremental model mart.mart_sensor_daily .................... [RUN]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:04:07  22 of 28 OK created sql incremental model mart.mart_sensor_daily ............... [[32mINSERT 0 84[0m in 20.55s]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:04:07  23 of 28 START sql incremental model mart.fact_inverter_calculations_5min ...... [RUN]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:04:11  23 of 28 OK created sql incremental model mart.fact_inverter_calculations_5min . [[32mINSERT 0 43547[0m in 3.47s]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:04:11  24 of 28 START sql incremental model mart.fact_site_calculations_5min .......... [RUN]
+2026-05-17 23:14:12,655 - __main__ - INFO - dbt | [0m16:04:15  24 of 28 OK created sql incremental model mart.fact_site_calculations_5min ..... [[32mINSERT 0 5897[0m in 3.86s]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:04:15  25 of 28 START sql incremental model mart.mart_site_performance_daily .......... [RUN]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:04:59  25 of 28 OK created sql incremental model mart.mart_site_performance_daily ..... [[32mINSERT 0 26[0m in 44.31s]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:04:59  26 of 28 START sql view model mart.mart_site_performance_monthly ............... [RUN]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:04:59  26 of 28 OK created sql view model mart.mart_site_performance_monthly .......... [[32mCREATE VIEW[0m in 0.14s]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:04:59  27 of 28 START sql incremental model mart.mart_string_performance_daily ........ [RUN]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:02  27 of 28 OK created sql incremental model mart.mart_string_performance_daily ... [[32mINSERT 0 3667[0m in 543.14s]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:02  28 of 28 START sql table model mart.mart_string_performance_monthly ............ [RUN]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:10  28 of 28 OK created sql table model mart.mart_string_performance_monthly ....... [[32mSELECT 69747[0m in 8.09s]
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:10  
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:10  Finished running 12 incremental models, 15 table models, 1 view model in 0 hours 44 minutes and 35.13 seconds (2675.13s).
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:10  
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:10  [32mCompleted successfully[0m
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:10  
+2026-05-17 23:14:12,656 - __main__ - INFO - dbt | [0m16:14:10  Done. PASS=28 WARN=0 ERROR=0 SKIP=0 NO-OP=0 TOTAL=28
+2026-05-17 23:14:12,656 - __main__ - INFO - Date 2026-04-26 completed OK | FusionSolar: None | iSolarCloud: None
+2026-05-17 23:14:12,656 - __main__ - INFO - ================================================================================
+2026-05-17 23:14:12,656 - __main__ - INFO - MMSR Daily Pipeline completed successfully for all dates!
+2026-05-17 23:14:12,656 - __main__ - INFO - Dates: 2026-04-26
+2026-05-17 23:14:12,656 - __main__ - INFO - Total execution time: 2685.1 seconds
+2026-05-17 23:14:12,657 - __main__ - INFO - ================================================================================

@@ -1,0 +1,27 @@
+site_id,site_name,total_rows,capacity_rows,capacity_fill_pct,poa_rows,poa_fill_pct,ghi_rows,ghi_fill_pct
+1445767,Garuda Metalindo (IKP),2268,0,0.00,0,0.00,2268,100.00
+1449886,Garuda Metalindo (MPF),2430,0,0.00,0,0.00,2430,100.00
+1453245,Garuda Metalindo 2,4752,0,0.00,0,0.00,4752,100.00
+1458125,Garuda Metalindo 1,4752,0,0.00,0,0.00,4752,100.00
+1479456,Shoetown Ligung Indonesia,17568,0,0.00,0,0.00,16416,93.44
+1614122,Charoen Pokphand Majalengka,7392,7224,97.73,0,0.00,7392,100.00
+1628909,PLTS Frina Lestari Nusantara,7560,0,0.00,0,0.00,3696,48.89
+1637095,Charoen Pokphand Bandung,10800,10560,97.78,0,0.00,10800,100.00
+1637816,Charoen Pokphand Madiun,7392,7224,97.73,0,0.00,7392,100.00
+1680199,PLTS Rooftop Sumatera Prima Fibreboard,15876,0,0.00,0,0.00,15876,100.00
+1722752,"Samator Ame Krian 6,82 kWp",90,0,0.00,0,0.00,0,0.00
+1723575,"Samator Indo Gas Semarang 9,92 kWp",81,0,0.00,0,0.00,0,0.00
+1728142,"Samator Gas Industri Sidoarjo 6,82 kWP",90,0,0.00,0,0.00,0,0.00
+1730375,"Samator Gas Industri Solo 6,82 kWp",88,0,0.00,0,0.00,0,0.00
+1731512,Samator Bali,54,0,0.00,0,0.00,0,0.00
+1734912,"Samator Gas Industri Malang 6,82 kWp",90,0,0.00,0,0.00,0,0.00
+1763661,PLTS On Grid Sorini Towa Berlian Corporindo,9450,9196,97.31,0,0.00,7770,82.22
+1789614,PLTS Rooftop Weiss Tech,1408,0,0.00,0,0.00,1152,81.82
+NE=50488260,PT. MMKI 1.75 MWp - Painting Building,8788,252,2.87,8372,95.27,8372,95.27
+NE=51758766,PT. MMKI 5.7 MWp - Phase 2,19292,19292,100.00,18340,95.07,18340,95.07
+NE=53771627,PLTS Mall Panakkukang,10660,200,1.88,10140,95.12,10140,95.12
+NE=54435794,PT. Pusan Manis Mulia 2.06 MWp - Tangerang,15204,280,1.84,14476,95.21,14476,95.21
+NE=58630782,PT. MMKI 4.292 MWP - Phase 3,23712,19152,80.77,23088,97.37,23088,97.37
+NE=60951882,Hidden Valley,1094,0,0.00,0,0.00,0,0.00
+NE=61847068,PT Gelora Djaja 1 MWp,3588,2875,80.13,0,0.00,0,0.00
+NE=62806354,PLTS ONGRID PT SUPARMA TBK,23184,18879,81.43,22092,95.29,22092,95.29

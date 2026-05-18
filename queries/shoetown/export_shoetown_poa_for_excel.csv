@@ -1,0 +1,8 @@
+-- Export query untuk copy ke Excel
+-- Jalankan query ini dan copy hasilnya ke Excel file shoetown_poa_daily.xlsx
+-- 
+-- Query: validate_shoetown_poa_final.sql
+-- 
+-- Format output sudah sesuai dengan Excel columns:
+-- Date, SLI_IRR_1_A, SLI_IRR_2_A, SLI_IRR_3_F, SLI_IRR_4_F, Weighted_Avg_POA
+

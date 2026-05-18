@@ -1,0 +1,30 @@
+-- public.charoen_pokphand_madiun_inverter_summary_data source
+
+CREATE OR REPLACE VIEW public.charoen_pokphand_madiun_inverter_summary_data
+AS SELECT h."timestamp",
+    d.device_name,
+        CASE
+            WHEN (h.measurement_data ->> 'p1'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p1'::text)::numeric
+            ELSE NULL::numeric
+        END AS "yield_today_kWh",
+        CASE
+            WHEN (h.measurement_data ->> 'p14'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p14'::text)::numeric
+            ELSE NULL::numeric
+        END AS "total_dc_power_W",
+        CASE
+            WHEN (h.measurement_data ->> 'p24'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p24'::text)::numeric
+            ELSE NULL::numeric
+        END AS "total_active_power_W",
+        CASE
+            WHEN (h.measurement_data ->> 'p25'::text) ~ '^-?\d+(\.\d+)?$'::text THEN (h.measurement_data ->> 'p25'::text)::numeric
+            ELSE NULL::numeric
+        END AS total_reactive_power_var
+   FROM isolarcloud_historical_data h
+     JOIN isolarcloud_devices d ON h.device_ps_key::text = d.device_ps_key::text
+     JOIN isolarcloud_power_stations ps ON d.ps_id::text = ps.ps_id::text
+  WHERE ps.ps_name::text = 'Charoen Pokphand Madiun'::text AND d.device_type = 1;
+
+-- Permissions
+
+ALTER TABLE public.charoen_pokphand_madiun_inverter_summary_data OWNER TO postgres;
+GRANT ALL ON TABLE public.charoen_pokphand_madiun_inverter_summary_data TO postgres;
